@@ -82,7 +82,7 @@ const View = () => {
             </div>
             <div>
                 <a href={location.state.post.url} target="_blank">
-                    <p>タイトル：{location.state.post.body}</p>
+                    <p>タイトル：{location.state.post.title}</p>
                     <img src={location.state.post.image} />
                 </a>
             </div>

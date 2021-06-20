@@ -2077,6 +2077,141 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/decode-uri-component/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/decode-uri-component/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+	try {
+		// Try to decode the entire string first
+		return decodeURIComponent(components.join(''));
+	} catch (err) {
+		// Do nothing
+	}
+
+	if (components.length === 1) {
+		return components;
+	}
+
+	split = split || 1;
+
+	// Split the array in 2 parts
+	var left = components.slice(0, split);
+	var right = components.slice(split);
+
+	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+	try {
+		return decodeURIComponent(input);
+	} catch (err) {
+		var tokens = input.match(singleMatcher);
+
+		for (var i = 1; i < tokens.length; i++) {
+			input = decodeComponents(tokens, i).join('');
+
+			tokens = input.match(singleMatcher);
+		}
+
+		return input;
+	}
+}
+
+function customDecodeURIComponent(input) {
+	// Keep track of all the replacements and prefill the map with the `BOM`
+	var replaceMap = {
+		'%FE%FF': '\uFFFD\uFFFD',
+		'%FF%FE': '\uFFFD\uFFFD'
+	};
+
+	var match = multiMatcher.exec(input);
+	while (match) {
+		try {
+			// Decode as big chunks as possible
+			replaceMap[match[0]] = decodeURIComponent(match[0]);
+		} catch (err) {
+			var result = decode(match[0]);
+
+			if (result !== match[0]) {
+				replaceMap[match[0]] = result;
+			}
+		}
+
+		match = multiMatcher.exec(input);
+	}
+
+	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+	replaceMap['%C2'] = '\uFFFD';
+
+	var entries = Object.keys(replaceMap);
+
+	for (var i = 0; i < entries.length; i++) {
+		// Replace all decoded components
+		var key = entries[i];
+		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+	}
+
+	return input;
+}
+
+module.exports = function (encodedURI) {
+	if (typeof encodedURI !== 'string') {
+		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+	}
+
+	try {
+		encodedURI = encodedURI.replace(/\+/g, ' ');
+
+		// Try the built in decoder first
+		return decodeURIComponent(encodedURI);
+	} catch (err) {
+		// Fallback to a more advanced decoder
+		return customDecodeURIComponent(encodedURI);
+	}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/filter-obj/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/filter-obj/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = function (obj, predicate) {
+	var ret = {};
+	var keys = Object.keys(obj);
+	var isArr = Array.isArray(predicate);
+
+	for (var i = 0; i < keys.length; i++) {
+		var key = keys[i];
+		var val = obj[key];
+
+		if (isArr ? predicate.indexOf(key) !== -1 : predicate(key, val, obj)) {
+			ret[key] = val;
+		}
+	}
+
+	return ret;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/history/esm/history.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/esm/history.js ***!
@@ -4392,6 +4527,461 @@ if (true) {
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+
+/***/ "./node_modules/query-string/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/query-string/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const strictUriEncode = __webpack_require__(/*! strict-uri-encode */ "./node_modules/strict-uri-encode/index.js");
+const decodeComponent = __webpack_require__(/*! decode-uri-component */ "./node_modules/decode-uri-component/index.js");
+const splitOnFirst = __webpack_require__(/*! split-on-first */ "./node_modules/split-on-first/index.js");
+const filterObject = __webpack_require__(/*! filter-obj */ "./node_modules/filter-obj/index.js");
+
+const isNullOrUndefined = value => value === null || value === undefined;
+
+function encoderForArrayFormat(options) {
+	switch (options.arrayFormat) {
+		case 'index':
+			return key => (result, value) => {
+				const index = result.length;
+
+				if (
+					value === undefined ||
+					(options.skipNull && value === null) ||
+					(options.skipEmptyString && value === '')
+				) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, [encode(key, options), '[', index, ']'].join('')];
+				}
+
+				return [
+					...result,
+					[encode(key, options), '[', encode(index, options), ']=', encode(value, options)].join('')
+				];
+			};
+
+		case 'bracket':
+			return key => (result, value) => {
+				if (
+					value === undefined ||
+					(options.skipNull && value === null) ||
+					(options.skipEmptyString && value === '')
+				) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, [encode(key, options), '[]'].join('')];
+				}
+
+				return [...result, [encode(key, options), '[]=', encode(value, options)].join('')];
+			};
+
+		case 'comma':
+		case 'separator':
+		case 'bracket-separator': {
+			const keyValueSep = options.arrayFormat === 'bracket-separator' ?
+				'[]=' :
+				'=';
+
+			return key => (result, value) => {
+				if (
+					value === undefined ||
+					(options.skipNull && value === null) ||
+					(options.skipEmptyString && value === '')
+				) {
+					return result;
+				}
+
+				// Translate null to an empty string so that it doesn't serialize as 'null'
+				value = value === null ? '' : value;
+
+				if (result.length === 0) {
+					return [[encode(key, options), keyValueSep, encode(value, options)].join('')];
+				}
+
+				return [[result, encode(value, options)].join(options.arrayFormatSeparator)];
+			};
+		}
+
+		default:
+			return key => (result, value) => {
+				if (
+					value === undefined ||
+					(options.skipNull && value === null) ||
+					(options.skipEmptyString && value === '')
+				) {
+					return result;
+				}
+
+				if (value === null) {
+					return [...result, encode(key, options)];
+				}
+
+				return [...result, [encode(key, options), '=', encode(value, options)].join('')];
+			};
+	}
+}
+
+function parserForArrayFormat(options) {
+	let result;
+
+	switch (options.arrayFormat) {
+		case 'index':
+			return (key, value, accumulator) => {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return (key, value, accumulator) => {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		case 'comma':
+		case 'separator':
+			return (key, value, accumulator) => {
+				const isArray = typeof value === 'string' && value.includes(options.arrayFormatSeparator);
+				const isEncodedArray = (typeof value === 'string' && !isArray && decode(value, options).includes(options.arrayFormatSeparator));
+				value = isEncodedArray ? decode(value, options) : value;
+				const newValue = isArray || isEncodedArray ? value.split(options.arrayFormatSeparator).map(item => decode(item, options)) : value === null ? value : decode(value, options);
+				accumulator[key] = newValue;
+			};
+
+		case 'bracket-separator':
+			return (key, value, accumulator) => {
+				const isArray = /(\[\])$/.test(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!isArray) {
+					accumulator[key] = value ? decode(value, options) : value;
+					return;
+				}
+
+				const arrayValue = value === null ?
+					[] :
+					value.split(options.arrayFormatSeparator).map(item => decode(item, options));
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = arrayValue;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], arrayValue);
+			};
+
+		default:
+			return (key, value, accumulator) => {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function validateArrayFormatSeparator(value) {
+	if (typeof value !== 'string' || value.length !== 1) {
+		throw new TypeError('arrayFormatSeparator must be single character string');
+	}
+}
+
+function encode(value, options) {
+	if (options.encode) {
+		return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function decode(value, options) {
+	if (options.decode) {
+		return decodeComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	}
+
+	if (typeof input === 'object') {
+		return keysSorter(Object.keys(input))
+			.sort((a, b) => Number(a) - Number(b))
+			.map(key => input[key]);
+	}
+
+	return input;
+}
+
+function removeHash(input) {
+	const hashStart = input.indexOf('#');
+	if (hashStart !== -1) {
+		input = input.slice(0, hashStart);
+	}
+
+	return input;
+}
+
+function getHash(url) {
+	let hash = '';
+	const hashStart = url.indexOf('#');
+	if (hashStart !== -1) {
+		hash = url.slice(hashStart);
+	}
+
+	return hash;
+}
+
+function extract(input) {
+	input = removeHash(input);
+	const queryStart = input.indexOf('?');
+	if (queryStart === -1) {
+		return '';
+	}
+
+	return input.slice(queryStart + 1);
+}
+
+function parseValue(value, options) {
+	if (options.parseNumbers && !Number.isNaN(Number(value)) && (typeof value === 'string' && value.trim() !== '')) {
+		value = Number(value);
+	} else if (options.parseBooleans && value !== null && (value.toLowerCase() === 'true' || value.toLowerCase() === 'false')) {
+		value = value.toLowerCase() === 'true';
+	}
+
+	return value;
+}
+
+function parse(query, options) {
+	options = Object.assign({
+		decode: true,
+		sort: true,
+		arrayFormat: 'none',
+		arrayFormatSeparator: ',',
+		parseNumbers: false,
+		parseBooleans: false
+	}, options);
+
+	validateArrayFormatSeparator(options.arrayFormatSeparator);
+
+	const formatter = parserForArrayFormat(options);
+
+	// Create an object with no prototype
+	const ret = Object.create(null);
+
+	if (typeof query !== 'string') {
+		return ret;
+	}
+
+	query = query.trim().replace(/^[?#&]/, '');
+
+	if (!query) {
+		return ret;
+	}
+
+	for (const param of query.split('&')) {
+		if (param === '') {
+			continue;
+		}
+
+		let [key, value] = splitOnFirst(options.decode ? param.replace(/\+/g, ' ') : param, '=');
+
+		// Missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		value = value === undefined ? null : ['comma', 'separator', 'bracket-separator'].includes(options.arrayFormat) ? value : decode(value, options);
+		formatter(decode(key, options), value, ret);
+	}
+
+	for (const key of Object.keys(ret)) {
+		const value = ret[key];
+		if (typeof value === 'object' && value !== null) {
+			for (const k of Object.keys(value)) {
+				value[k] = parseValue(value[k], options);
+			}
+		} else {
+			ret[key] = parseValue(value, options);
+		}
+	}
+
+	if (options.sort === false) {
+		return ret;
+	}
+
+	return (options.sort === true ? Object.keys(ret).sort() : Object.keys(ret).sort(options.sort)).reduce((result, key) => {
+		const value = ret[key];
+		if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(value);
+		} else {
+			result[key] = value;
+		}
+
+		return result;
+	}, Object.create(null));
+}
+
+exports.extract = extract;
+exports.parse = parse;
+
+exports.stringify = (object, options) => {
+	if (!object) {
+		return '';
+	}
+
+	options = Object.assign({
+		encode: true,
+		strict: true,
+		arrayFormat: 'none',
+		arrayFormatSeparator: ','
+	}, options);
+
+	validateArrayFormatSeparator(options.arrayFormatSeparator);
+
+	const shouldFilter = key => (
+		(options.skipNull && isNullOrUndefined(object[key])) ||
+		(options.skipEmptyString && object[key] === '')
+	);
+
+	const formatter = encoderForArrayFormat(options);
+
+	const objectCopy = {};
+
+	for (const key of Object.keys(object)) {
+		if (!shouldFilter(key)) {
+			objectCopy[key] = object[key];
+		}
+	}
+
+	const keys = Object.keys(objectCopy);
+
+	if (options.sort !== false) {
+		keys.sort(options.sort);
+	}
+
+	return keys.map(key => {
+		const value = object[key];
+
+		if (value === undefined) {
+			return '';
+		}
+
+		if (value === null) {
+			return encode(key, options);
+		}
+
+		if (Array.isArray(value)) {
+			if (value.length === 0 && options.arrayFormat === 'bracket-separator') {
+				return encode(key, options) + '[]';
+			}
+
+			return value
+				.reduce(formatter(key), [])
+				.join('&');
+		}
+
+		return encode(key, options) + '=' + encode(value, options);
+	}).filter(x => x.length > 0).join('&');
+};
+
+exports.parseUrl = (url, options) => {
+	options = Object.assign({
+		decode: true
+	}, options);
+
+	const [url_, hash] = splitOnFirst(url, '#');
+
+	return Object.assign(
+		{
+			url: url_.split('?')[0] || '',
+			query: parse(extract(url), options)
+		},
+		options && options.parseFragmentIdentifier && hash ? {fragmentIdentifier: decode(hash, options)} : {}
+	);
+};
+
+exports.stringifyUrl = (object, options) => {
+	options = Object.assign({
+		encode: true,
+		strict: true
+	}, options);
+
+	const url = removeHash(object.url).split('?')[0] || '';
+	const queryFromUrl = exports.extract(object.url);
+	const parsedQueryFromUrl = exports.parse(queryFromUrl, {sort: false});
+
+	const query = Object.assign(parsedQueryFromUrl, object.query);
+	let queryString = exports.stringify(query, options);
+	if (queryString) {
+		queryString = `?${queryString}`;
+	}
+
+	let hash = getHash(object.url);
+	if (object.fragmentIdentifier) {
+		hash = `#${encode(object.fragmentIdentifier, options)}`;
+	}
+
+	return `${url}${queryString}${hash}`;
+};
+
+exports.pick = (input, filter, options) => {
+	options = Object.assign({
+		parseFragmentIdentifier: true
+	}, options);
+
+	const {url, query, fragmentIdentifier} = exports.parseUrl(input, options);
+	return exports.stringifyUrl({
+		url,
+		query: filterObject(query, filter),
+		fragmentIdentifier
+	}, options);
+};
+
+exports.exclude = (input, filter, options) => {
+	const exclusionFilter = Array.isArray(filter) ? key => !filter.includes(key) : (key, value) => !filter(key, value);
+
+	return exports.pick(input, exclusionFilter, options);
+};
 
 
 /***/ }),
@@ -37011,6 +37601,54 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/split-on-first/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/split-on-first/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = (string, separator) => {
+	if (!(typeof string === 'string' && typeof separator === 'string')) {
+		throw new TypeError('Expected the arguments to be of type `string`');
+	}
+
+	if (separator === '') {
+		return [string];
+	}
+
+	const separatorIndex = string.indexOf(separator);
+
+	if (separatorIndex === -1) {
+		return [string];
+	}
+
+	return [
+		string.slice(0, separatorIndex),
+		string.slice(separatorIndex + separator.length)
+	];
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/strict-uri-encode/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/strict-uri-encode/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.charCodeAt(0).toString(16).toUpperCase()}`);
+
+
+/***/ }),
+
 /***/ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js":
 /*!****************************************************************!*\
   !*** ./node_modules/tiny-invariant/dist/tiny-invariant.esm.js ***!
@@ -37182,20 +37820,32 @@ var Create_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/Creat
 var Auth_1 = __importDefault(__webpack_require__(/*! ./views/lauout/Auth */ "./resources/ts/views/lauout/Auth.tsx"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var index_1 = __importDefault(__webpack_require__(/*! ./store/index */ "./resources/ts/store/index.ts"));
-var User_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/User */ "./resources/ts/views/pages/user/User.tsx"));
+var Login_User_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Login_User */ "./resources/ts/views/pages/user/Login_User.tsx"));
 var IsLogin_1 = __importDefault(__webpack_require__(/*! ./views/lauout/IsLogin */ "./resources/ts/views/lauout/IsLogin.tsx"));
 var View_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/View */ "./resources/ts/views/pages/posts/View.tsx"));
+var User_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/User */ "./resources/ts/views/pages/user/User.tsx"));
+var Followee_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Followee */ "./resources/ts/views/pages/follow/Followee.tsx"));
+var Follower_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Follower */ "./resources/ts/views/pages/follow/Follower.tsx"));
+var Layout_1 = __importDefault(__webpack_require__(/*! ./views/lauout/Layout */ "./resources/ts/views/lauout/Layout.tsx"));
+var PostResult_1 = __importDefault(__webpack_require__(/*! ./views/search/PostResult */ "./resources/ts/views/search/PostResult.tsx"));
+var UserResult_1 = __importDefault(__webpack_require__(/*! ./views/search/UserResult */ "./resources/ts/views/search/UserResult.tsx"));
 var App = function () {
     return (react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
-        react_1.default.createElement(react_router_dom_1.Switch, null,
-            react_1.default.createElement(IsLogin_1.default, null,
-                react_1.default.createElement(react_router_dom_1.Switch, null,
-                    react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/", component: Top_1.default }),
-                    react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/:user/post/:id", component: View_1.default }))),
-            react_1.default.createElement(Auth_1.default, null,
-                react_1.default.createElement(react_router_dom_1.Switch, null,
-                    react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/create", component: Create_1.default }),
-                    react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/user", component: User_1.default }))))));
+        react_1.default.createElement(Layout_1.default, null,
+            react_1.default.createElement(react_router_dom_1.Switch, null,
+                react_1.default.createElement(IsLogin_1.default, null,
+                    react_1.default.createElement(react_router_dom_1.Switch, null,
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/", component: Top_1.default }),
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/:user/post/:id", component: View_1.default }),
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/:user/user/:id", component: User_1.default }),
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/:user/followee/:id", component: Followee_1.default }),
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/:user/follower/:id", component: Follower_1.default }),
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/search/post", component: PostResult_1.default }),
+                        react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/search/user", component: UserResult_1.default }),
+                        react_1.default.createElement(Auth_1.default, null,
+                            react_1.default.createElement(react_router_dom_1.Switch, null,
+                                react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/create", component: Create_1.default }),
+                                react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/user", component: Login_User_1.default })))))))));
 };
 react_dom_1.default.render(react_1.default.createElement(react_redux_1.Provider, { store: index_1.default },
     react_1.default.createElement(App, null)), document.getElementById("app"));
@@ -37358,24 +38008,30 @@ var Auth = function (_a) {
     var children = _a.children;
     var dispatch = react_redux_1.useDispatch();
     var history = react_router_1.useHistory();
+    var isLoginorNot = react_redux_1.useSelector(function (state) { return state.user.isLogin; });
     var _b = react_1.useState(false), isLogin = _b[0], setIsLogin = _b[1];
     react_1.useEffect(function () {
-        axios_1.default
-            .get("/json")
-            .then(function (res) {
-            console.log(res);
-            console.log(res.data.id);
-            if (res.data) {
-                dispatch(action_1.login_user(res.data));
-                setIsLogin(true);
-            }
-            else {
-                history.push("/register");
-            }
-        })
-            .catch(function (error) {
-            console.log(error);
-        });
+        if (!isLoginorNot) {
+            axios_1.default
+                .get("/json")
+                .then(function (res) {
+                console.log(res);
+                console.log(res.data.id);
+                if (res.data) {
+                    dispatch(action_1.login_user(res.data));
+                    setIsLogin(true);
+                }
+                else {
+                    history.push("/register");
+                }
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            setIsLogin(true);
+        }
     }, []);
     return isLogin ? react_1.default.createElement("div", null, children) : react_1.default.createElement("div", null, "no login");
 };
@@ -37412,6 +38068,42 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -37427,19 +38119,255 @@ var IsLogin = function (_a) {
     react_1.useEffect(function () {
         if (!isLogin) {
             //ログインされていない場合
-            axios_1.default
-                .get("/json")
-                .then(function (res) {
-                dispatch(action_1.login_user(res.data));
-            })
-                .catch(function (error) {
-                console.log(error);
-            });
+            var f = function () { return __awaiter(void 0, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            console.log("hithere");
+                            return [4 /*yield*/, axios_1.default
+                                    .get("/json")
+                                    .then(function (res) {
+                                    console.log(res.data);
+                                    if (res.data) {
+                                        dispatch(action_1.login_user(res.data));
+                                    }
+                                })
+                                    .catch(function (error) {
+                                    console.log(error);
+                                })];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); };
+            f();
         }
     }, []);
     return react_1.default.createElement("div", null, children);
 };
 exports.default = IsLogin;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/lauout/Layout.tsx":
+/*!**********************************************!*\
+  !*** ./resources/ts/views/lauout/Layout.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var Layout = function (_a) {
+    var children = _a.children;
+    var history = react_router_1.useHistory();
+    var _b = react_1.useState(""), keyword = _b[0], setKeyword = _b[1];
+    var _c = react_1.useState(true), isPost = _c[0], setIsPost = _c[1];
+    var onSearch = function () {
+        if (keyword === "") {
+            return;
+        }
+        if (isPost) {
+            history.push({
+                pathname: "/search/post",
+                search: "?q=" + keyword
+            });
+        }
+        else {
+            history.push({
+                pathname: "/search/user",
+                search: "?q=" + keyword
+            });
+        }
+        /*axios.get("/api/get/search",{params:{keyword}}).then(res=>{
+            setPosts(res.data)
+
+        }).catch(error=>{
+            console.log(error)
+        })*/
+    };
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("ul", null,
+            react_1.default.createElement("li", null,
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/" }, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8")),
+            react_1.default.createElement("li", null,
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/create" }, "\u65B0\u898F\u6295\u7A3F")),
+            react_1.default.createElement("li", null,
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/user" }, "\u30E6\u30FC\u30B6\u30FC\u60C5\u5831")),
+            react_1.default.createElement("li", null,
+                react_1.default.createElement("input", { type: "text", placeholder: "\u30AD\u30FC\u30EF\u30FC\u30C9", value: keyword, onChange: function (e) { return setKeyword(e.target.value); }, onKeyPress: function (e) {
+                        if (e.key == "Enter") {
+                            e.preventDefault();
+                            onSearch();
+                        }
+                    } }),
+                react_1.default.createElement("button", { onClick: function () { return setIsPost(!isPost); } }, isPost ? react_1.default.createElement(react_1.default.Fragment, null, "\u6295\u7A3F\u691C\u7D22") : react_1.default.createElement(react_1.default.Fragment, null, "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22")))),
+        children));
+};
+exports.default = Layout;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/pages/follow/Followee.tsx":
+/*!******************************************************!*\
+  !*** ./resources/ts/views/pages/follow/Followee.tsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var Followee = function () {
+    var params = react_router_1.useParams();
+    var userName = params.user;
+    var userId = params.id;
+    var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
+    react_1.useEffect(function () {
+        axios_1.default
+            .get("/api/get/followee", { params: { user_id: userId } })
+            .then(function (res) {
+            console.log(res.data);
+            setUsers(res.data);
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    }, []);
+    return (react_1.default.createElement("div", null,
+        userName,
+        "\u30D5\u30A9\u30ED\u30FC\u4E2D\u4E00\u89A7",
+        users[0] &&
+            users.map(function (user, i) {
+                return (react_1.default.createElement("div", { key: i },
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/user/" + user.id },
+                        react_1.default.createElement("p", null,
+                            "\u540D\u524D\uFF1A",
+                            user.name))));
+            })));
+};
+exports.default = Followee;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/pages/follow/Follower.tsx":
+/*!******************************************************!*\
+  !*** ./resources/ts/views/pages/follow/Follower.tsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var Follower = function () {
+    var params = react_router_1.useParams();
+    var userName = params.user;
+    var userId = Number(params.id);
+    var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
+    react_1.useEffect(function () {
+        axios_1.default
+            .get("/api/get/follower", { params: { user_id: userId } })
+            .then(function (res) {
+            console.log(res.data);
+            setUsers(res.data);
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    }, []);
+    return (react_1.default.createElement("div", null,
+        userName,
+        "\u30D5\u30A9\u30ED\u30EF\u30FC\u3000\u4E00\u89A7",
+        users[0] &&
+            users.map(function (user, i) {
+                return (react_1.default.createElement("div", { key: i },
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/user/" + user.id },
+                        react_1.default.createElement("p", null,
+                            "\u540D\u524D\uFF1A",
+                            user.name))));
+            })));
+};
+exports.default = Follower;
 
 
 /***/ }),
@@ -37698,7 +38626,7 @@ var View = function () {
             react_1.default.createElement("a", { href: location.state.post.url, target: "_blank" },
                 react_1.default.createElement("p", null,
                     "\u30BF\u30A4\u30C8\u30EB\uFF1A",
-                    location.state.post.body),
+                    location.state.post.title),
                 react_1.default.createElement("img", { src: location.state.post.image }))),
         react_1.default.createElement("div", null,
             react_1.default.createElement("p", null,
@@ -37770,18 +38698,19 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var Top = function () {
+    var history = react_router_1.useHistory();
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
-    var _b = react_1.useState([]), allUsers = _b[0], setAllUsers = _b[1];
-    var _c = react_1.useState([]), likes = _c[0], setLikes = _c[1];
-    var _d = react_1.useState(""), test = _d[0], setTest = _d[1];
+    var _b = react_1.useState([]), likes = _b[0], setLikes = _b[1];
+    var _c = react_1.useState(true), isNewer = _c[0], setIsNewer = _c[1];
     var huga;
     react_1.useEffect(function () {
         console.log("hi");
         //投稿取得(10個)
         axios_1.default
-            .get("/api/get")
+            .get("/api/get/posts/sort/new")
             .then(function (res) {
             setPosts(res.data);
         })
@@ -37790,62 +38719,266 @@ var Top = function () {
         });
     }, []);
     //いいね機能
-    var onAddLike = function (user_id, post_id) {
-        axios_1.default
-            .post("/api/add/like", {
-            user_id: user_id,
-            post_id: post_id
-        })
-            .then(function (res) {
-            setLikes(res.data);
-        })
-            .catch(function (error) { return console.log(error); });
-    };
-    //投稿ごとのいいね数を返す関数
-    var getNumberOfLikes = function (postId) {
-        var numberOfLikes = 0;
-        likes.map(function (like) {
-            console.log(like);
-            if (like.post_id === postId) {
-                numberOfLikes++;
-            }
-        });
-        return react_1.default.createElement("p", null, numberOfLikes);
-    };
-    //いいねしたことあるかチェック
-    var checkLikedBefore = function (postId) {
-        var isLikedBefore = likes.map(function (like) {
-            if (like.post_id === postId) {
-                if (like.user_id === (user === null || user === void 0 ? void 0 : user.id)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-        });
-        var result = isLikedBefore.some(function (liked) { return liked === true; });
-        console.log("chacke=>", result);
-        return result;
+    var onAddLike = function (post_id, index) {
+        if (user) {
+            var user_id = user.id;
+            console.log(index);
+            var indexNumber_1 = index;
+            axios_1.default
+                .post("/api/add/like", {
+                user_id: user_id,
+                post_id: post_id
+            })
+                .then(function (res) {
+                console.log(res.data);
+                console.log(posts);
+                setPosts(posts.map(function (post, i) {
+                    if (i === indexNumber_1) {
+                        return res.data;
+                    }
+                    else {
+                        return post;
+                    }
+                }));
+                console.log(posts);
+            })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            history.push("/register");
+        }
     };
     //いいね解除
-    var onRemoveLike = function (user_id, post_id) {
-        likes.map(function (like) {
-            if (like.post_id === post_id) {
-                if (like.user_id === user_id) {
-                    console.log("likeId=", like.id);
-                    axios_1.default
-                        .post("/api/remove/like", { id: like.id })
-                        .then(function (res) {
-                        setLikes(res.data);
-                    })
-                        .catch(function (error) { return console.log(error); });
-                }
-            }
+    var onRemoveLike = function (post_id, index) {
+        if (user) {
+            var user_id = user.id;
+            axios_1.default
+                .post("/api/del/like", {
+                user_id: user_id,
+                post_id: post_id
+            })
+                .then(function (res) {
+                console.log(res.data);
+                console.log(posts);
+                setPosts(posts.map(function (post, i) {
+                    if (i === index) {
+                        return res.data;
+                    }
+                    else {
+                        return post;
+                    }
+                }));
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //いいねしたことあるか、
+    var isLikedBefore = function (post) {
+        if (user) {
+            var even = function (like) { return like.user_id === user.id; };
+            var isLiked = post.likes.some(even);
+            return isLiked;
+        }
+    };
+    //良いね順にｿｰﾄ
+    /* const onSortPopular = () => {
+        axios
+            .get("/api/get/posts/sort/popular")
+            .then(res => {
+                setPosts(res.data as MIXED_POST_DATA[]);
+                setIsNewer(false);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };*/
+    //新しい純
+    var onSortNewer = function () {
+        axios_1.default
+            .get("/api/get/posts/sort/new")
+            .then(function (res) {
+            setPosts(res.data);
+            setIsNewer(true);
+        })
+            .catch(function (error) {
+            console.log(error);
         });
     };
     return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "\u307F\u3093\u306A\u306E\u6295\u7A3F"),
+        react_1.default.createElement("h1", null, "\u307F\u3093\u306A\u306E\u6295\u7A3Fnew"),
+        isNewer ? react_1.default.createElement("p", null, "\u3042\u305F\u3089\u3057\u3044\u3058\u3085\u3093") : react_1.default.createElement("p", null, "\u306B\u3093\u304D\u3058\u3085\u3093"),
+        react_1.default.createElement("button", { onClick: onSortNewer }, "\u65B0\u3057\u3044\u9806"),
+        posts[0] &&
+            posts.map(function (post, i) {
+                return (react_1.default.createElement("div", { key: i },
+                    react_1.default.createElement("div", null,
+                        react_1.default.createElement(react_router_dom_1.Link, { to: "/" + post.user.name + "/user/" + post.user.id },
+                            react_1.default.createElement("p", null,
+                                "\u6295\u7A3F\u8005\uFF1A",
+                                post.user.name))),
+                    react_1.default.createElement("div", null,
+                        react_1.default.createElement("a", { href: post.post.url, target: "_blank" },
+                            react_1.default.createElement("p", null,
+                                "\u30BF\u30A4\u30C8\u30EB\uFF1A",
+                                post.post.title),
+                            react_1.default.createElement("img", { src: post.post.image }))),
+                    react_1.default.createElement("div", null,
+                        react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                pathname: "/" + post.user.name + "/post/" + post.post.id,
+                                state: {
+                                    post: post.post,
+                                    user: post.user,
+                                    likes: post.likes
+                                }
+                            } },
+                            react_1.default.createElement("p", null,
+                                "\u30B3\u30E1\u30F3\u30C8\uFF1A",
+                                post.post.body))),
+                    react_1.default.createElement("div", null,
+                        isLikedBefore(post) ? (react_1.default.createElement("button", { onClick: function () {
+                                onRemoveLike(post.post.id, i);
+                            } }, "\u3044\u3044\u306D\u306F\u305A\u3059")) : (react_1.default.createElement("button", { onClick: function () {
+                                onAddLike(post.post.id, i);
+                            } }, "\u3044\u3044\u306D")),
+                        react_1.default.createElement("p", null,
+                            "\u3044\u3044\u306D\u6570\uFF1A",
+                            post.likes.length))));
+            })));
+};
+exports.default = Top;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/pages/user/Login_User.tsx":
+/*!******************************************************!*\
+  !*** ./resources/ts/views/pages/user/Login_User.tsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var Login_User = function () {
+    var myUserId = react_redux_1.useSelector(function (state) { var _a; return (_a = state.user.user) === null || _a === void 0 ? void 0 : _a.id; });
+    var history = react_router_1.useHistory();
+    var _a = react_1.useState(), user = _a[0], setUser = _a[1];
+    var _b = react_1.useState([]), posts = _b[0], setPosts = _b[1];
+    var _c = react_1.useState([]), follows = _c[0], setFollows = _c[1];
+    var _d = react_1.useState(), followLength = _d[0], setFollowLength = _d[1];
+    var _e = react_1.useState(false), isFollow = _e[0], setIsFollow = _e[1];
+    react_1.useEffect(function () {
+        //パラメーターに則ったユーザー情報取得
+        if (myUserId) {
+            axios_1.default
+                .get("/api/get/user", { params: { userId: myUserId } })
+                .then(function (res) {
+                var data = res.data;
+                setUser(data.user);
+                //そのユーザーの投稿全部取得
+                setPosts(data.posts);
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+            //該当のユーザーの、フォロー・フォロワー数取得
+            axios_1.default
+                .get("/api/get/follow", { params: { userId: myUserId } })
+                .then(function (res) {
+                console.log(res.data);
+                setFollowLength({
+                    followeeLength: res.data.followee,
+                    followerLength: res.data.follower
+                });
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            axios_1.default
+                .get("/json")
+                .then(function (res) {
+                axios_1.default
+                    .get("/api/get/user", {
+                    params: { userId: res.data.id }
+                })
+                    .then(function (res) {
+                    var data = res.data;
+                    setUser(data.user);
+                    //そのユーザーの投稿全部取得
+                    setPosts(data.posts);
+                })
+                    .catch(function (error) {
+                    console.log(error);
+                });
+                //該当のユーザーの、フォロー・フォロワー数取得
+                axios_1.default
+                    .get("/api/get/follow", {
+                    params: { userId: res.data.id }
+                })
+                    .then(function (res) {
+                    console.log(res.data);
+                    setFollowLength({
+                        followeeLength: res.data.followee,
+                        followerLength: res.data.follower
+                    });
+                })
+                    .catch(function (error) {
+                    console.log(error);
+                });
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, []);
+    return (react_1.default.createElement("div", null,
+        "aaaaaa",
+        user && (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("p", null,
+                "\u540D\u524D:",
+                user.name),
+            "qqq",
+            react_1.default.createElement("div", null, followLength && (react_1.default.createElement("div", null,
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
+                    react_1.default.createElement("p", null,
+                        "\u30D5\u30A9\u30ED\u30FC\u6570:",
+                        followLength.followeeLength)),
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
+                    react_1.default.createElement("p", null,
+                        "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
+                        followLength.followerLength))))))),
         posts[0] &&
             posts.map(function (post, i) {
                 return (react_1.default.createElement("div", { key: i },
@@ -37871,17 +39004,13 @@ var Top = function () {
                             "\u30B3\u30E1\u30F3\u30C8\uFF1A",
                             post.post.body)))),
                     react_1.default.createElement("div", null, user && (react_1.default.createElement(react_1.default.Fragment, null,
-                        react_1.default.createElement("button", { onClick: function () {
-                                return onAddLike(user.id, post.post.id);
-                            } }, "\u3044\u3044\u306D"),
+                        react_1.default.createElement("button", null, "\u3044\u3044\u306D"),
                         react_1.default.createElement("p", null,
                             "\u3044\u3044\u306D\u6570\uFF1A",
                             post.likes.length))))));
-            }),
-        react_1.default.createElement(react_router_dom_1.Link, { to: "create" }, "\u65B0\u898F"),
-        react_1.default.createElement(react_router_dom_1.Link, { to: "user" }, "\u30E6\u30FC\u30B6\u30FC\u60C5\u5831")));
+            })));
 };
-exports.default = Top;
+exports.default = Login_User;
 
 
 /***/ }),
@@ -37914,22 +39043,408 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var User = function () {
-    var _a = react_1.useState(""), name = _a[0], setName = _a[1];
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var myUserId = react_redux_1.useSelector(function (state) { var _a; return (_a = state.user.user) === null || _a === void 0 ? void 0 : _a.id; });
+    var history = react_router_1.useHistory();
+    var _a = react_1.useState(), user = _a[0], setUser = _a[1];
+    var _b = react_1.useState([]), posts = _b[0], setPosts = _b[1];
+    var _c = react_1.useState([]), follows = _c[0], setFollows = _c[1];
+    var _d = react_1.useState(), followLength = _d[0], setFollowLength = _d[1];
+    var _e = react_1.useState(false), isFollow = _e[0], setIsFollow = _e[1];
+    var params = react_router_1.useParams();
+    var id = params.id;
     react_1.useEffect(function () {
-        if (user) {
-            setName(user.name);
+        //パラメーターに則ったユーザー情報取得
+        axios_1.default
+            .get("/api/get/user", { params: { userId: id } })
+            .then(function (res) {
+            var data = res.data;
+            setUser(data.user);
+            //そのユーザーの投稿全部取得
+            setPosts(data.posts);
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+        //該当のユーザーの、フォロー・フォロワー数取得
+        axios_1.default
+            .get("/api/get/follow", { params: { userId: id } })
+            .then(function (res) {
+            console.log(res.data);
+            setFollowLength({
+                followeeLength: res.data.followee,
+                followerLength: res.data.follower
+            });
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+        //フォロー中かどうか調べる
+        if (myUserId) {
+            console.log("lognnin");
+            axios_1.default
+                .get("/api/get/isfollow", {
+                params: { followee: myUserId, follower: id }
+            })
+                .then(function (res) {
+                console.log(res.data);
+                if (res.data === "yes") {
+                    setIsFollow(true);
+                }
+                else {
+                    setIsFollow(false);
+                }
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            axios_1.default
+                .get("/json")
+                .then(function (res) {
+                if (res.data) {
+                    console.log("logout");
+                    var user_id = res.data.id;
+                    console.log(res.data);
+                    axios_1.default
+                        .get("/api/get/isfollow", {
+                        params: { followee: user_id, follower: id }
+                    })
+                        .then(function (res) {
+                        console.log(res.data);
+                        if (res.data === "yes") {
+                            setIsFollow(true);
+                        }
+                        else {
+                            setIsFollow(false);
+                        }
+                    })
+                        .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
         }
     }, []);
+    //フォロー関数
+    var onFollow = function (targetId) {
+        if (myUserId) {
+            axios_1.default
+                .post("/api/add/follow", {
+                followee: myUserId,
+                follower: targetId
+            })
+                .then(function (res) {
+                setFollowLength({
+                    followeeLength: res.data.followee,
+                    followerLength: res.data.follower
+                });
+                setIsFollow(true);
+                /*if (followLength)
+                    setFollowLength({
+                        followeeLength: followLength.followeeLength,
+                        followerLength: followLength.followerLength++
+                    });
+                setIsFollow(true);*/
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //フォロー解除関数
+    var onRemoveFollow = function (targetId) {
+        if (myUserId) {
+            axios_1.default
+                .post("/api/del/follow", {
+                followee: myUserId,
+                follower: targetId
+            })
+                .then(function (res) {
+                console.log(res.data);
+                setFollowLength({
+                    followeeLength: res.data.followee,
+                    followerLength: res.data.follower
+                });
+                setIsFollow(false);
+                /* if (followLength)
+                    setFollowLength({
+                        followeeLength: followLength.followeeLength,
+                        followerLength: followLength.followerLength--
+                    });
+                setIsFollow(false);*/
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    var isCanFollow = function (userId) {
+        var isUserSame = false;
+        if (myUserId) {
+            if (userId === myUserId) {
+                isUserSame = true;
+            }
+        }
+        return isUserSame;
+    };
     return (react_1.default.createElement("div", null,
-        "a",
-        react_1.default.createElement("p", null, name)));
+        user && (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("p", null,
+                "\u540D\u524D:",
+                user.name),
+            "qqq",
+            react_1.default.createElement("div", null,
+                followLength && (react_1.default.createElement("div", null,
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
+                        react_1.default.createElement("p", null,
+                            "\u30D5\u30A9\u30ED\u30FC\u6570:",
+                            followLength.followeeLength)),
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
+                        react_1.default.createElement("p", null,
+                            "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
+                            followLength.followerLength)))),
+                isCanFollow(user.id) ? null : isFollow ? (react_1.default.createElement("button", { onClick: function () { return onRemoveFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059")) : (react_1.default.createElement("button", { onClick: function () { return onFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"))))),
+        posts[0] &&
+            posts.map(function (post, i) {
+                return (react_1.default.createElement("div", { key: i },
+                    react_1.default.createElement("div", null,
+                        react_1.default.createElement("p", null,
+                            "\u6295\u7A3F\u8005\uFF1A",
+                            post.user.name)),
+                    react_1.default.createElement("div", null,
+                        react_1.default.createElement("a", { href: post.post.url, target: "_blank" },
+                            react_1.default.createElement("p", null,
+                                "\u30BF\u30A4\u30C8\u30EB\uFF1A",
+                                post.post.body),
+                            react_1.default.createElement("img", { src: post.post.image }))),
+                    react_1.default.createElement("div", null, user && (react_1.default.createElement(react_router_dom_1.Link, { to: {
+                            pathname: "/" + (user === null || user === void 0 ? void 0 : user.name) + "/post/" + post.post.id,
+                            state: {
+                                post: post.post,
+                                user: post.user,
+                                likes: post.likes
+                            }
+                        } },
+                        react_1.default.createElement("p", null,
+                            "\u30B3\u30E1\u30F3\u30C8\uFF1A",
+                            post.post.body)))),
+                    react_1.default.createElement("div", null, user && (react_1.default.createElement(react_1.default.Fragment, null,
+                        react_1.default.createElement("button", null, "\u3044\u3044\u306D"),
+                        react_1.default.createElement("p", null,
+                            "\u3044\u3044\u306D\u6570\uFF1A",
+                            post.likes.length))))));
+            })));
 };
 exports.default = User;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/search/PostResult.tsx":
+/*!**************************************************!*\
+  !*** ./resources/ts/views/search/PostResult.tsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var PostResult = function () {
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
+    var location = react_router_1.useLocation();
+    var history = react_router_1.useHistory();
+    react_1.useEffect(function () {
+        //クエリ取得
+        var parsed = query_string_1.default.parse(location.search);
+        var query = parsed.q;
+        console.log("q=", query);
+        axios_1.default
+            .get("/api/get/post/search", { params: { q: query } })
+            .then(function (res) {
+            console.log(res.data);
+            setPosts(res.data);
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    }, [location]);
+    //いいね機能
+    var onAddLike = function (user_id, post_id) {
+        axios_1.default.post("/api/add/like", {
+            user_id: user_id,
+            post_id: post_id
+        });
+    };
+    return (react_1.default.createElement("div", null, posts[0] &&
+        posts.map(function (post, i) {
+            return (react_1.default.createElement("div", { key: i },
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + post.user.name + "/user/" + post.user.id },
+                        react_1.default.createElement("p", null,
+                            "\u6295\u7A3F\u8005\uFF1A",
+                            post.user.name))),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement("a", { href: post.post.url, target: "_blank" },
+                        react_1.default.createElement("p", null,
+                            "\u30BF\u30A4\u30C8\u30EB\uFF1A",
+                            post.post.title),
+                        react_1.default.createElement("img", { src: post.post.image }))),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement(react_router_dom_1.Link, { to: {
+                            pathname: "/" + post.user.name + "/post/" + post.post.id,
+                            state: {
+                                post: post.post,
+                                user: post.user,
+                                likes: post.likes
+                            }
+                        } },
+                        react_1.default.createElement("p", null,
+                            "\u30B3\u30E1\u30F3\u30C8\uFF1A",
+                            post.post.body))),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement("button", { onClick: function () {
+                            if (user) {
+                                onAddLike(user.id, post.post.id);
+                            }
+                            else {
+                                history.push("/register");
+                            }
+                        } }, "\u3044\u3044\u306D"),
+                    react_1.default.createElement("p", null,
+                        "\u3044\u3044\u306D\u6570\uFF1A",
+                        post.likes.length))));
+        })));
+};
+exports.default = PostResult;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/search/UserResult.tsx":
+/*!**************************************************!*\
+  !*** ./resources/ts/views/search/UserResult.tsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var UserResult = function () {
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
+    var location = react_router_1.useLocation();
+    var history = react_router_1.useHistory();
+    react_1.useEffect(function () {
+        //クエリ取得
+        var parsed = query_string_1.default.parse(location.search);
+        var query = parsed.q;
+        console.log("q=", query);
+        axios_1.default
+            .get("/api/get/user/search", { params: { q: query } })
+            .then(function (res) {
+            console.log(res.data);
+            setUsers(res.data);
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    }, [location]);
+    //いいね機能
+    var onAddLike = function (user_id, post_id) {
+        axios_1.default.post("/api/add/like", {
+            user_id: user_id,
+            post_id: post_id
+        });
+    };
+    return (react_1.default.createElement("div", null, users[0] &&
+        users.map(function (user, i) {
+            return (react_1.default.createElement("div", { key: i },
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/user/" + user.id },
+                    react_1.default.createElement("p", null,
+                        "\u540D\u524D\uFF1A",
+                        user.name))));
+        })));
+};
+exports.default = UserResult;
 
 
 /***/ }),

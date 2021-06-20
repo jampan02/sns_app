@@ -5,22 +5,40 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Like;
 use App\User;
+use App\Post;
 class LikeController extends Controller
 {
     //
 	public function removeLike(Request $request){
-		$like=Like::find($request->id);
+		$like=Like::where("user_id",$request->user_id)->where("post_id",$request->post_id)->first();
 		$like->delete();
-		$likes=Like::all();
-		return $likes;
+		//$likes=Like::all();
+		//return $likes;
+		$postData=array();
+		$post=Post::where("id",$request->post_id)->first();
+		Log::debug("message");
+		$likes=Like::where("post_id",$request->post_id)->get();
+		$user=User::where("id",$post->user_id)->first();
+		$postData["post"]=$post;
+		$postData["user"]=$user;
+		$postData["likes"]=$likes;
+		return $postData;
 	}
 	public function addLike(Request $request){
 		$like=new Like;
 		$like->user_id=$request->user_id;
 		$like->post_id=$request->post_id;
 		$like->save();
-		$likes=Like::all();
-		return $likes;
+		//return $likes;
+		$postData=array();
+		$post=Post::where("id",$request->post_id)->first();
+		Log::debug("message");
+		$likes=Like::where("post_id",$request->post_id)->get();
+		$user=User::where("id",$post->user_id)->first();
+		$postData["post"]=$post;
+		$postData["user"]=$user;
+		$postData["likes"]=$likes;
+		return $postData;
 	}
 	public function getLikes(){
 		$likes=Like::all();

@@ -37,6 +37,14 @@ export type COMMENT = {
     updated_at: string;
 };
 
+export type FOLLOW = {
+    id: number;
+    followee_id: number;
+    follower_id: number;
+    created_at: string;
+    updated_at: string;
+};
+
 export type MIXED_POST_DATA = {
     post: POST;
     user: USER;

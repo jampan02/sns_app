@@ -13,14 +13,21 @@ const IsLogin: React.FC<PROPS> = ({ children }) => {
     useEffect(() => {
         if (!isLogin) {
             //ログインされていない場合
-            axios
-                .get("/json")
-                .then(res => {
-                    dispatch(login_user(res.data));
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            const f = async () => {
+                console.log("hithere");
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            };
+            f();
         }
     }, []);
     return <div>{children}</div>;
