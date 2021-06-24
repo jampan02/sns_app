@@ -1,5 +1,5 @@
-import { ActionTypes } from "../actionTypes";
-import { USER } from "../../utils/type";
+import { ActionTypes } from "../../actionTypes";
+import { USER } from "../../../utils/type";
 import { UserActionTypes, UserState } from "./types";
 
 const initialState: UserState = {

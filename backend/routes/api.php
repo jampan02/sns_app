@@ -24,16 +24,24 @@ Route::group(["middleware"=>"api"],function(){
 	//Route::get("user","UserController@getUsers");
 	Route::get("post_user","UserController@getPostUser");
 	Route::get("get/user","UserController@getUser");
+	Route::post("edit/user/name","UserController@editUserName");
 	//投稿
 	Route::get("get/posts/sort/new","PostController@getNewerPosts");
+	Route::get("get/post","PostController@getPost");
+	Route::get("get/post/scroll","PostController@getPostByScroll");
+		Route::get("get/post/scroll/user","PostController@getPostByScrollInUser");
 	Route::get("get/posts/sort/popular","PostController@getPopularPosts");
 	Route::post("add","PostController@addPost");
+	Route::post("edit/post","PostController@editPost");
 	//Route::get("get/post/user","PostController@getPostsByUserId")
 	//いいね
 	Route::post("add/like","LikeController@addLike");
 	Route::get("get/likes","LikeController@getLikes");
+	Route::get("get/likes/post_id","LikeController@getLikesByPostId");
 	Route::get("get/like/user","LikeController@getUserByLike");
 	Route::post("del/like","LikeController@removeLike");
+	Route::post("/add/like/view","LikeController@addLikeOnView");
+	Route::post("/del/like/view","LikeController@deleteLikeOnView");
 	//コメント
 	Route::get("get/comment","CommentController@getComments");
 	Route::post("add/comment","CommentController@addComment");

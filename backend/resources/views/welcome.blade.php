@@ -29,5 +29,9 @@
 			<div id="app"></div>
         </div>
     </body>
-	<script src="/js/index.js"></script>
+	<script src="/js/index.js">
+	   document.addEventListener("DOMContentLoaded", function(event) {
+       document.querySelector('.infinite-scroll-component ').removeAttribute('style')
+    });</script>
+	
 </html>

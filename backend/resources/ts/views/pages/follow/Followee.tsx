@@ -30,6 +30,7 @@ const Followee = () => {
                     return (
                         <div key={i}>
                             <Link to={`/${user.name}/user/${user.id}`}>
+                                <img src={user.profile_image} />
                                 <p>名前：{user.name}</p>
                             </Link>
                         </div>

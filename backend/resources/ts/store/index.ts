@@ -1,8 +1,10 @@
 import { combineReducers, compose, createStore } from "redux";
-import { userReducer } from "./counter/reducer";
+import { postsReducer } from "./counter/post/reducer";
+import { userReducer } from "./counter/user/reducer";
 
 const rootReducer = combineReducers({
-    user: userReducer
+    user: userReducer,
+    posts: postsReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

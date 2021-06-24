@@ -26,7 +26,7 @@
                         </div>
 						
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                             <div class="col-md-6">
                                 <input id="profile_image" type="text" class="form-control @error('profile_image') is-invalid @enderror" name="profile_image" value="{{ old('profile_image') }}" required autocomplete="profile_image" autofocus>
@@ -38,7 +38,19 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="self_introduction" class="col-md-4 col-form-label text-md-right">{{ __('Self Introduction') }}</label>
 
+                            <div class="col-md-6">
+                                <input id="self_introduction" type="self_introduction" class="form-control @error('self_introduction') is-invalid @enderror" name="self_introduction" value="{{ old('self_introduction') }}" required autocomplete="self_introduction">
+
+                                @error('self_introduction')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

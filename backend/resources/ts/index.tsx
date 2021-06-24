@@ -17,6 +17,7 @@ import Follower from "./views/pages/follow/Follower";
 import Layout from "./views/lauout/Layout";
 import PostResult from "./views/search/PostResult";
 import UserResult from "./views/search/UserResult";
+import Edit from "./views/pages/posts/Edit";
 const App = () => {
     return (
         <Router>
@@ -29,6 +30,11 @@ const App = () => {
                                 exact
                                 path="/:user/post/:id"
                                 component={View}
+                            />
+                            <Route
+                                exact
+                                path="/:user/edit/:id"
+                                component={Edit}
                             />
                             <Route
                                 exact

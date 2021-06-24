@@ -58,4 +58,17 @@ class UserController extends Controller
 
 		return $users;
 	}
+	//舐め変更
+	public function editUserName(Request $request){
+		$user_id=$request->id;
+		$new_user_name=$request->name;
+		$new_profile_image=$request->profile_image;
+		$new_self_introduction=$request->self_introduction;
+		$user=User::where("id",$user_id)->first();
+		$user->name=$new_user_name;
+		$user->profile_image=$new_profile_image;
+		$user->self_introduction=$new_self_introduction;
+		$user->save();
+		return $user;
+	}
 }

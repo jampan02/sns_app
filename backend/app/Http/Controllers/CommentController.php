@@ -11,7 +11,7 @@ class CommentController extends Controller
     //
 	public function getComments(Request $request){
 		$postId=$request->postId;
-		$comments=Comment::where("post_id",$postId)->take(10)->get();
+		$comments=Comment::where("post_id",$postId)->orderBy("updated_at","desc")->take(10)->get();
 		$resultArray=array();
 		foreach($comments as $comment){
 			$newArray=array();

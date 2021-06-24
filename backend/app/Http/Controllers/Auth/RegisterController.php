@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -52,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
 			'profile_image' => ['required', 'string', 'max:255'],
+			"self_introduction"=>['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,10 +65,13 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
+
+	//Log::debug($data);
     {
         return User::create([
             'name' => $data['name'],
 			"profile_image"=>$data["profile_image"],
+			"self_introduction"=>$data["self_introduction"],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

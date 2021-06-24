@@ -1,6 +1,6 @@
 import { Action } from "redux";
-import { USER } from "../../utils/type";
-import { ActionTypes } from "../actionTypes";
+import { USER } from "../../../utils/type";
+import { ActionTypes } from "../../actionTypes";
 
 interface LoginUserAction extends Action {
     type: typeof ActionTypes.login_user;

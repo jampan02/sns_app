@@ -13,7 +13,8 @@ export type POST = {
 export type USER = {
     id: number;
     name: string;
-    profile_image?: string;
+    profile_image: string;
+    self_introduction?: string;
     email: string;
     email_verified_at: null;
     created_at: string;

@@ -10,10 +10,10 @@ class LikeController extends Controller
 {
     //
 	public function removeLike(Request $request){
+		Log::debug($request->user_id);
 		$like=Like::where("user_id",$request->user_id)->where("post_id",$request->post_id)->first();
+		Log::debug($like);
 		$like->delete();
-		//$likes=Like::all();
-		//return $likes;
 		$postData=array();
 		$post=Post::where("id",$request->post_id)->first();
 		Log::debug("message");
@@ -58,5 +58,25 @@ class LikeController extends Controller
 			$usersWithLikes[]=$newArray;
 		}
 		return $usersWithLikes;
+	}
+	public function getLikesByPostId(Request $request){
+		$post_id=$request->post_id;
+		$likes=Like::where("id",$post_id)->get();
+		return $likes;
+	}
+	public function addLikeOnView(Request $request){
+		$like=new Like;
+		$like->user_id=$request->user_id;
+		$like->post_id=$request->post_id;
+		$like->save();
+		$likes=Like::where("post_id",$request->post_id)->get();
+		Log::debug($likes);
+		return $likes;
+	}
+	public function deleteLikeOnView(Request $request){
+		$like=Like::where("user_id",$request->user_id)->where("post_id",$request->post_id)->first();
+		$like->delete();
+		$likes=Like::where("post_id",$request->post_id)->get();
+		return $likes;
 	}
 }

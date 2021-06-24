@@ -1,10 +1,11 @@
-import { USER } from "../../utils/type";
-import { ActionTypes } from "../actionTypes";
+import { USER } from "../../../utils/type";
+import { ActionTypes } from "../../actionTypes";
 
 export const login_user = ({
     id,
     name,
     profile_image,
+    self_introduction,
     email,
     created_at,
     updated_at
@@ -15,6 +16,7 @@ export const login_user = ({
             id,
             name,
             profile_image,
+            self_introduction,
             email,
             created_at,
             updated_at
