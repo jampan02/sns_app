@@ -8245,6 +8245,791 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItem/ListItem.js ***!
+  \*****************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ButtonBase */ "./node_modules/@material-ui/core/esm/ButtonBase/index.js");
+/* harmony import */ var _utils_isMuiElement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/isMuiElement */ "./node_modules/@material-ui/core/esm/utils/isMuiElement.js");
+/* harmony import */ var _utils_useForkRef__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/useForkRef */ "./node_modules/@material-ui/core/esm/utils/useForkRef.js");
+/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../List/ListContext */ "./node_modules/@material-ui/core/esm/List/ListContext.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_11__);
+
+
+
+
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
+    root: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      position: 'relative',
+      textDecoration: 'none',
+      width: '100%',
+      boxSizing: 'border-box',
+      textAlign: 'left',
+      paddingTop: 8,
+      paddingBottom: 8,
+      '&$focusVisible': {
+        backgroundColor: theme.palette.action.selected
+      },
+      '&$selected, &$selected:hover': {
+        backgroundColor: theme.palette.action.selected
+      },
+      '&$disabled': {
+        opacity: 0.5
+      }
+    },
+
+    /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
+    container: {
+      position: 'relative'
+    },
+
+    /* Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
+    focusVisible: {},
+
+    /* Styles applied to the `component` element if dense. */
+    dense: {
+      paddingTop: 4,
+      paddingBottom: 4
+    },
+
+    /* Styles applied to the `component` element if `alignItems="flex-start"`. */
+    alignItemsFlexStart: {
+      alignItems: 'flex-start'
+    },
+
+    /* Pseudo-class applied to the inner `component` element if `disabled={true}`. */
+    disabled: {},
+
+    /* Styles applied to the inner `component` element if `divider={true}`. */
+    divider: {
+      borderBottom: "1px solid ".concat(theme.palette.divider),
+      backgroundClip: 'padding-box'
+    },
+
+    /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+    gutters: {
+      paddingLeft: 16,
+      paddingRight: 16
+    },
+
+    /* Styles applied to the inner `component` element if `button={true}`. */
+    button: {
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest
+      }),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: theme.palette.action.hover,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
+    },
+
+    /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
+    secondaryAction: {
+      // Add some space to avoid collision as `ListItemSecondaryAction`
+      // is absolutely positioned.
+      paddingRight: 48
+    },
+
+    /* Pseudo-class applied to the root element if `selected={true}`. */
+    selected: {}
+  };
+};
+var useEnhancedEffect = typeof window === 'undefined' ? react__WEBPACK_IMPORTED_MODULE_2__["useEffect"] : react__WEBPACK_IMPORTED_MODULE_2__["useLayoutEffect"];
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ */
+
+var ListItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function ListItem(props, ref) {
+  var _props$alignItems = props.alignItems,
+      alignItems = _props$alignItems === void 0 ? 'center' : _props$alignItems,
+      _props$autoFocus = props.autoFocus,
+      autoFocus = _props$autoFocus === void 0 ? false : _props$autoFocus,
+      _props$button = props.button,
+      button = _props$button === void 0 ? false : _props$button,
+      childrenProp = props.children,
+      classes = props.classes,
+      className = props.className,
+      componentProp = props.component,
+      _props$ContainerCompo = props.ContainerComponent,
+      ContainerComponent = _props$ContainerCompo === void 0 ? 'li' : _props$ContainerCompo,
+      _props$ContainerProps = props.ContainerProps;
+  _props$ContainerProps = _props$ContainerProps === void 0 ? {} : _props$ContainerProps;
+
+  var ContainerClassName = _props$ContainerProps.className,
+      ContainerProps = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(_props$ContainerProps, ["className"]),
+      _props$dense = props.dense,
+      dense = _props$dense === void 0 ? false : _props$dense,
+      _props$disabled = props.disabled,
+      disabled = _props$disabled === void 0 ? false : _props$disabled,
+      _props$disableGutters = props.disableGutters,
+      disableGutters = _props$disableGutters === void 0 ? false : _props$disableGutters,
+      _props$divider = props.divider,
+      divider = _props$divider === void 0 ? false : _props$divider,
+      focusVisibleClassName = props.focusVisibleClassName,
+      _props$selected = props.selected,
+      selected = _props$selected === void 0 ? false : _props$selected,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["alignItems", "autoFocus", "button", "children", "classes", "className", "component", "ContainerComponent", "ContainerProps", "dense", "disabled", "disableGutters", "divider", "focusVisibleClassName", "selected"]);
+
+  var context = react__WEBPACK_IMPORTED_MODULE_2__["useContext"](_List_ListContext__WEBPACK_IMPORTED_MODULE_10__["default"]);
+  var childContext = {
+    dense: dense || context.dense || false,
+    alignItems: alignItems
+  };
+  var listItemRef = react__WEBPACK_IMPORTED_MODULE_2__["useRef"](null);
+  useEnhancedEffect(function () {
+    if (autoFocus) {
+      if (listItemRef.current) {
+        listItemRef.current.focus();
+      } else if (true) {
+        console.error('Material-UI: Unable to set focus to a ListItem whose component has not been rendered.');
+      }
+    }
+  }, [autoFocus]);
+  var children = react__WEBPACK_IMPORTED_MODULE_2__["Children"].toArray(childrenProp);
+  var hasSecondaryAction = children.length && Object(_utils_isMuiElement__WEBPACK_IMPORTED_MODULE_8__["default"])(children[children.length - 1], ['ListItemSecondaryAction']);
+  var handleOwnRef = react__WEBPACK_IMPORTED_MODULE_2__["useCallback"](function (instance) {
+    // #StrictMode ready
+    listItemRef.current = react_dom__WEBPACK_IMPORTED_MODULE_11__["findDOMNode"](instance);
+  }, []);
+  var handleRef = Object(_utils_useForkRef__WEBPACK_IMPORTED_MODULE_9__["default"])(handleOwnRef, ref);
+
+  var componentProps = Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, childContext.dense && classes.dense, !disableGutters && classes.gutters, divider && classes.divider, disabled && classes.disabled, button && classes.button, alignItems !== "center" && classes.alignItemsFlexStart, hasSecondaryAction && classes.secondaryAction, selected && classes.selected),
+    disabled: disabled
+  }, other);
+
+  var Component = componentProp || 'li';
+
+  if (button) {
+    componentProps.component = componentProp || 'div';
+    componentProps.focusVisibleClassName = Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.focusVisible, focusVisibleClassName);
+    Component = _ButtonBase__WEBPACK_IMPORTED_MODULE_7__["default"];
+  }
+
+  if (hasSecondaryAction) {
+    // Use div by default.
+    Component = !componentProps.component && !componentProp ? 'div' : Component; // Avoid nesting of li > li.
+
+    if (ContainerComponent === 'li') {
+      if (Component === 'li') {
+        Component = 'div';
+      } else if (componentProps.component === 'li') {
+        componentProps.component = 'div';
+      }
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](_List_ListContext__WEBPACK_IMPORTED_MODULE_10__["default"].Provider, {
+      value: childContext
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](ContainerComponent, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.container, ContainerClassName),
+      ref: handleRef
+    }, ContainerProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](Component, componentProps, children), children.pop()));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](_List_ListContext__WEBPACK_IMPORTED_MODULE_10__["default"].Provider, {
+    value: childContext
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    ref: handleRef
+  }, componentProps), children));
+});
+ true ? ListItem.propTypes = {
+  /**
+   * Defines the `align-items` style property.
+   */
+  alignItems: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['flex-start', 'center']),
+
+  /**
+   * If `true`, the list item will be focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   */
+  autoFocus: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+   * for `ButtonBase` can then be applied to `ListItem`.
+   */
+  button: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * be the last child.
+   */
+  children: Object(_material_ui_utils__WEBPACK_IMPORTED_MODULE_5__["chainPropTypes"])(prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node, function (props) {
+    var children = react__WEBPACK_IMPORTED_MODULE_2__["Children"].toArray(props.children); // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
+
+    var secondaryActionIndex = -1;
+
+    for (var i = children.length - 1; i >= 0; i -= 1) {
+      var child = children[i];
+
+      if (Object(_utils_isMuiElement__WEBPACK_IMPORTED_MODULE_8__["default"])(child, ['ListItemSecondaryAction'])) {
+        secondaryActionIndex = i;
+        break;
+      }
+    } //  is ListItemSecondaryAction the last child of ListItem
+
+
+    if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
+      return new Error('Material-UI: You used an element after ListItemSecondaryAction. ' + 'For ListItem to detect that it has a secondary action ' + 'you must pass it as the last child to ListItem.');
+    }
+
+    return null;
+  }),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
+   */
+  component: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a
+  /* @typescript-to-proptypes-ignore */
+  .elementType,
+
+  /**
+   * The container component used when a `ListItemSecondaryAction` is the last child.
+   */
+  ContainerComponent: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.elementType,
+
+  /**
+   * Props applied to the container component if used.
+   */
+  ContainerProps: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
+
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
+  dense: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, the list item will be disabled.
+   */
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, a 1px light border is added to the bottom of the list item.
+   */
+  divider: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * @ignore
+   */
+  focusVisibleClassName: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * Use to apply selected styling.
+   */
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__["default"])(styles, {
+  name: 'MuiListItem'
+})(ListItem));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItem/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItem/index.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItem */ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListItem__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItemIcon/ListItemIcon.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItemIcon/ListItemIcon.js ***!
+  \*************************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../List/ListContext */ "./node_modules/@material-ui/core/esm/List/ListContext.js");
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      minWidth: 56,
+      color: theme.palette.action.active,
+      flexShrink: 0,
+      display: 'inline-flex'
+    },
+
+    /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
+    alignItemsFlexStart: {
+      marginTop: 8
+    }
+  };
+};
+/**
+ * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
+ */
+
+var ListItemIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function ListItemIcon(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className"]);
+
+  var context = react__WEBPACK_IMPORTED_MODULE_2__["useContext"](_List_ListContext__WEBPACK_IMPORTED_MODULE_6__["default"]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"]("div", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, context.alignItems === 'flex-start' && classes.alignItemsFlexStart),
+    ref: ref
+  }, other));
+});
+ true ? ListItemIcon.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component, normally `Icon`, `SvgIcon`,
+   * or a `@material-ui/icons` SVG icon element.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
+  name: 'MuiListItemIcon'
+})(ListItemIcon));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItemIcon/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItemIcon/index.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListItemIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItemIcon */ "./node_modules/@material-ui/core/esm/ListItemIcon/ListItemIcon.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListItemIcon__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItemText/ListItemText.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItemText/ListItemText.js ***!
+  \*************************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _Typography__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../List/ListContext */ "./node_modules/@material-ui/core/esm/List/ListContext.js");
+
+
+
+
+
+
+
+
+var styles = {
+  /* Styles applied to the root element. */
+  root: {
+    flex: '1 1 auto',
+    minWidth: 0,
+    marginTop: 4,
+    marginBottom: 4
+  },
+
+  /* Styles applied to the `Typography` components if primary and secondary are set. */
+  multiline: {
+    marginTop: 6,
+    marginBottom: 6
+  },
+
+  /* Styles applied to the `Typography` components if dense. */
+  dense: {},
+
+  /* Styles applied to the root element if `inset={true}`. */
+  inset: {
+    paddingLeft: 56
+  },
+
+  /* Styles applied to the primary `Typography` component. */
+  primary: {},
+
+  /* Styles applied to the secondary `Typography` component. */
+  secondary: {}
+};
+var ListItemText = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function ListItemText(props, ref) {
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      _props$disableTypogra = props.disableTypography,
+      disableTypography = _props$disableTypogra === void 0 ? false : _props$disableTypogra,
+      _props$inset = props.inset,
+      inset = _props$inset === void 0 ? false : _props$inset,
+      primaryProp = props.primary,
+      primaryTypographyProps = props.primaryTypographyProps,
+      secondaryProp = props.secondary,
+      secondaryTypographyProps = props.secondaryTypographyProps,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["children", "classes", "className", "disableTypography", "inset", "primary", "primaryTypographyProps", "secondary", "secondaryTypographyProps"]);
+
+  var _React$useContext = react__WEBPACK_IMPORTED_MODULE_2__["useContext"](_List_ListContext__WEBPACK_IMPORTED_MODULE_7__["default"]),
+      dense = _React$useContext.dense;
+
+  var primary = primaryProp != null ? primaryProp : children;
+
+  if (primary != null && primary.type !== _Typography__WEBPACK_IMPORTED_MODULE_6__["default"] && !disableTypography) {
+    primary = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](_Typography__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      variant: dense ? 'body2' : 'body1',
+      className: classes.primary,
+      component: "span",
+      display: "block"
+    }, primaryTypographyProps), primary);
+  }
+
+  var secondary = secondaryProp;
+
+  if (secondary != null && secondary.type !== _Typography__WEBPACK_IMPORTED_MODULE_6__["default"] && !disableTypography) {
+    secondary = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](_Typography__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      variant: "body2",
+      className: classes.secondary,
+      color: "textSecondary",
+      display: "block"
+    }, secondaryTypographyProps), secondary);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"]("div", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, dense && classes.dense, inset && classes.inset, primary && secondary && classes.multiline),
+    ref: ref
+  }, other), primary, secondary);
+});
+ true ? ListItemText.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * Alias for the `primary` prop.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * If `true`, the children won't be wrapped by a Typography component.
+   * This can be useful to render an alternative Typography variant by wrapping
+   * the `children` (or `primary`) text, and optional `secondary` text
+   * with the Typography component.
+   */
+  disableTypography: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, the children will be indented.
+   * This should be used if there is no left avatar or left icon.
+   */
+  inset: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * The main content element.
+   */
+  primary: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * These props will be forwarded to the primary typography component
+   * (as long as disableTypography is not `true`).
+   */
+  primaryTypographyProps: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object,
+
+  /**
+   * The secondary content element.
+   */
+  secondary: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * These props will be forwarded to the secondary typography component
+   * (as long as disableTypography is not `true`).
+   */
+  secondaryTypographyProps: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
+  name: 'MuiListItemText'
+})(ListItemText));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListItemText/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListItemText/index.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListItemText__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListItemText */ "./node_modules/@material-ui/core/esm/ListItemText/ListItemText.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListItemText__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListSubheader/ListSubheader.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListSubheader/ListSubheader.js ***!
+  \***************************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@material-ui/core/esm/utils/capitalize.js");
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      boxSizing: 'border-box',
+      lineHeight: '48px',
+      listStyle: 'none',
+      color: theme.palette.text.secondary,
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: theme.typography.fontWeightMedium,
+      fontSize: theme.typography.pxToRem(14)
+    },
+
+    /* Styles applied to the root element if `color="primary"`. */
+    colorPrimary: {
+      color: theme.palette.primary.main
+    },
+
+    /* Styles applied to the root element if `color="inherit"`. */
+    colorInherit: {
+      color: 'inherit'
+    },
+
+    /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+    gutters: {
+      paddingLeft: 16,
+      paddingRight: 16
+    },
+
+    /* Styles applied to the root element if `inset={true}`. */
+    inset: {
+      paddingLeft: 72
+    },
+
+    /* Styles applied to the root element if `disableSticky={false}`. */
+    sticky: {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      backgroundColor: 'inherit'
+    }
+  };
+};
+var ListSubheader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function ListSubheader(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$color = props.color,
+      color = _props$color === void 0 ? 'default' : _props$color,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'li' : _props$component,
+      _props$disableGutters = props.disableGutters,
+      disableGutters = _props$disableGutters === void 0 ? false : _props$disableGutters,
+      _props$disableSticky = props.disableSticky,
+      disableSticky = _props$disableSticky === void 0 ? false : _props$disableSticky,
+      _props$inset = props.inset,
+      inset = _props$inset === void 0 ? false : _props$inset,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "color", "component", "disableGutters", "disableSticky", "inset"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, color !== 'default' && classes["color".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(color))], inset && classes.inset, !disableSticky && classes.sticky, !disableGutters && classes.gutters),
+    ref: ref
+  }, other));
+});
+ true ? ListSubheader.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['default', 'primary', 'inherit']),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a
+  /* @typescript-to-proptypes-ignore */
+  .elementType,
+
+  /**
+   * If `true`, the List Subheader will not have gutters.
+   */
+  disableGutters: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, the List Subheader will not stick to the top during scroll.
+   */
+  disableSticky: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * If `true`, the List Subheader will be indented.
+   */
+  inset: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
+  name: 'MuiListSubheader'
+})(ListSubheader));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/ListSubheader/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/ListSubheader/index.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListSubheader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListSubheader */ "./node_modules/@material-ui/core/esm/ListSubheader/ListSubheader.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _ListSubheader__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/Menu/Menu.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/Menu/Menu.js ***!
@@ -17025,6 +17810,37 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/icons/LibraryBooks.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/LibraryBooks.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
+}), 'LibraryBooks');
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/icons/Menu.js":
 /*!*************************************************!*\
   !*** ./node_modules/@material-ui/icons/Menu.js ***!
@@ -17082,6 +17898,132 @@ var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/crea
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
   d: "M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"
 }), 'Notifications');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/Person.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Person.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+}), 'Person');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/PostAdd.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material-ui/icons/PostAdd.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M17 19.22H5V7h7V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h-2v7.22z"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M19 2h-2v3h-3c.01.01 0 2 0 2h3v2.99c.01.01 2 0 2 0V7h3V5h-3V2zM7 9h8v2H7zM7 12v2h8v-2h-3zM7 15h8v2H7z"
+})), 'PostAdd');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/Search.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Search.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+}), 'Search');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/Settings.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Settings.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+}), 'Settings');
 
 exports.default = _default;
 
@@ -64753,9 +65695,20 @@ var Divider_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Divide
 var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
 var Badge_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Badge */ "./node_modules/@material-ui/core/esm/Badge/index.js"));
 var Container_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/esm/Container/index.js"));
+var ListItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/ListItem */ "./node_modules/@material-ui/core/esm/ListItem/index.js"));
+var ListItemIcon_1 = __importDefault(__webpack_require__(/*! @material-ui/core/ListItemIcon */ "./node_modules/@material-ui/core/esm/ListItemIcon/index.js"));
+var ListItemText_1 = __importDefault(__webpack_require__(/*! @material-ui/core/ListItemText */ "./node_modules/@material-ui/core/esm/ListItemText/index.js"));
+var ListSubheader_1 = __importDefault(__webpack_require__(/*! @material-ui/core/ListSubheader */ "./node_modules/@material-ui/core/esm/ListSubheader/index.js"));
 var Menu_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Menu */ "./node_modules/@material-ui/icons/Menu.js"));
 var ChevronLeft_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ChevronLeft */ "./node_modules/@material-ui/icons/ChevronLeft.js"));
 var Notifications_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Notifications */ "./node_modules/@material-ui/icons/Notifications.js"));
+var PostAdd_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/PostAdd */ "./node_modules/@material-ui/icons/PostAdd.js"));
+var Person_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Person */ "./node_modules/@material-ui/icons/Person.js"));
+var Settings_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Settings */ "./node_modules/@material-ui/icons/Settings.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var Search_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Search */ "./node_modules/@material-ui/icons/Search.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var LibraryBooks_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/LibraryBooks */ "./node_modules/@material-ui/icons/LibraryBooks.js"));
 function Copyright() {
     return (react_1.default.createElement(Typography_1.default, { variant: "body2", color: "textSecondary", align: "center" },
         "Copyright © ",
@@ -64778,7 +65731,8 @@ var useStyles = styles_1.makeStyles(function (theme) {
             transition: theme.transitions.create(["width", "margin"], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen
-            })
+            }),
+            position: "fixed"
         },
         appBarShift: {
             marginLeft: drawerWidth,
@@ -64786,7 +65740,8 @@ var useStyles = styles_1.makeStyles(function (theme) {
             transition: theme.transitions.create(["width", "margin"], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen
-            })
+            }),
+            position: "fixed"
         },
         menuButton: {
             marginRight: 36
@@ -64798,13 +65753,13 @@ var useStyles = styles_1.makeStyles(function (theme) {
             flexGrow: 1
         },
         drawerPaper: {
-            position: "relative",
             whiteSpace: "nowrap",
             width: drawerWidth,
             transition: theme.transitions.create("width", {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen
-            })
+            }),
+            height: "100vh"
         },
         drawerPaperClose: (_a = {
                 overflowX: "hidden",
@@ -64820,7 +65775,7 @@ var useStyles = styles_1.makeStyles(function (theme) {
             _a),
         appBarSpacer: theme.mixins.toolbar,
         appBarSpacerContainer: {
-            height: "100vh",
+            height: "100vh"
         },
         content: {
             flexGrow: 1,
@@ -64847,7 +65802,22 @@ var Layout = function (_a) {
     var _b = react_1.useState(""), keyword = _b[0], setKeyword = _b[1];
     var _c = react_1.useState(true), isPost = _c[0], setIsPost = _c[1];
     var classes = useStyles();
-    var _d = react_1.default.useState(true), open = _d[0], setOpen = _d[1];
+    var _d = react_1.useState(false), open = _d[0], setOpen = _d[1];
+    var mainListItems = (react_1.default.createElement("div", null,
+        react_1.default.createElement(ListItem_1.default, { button: true, onClick: function () { return history.push("/create"); } },
+            react_1.default.createElement(ListItemIcon_1.default, null,
+                react_1.default.createElement(PostAdd_1.default, null)),
+            react_1.default.createElement(ListItemText_1.default, { primary: "\u6295\u7A3F" })),
+        react_1.default.createElement(ListItem_1.default, { button: true, onClick: function () { return history.push("/user"); } },
+            react_1.default.createElement(ListItemIcon_1.default, null,
+                react_1.default.createElement(Person_1.default, null)),
+            react_1.default.createElement(ListItemText_1.default, { primary: "\u30E6\u30FC\u30B6\u30FC" }))));
+    var secondaryListItems = (react_1.default.createElement("div", null,
+        react_1.default.createElement(ListSubheader_1.default, { inset: true }, "\u8A2D\u5B9A"),
+        react_1.default.createElement(ListItem_1.default, { button: true },
+            react_1.default.createElement(ListItemIcon_1.default, null,
+                react_1.default.createElement(Settings_1.default, null)),
+            react_1.default.createElement(ListItemText_1.default, { primary: "\u8A2D\u5B9A" }))));
     var handleDrawerOpen = function () {
         setOpen(true);
     };
@@ -64871,12 +65841,6 @@ var Layout = function (_a) {
                 search: "?q=" + keyword
             });
         }
-        /*axios.get("/api/get/search",{params:{keyword}}).then(res=>{
-            setPosts(res.data)
-
-        }).catch(error=>{
-            console.log(error)
-        })*/
     };
     return (react_1.default.createElement("div", { className: classes.root },
         react_1.default.createElement(CssBaseline_1.default, null),
@@ -64884,14 +65848,15 @@ var Layout = function (_a) {
             react_1.default.createElement(Toolbar_1.default, { className: classes.toolbar },
                 react_1.default.createElement(IconButton_1.default, { edge: "start", color: "inherit", "aria-label": "open drawer", onClick: handleDrawerOpen, className: clsx_1.default(classes.menuButton, open && classes.menuButtonHidden) },
                     react_1.default.createElement(Menu_1.default, null)),
-                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h6", color: "inherit", noWrap: true, className: classes.title }, "Dashboard"),
-                react_1.default.createElement("input", { type: "text", placeholder: "\u30AD\u30FC\u30EF\u30FC\u30C9", value: keyword, onChange: function (e) { return setKeyword(e.target.value); }, onKeyPress: function (e) {
+                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h6", color: "inherit", noWrap: true, className: classes.title }, "SNS"),
+                react_1.default.createElement(IconButton_1.default, { onClick: function () { return setIsPost(!isPost); } }, isPost ? react_1.default.createElement(LibraryBooks_1.default, null) : react_1.default.createElement(Person_1.default, null)),
+                react_1.default.createElement(TextField_1.default, { label: isPost ? react_1.default.createElement(react_1.default.Fragment, null, "\u6295\u7A3F\u691C\u7D22") : react_1.default.createElement(react_1.default.Fragment, null, "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22"), type: "search", variant: "filled", defaultValue: keyword, onChange: function (e) { return setKeyword(e.target.value); }, onKeyPress: function (e) {
                         if (e.key == "Enter") {
                             e.preventDefault();
                             onSearch();
                         }
                     } }),
-                react_1.default.createElement("button", { onClick: function () { return setIsPost(!isPost); } }, isPost ? react_1.default.createElement(react_1.default.Fragment, null, "\u6295\u7A3F\u691C\u7D22") : react_1.default.createElement(react_1.default.Fragment, null, "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22")),
+                react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", endIcon: react_1.default.createElement(Search_1.default, null), onClick: onSearch }, "\u691C\u7D22"),
                 react_1.default.createElement(IconButton_1.default, { color: "inherit" },
                     react_1.default.createElement(Badge_1.default, { badgeContent: 4, color: "secondary" },
                         react_1.default.createElement(Notifications_1.default, null))))),
@@ -64902,16 +65867,15 @@ var Layout = function (_a) {
                 react_1.default.createElement(IconButton_1.default, { onClick: handleDrawerClose },
                     react_1.default.createElement(ChevronLeft_1.default, null))),
             react_1.default.createElement(Divider_1.default, null),
-            react_1.default.createElement(List_1.default, null, "aaa"),
+            react_1.default.createElement(List_1.default, null, mainListItems),
             react_1.default.createElement(Divider_1.default, null),
-            react_1.default.createElement(List_1.default, null, "aa")),
+            react_1.default.createElement(List_1.default, null, secondaryListItems)),
         react_1.default.createElement("main", { className: classes.content },
             react_1.default.createElement("div", { className: classes.appBarSpacer }),
             react_1.default.createElement(Container_1.default, { maxWidth: "sm", className: classes.container, component: "main" },
                 react_1.default.createElement(CssBaseline_1.default, null),
                 children,
-                react_1.default.createElement(Box_1.default, { pt: 4 },
-                    react_1.default.createElement(Copyright, null))))));
+                react_1.default.createElement(Box_1.default, { pt: 4 })))));
 };
 exports.default = Layout;
 
@@ -64946,42 +65910,239 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+//import Link from '@material-ui/core/Link';
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    card: {
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    cardContent: {
+        display: "flex"
+    },
+    grid: {
+        marginBottom: "10px"
+    }
+}); });
 var Followee = function () {
+    var classes = useStyles();
     var params = react_router_1.useParams();
-    var userName = params.user;
-    var userId = params.id;
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var targetUserName = params.user;
+    var targetUserId = params.id;
     var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
-    react_1.useEffect(function () {
-        axios_1.default
-            .get("/api/get/followee", { params: { user_id: userId } })
-            .then(function (res) {
-            console.log(res.data);
-            setUsers(res.data);
-        })
-            .catch(function (error) {
-            console.log(error);
+    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
+    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
+    var _d = react_1.useState([]), results = _d[0], setResults = _d[1];
+    var history = react_router_1.useHistory();
+    //フォロー関数
+    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log(user.id, targetId);
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/add/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            var follow = res.data;
+                            setResults(results.map(function (result, i) {
+                                console.log(i, targetId);
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user,
+                                        follow: follow
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
         });
-    }, []);
-    return (react_1.default.createElement("div", null,
-        userName,
-        "\u30D5\u30A9\u30ED\u30FC\u4E2D\u4E00\u89A7",
-        users[0] &&
-            users.map(function (user, i) {
-                return (react_1.default.createElement("div", { key: i },
-                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/user/" + user.id },
-                        react_1.default.createElement("img", { src: user.profile_image }),
-                        react_1.default.createElement("p", null,
-                            "\u540D\u524D\uFF1A",
-                            user.name))));
-            })));
+    }); };
+    //フォロー解除関数
+    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log(user.id, targetId);
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/del/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            console.log(res.data);
+                            setResults(results.map(function (result, i) {
+                                console.log(i, targetId);
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    var followButton = function (result) {
+        if (user) {
+            if (result.follow) {
+                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
+            }
+            else if (user.id === result.user.id) {
+                //同一アバターの場合
+                return null;
+            }
+            else {
+                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+            }
+        }
+        else {
+            //非ログイン
+            return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+        }
+    };
+    //ロード中に表示する項目
+    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
+    //項目を読み込むときのコールバック
+    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    setIsFetching(true);
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/followee", {
+                            params: {
+                                number: page,
+                                targetId: targetUserId,
+                                user_id: user === null || user === void 0 ? void 0 : user.id
+                            }
+                        })
+                            .then(function (res) {
+                            console.log(res.data);
+                            return res.data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        setHasMore(false);
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    setResults(__spreadArray(__spreadArray([], results), [data]));
+                    setIsFetching(false);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
+            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
+                results.map(function (result, i) {
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
+                        react_1.default.createElement(Card_1.default, { className: classes.card },
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
+                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
+                                            .profile_image }),
+                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
+                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
+                })))));
 };
 exports.default = Followee;
 
@@ -65016,42 +66177,239 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+//import Link from '@material-ui/core/Link';
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    card: {
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    cardContent: {
+        display: "flex"
+    },
+    grid: {
+        marginBottom: "10px"
+    }
+}); });
 var Follower = function () {
+    var classes = useStyles();
     var params = react_router_1.useParams();
-    var userName = params.user;
-    var userId = Number(params.id);
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var targetUserName = params.user;
+    var targetUserId = params.id;
     var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
-    react_1.useEffect(function () {
-        axios_1.default
-            .get("/api/get/follower", { params: { user_id: userId } })
-            .then(function (res) {
-            console.log(res.data);
-            setUsers(res.data);
-        })
-            .catch(function (error) {
-            console.log(error);
+    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
+    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
+    var _d = react_1.useState([]), results = _d[0], setResults = _d[1];
+    var history = react_router_1.useHistory();
+    //フォロー関数
+    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log(user.id, targetId);
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/add/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            var follow = res.data;
+                            setResults(results.map(function (result, i) {
+                                console.log(i, targetId);
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user,
+                                        follow: follow
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
         });
-    }, []);
-    return (react_1.default.createElement("div", null,
-        userName,
-        "\u30D5\u30A9\u30ED\u30EF\u30FC\u3000\u4E00\u89A7",
-        users[0] &&
-            users.map(function (user, i) {
-                return (react_1.default.createElement("div", { key: i },
-                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/user/" + user.id },
-                        react_1.default.createElement("img", { src: user.profile_image }),
-                        react_1.default.createElement("p", null,
-                            "\u540D\u524D\uFF1A",
-                            user.name))));
-            })));
+    }); };
+    //フォロー解除関数
+    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log(user.id, targetId);
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/del/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            console.log(res.data);
+                            setResults(results.map(function (result, i) {
+                                console.log(i, targetId);
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    var followButton = function (result) {
+        if (user) {
+            if (result.follow) {
+                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
+            }
+            else if (user.id === result.user.id) {
+                //同一アバターの場合
+                return null;
+            }
+            else {
+                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+            }
+        }
+        else {
+            //非ログイン
+            return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+        }
+    };
+    //ロード中に表示する項目
+    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
+    //項目を読み込むときのコールバック
+    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    setIsFetching(true);
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/follower", {
+                            params: {
+                                number: page,
+                                targetId: targetUserId,
+                                user_id: user === null || user === void 0 ? void 0 : user.id
+                            }
+                        })
+                            .then(function (res) {
+                            console.log(res.data);
+                            return res.data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        setHasMore(false);
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    setResults(__spreadArray(__spreadArray([], results), [data]));
+                    setIsFetching(false);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
+            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
+                results.map(function (result, i) {
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
+                        react_1.default.createElement(Card_1.default, { className: classes.card },
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
+                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
+                                            .profile_image }),
+                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
+                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
+                })))));
 };
 exports.default = Follower;
 
@@ -66068,6 +67426,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -66078,16 +67441,102 @@ var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/rea
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+//import Link from '@material-ui/core/Link';
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    icon: {
+        marginRight: theme.spacing(2)
+    },
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(8, 0, 6)
+    },
+    heroButtons: {
+        marginTop: theme.spacing(4)
+    },
+    cardGrid: {
+        paddingRight: theme.spacing(15),
+        paddingLeft: theme.spacing(15)
+    },
+    card: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px"
+    },
+    cardMedia: {
+        paddingTop: "56.25%" // 16:9
+    },
+    cardContent: {
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px"
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(6)
+    },
+    profileContent: {},
+    grid: {
+        marginBottom: "30px"
+    },
+    large: {
+        width: theme.spacing(15),
+        height: theme.spacing(15)
+    },
+    followLength: {
+        display: "flex"
+    },
+    editNameText: {
+        marginBottom: "10px"
+    },
+    editIntroductionText: {},
+    nameText: {
+        marginBottom: "20px"
+    },
+    introductionText: {
+        marginLeft: "5px"
+    },
+    cardAction: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start"
+    },
+    textContainer: {
+        display: "flex",
+        marginLeft: "10px",
+        flexDirection: "column"
+    },
+    avatarContainer: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center"
+    }
+}); });
 var Login_User = function () {
+    var history = react_router_1.useHistory();
+    var classes = useStyles();
     var dispatch = react_redux_1.useDispatch();
     var userData = react_redux_1.useSelector(function (state) { return state.user.user; });
-    //const myUserId = useSelector((state: RootState) => state.user.user?.id);
-    var history = react_router_1.useHistory();
-    var _a = react_1.useState(), user = _a[0], setUser = _a[1];
-    var _b = react_1.useState([]), posts = _b[0], setPosts = _b[1];
-    var _c = react_1.useState([]), follows = _c[0], setFollows = _c[1];
-    var _d = react_1.useState(), followLength = _d[0], setFollowLength = _d[1];
-    var _e = react_1.useState(false), isFollow = _e[0], setIsFollow = _e[1];
+    var _a = react_1.useState(false), isFetching = _a[0], setIsFetching = _a[1];
+    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
+    var _c = react_1.useState(), user = _c[0], setUser = _c[1];
+    var _d = react_1.useState([]), posts = _d[0], setPosts = _d[1];
+    var _e = react_1.useState({
+        followerLength: 0,
+        followeeLength: 0
+    }), followLength = _e[0], setFollowLength = _e[1];
     var _f = react_1.useState(false), isEditMode = _f[0], setIsEditMode = _f[1];
     var _g = react_1.useState(""), newUserName = _g[0], setNewUserName = _g[1];
     var _h = react_1.useState(""), newSelfIntroduction = _h[0], setNewSelfIntroduction = _h[1];
@@ -66173,60 +67622,186 @@ var Login_User = function () {
             console.log(newProfileImage);
         }
     };
+    //ロード中に表示する項目
+    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
+    //項目を読み込むときのコールバック
+    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    setIsFetching(true);
+                    if (!user) return [3 /*break*/, 2];
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/post/scroll/user", {
+                            params: { number: page, user_id: user.id }
+                        })
+                            .then(function (res) {
+                            var data = res.data;
+                            console.log(data);
+                            return data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        setHasMore(false);
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
+                    setIsFetching(false);
+                    console.log(page);
+                    _a.label = 2;
+                case 2: return [2 /*return*/];
+            }
+        });
+    }); };
+    var onAddLike = function (post_id, index) {
+        if (user) {
+            var user_id = user.id;
+            console.log(index);
+            var indexNumber_1 = index;
+            axios_1.default
+                .post("/api/add/like", {
+                user_id: user_id,
+                post_id: post_id
+            })
+                .then(function (res) {
+                console.log(res.data);
+                console.log(posts);
+                setPosts(posts.map(function (post, i) {
+                    if (i === indexNumber_1) {
+                        return res.data;
+                    }
+                    else {
+                        return post;
+                    }
+                }));
+                console.log(posts);
+            })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //いいね解除
+    var onRemoveLike = function (post_id, index) {
+        if (user) {
+            var user_id = user.id;
+            axios_1.default
+                .post("/api/del/like", {
+                user_id: user_id,
+                post_id: post_id
+            })
+                .then(function (res) {
+                console.log(res.data);
+                console.log(posts);
+                setPosts(posts.map(function (post, i) {
+                    if (i === index) {
+                        return res.data;
+                    }
+                    else {
+                        return post;
+                    }
+                }));
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //いいねしたことあるか、
+    var isLikedBefore = function (post) {
+        if (user) {
+            var even = function (like) { return like.user_id === user.id; };
+            var isLiked = post.likes.some(even);
+            return isLiked;
+        }
+    };
+    var getDate = function (date) {
+        var toDate = new Date(date);
+        var month = toDate.getMonth() + 1;
+        var day = toDate.getDate();
+        return (react_1.default.createElement(Typography_1.default, null,
+            month,
+            "\u6708 ",
+            day,
+            "\u65E5"));
+    };
     return (react_1.default.createElement("div", null,
-        user && (react_1.default.createElement(react_1.default.Fragment, null,
-            "\u540D\u524D::",
-            isEditMode ? (react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement("input", { type: "file", onChange: function (e) { return onChangeFile(e); } }),
-                react_1.default.createElement("img", { src: newProfileImage }),
-                react_1.default.createElement("input", { type: "text", value: newUserName, onChange: function (e) { return setNewUserName(e.target.value); } }),
-                react_1.default.createElement("input", { type: "text", value: newSelfIntroduction, onChange: function (e) {
-                        return setNewSelfIntroduction(e.target.value);
-                    } }),
-                react_1.default.createElement("button", { onClick: onChangeName }, "\u9001\u4FE1"))) : (react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement("img", { src: user.profile_image }),
-                react_1.default.createElement("p", null, user.name),
-                react_1.default.createElement("p", null, user.self_introduction),
-                react_1.default.createElement("button", { onClick: onSetUserData }, "\u7DE8\u96C6"))),
-            react_1.default.createElement("div", null, followLength && (react_1.default.createElement("div", null,
-                react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
-                    react_1.default.createElement("p", null,
-                        "\u30D5\u30A9\u30ED\u30FC\u6570:",
-                        followLength.followeeLength)),
-                react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
-                    react_1.default.createElement("p", null,
-                        "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
-                        followLength.followerLength))))))),
-        posts[0] &&
-            posts.map(function (post, i) {
-                return (react_1.default.createElement("div", { key: i },
-                    react_1.default.createElement("div", null,
-                        react_1.default.createElement("p", null,
-                            "\u6295\u7A3F\u8005\uFF1A",
-                            post.user.name)),
-                    react_1.default.createElement("div", null,
-                        react_1.default.createElement("a", { href: post.post.url, target: "_blank" },
+        user && (react_1.default.createElement(Grid_1.default, { item: true, xs: 12, className: classes.grid },
+            react_1.default.createElement(Card_1.default, { className: classes.card },
+                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                    isEditMode ? (react_1.default.createElement(react_1.default.Fragment, null,
+                        react_1.default.createElement("div", { className: classes.avatarContainer },
+                            react_1.default.createElement(CardActions_1.default, null,
+                                react_1.default.createElement(Button_1.default, { variant: "contained", component: "label" },
+                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: newProfileImage, className: classes.large },
+                                        react_1.default.createElement("input", { type: "file", hidden: true, onChange: function (e) {
+                                                return onChangeFile(e);
+                                            } })))),
+                            react_1.default.createElement(TextField_1.default, { className: classes.editNameText, type: "text", defaultValue: newUserName, onChange: function (e) { return setNewUserName(e.target.value); } })),
+                        react_1.default.createElement(TextField_1.default, { className: classes.editIntroductionText, defaultValue: newSelfIntroduction, onChange: function (e) {
+                                return setNewSelfIntroduction(e.target.value);
+                            }, multiline: true, rows: 4, variant: "outlined" }),
+                        react_1.default.createElement(CardActions_1.default, null,
+                            react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: onChangeName }, "\u5909\u66F4")))) : (react_1.default.createElement(react_1.default.Fragment, null,
+                        react_1.default.createElement("div", { className: classes.avatarContainer },
+                            react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
+                            react_1.default.createElement(Typography_1.default, { className: classes.nameText, variant: "h4", gutterBottom: true }, user.name)),
+                        react_1.default.createElement(Typography_1.default, { className: classes.introductionText }, user.self_introduction),
+                        react_1.default.createElement(CardActions_1.default, { className: classes.cardAction },
+                            react_1.default.createElement(Button_1.default, { onClick: onSetUserData }, "\u7DE8\u96C6")))),
+                    react_1.default.createElement("div", { className: classes.followLength },
+                        react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
+                            react_1.default.createElement(Typography_1.default, null,
+                                "\u30D5\u30A9\u30ED\u30FC\u6570:",
+                                followLength.followeeLength)),
+                        react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
+                            react_1.default.createElement(Typography_1.default, null,
+                                "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
+                                followLength.followerLength))))))),
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
+            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
+                posts.map(function (post, i) {
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
+                        react_1.default.createElement(Card_1.default, { className: classes.card },
+                            react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                        pathname: "/" + post.user.name + "/user/" + post.user.id,
+                                        state: post.user
+                                    } },
+                                    react_1.default.createElement("div", { className: classes.profileContent },
+                                        react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
+                                                .profile_image }),
+                                        react_1.default.createElement(Typography_1.default, null, post.user.name))),
+                                react_1.default.createElement("a", { href: post.post.url, target: "_blank" },
+                                    react_1.default.createElement(Typography_1.default, { gutterBottom: true, variant: "h5", component: "h2" }, post.post.title),
+                                    react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: "Image title" })),
+                                react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                        pathname: "/" + post.user.name + "/post/" + post.post.id,
+                                        state: {
+                                            post: post.post,
+                                            user: post.user,
+                                            likes: post.likes
+                                        }
+                                    } },
+                                    react_1.default.createElement(Typography_1.default, null, post.post.body)),
+                                getDate(post.post.updated_at)),
+                            react_1.default.createElement(CardActions_1.default, null, isLikedBefore(post) ? (react_1.default.createElement(Button_1.default, { size: "small", color: "primary", onClick: function () {
+                                    onRemoveLike(post.post.id, i);
+                                } }, "\u3044\u3044\u306D\u306F\u305A\u3059")) : (react_1.default.createElement(Button_1.default, { size: "small", color: "primary", onClick: function () {
+                                    onAddLike(post.post.id, i);
+                                } }, "\u3044\u3044\u306D"))),
                             react_1.default.createElement("p", null,
-                                "\u30BF\u30A4\u30C8\u30EB\uFF1A",
-                                post.post.body),
-                            react_1.default.createElement("img", { src: post.post.image }))),
-                    react_1.default.createElement("div", null, user && (react_1.default.createElement(react_router_dom_1.Link, { to: {
-                            pathname: "/" + (user === null || user === void 0 ? void 0 : user.name) + "/post/" + post.post.id,
-                            state: {
-                                post: post.post,
-                                user: post.user,
-                                likes: post.likes
-                            }
-                        } },
-                        react_1.default.createElement("p", null,
-                            "\u30B3\u30E1\u30F3\u30C8\uFF1A",
-                            post.post.body)))),
-                    react_1.default.createElement("div", null, user && (react_1.default.createElement(react_1.default.Fragment, null,
-                        react_1.default.createElement("button", null, "\u3044\u3044\u306D"),
-                        react_1.default.createElement("p", null,
-                            "\u3044\u3044\u306D\u6570\uFF1A",
-                            post.likes.length))))));
-            })));
+                                "\u3044\u3044\u306D\u6570\uFF1A",
+                                post.likes.length))));
+                })))));
 };
 exports.default = Login_User;
 
@@ -66363,6 +67938,22 @@ var useStyles = styles_1.makeStyles(function (theme) { return ({
     },
     followLength: {
         display: "flex"
+    },
+    nameText: {
+        marginBottom: "20px"
+    },
+    introductionText: {
+        marginLeft: "5px"
+    },
+    avatarContainer: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    followContainer: {
+        display: "flex",
+        justifyContent: "space-between"
     }
 }); });
 var User = function () {
@@ -66608,9 +68199,11 @@ var User = function () {
         user && (react_1.default.createElement(Grid_1.default, { item: true, xs: 12, className: classes.grid },
             react_1.default.createElement(Card_1.default, { className: classes.card },
                 react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
-                    react_1.default.createElement(Typography_1.default, { variant: "h3", gutterBottom: true }, user.name),
-                    react_1.default.createElement(Typography_1.default, null, user.self_introduction),
+                    react_1.default.createElement("div", { className: classes.avatarContainer },
+                        react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
+                        react_1.default.createElement(Typography_1.default, { variant: "h4", gutterBottom: true, className: classes.nameText }, user.name)),
+                    react_1.default.createElement(Typography_1.default, { className: classes.introductionText }, user.self_introduction)),
+                react_1.default.createElement(CardActions_1.default, { className: classes.followContainer },
                     react_1.default.createElement("div", { className: classes.followLength },
                         react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
                             react_1.default.createElement(Typography_1.default, null,
@@ -66619,8 +68212,8 @@ var User = function () {
                         react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
                             react_1.default.createElement(Typography_1.default, null,
                                 "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
-                                followLength.followerLength)))),
-                react_1.default.createElement(CardActions_1.default, null, isCanFollow(user.id) ? null : isFollow ? (react_1.default.createElement(Button_1.default, { onClick: function () { return onRemoveFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059")) : (react_1.default.createElement(Button_1.default, { onClick: function () { return onFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B")))))),
+                                followLength.followerLength))),
+                    isCanFollow(user.id) ? null : isFollow ? (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059")) : (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B")))))),
         react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
             react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
                 posts.map(function (post, i) {
@@ -66994,6 +68587,47 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -67004,41 +68638,185 @@ var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_mod
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+//import Link from '@material-ui/core/Link';
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    card: {
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    cardContent: {
+        display: "flex"
+    },
+    grid: {
+        marginBottom: "10px"
+    }
+}); });
 var UserResult = function () {
+    var classes = useStyles();
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
+    var _a = react_1.useState([]), results = _a[0], setResults = _a[1];
     var location = react_router_1.useLocation();
     var history = react_router_1.useHistory();
-    react_1.useEffect(function () {
-        //クエリ取得
-        var parsed = query_string_1.default.parse(location.search);
-        var query = parsed.q;
-        console.log("q=", query);
-        axios_1.default
-            .get("/api/get/user/search", { params: { q: query } })
-            .then(function (res) {
-            console.log(res.data);
-            setUsers(res.data);
-        })
-            .catch(function (error) {
-            console.log(error);
+    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
+    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
+    var parsed = query_string_1.default.parse(location.search);
+    var query = parsed.q;
+    //フォロー関数
+    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log(user.id, targetId);
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/add/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            var follow = res.data;
+                            setResults(results.map(function (result, i) {
+                                console.log(i, targetId);
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user,
+                                        follow: follow
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
         });
-    }, [location]);
-    //いいね機能
-    var onAddLike = function (user_id, post_id) {
-        axios_1.default.post("/api/add/like", {
-            user_id: user_id,
-            post_id: post_id
+    }); };
+    //フォロー解除関数
+    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log(user.id, targetId);
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/del/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            console.log(res.data);
+                            setResults(results.map(function (result, i) {
+                                console.log(i, targetId);
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
         });
+    }); };
+    var followButton = function (result) {
+        if (user) {
+            if (result.follow) {
+                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
+            }
+            else if (user.id === result.user.id) {
+                //同一アバターの場合
+                return null;
+            }
+            else {
+                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+            }
+        }
+        else {
+            //非ログイン
+            return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+        }
     };
-    return (react_1.default.createElement("div", null, users[0] &&
-        users.map(function (user, i) {
-            return (react_1.default.createElement("div", { key: i },
-                react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/user/" + user.id },
-                    react_1.default.createElement("p", null,
-                        "\u540D\u524D\uFF1A",
-                        user.name))));
-        })));
+    //ロード中に表示する項目
+    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
+    //項目を読み込むときのコールバック
+    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log(query);
+                    setIsFetching(true);
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/user/search", {
+                            params: { q: query, number: page, user_id: user === null || user === void 0 ? void 0 : user.id }
+                        })
+                            .then(function (res) {
+                            console.log(res.data);
+                            return res.data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        setHasMore(false);
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    setResults(__spreadArray(__spreadArray([], results), [data]));
+                    setIsFetching(false);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
+            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
+                results.map(function (result, i) {
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
+                        react_1.default.createElement(Card_1.default, { className: classes.card },
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
+                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
+                                            .profile_image }),
+                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
+                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
+                })))));
 };
 exports.default = UserResult;
 

@@ -66,6 +66,23 @@ const useStyles = makeStyles(theme => ({
     },
     followLength: {
         display: "flex"
+    },
+    nameText: {
+        marginBottom: "20px"
+    },
+    introductionText: {
+        marginLeft: "5px"
+    },
+    avatarContainer: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+
+        alignItems: "center"
+    },
+    followContainer: {
+        display: "flex",
+        justifyContent: "space-between"
     }
 }));
 type FollowLength = {
@@ -308,16 +325,25 @@ const User = () => {
                 <Grid item xs={12} className={classes.grid}>
                     <Card className={classes.card}>
                         <CardContent className={classes.cardContent}>
-                            <Avatar
-                                alt="image"
-                                src={user.profile_image}
-                                className={classes.large}
-                            />
-                            <Typography variant="h3" gutterBottom>
-                                {user.name}
+                            <div className={classes.avatarContainer}>
+                                <Avatar
+                                    alt="image"
+                                    src={user.profile_image}
+                                    className={classes.large}
+                                />
+                                <Typography
+                                    variant="h4"
+                                    gutterBottom
+                                    className={classes.nameText}
+                                >
+                                    {user.name}
+                                </Typography>
+                            </div>
+                            <Typography className={classes.introductionText}>
+                                {user.self_introduction}
                             </Typography>
-                            <Typography>{user.self_introduction}</Typography>
-
+                        </CardContent>
+                        <CardActions className={classes.followContainer}>
                             <div className={classes.followLength}>
                                 <Link to={`/${user.name}/followee/${user.id}`}>
                                     <Typography>
@@ -332,14 +358,20 @@ const User = () => {
                                     </Typography>
                                 </Link>
                             </div>
-                        </CardContent>
-                        <CardActions>
                             {isCanFollow(user.id) ? null : isFollow ? (
-                                <Button onClick={() => onRemoveFollow(user.id)}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => onRemoveFollow(user.id)}
+                                >
                                     フォローはずす
                                 </Button>
                             ) : (
-                                <Button onClick={() => onFollow(user.id)}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => onFollow(user.id)}
+                                >
                                     フォローする
                                 </Button>
                             )}

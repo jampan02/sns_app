@@ -30,8 +30,6 @@
         </div>
     </body>
 	<script src="/js/index.js">
-	   document.addEventListener("DOMContentLoaded", function(event) {
-       document.querySelector('.infinite-scroll-component ').removeAttribute('style')
-    });</script>
+	</script>
 	
 </html>

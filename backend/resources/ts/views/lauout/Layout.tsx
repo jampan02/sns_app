@@ -18,10 +18,26 @@ import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import PeopleIcon from "@material-ui/icons/People";
+import BarChartIcon from "@material-ui/icons/BarChart";
+import LayersIcon from "@material-ui/icons/Layers";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import PersonIcon from "@material-ui/icons/Person";
+import SettingsIcon from "@material-ui/icons/Settings";
+import TextField from "@material-ui/core/TextField";
+import SearchIcon from "@material-ui/icons/Search";
+import Button from "@material-ui/core/Button";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 
 type PROPS = {
     children: ReactNode;
@@ -59,7 +75,8 @@ const useStyles = makeStyles(theme => ({
         transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
-        })
+        }),
+        position: "fixed"
     },
     appBarShift: {
         marginLeft: drawerWidth,
@@ -67,7 +84,8 @@ const useStyles = makeStyles(theme => ({
         transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen
-        })
+        }),
+        position: "fixed"
     },
     menuButton: {
         marginRight: 36
@@ -79,13 +97,13 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1
     },
     drawerPaper: {
-        position: "relative",
         whiteSpace: "nowrap",
         width: drawerWidth,
         transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen
-        })
+        }),
+        height: "100vh"
     },
     drawerPaperClose: {
         overflowX: "hidden",
@@ -99,12 +117,12 @@ const useStyles = makeStyles(theme => ({
         }
     },
     appBarSpacer: theme.mixins.toolbar,
-	appBarSpacerContainer:{
-		height: "100vh",
-	},
+    appBarSpacerContainer: {
+        height: "100vh"
+    },
     content: {
         flexGrow: 1,
-       
+
         overflow: "auto"
     },
     container: {
@@ -126,7 +144,35 @@ const Layout: React.FC<PROPS> = ({ children }) => {
     const [keyword, setKeyword] = useState("");
     const [isPost, setIsPost] = useState(true);
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(false);
+    const mainListItems = (
+        <div>
+            <ListItem button onClick={() => history.push("/create")}>
+                <ListItemIcon>
+                    <PostAddIcon />
+                </ListItemIcon>
+                <ListItemText primary="投稿" />
+            </ListItem>
+            <ListItem button onClick={() => history.push("/user")}>
+                <ListItemIcon>
+                    <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="ユーザー" />
+            </ListItem>
+        </div>
+    );
+
+    const secondaryListItems = (
+        <div>
+            <ListSubheader inset>設定</ListSubheader>
+            <ListItem button>
+                <ListItemIcon>
+                    <SettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary="設定" />
+            </ListItem>
+        </div>
+    );
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -149,13 +195,6 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                 search: `?q=${keyword}`
             });
         }
-
-        /*axios.get("/api/get/search",{params:{keyword}}).then(res=>{
-			setPosts(res.data)
-
-		}).catch(error=>{
-			console.log(error)
-		})*/
     };
 
     return (
@@ -185,12 +224,16 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                         noWrap
                         className={classes.title}
                     >
-                        Dashboard
+                        SNS
                     </Typography>
-                    <input
-                        type="text"
-                        placeholder="キーワード"
-                        value={keyword}
+                    <IconButton onClick={() => setIsPost(!isPost)}>
+                        {isPost ? <LibraryBooksIcon /> : <PersonIcon />}
+                    </IconButton>
+                    <TextField
+                        label={isPost ? <>投稿検索</> : <>ユーザー検索</>}
+                        type="search"
+                        variant="filled"
+                        defaultValue={keyword}
                         onChange={e => setKeyword(e.target.value)}
                         onKeyPress={e => {
                             if (e.key == "Enter") {
@@ -199,9 +242,15 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                             }
                         }}
                     />
-                    <button onClick={() => setIsPost(!isPost)}>
-                        {isPost ? <>投稿検索</> : <>ユーザー検索</>}
-                    </button>
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        endIcon={<SearchIcon />}
+                        onClick={onSearch}
+                    >
+                        検索
+                    </Button>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
@@ -226,12 +275,11 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>aaa</List>
+                <List>{mainListItems}</List>
                 <Divider />
-                <List>aa</List>
+                <List>{secondaryListItems}</List>
             </Drawer>
             <main className={classes.content}>
-			
                 <div className={classes.appBarSpacer} />
                 <Container
                     maxWidth="sm"
@@ -242,9 +290,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
 
                     {children}
 
-                    <Box pt={4}>
-                        <Copyright />
-                    </Box>
+                    <Box pt={4}></Box>
                 </Container>
             </main>
         </div>

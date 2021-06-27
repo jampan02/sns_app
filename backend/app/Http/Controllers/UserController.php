@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Post;
 use App\Like;
+use App\Follow;
 class UserController extends Controller
 {
     //
@@ -52,13 +53,18 @@ class UserController extends Controller
 
 	//検索機能
 	public function getUserBySearch(Request $request){
-		$result=array();
+		$number=$request->number-1;
 		$queryS=$request->q;
-		$users=User::where("name","like","%{$queryS}%")->get();
+		$user_id=$request->user_id;
 
-		return $users;
+		$user=User::orderBy("updated_at","DESC")->where("name","like","%{$queryS}%")->skip($number)->first();
+		$follow=Follow::where("followee_id",$user_id)->where("follower_id",$user->id)->first();
+		$result=array();
+		$result["user"]=$user;
+		$result["follow"]=$follow;
+		return $result;
 	}
-	//舐め変更
+	//名前変更
 	public function editUserName(Request $request){
 		$user_id=$request->id;
 		$new_user_name=$request->name;

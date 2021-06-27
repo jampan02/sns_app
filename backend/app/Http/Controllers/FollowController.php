@@ -79,29 +79,55 @@ class FollowController extends Controller
 
 	//フォロウィー(フォロー中のユーザー)のみ取得
 	public function getFollowee(Request $request){
+		$number=$request->number-1;
+		$target_id=$request->targetId;
 		$user_id=$request->user_id;
-		Log::debug($user_id);
-		$followee_ids=Follow::where("followee_id",$user_id)->get();
-		Log::debug($followee_ids);
-		$followee_users=array();
-		foreach($followee_ids as $followee_id){
-			$user=User::where("id",$followee_id->follower_id)->first();
-			$followee_users[]=$user;
+		$following_user=Follow::where("followee_id",$target_id)->skip($number)->first();
+		Log::debug($following_user);
+		$user=User::orderBy("updated_at","DESC")->where("id",$following_user->follower_id)->first();
+		$follow=Follow::where("followee_id",$user_id)->where("follower_id",$user->id)->first();
+		$result=array();
+		$result["user"]=$user;
+		$result["follow"]=$follow;
+		if($result){
+			return $result;
 		}
-		Log::debug($followee_users);
-		return $followee_users;
 	}
 		//フォロワーユーザーのみ取得
 		public function getFollower(Request $request){
+			$number=$request->number-1;
+			$target_id=$request->targetId;
 			$user_id=$request->user_id;
-			$follower_ids=Follow::where("follower_id",$user_id)->get();
-			$follower_users=array();
-			Log::debug($follower_ids);
-			foreach($follower_ids as $follower_id){
-				$user=User::where("id",$follower_id->followee_id)->first();
-				$follower_users[]=$user;
+			$following_user=Follow::where("follower_id",$target_id)->skip($number)->first();
+			Log::debug($following_user);
+			$user=User::orderBy("updated_at","DESC")->where("id",$following_user->followee_id)->first();
+			$follow=Follow::where("follower_id",$user_id)->where("follower_id",$user->id)->first();
+			$result=array();
+			$result["user"]=$user;
+			$result["follow"]=$follow;
+			if($result){
+				return $result;
 			}
-			Log::debug($follower_users);
-			return $follower_users;
+
+
+		
+		}
+		public function addFollowSearch(Request $request){
+			$follow=new Follow;
+			$followee=$request->followee;
+			$follower=$request->follower;
+			$follow->followee_id=$followee;
+			$follow->follower_id=$follower;
+			$follow->save();
+			$data=Follow::where("followee_id",$followee)->where("follower_id",$follower)->first();
+			return $data;
+
+		}
+		public function removeFollowSearch(Request $request){
+			$followee=$request->followee;
+			$follower=$request->follower;
+
+			Follow::where("followee_id",$followee)->where("follower_id",$follower)->delete();
+
 		}
 }

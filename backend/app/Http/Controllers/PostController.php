@@ -51,25 +51,6 @@ class PostController extends Controller
 		$result["likes"]=$likes;
 		return $result;
 		}
-
-		/*$mixedPosts=array();
-		$queryS=$request->q;
-		$posts=Post::where("body","like","%{$queryS}%")->orWhere("title","like","%{$queryS}%")->get();
-		Log::debug($posts);
-		foreach($posts as $post){
-			Log::debug($post);
-			$posterId=$post->user_id;
-			$user=User::where("id",$posterId)->first();
-			$likes=Like::where("post_id",$post->id)->get();
-			$postData=array();
-			$postData["post"]=$post;
-			$postData["user"]=$user;
-			$postData["likes"]=$likes;
-			$mixedPosts[]=$postData;
-			//$newArray=array("post"=>$post,"user"=>$user,"likes"=>$likes);
-		}
-		Log::debug($mixedPosts);
-		return $mixedPosts;*/
 	}
 	//編集
 	public function editPost(Request $request){

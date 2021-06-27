@@ -29,7 +29,7 @@ Route::group(["middleware"=>"api"],function(){
 	Route::get("get/posts/sort/new","PostController@getNewerPosts");
 	Route::get("get/post","PostController@getPost");
 	Route::get("get/post/scroll","PostController@getPostByScroll");
-		Route::get("get/post/scroll/user","PostController@getPostByScrollInUser");
+	Route::get("get/post/scroll/user","PostController@getPostByScrollInUser");
 	Route::get("get/posts/sort/popular","PostController@getPopularPosts");
 	Route::post("add","PostController@addPost");
 	Route::post("edit/post","PostController@editPost");
@@ -51,8 +51,9 @@ Route::group(["middleware"=>"api"],function(){
 	Route::post("del/follow","FollowController@removeFollow");
 	Route::get("get/isfollow","FollowController@getIsFollow");
 	Route::get("get/followee","FollowController@getFollowee");
-		Route::get("get/follower","FollowController@getFollower");
-
+	Route::get("get/follower","FollowController@getFollower");
+	Route::post("add/follow/search","FollowController@addFollowSearch");
+	Route::post("del/follow/search","FollowController@removeFollowSearch");
 	//検索機能
 	Route::get("get/post/search","PostController@getPostBySearch");
 	Route::get("get/user/search","UserController@getUserBySearch");
