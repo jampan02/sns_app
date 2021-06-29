@@ -217,15 +217,18 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        component="h1"
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                        className={classes.title}
-                    >
-                        SNS
-                    </Typography>
+                    <Link to="/">
+                        <Typography
+                            component="h1"
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            className={classes.title}
+                        >
+                            SNS
+                        </Typography>
+                    </Link>
+
                     <IconButton onClick={() => setIsPost(!isPost)}>
                         {isPost ? <LibraryBooksIcon /> : <PersonIcon />}
                     </IconButton>

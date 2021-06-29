@@ -65681,6 +65681,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var clsx_1 = __importDefault(__webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
@@ -65848,7 +65849,8 @@ var Layout = function (_a) {
             react_1.default.createElement(Toolbar_1.default, { className: classes.toolbar },
                 react_1.default.createElement(IconButton_1.default, { edge: "start", color: "inherit", "aria-label": "open drawer", onClick: handleDrawerOpen, className: clsx_1.default(classes.menuButton, open && classes.menuButtonHidden) },
                     react_1.default.createElement(Menu_1.default, null)),
-                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h6", color: "inherit", noWrap: true, className: classes.title }, "SNS"),
+                react_1.default.createElement(react_router_dom_1.Link, { to: "/" },
+                    react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h6", color: "inherit", noWrap: true, className: classes.title }, "SNS")),
                 react_1.default.createElement(IconButton_1.default, { onClick: function () { return setIsPost(!isPost); } }, isPost ? react_1.default.createElement(LibraryBooks_1.default, null) : react_1.default.createElement(Person_1.default, null)),
                 react_1.default.createElement(TextField_1.default, { label: isPost ? react_1.default.createElement(react_1.default.Fragment, null, "\u6295\u7A3F\u691C\u7D22") : react_1.default.createElement(react_1.default.Fragment, null, "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22"), type: "search", variant: "filled", defaultValue: keyword, onChange: function (e) { return setKeyword(e.target.value); }, onKeyPress: function (e) {
                         if (e.key == "Enter") {
@@ -66528,66 +66530,59 @@ var Create = function () {
     //ユーザー情報
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var onCreatePost = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var CORS_PROXY, site_name, title, image, userId, data;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-                    site_name = null;
-                    title = null;
-                    image = null;
-                    //スクレイピング
-                    return [4 /*yield*/, fetch(CORS_PROXY + url, { mode: "cors" })
-                            .then(function (res) { return res.text(); })
-                            .then(function (text) {
-                            var el = new DOMParser().parseFromString(text, "text/html");
-                            var headEls = el.head.children;
-                            Array.from(headEls).map(function (v) {
-                                var prop = v.getAttribute("property");
-                                if (!prop)
-                                    return;
-                                console.log(prop, v.getAttribute("content"));
-                                switch (prop) {
-                                    case "og:title":
-                                        title = v.getAttribute("content");
-                                        break;
-                                    case "og:site_name":
-                                        site_name = v.getAttribute("content");
-                                        break;
-                                    case "og:image":
-                                        image = v.getAttribute("content");
-                                        break;
-                                    default:
-                                        return;
-                                }
-                            });
-                        })];
-                case 1:
-                    //スクレイピング
-                    _a.sent();
-                    //ユーザーID取得
-                    if (user) {
-                        userId = user.id;
-                        data = {
-                            user_id: userId,
-                            site_name: site_name,
-                            title: title,
-                            image: image,
-                            url: url,
-                            body: body
-                        };
-                        //投稿
-                        axios_1.default
-                            .post("/api/add", data)
-                            .then(function () {
-                            history.push("/");
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        });
-                    }
-                    return [2 /*return*/];
-            }
+            //e.preventDefault();
+            /*   const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+            let site_name: string | null = null;
+            let title: string | null = null;
+            let image: string | null = null;
+            //スクレイピング
+            await fetch(CORS_PROXY + url, { mode: "cors" })
+                .then(res => res.text())
+                .then(text => {
+                    const el = new DOMParser().parseFromString(text, "text/html");
+                    const headEls = el.head.children;
+                    Array.from(headEls).map(v => {
+                        const prop = v.getAttribute("property");
+                        if (!prop) return;
+                        console.log(prop, v.getAttribute("content"));
+                        switch (prop) {
+                            case "og:title":
+                                title = v.getAttribute("content");
+                                break;
+                            case "og:site_name":
+                                site_name = v.getAttribute("content");
+                                break;
+                            case "og:image":
+                                image = v.getAttribute("content");
+                                break;
+                            default:
+                                return;
+                        }
+                    });
+                });
+            //ユーザーID取得
+            if (user) {
+                const userId = user.id;
+                const data = {
+                    user_id: userId,
+                    site_name,
+                    title,
+                    image,
+                    url,
+                    body
+                };*/
+            //投稿
+            axios_1.default
+                .post("/api/add", url)
+                .then(function (res) {
+                console.log(res.data);
+                //history.push("/");
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+            return [2 /*return*/];
         });
     }); };
     return (react_1.default.createElement(Card_1.default, { className: classes.card },

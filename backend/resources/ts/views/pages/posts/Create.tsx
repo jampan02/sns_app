@@ -54,7 +54,7 @@ const Create = () => {
     const user = useSelector((state: RootState) => state.user.user);
     const onCreatePost = async () => {
         //e.preventDefault();
-        const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+        /*   const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
         let site_name: string | null = null;
         let title: string | null = null;
         let image: string | null = null;
@@ -93,17 +93,18 @@ const Create = () => {
                 image,
                 url,
                 body
-            };
-            //投稿
-            axios
-                .post("/api/add", data)
-                .then(() => {
-                    history.push("/");
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
+            };*/
+        //投稿
+        axios
+            .post("/api/add", url)
+            .then(res => {
+                console.log(res.data);
+                //history.push("/");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        //}
     };
     return (
         <Card className={classes.card}>

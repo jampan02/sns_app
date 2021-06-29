@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Like;
+//ここに一行追加-------------------------------------//
+use Weidner\Goutte\GoutteFacade as GoutteFacade;
+//ライブラリロード
+
+    //use
+    use Goutte\Client;
 class PostController extends Controller
 {
     //新しい純
@@ -27,15 +33,37 @@ class PostController extends Controller
 		return $mixedPosts;
 	}
 	public function addPost(Request $request){
-		$post=new Post;
+				$URL=$request;
+				$client = new Client();
+				$crawler = $client->request('GET', "https://qiita.com/aberyotaro/items/eefe1f2644a00468c2de");
+				$meta = $crawler->filter('meta')->each(function($node) {
+					return [
+						'property' => $node->attr('property'),
+						'content' => $node->attr('content'),
+					];
+				});
+				$post=new Post;
+				foreach($meta as $data){
+				switch($data){
+				case "og:site_name":
+						$post->site_name=$data["content"];
+				case "og:title":
+						$post->title=$data["content"];
+				case "og:image":
+						$post->image=$data["content"];
+				default:
+					return;
+				}
 		$post->user_id=$request->user_id;
-		$post->site_name=$request->site_name;
-		$post->title=$request->title;
-		$post->image=$request->image;
-		$post->url=$request->url;
+		$post->url=$URL;
 		$post->body=$request->body;
 
 		$post->save();
+				}
+
+			
+
+		return $post;
 	}
 	//検索結果一覧
 	public function getPostBySearch(Request $request){
