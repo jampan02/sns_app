@@ -33,6 +33,7 @@ Route::group(["middleware"=>"api"],function(){
 	Route::get("get/posts/sort/popular","PostController@getPopularPosts");
 	Route::post("add","PostController@addPost");
 	Route::post("edit/post","PostController@editPost");
+	Route::post("del/post","PostController@delPost");
 	//Route::get("get/post/user","PostController@getPostsByUserId")
 	//いいね
 	Route::post("add/like","LikeController@addLike");

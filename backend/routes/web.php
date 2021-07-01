@@ -11,12 +11,15 @@
 |
 */
 Route::get("/json","UserController@json");
+/*
 Route::get("/login",function(){
 	return view("auth/login");
 });
+
 Route::get("/register",function(){
 	return view("auth/register");
 });
+*/
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any','.*');

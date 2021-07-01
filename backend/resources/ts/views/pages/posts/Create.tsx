@@ -14,7 +14,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Hidden from "@material-ui/core/Hidden";
 import CardActions from "@material-ui/core/CardActions";
-
+import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles({
     card: {
         diplay: "flex",
@@ -39,72 +39,44 @@ const useStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         marginBottom: "15px"
+    },
+    errorMessage: {
+        marginTop: "10px"
     }
 });
-type DATA = {
-    title: string | null;
-};
 
 const Create = () => {
     const classes = useStyles();
     const history = useHistory();
     const [body, setBody] = useState("");
     const [url, setUrl] = useState("");
-    //ユーザー情報
+    const [errorMessage, setErrorMessage] = useState("");
     const user = useSelector((state: RootState) => state.user.user);
     const onCreatePost = async () => {
-        //e.preventDefault();
-        /*   const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-        let site_name: string | null = null;
-        let title: string | null = null;
-        let image: string | null = null;
-        //スクレイピング
-        await fetch(CORS_PROXY + url, { mode: "cors" })
-            .then(res => res.text())
-            .then(text => {
-                const el = new DOMParser().parseFromString(text, "text/html");
-                const headEls = el.head.children;
-                Array.from(headEls).map(v => {
-                    const prop = v.getAttribute("property");
-                    if (!prop) return;
-                    console.log(prop, v.getAttribute("content"));
-                    switch (prop) {
-                        case "og:title":
-                            title = v.getAttribute("content");
-                            break;
-                        case "og:site_name":
-                            site_name = v.getAttribute("content");
-                            break;
-                        case "og:image":
-                            image = v.getAttribute("content");
-                            break;
-                        default:
-                            return;
-                    }
-                });
-            });
-        //ユーザーID取得
+        if (url === "") {
+            setErrorMessage("URLは必須です");
+            return;
+        }
+        if (body.length >= 255) {
+            setErrorMessage("テキストは255文字以内にしてください");
+            return;
+        }
         if (user) {
-            const userId = user.id;
             const data = {
-                user_id: userId,
-                site_name,
-                title,
-                image,
                 url,
-                body
-            };*/
-        //投稿
-        axios
-            .post("/api/add", url)
-            .then(res => {
-                console.log(res.data);
-                //history.push("/");
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        //}
+                body,
+                user_id: user.id
+            };
+            await axios
+                .post("/api/add", data)
+                .then(res => {
+                    console.log(res.data);
+                    history.push("/");
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     };
     return (
         <Card className={classes.card}>
@@ -113,6 +85,7 @@ const Create = () => {
                     id="standard-basic"
                     label="リンク"
                     onChange={e => setUrl(e.target.value)}
+                    multiline
                     autoFocus={true}
                     className={classes.text}
                 />
@@ -125,6 +98,11 @@ const Create = () => {
                     className={classes.text}
                 />
             </CardContent>
+            {errorMessage && (
+                <Alert severity="error" className={classes.errorMessage}>
+                    {errorMessage}
+                </Alert>
+            )}
             <CardActions className={classes.button}>
                 <Button
                     variant="contained"

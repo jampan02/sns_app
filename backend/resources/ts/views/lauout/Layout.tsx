@@ -38,7 +38,10 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 type PROPS = {
     children: ReactNode;
 };
@@ -137,9 +140,13 @@ const useStyles = makeStyles(theme => ({
     },
     fixedHeight: {
         height: 240
+    },
+    searchButton: {
+        marginLeft: "10px"
     }
 }));
 const Layout: React.FC<PROPS> = ({ children }) => {
+    const user = useSelector((state: RootState) => state.user.user);
     const history = useHistory();
     const [keyword, setKeyword] = useState("");
     const [isPost, setIsPost] = useState(true);
@@ -165,7 +172,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
     const secondaryListItems = (
         <div>
             <ListSubheader inset>設定</ListSubheader>
-            <ListItem button>
+            <ListItem button onClick={() => history.push("/setting")}>
                 <ListItemIcon>
                     <SettingsIcon />
                 </ListItemIcon>
@@ -173,6 +180,37 @@ const Layout: React.FC<PROPS> = ({ children }) => {
             </ListItem>
         </div>
     );
+    const logout = async () => {
+        await axios
+            .post("/logout")
+            .then(res => {
+                history.push("/login");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+    const logoutListItem = (
+        <div>
+            <ListItem button onClick={logout}>
+                <ListItemIcon>
+                    <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="ログアウト" />
+            </ListItem>
+        </div>
+    );
+    const loginListItem = (
+        <div>
+            <ListItem button onClick={() => history.push("/register")}>
+                <ListItemIcon>
+                    <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="新規登録" />
+            </ListItem>
+        </div>
+    );
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -217,43 +255,45 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Link to="/">
-                        <Typography
-                            component="h1"
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            className={classes.title}
-                        >
-                            SNS
-                        </Typography>
-                    </Link>
 
-                    <IconButton onClick={() => setIsPost(!isPost)}>
-                        {isPost ? <LibraryBooksIcon /> : <PersonIcon />}
-                    </IconButton>
-                    <TextField
-                        label={isPost ? <>投稿検索</> : <>ユーザー検索</>}
-                        type="search"
-                        variant="filled"
-                        defaultValue={keyword}
-                        onChange={e => setKeyword(e.target.value)}
-                        onKeyPress={e => {
-                            if (e.key == "Enter") {
-                                e.preventDefault();
-                                onSearch();
-                            }
-                        }}
-                    />
-
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        endIcon={<SearchIcon />}
-                        onClick={onSearch}
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        className={classes.title}
                     >
-                        検索
-                    </Button>
+                        <Link to="/">SNS</Link>
+                    </Typography>
+
+                    <div>
+                        <IconButton onClick={() => setIsPost(!isPost)}>
+                            {isPost ? <LibraryBooksIcon /> : <PersonIcon />}
+                        </IconButton>
+                        <TextField
+                            label={isPost ? <>投稿検索</> : <>ユーザー検索</>}
+                            type="search"
+                            variant="filled"
+                            defaultValue={keyword}
+                            onChange={e => setKeyword(e.target.value)}
+                            onKeyPress={e => {
+                                if (e.key == "Enter") {
+                                    e.preventDefault();
+                                    onSearch();
+                                }
+                            }}
+                        />
+
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            endIcon={<SearchIcon />}
+                            onClick={onSearch}
+                            className={classes.searchButton}
+                        >
+                            検索
+                        </Button>
+                    </div>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
@@ -281,6 +321,12 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                 <List>{mainListItems}</List>
                 <Divider />
                 <List>{secondaryListItems}</List>
+                <Divider />
+                {user ? (
+                    <List>{logoutListItem}</List>
+                ) : (
+                    <List>{loginListItem}</List>
+                )}
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />

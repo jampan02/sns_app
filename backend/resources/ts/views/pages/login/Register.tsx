@@ -5,21 +5,20 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+//import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import axios from "axios";
+import { useHistory, Link } from "react-router-dom";
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {"Copyright © "}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{" "}
+
             {new Date().getFullYear()}
             {"."}
         </Typography>
@@ -43,17 +42,45 @@ const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2)
+    },
+    large: {
+        width: theme.spacing(15),
+        height: theme.spacing(15)
     }
 }));
 
 export default function Register() {
+    const history = useHistory();
     const classes = useStyles();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
-
-    const onSignUp = () => {};
+    //const [image, setImage] = useState("");
+    const [introduction, setIntroduction] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const onSignUp = (e: any) => {
+        e.preventDefault();
+        /*    if (password !== confirmPassword) {
+            return;
+        }*/
+        const image = "https://i.permalink-system.com/thumb/6238/62387066.jpg";
+        const data = {
+            name,
+            password,
+            email,
+            profile_image: image,
+            password_confirmation: passwordConfirm
+        };
+        axios
+            .post("/register", data)
+            .then(res => {
+                history.push("/");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -63,31 +90,32 @@ export default function Register() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign up
+                    新規登録
                 </Typography>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12}>
                             <TextField
                                 autoComplete="fname"
-                                name="firstName"
+                                name="name"
                                 variant="outlined"
                                 required
                                 fullWidth
                                 id="firstName"
-                                label="First Name"
+                                label="ユーザーネーム"
                                 autoFocus
                                 onChange={e => setName(e.target.value)}
                                 value={name}
                             />
                         </Grid>
+
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label="メールアドレス"
                                 name="email"
                                 autoComplete="email"
                                 onChange={e => setEmail(e.target.value)}
@@ -100,7 +128,7 @@ export default function Register() {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label="パスワード"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
@@ -108,31 +136,21 @@ export default function Register() {
                                 value={password}
                             />
                         </Grid>
+
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="password"
-                                label="Password"
+                                name="password_confirmation"
+                                label="確認用"
                                 type="password"
-                                id="password"
-                                autoComplete="current-password"
+                                id="password_confirmation"
+                                autoComplete="current-password_confirmation"
                                 onChange={e =>
-                                    setConfirmPassword(e.target.value)
+                                    setPasswordConfirm(e.target.value)
                                 }
-                                value={confirmPassword}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        value="allowExtraEmails"
-                                        color="primary"
-                                    />
-                                }
-                                label="I want to receive inspiration, marketing promotions and updates via email."
+                                value={passwordConfirm}
                             />
                         </Grid>
                     </Grid>
@@ -144,12 +162,12 @@ export default function Register() {
                         className={classes.submit}
                         onClick={onSignUp}
                     >
-                        Sign Up
+                        登録
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
+                            <Link to="/login">
+                                アカウントを持っていますか？
                             </Link>
                         </Grid>
                     </Grid>

@@ -11,9 +11,10 @@ const IsLogin: React.FC<PROPS> = ({ children }) => {
     const dispatch = useDispatch();
     const isLogin = useSelector((state: RootState) => state.user.isLogin);
     useEffect(() => {
-        if (!isLogin) {
-            //ログインされていない場合
-            const f = async () => {
+        const f = async () => {
+            if (!isLogin) {
+                //ログインされていない場合
+
                 await axios
                     .get("/json")
                     .then(res => {
@@ -27,9 +28,10 @@ const IsLogin: React.FC<PROPS> = ({ children }) => {
                     .catch(error => {
                         console.log(error);
                     });
-            };
-            f();
-        }
+            }
+        };
+
+        f();
     }, []);
     return <div>{children}</div>;
 };

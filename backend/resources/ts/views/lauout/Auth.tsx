@@ -14,25 +14,28 @@ const Auth: React.FC<PROPS> = ({ children }) => {
     const user = useSelector((state: RootState) => state.user);
     const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
-        if (!user.user) {
-            axios
-                .get("/json")
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data.id);
-                    if (res.data) {
-                        dispatch(login_user(res.data));
-                        setIsLogin(true);
-                    } else {
-                        history.push("/register");
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        } else {
-            setIsLogin(true);
-        }
+        const f = () => {
+            if (!user.user) {
+                axios
+                    .get("/json")
+                    .then(res => {
+                        console.log(res);
+                        console.log(res.data.id);
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                            setIsLogin(true);
+                        } else {
+                            history.push("/register");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            } else {
+                setIsLogin(true);
+            }
+        };
+        f();
     }, [user]);
     return isLogin ? <div>{children}</div> : <div>no login</div>;
 };

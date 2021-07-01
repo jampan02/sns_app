@@ -14,52 +14,43 @@ use Weidner\Goutte\GoutteFacade as GoutteFacade;
     use Goutte\Client;
 class PostController extends Controller
 {
-    //新しい純
-	public function getNewerPosts(){
-		$mixedPosts=array();
-		$posts=Post::orderBy("updated_at","DESC")->take(10)->get();
-		foreach($posts as $post){
-			//Log::debug($post);
-			$posterId=$post->user_id;
-			$user=User::where("id",$posterId)->first();
-			$likes=Like::where("post_id",$post->id)->get();
-			$postData=array();
-			$postData["post"]=$post;
-			$postData["user"]=$user;
-			$postData["likes"]=$likes;
-			$mixedPosts[]=$postData;
-			//$newArray=array("post"=>$post,"user"=>$user,"likes"=>$likes);
-		}
-		return $mixedPosts;
-	}
 	public function addPost(Request $request){
-				$URL=$request;
+		Log::debug("message");
+				$URL=$request->url;
 				$client = new Client();
-				$crawler = $client->request('GET', "https://qiita.com/aberyotaro/items/eefe1f2644a00468c2de");
+				$crawler = $client->request('GET', $URL);
 				$meta = $crawler->filter('meta')->each(function($node) {
 					return [
 						'property' => $node->attr('property'),
 						'content' => $node->attr('content'),
 					];
 				});
+			
 				$post=new Post;
 				foreach($meta as $data){
-				switch($data){
+				
+				switch($data["property"]){
+				
 				case "og:site_name":
+					Log::debug($data);
 						$post->site_name=$data["content"];
+						break;
 				case "og:title":
 						$post->title=$data["content"];
+						break;
 				case "og:image":
 						$post->image=$data["content"];
+						break;
 				default:
-					return;
+					break;
 				}
+			}
 		$post->user_id=$request->user_id;
 		$post->url=$URL;
 		$post->body=$request->body;
-
+			Log::debug($post);
 		$post->save();
-				}
+				
 
 			
 
@@ -106,6 +97,7 @@ class PostController extends Controller
 		Log::debug($number);
 		$post=Post::orderBy("updated_at","DESC")->skip($number)->first();
 		Log::debug($post);
+		if($post){
 		$user=User::where("id",$post->user_id)->first();
 		$likes=Like::where("post_id",$post->id)->get();
 		$result=array();
@@ -113,6 +105,9 @@ class PostController extends Controller
 		$result["user"]=$user;
 		$result["likes"]=$likes;
 		return $result;
+		}else{
+			return;
+		}
 	}
  public function getPostByScrollInUser(Request $request){
 	$number=$request->number-1;
@@ -131,5 +126,12 @@ class PostController extends Controller
 	$result["likes"]=$likes;
 	return $result;
 	}
+ }
+ //削除関数
+ public function delPost(Request $request){
+	 $post_id=$request->id;
+	 Log::debug($post_id);
+	 $post=Post::where("id",$post_id)->first();
+	 $post->delete();
  }
 }

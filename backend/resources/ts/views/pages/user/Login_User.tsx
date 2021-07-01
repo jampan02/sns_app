@@ -25,7 +25,7 @@ import Avatar from "@material-ui/core/Avatar";
 import CardActions from "@material-ui/core/CardActions";
 //import Link from '@material-ui/core/Link';
 import TextField from "@material-ui/core/TextField";
-
+import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles(theme => ({
     icon: {
         marginRight: theme.spacing(2)
@@ -96,6 +96,9 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
 
         alignItems: "center"
+    },
+    errorMessage: {
+        marginTop: "10px"
     }
 }));
 type FollowLength = {
@@ -112,7 +115,7 @@ const Login_User = () => {
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState<USER>();
     const [posts, setPosts] = useState<MIXED_POST_DATA[]>([]);
-
+    const [errorMessage, setErrorMessage] = useState("");
     const [followLength, setFollowLength] = useState<FollowLength>({
         followerLength: 0,
         followeeLength: 0
@@ -158,6 +161,15 @@ const Login_User = () => {
     //名前変更差踏みっと
     const onChangeName = () => {
         if (newUserName === "") {
+            setErrorMessage("名前は必須です");
+            return;
+        }
+        if (newUserName.length >= 16) {
+            setErrorMessage("名前は16文字以内にしてください");
+            return;
+        }
+        if (newSelfIntroduction.length >= 255) {
+            setErrorMessage("説明欄は255文字以内にしてください");
             return;
         }
         axios
@@ -171,6 +183,7 @@ const Login_User = () => {
                 dispatch(login_user(res.data));
                 setUser(res.data);
                 setIsEditMode(false);
+                setErrorMessage("");
             })
             .catch(error => {
                 console.log(error);
@@ -361,7 +374,14 @@ const Login_User = () => {
                                         rows={4}
                                         variant="outlined"
                                     />
-
+                                    {errorMessage && (
+                                        <Alert
+                                            severity="error"
+                                            className={classes.errorMessage}
+                                        >
+                                            {errorMessage}
+                                        </Alert>
+                                    )}
                                     <CardActions>
                                         <Button
                                             variant="contained"

@@ -18,10 +18,18 @@ import Layout from "./views/lauout/Layout";
 import PostResult from "./views/search/PostResult";
 import UserResult from "./views/search/UserResult";
 import Edit from "./views/pages/posts/Edit";
+import Setting from "./views/pages/user/Setting";
+import Unregisted from "./views/lauout/Unregisted";
 
 const App = () => {
     return (
         <Router>
+            <Unregisted>
+                <Switch>
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
+                </Switch>
+            </Unregisted>
             <Layout>
                 <Switch>
                     <IsLogin>
@@ -74,6 +82,11 @@ const App = () => {
                                         path="/user"
                                         component={Login_User}
                                     />
+                                    <Route
+                                        exact
+                                        path="/setting"
+                                        component={Setting}
+                                    />
                                 </Switch>
                             </Auth>
                         </Switch>
@@ -90,8 +103,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById("app")
 );
-
-/*
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
-*/
