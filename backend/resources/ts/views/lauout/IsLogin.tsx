@@ -18,7 +18,6 @@ const IsLogin: React.FC<PROPS> = ({ children }) => {
                 await axios
                     .get("/json")
                     .then(res => {
-                        console.log(res.data);
                         if (res.data) {
                             const userId = res.data.id;
                             dispatch(login_user(res.data));

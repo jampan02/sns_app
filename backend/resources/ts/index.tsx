@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./views/pages/login/Login";
@@ -20,79 +20,133 @@ import UserResult from "./views/search/UserResult";
 import Edit from "./views/pages/posts/Edit";
 import Setting from "./views/pages/user/Setting";
 import Unregisted from "./views/lauout/Unregisted";
+import NotFound from "./views/pages/404/NotFound";
 
+function AuthRoute({ layout, component, ...rest }: any) {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                React.createElement(
+                    layout,
+                    props,
+                    React.createElement(component, props)
+                )
+            }
+        />
+    );
+}
+function LayoutRoute({ layout, component, ...rest }: any) {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                React.createElement(
+                    layout,
+                    props,
+                    React.createElement(component, props)
+                )
+            }
+        />
+    );
+}
+function MustAuthRoute({ layout, component, ...rest }: any) {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                React.createElement(
+                    layout,
+                    props,
+                    React.createElement(component, props)
+                )
+            }
+        />
+    );
+}
 const App = () => {
     return (
         <Router>
-            <Unregisted>
-                <Switch>
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
-                </Switch>
-            </Unregisted>
-            <Layout>
-                <Switch>
-                    <IsLogin>
-                        <Switch>
-                            <Route exact path="/" component={Top} />
-                            <Route
-                                exact
-                                path="/:user/post/:id"
-                                component={View}
-                            />
-                            <Route
-                                exact
-                                path="/:user/edit/:id"
-                                component={Edit}
-                            />
-                            <Route
-                                exact
-                                path="/:user/user/:id"
-                                component={User}
-                            />
-                            <Route
-                                exact
-                                path="/:user/followee/:id"
-                                component={Followee}
-                            />
-                            <Route
-                                exact
-                                path="/:user/follower/:id"
-                                component={Follower}
-                            />
-                            <Route
-                                exact
-                                path="/search/post"
-                                component={PostResult}
-                            />
-                            <Route
-                                exact
-                                path="/search/user"
-                                component={UserResult}
-                            />
-                            <Auth>
-                                <Switch>
-                                    <Route
-                                        exact
-                                        path="/create"
-                                        component={Create}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/user"
-                                        component={Login_User}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/setting"
-                                        component={Setting}
-                                    />
-                                </Switch>
-                            </Auth>
-                        </Switch>
-                    </IsLogin>
-                </Switch>
-            </Layout>
+            <Switch>
+                <LayoutRoute layout={Layout} exact path="/" component={Top} />
+                <AuthRoute
+                    exact
+                    layout={Unregisted}
+                    path="/register"
+                    component={Register}
+                />
+                <AuthRoute
+                    exact
+                    layout={Unregisted}
+                    path="/login"
+                    component={Login}
+                />
+
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/:user/post/:id"
+                    component={View}
+                />
+
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/:user/user/:id"
+                    component={User}
+                />
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/:user/followee/:id"
+                    component={Followee}
+                />
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/:user/follower/:id"
+                    component={Follower}
+                />
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/search/post"
+                    component={PostResult}
+                />
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/search/user"
+                    component={UserResult}
+                />
+
+                <MustAuthRoute
+                    exact
+                    layout={Layout}
+                    path="/:user/edit/:id"
+                    component={Edit}
+                />
+                <MustAuthRoute
+                    exact
+                    layout={Layout}
+                    path="/create"
+                    component={Create}
+                />
+                <MustAuthRoute
+                    exact
+                    layout={Layout}
+                    path="/user"
+                    component={Login_User}
+                />
+                <MustAuthRoute
+                    exact
+                    layout={Layout}
+                    path="/setting"
+                    component={Setting}
+                />
+
+                <Route component={NotFound} />
+            </Switch>
         </Router>
     );
 };

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FOLLOW, MIXED_POST_DATA, POST, USER } from "../../utils/type";
 import { useHistory, useLocation } from "react-router";
 import queryString from "query-string";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { CardActionAreaProps } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroller";
@@ -22,7 +22,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
+import { getIsLogin } from "../../store/api/api";
 //import Link from '@material-ui/core/Link';
+import { login_user } from "../../store/counter/user/action";
 const useStyles = makeStyles(theme => ({
     card: {
         display: "flex",
@@ -39,7 +41,9 @@ type DATA = {
     user: USER;
     follow?: FOLLOW;
 };
+
 const UserResult = () => {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const user = useSelector((state: RootState) => state.user.user);
     const [results, setResults] = useState<DATA[]>([]);
@@ -49,11 +53,28 @@ const UserResult = () => {
     const [isFetching, setIsFetching] = useState(false);
     const parsed = queryString.parse(location.search);
     const query = parsed.q as string;
+    useEffect(() => {
+        const f = async () => {
+            if (!user) {
+                //ログインされていない場合
 
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        };
+        f();
+    }, []);
     //フォロー関数
     const onFollow = async (targetId: number) => {
         if (user) {
-            console.log(user.id, targetId);
             await axios
                 .post("/api/add/follow/search", {
                     followee: user.id,
@@ -63,7 +84,6 @@ const UserResult = () => {
                     const follow = res.data as FOLLOW;
                     setResults(
                         results.map((result, i) => {
-                            console.log(i, targetId);
                             if (result.user.id === targetId) {
                                 const newResult: DATA = {
                                     user: result.user,
@@ -86,17 +106,14 @@ const UserResult = () => {
     //フォロー解除関数
     const onRemoveFollow = async (targetId: number) => {
         if (user) {
-            console.log(user.id, targetId);
             await axios
                 .post("/api/del/follow/search", {
                     followee: user.id,
                     follower: targetId
                 })
                 .then(res => {
-                    console.log(res.data);
                     setResults(
                         results.map((result, i) => {
-                            console.log(i, targetId);
                             if (result.user.id === targetId) {
                                 const newResult: DATA = {
                                     user: result.user
@@ -108,9 +125,7 @@ const UserResult = () => {
                         })
                     );
                 })
-                .catch(error => {
-                    console.log(error);
-                });
+                .catch(error => {});
         } else {
             history.push("/register");
         }
@@ -163,7 +178,6 @@ const UserResult = () => {
     );
     //項目を読み込むときのコールバック
     const loadMore = async (page: number) => {
-        console.log(query);
         setIsFetching(true);
 
         const data: DATA = await axios
@@ -171,7 +185,6 @@ const UserResult = () => {
                 params: { q: query, number: page, user_id: user?.id }
             })
             .then(res => {
-                console.log(res.data);
                 return res.data;
             })
             .catch(error => {

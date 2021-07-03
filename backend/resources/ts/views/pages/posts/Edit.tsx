@@ -30,6 +30,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { checkIsAuth } from "../../../store/api/api";
 
 const useStyles = makeStyles({
     card: {
@@ -89,10 +90,9 @@ const Edit = () => {
         if (user.user) {
             if (user.user.id === userData.id) {
                 //本人確認
-                console.log("post=", postData);
+
                 setBody(postData.body);
                 setUrl(postData.url);
-                console.log(postData.url);
             } else {
                 history.push("/");
             }
@@ -105,7 +105,7 @@ const Edit = () => {
     const onDeletePost = async () => {
         handleClose();
         const id = postData.id;
-        console.log(id);
+
         await axios
             .post("/api/del/post", { id })
             .then(res => {

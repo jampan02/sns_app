@@ -96,7 +96,7 @@ const View = () => {
                     .get("/api/get/post", { params: { id } })
                     .then(res => {
                         const data = res.data;
-                        console.log("DAta=", data);
+
                         setPost(data.post);
                         setPostUser(data.user);
                         setLikes(data.likes);
@@ -115,8 +115,6 @@ const View = () => {
                         console.log(error);
                     });
             } else {
-                console.log("whaaa");
-                console.log(location.state);
                 //そうじゃない場合(通常の画面遷移)
                 setPost(location.state.post);
                 setPostUser(location.state.user);
@@ -207,7 +205,6 @@ const View = () => {
                 );
             }
         } else {
-            console.log("fuck");
         }
     };
     const onAddLike = (post_id: number) => {
@@ -219,7 +216,6 @@ const View = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
                     setLikes(res.data);
                 })
                 .catch(error => console.log(error));
@@ -231,7 +227,7 @@ const View = () => {
     const onRemoveLike = (post_id: number) => {
         if (user.user) {
             const user_id = user.user.id;
-            console.log(post_id, user_id);
+
             axios
                 .post("/api/del/like/view", {
                     user_id,
@@ -246,7 +242,6 @@ const View = () => {
     };
     //いいねしたことあるか、
     const isLikedBefore = () => {
-        console.log(user, likes);
         const even = (like: LIKE) => user.user && like.user_id == user.user.id;
         const isLiked = likes.some(even);
         return isLiked;

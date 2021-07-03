@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from "react-router";
 import { RootState } from "../../../store";
 import axios from "axios";
@@ -22,6 +22,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 //import Link from '@material-ui/core/Link';
+import { getIsLogin } from "../../../store/api/api";
+import { login_user } from '../../../store/counter/user/action';
+
 const useStyles = makeStyles(theme => ({
     card: {
         display: "flex",
@@ -49,10 +52,30 @@ const Followee = () => {
     const [isFetching, setIsFetching] = useState(false);
     const [results, setResults] = useState<DATA[]>([]);
     const history = useHistory();
+	const dispatch=useDispatch()
+
+    useEffect(() => {
+		const f=async()=>{
+			if (!user) {
+				//ログインされていない場合
+		
+				await axios
+					.get("/json")
+					.then(res => {
+						if (res.data) {
+							dispatch(login_user(res.data));
+						}
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			}
+		}
+		f()
+    }, []);
     //フォロー関数
     const onFollow = async (targetId: number) => {
         if (user) {
-            console.log(user.id, targetId);
             await axios
                 .post("/api/add/follow/search", {
                     followee: user.id,
@@ -62,7 +85,6 @@ const Followee = () => {
                     const follow = res.data as FOLLOW;
                     setResults(
                         results.map((result, i) => {
-                            console.log(i, targetId);
                             if (result.user.id === targetId) {
                                 const newResult: DATA = {
                                     user: result.user,
@@ -85,17 +107,14 @@ const Followee = () => {
     //フォロー解除関数
     const onRemoveFollow = async (targetId: number) => {
         if (user) {
-            console.log(user.id, targetId);
             await axios
                 .post("/api/del/follow/search", {
                     followee: user.id,
                     follower: targetId
                 })
                 .then(res => {
-                    console.log(res.data);
                     setResults(
                         results.map((result, i) => {
-                            console.log(i, targetId);
                             if (result.user.id === targetId) {
                                 const newResult: DATA = {
                                     user: result.user
@@ -173,7 +192,6 @@ const Followee = () => {
                 }
             })
             .then(res => {
-                console.log(res.data);
                 return res.data;
             })
             .catch(error => {

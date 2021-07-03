@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router";
 import { RootState } from "../../../store/index";
@@ -15,6 +15,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Hidden from "@material-ui/core/Hidden";
 import CardActions from "@material-ui/core/CardActions";
 import Alert from "@material-ui/lab/Alert";
+import { checkIsAuth } from "../../../store/api/api";
+import { login_user } from "../../../store/counter/user/action";
 const useStyles = makeStyles({
     card: {
         diplay: "flex",
@@ -52,6 +54,27 @@ const Create = () => {
     const [url, setUrl] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const user = useSelector((state: RootState) => state.user.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const f = async () => {
+            if (!user) {
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        } else {
+                            history.push("/register");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        };
+        f();
+    }, []);
     const onCreatePost = async () => {
         if (url === "") {
             setErrorMessage("URLは必須です");
@@ -70,7 +93,6 @@ const Create = () => {
             await axios
                 .post("/api/add", data)
                 .then(res => {
-                    console.log(res.data);
                     history.push("/");
                 })
                 .catch(error => {

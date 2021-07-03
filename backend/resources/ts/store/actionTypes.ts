@@ -1,4 +1,3 @@
 export const ActionTypes = {
-    login_user: "LOGIN_USER",
-    set_posts: "SET_POSTS"
+    login_user: "LOGIN_USER"
 } as const;

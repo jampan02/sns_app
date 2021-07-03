@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { login_user } from "../../store/counter/user/action";
 import { RootState } from "../../store";
+import CircularProgress from "@material-ui/core/CircularProgress";
 type PROPS = {
     children: ReactNode;
 };
@@ -14,13 +15,11 @@ const Auth: React.FC<PROPS> = ({ children }) => {
     const user = useSelector((state: RootState) => state.user);
     const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
-        const f = () => {
+        const f = async () => {
             if (!user.user) {
-                axios
+                await axios
                     .get("/json")
                     .then(res => {
-                        console.log(res);
-                        console.log(res.data.id);
                         if (res.data) {
                             dispatch(login_user(res.data));
                             setIsLogin(true);
@@ -37,7 +36,13 @@ const Auth: React.FC<PROPS> = ({ children }) => {
         };
         f();
     }, [user]);
-    return isLogin ? <div>{children}</div> : <div>no login</div>;
+    return isLogin ? (
+        <div>{children}</div>
+    ) : (
+        <div>
+            <CircularProgress />
+        </div>
+    );
 };
 
 export default Auth;

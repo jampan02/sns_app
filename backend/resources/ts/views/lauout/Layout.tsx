@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, ReactNode, useState } from "react";
 import { Link } from "react-router-dom";
-import { POST } from "../../utils/type";
+
 import { useHistory } from "react-router";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,23 +14,17 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
+
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import PersonIcon from "@material-ui/icons/Person";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -39,7 +33,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-
+import MediaQuery from "react-responsive";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 type PROPS = {
@@ -74,6 +68,11 @@ const useStyles = makeStyles(theme => ({
         ...theme.mixins.toolbar
     },
     appBar: {
+        [theme.breakpoints.down("xs")]: {
+            paddingTop: "5px",
+            paddingBottom: "5px"
+        },
+
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
@@ -109,6 +108,10 @@ const useStyles = makeStyles(theme => ({
         height: "100vh"
     },
     drawerPaperClose: {
+        [theme.breakpoints.down("xs")]: {
+            //スマホ状態で左側のバーを隠す
+            display: "none"
+        },
         overflowX: "hidden",
         transition: theme.transitions.create("width", {
             easing: theme.transitions.easing.sharp,
@@ -239,7 +242,6 @@ const Layout: React.FC<PROPS> = ({ children }) => {
         <div className={classes.root}>
             <CssBaseline />
             <AppBar
-                position="absolute"
                 className={clsx(classes.appBar, open && classes.appBarShift)}
             >
                 <Toolbar className={classes.toolbar}>
@@ -255,16 +257,17 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-
-                    <Typography
-                        component="h1"
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                        className={classes.title}
-                    >
-                        <Link to="/">SNS</Link>
-                    </Typography>
+                    <MediaQuery query="(min-width: 600px)">
+                        <Typography
+                            component="h1"
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            className={classes.title}
+                        >
+                            <Link to="/">SNS</Link>
+                        </Typography>
+                    </MediaQuery>
 
                     <div>
                         <IconButton onClick={() => setIsPost(!isPost)}>
@@ -283,22 +286,19 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                                 }
                             }}
                         />
-
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            endIcon={<SearchIcon />}
-                            onClick={onSearch}
-                            className={classes.searchButton}
-                        >
-                            検索
-                        </Button>
+                        <MediaQuery query="(min-width: 600px)">
+                            {" "}
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                endIcon={<SearchIcon />}
+                                onClick={onSearch}
+                                className={classes.searchButton}
+                            >
+                                検索
+                            </Button>
+                        </MediaQuery>
                     </div>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
                 </Toolbar>
             </AppBar>
 

@@ -145,11 +145,23 @@ const Login_User = () => {
                 await axios
                     .get("/api/get/follow", { params: { userId: userData.id } })
                     .then(res => {
-                        console.log(res.data);
                         setFollowLength({
                             followeeLength: res.data.followee,
                             followerLength: res.data.follower
                         });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            } else {
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        } else {
+                            history.push("/register");
+                        }
                     })
                     .catch(error => {
                         console.log(error);
@@ -198,13 +210,12 @@ const Login_User = () => {
     const onSetUserData = () => {
         if (user) {
             setIsEditMode(true);
-            console.log("aaaa");
+
             setNewUserName(user.name);
 
             setNewProfileImage(user.profile_image);
             user.self_introduction &&
                 setNewSelfIntroduction(user.self_introduction);
-            console.log(newProfileImage);
         }
     };
     //ロード中に表示する項目
@@ -223,7 +234,7 @@ const Login_User = () => {
                 })
                 .then(res => {
                     const data = res.data;
-                    console.log(data);
+
                     return data;
                 })
                 .catch(error => {
@@ -238,13 +249,12 @@ const Login_User = () => {
             //取得データをリストに追加*
             setPosts([...posts, data]);
             setIsFetching(false);
-            console.log(page);
         }
     };
     const onAddLike = (post_id: number, index: number) => {
         if (user) {
             const user_id = user.id;
-            console.log(index);
+
             const indexNumber = index;
             axios
                 .post("/api/add/like", {
@@ -252,9 +262,6 @@ const Login_User = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === indexNumber) {
@@ -264,8 +271,6 @@ const Login_User = () => {
                             }
                         })
                     );
-
-                    console.log(posts);
                 })
                 .catch(error => console.log(error));
         } else {
@@ -282,9 +287,6 @@ const Login_User = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === index) {

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../../store";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { set_posts } from "../../../store/counter/post/action";
 import InfiniteScroll from "react-infinite-scroller";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
@@ -22,6 +21,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 //import Link from '@material-ui/core/Link';
+import { getIsLogin } from "../../../store/api/api";
+import { login_user } from "../../../store/counter/user/action";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -66,16 +67,36 @@ const Top: React.FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector((state: RootState) => state.user.user);
-    const allPosts = useSelector((state: RootState) => state.posts);
+
     const [posts, setPosts] = useState<MIXED_POST_DATA[]>([]);
     const [likes, setLikes] = useState<LIKE[]>([]);
     const [isNewer, setIsNewer] = useState(true);
     const [hasMore, setHasMore] = useState(true);
     const [isFetching, setIsFetching] = useState(false);
+    useEffect(() => {
+        const f = async () => {
+            if (!user) {
+                //ログインされていない場合
+
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        };
+        f();
+    }, []);
+
     const onAddLike = (post_id: number, index: number) => {
         if (user) {
             const user_id = user.id;
-            console.log(index);
+
             const indexNumber = index;
             axios
                 .post("/api/add/like", {
@@ -83,9 +104,6 @@ const Top: React.FC = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === indexNumber) {
@@ -95,8 +113,6 @@ const Top: React.FC = () => {
                             }
                         })
                     );
-
-                    console.log(posts);
                 })
                 .catch(error => console.log(error));
         } else {
@@ -113,9 +129,6 @@ const Top: React.FC = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === index) {
@@ -162,7 +175,7 @@ const Top: React.FC = () => {
             .get("/api/get/post/scroll", { params: { number: page } })
             .then(res => {
                 const data = res.data;
-                console.log(data);
+
                 return data;
             })
             .catch(error => {
@@ -176,9 +189,8 @@ const Top: React.FC = () => {
         }
         //取得データをリストに追加*
         setPosts([...posts, data]);
-        console.log(posts);
+
         setIsFetching(false);
-        console.log(page);
     };
     return (
         <>

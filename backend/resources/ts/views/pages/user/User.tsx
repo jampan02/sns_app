@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, useLocation } from "react-router";
 import { RootState } from "../../../store";
 import axios from "axios";
@@ -24,6 +24,8 @@ import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 import CardActions from "@material-ui/core/CardActions";
 //import Link from '@material-ui/core/Link';
+import { getIsLogin } from "../../../store/api/api";
+import { login_user } from "../../../store/counter/user/action";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -85,6 +87,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between"
     }
 }));
+
 type FollowLength = {
     followeeLength: number;
     followerLength: number;
@@ -105,7 +108,7 @@ const User = () => {
     const [isFetching, setIsFetching] = useState(false);
     const params: { id: string } = useParams();
     const id = params.id;
-
+    const dispatch = useDispatch();
     const location: {
         pathname: string;
         state: USER;
@@ -120,7 +123,6 @@ const User = () => {
             await axios
                 .get("/api/get/follow", { params: { userId: id } })
                 .then(res => {
-                    console.log(res.data);
                     setFollowLength({
                         followeeLength: res.data.followee,
                         followerLength: res.data.follower
@@ -132,26 +134,39 @@ const User = () => {
         };
         f();
     }, []);
+
     useEffect(() => {
         //フォロー中かどうか調べる
-        if (myUserId) {
-            console.log("lognnin");
-            axios
-                .get("/api/get/isfollow", {
-                    params: { followee: myUserId, follower: id }
-                })
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data === "yes") {
-                        setIsFollow(true);
-                    } else {
-                        setIsFollow(false);
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
+        const f = async () => {
+            if (myUserId) {
+                await axios
+                    .get("/api/get/isfollow", {
+                        params: { followee: myUserId, follower: id }
+                    })
+                    .then(res => {
+                        if (res.data === "yes") {
+                            setIsFollow(true);
+                        } else {
+                            setIsFollow(false);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            } else {
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        };
+        f();
     }, [myUserId]);
     //フォロー関数
     const onFollow = (targetId: number) => {
@@ -184,7 +199,6 @@ const User = () => {
                     follower: targetId
                 })
                 .then(res => {
-                    console.log(res.data);
                     setFollowLength({
                         followeeLength: res.data.followee,
                         followerLength: res.data.follower
@@ -225,7 +239,7 @@ const User = () => {
                 })
                 .then(res => {
                     const data = res.data;
-                    console.log(data);
+
                     return data;
                 })
                 .catch(error => {
@@ -240,13 +254,12 @@ const User = () => {
             //取得データをリストに追加*
             setPosts([...posts, data]);
             setIsFetching(false);
-            console.log(page);
         }
     };
     const onAddLike = (post_id: number, index: number) => {
         if (user) {
             const user_id = user.id;
-            console.log(index);
+
             const indexNumber = index;
             axios
                 .post("/api/add/like", {
@@ -254,9 +267,6 @@ const User = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === indexNumber) {
@@ -266,8 +276,6 @@ const User = () => {
                             }
                         })
                     );
-
-                    console.log(posts);
                 })
                 .catch(error => console.log(error));
         } else {
@@ -284,9 +292,6 @@ const User = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === index) {

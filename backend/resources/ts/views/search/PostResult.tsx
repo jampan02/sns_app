@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { LIKE, MIXED_POST_DATA, POST } from "../../utils/type";
 import { useHistory, useLocation } from "react-router";
 import queryString from "query-string";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import InfiniteScroll from "react-infinite-scroller";
 import AppBar from "@material-ui/core/AppBar";
@@ -22,6 +22,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 //import Link from '@material-ui/core/Link';
+import { getIsLogin } from "../../store/api/api";
+import { login_user } from "../../store/counter/user/action";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -71,27 +73,34 @@ const PostResult = () => {
     const history = useHistory();
     const parsed = queryString.parse(location.search);
     const query = parsed.q as string;
-    /*useEffect(() => {
-        //クエリ取得
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const f = async () => {
+            if (!user) {
+                //ログインされていない場合
 
-        console.log("q=", query);
-        axios
-            .get("/api/get/post/search", { params: { q: query } })
-            .then(res => {
-                console.log(res.data);
-                setPosts(res.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, [location]);*/
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        };
+        f();
+    }, []);
+
     const loadMore = async (page: number) => {
         setIsFetching(true);
         const data: MIXED_POST_DATA = await axios
             .get("/api/get/post/search", { params: { number: page, q: query } })
             .then(res => {
                 const data = res.data;
-                console.log(data);
+
                 return data;
             })
             .catch(error => {
@@ -105,15 +114,14 @@ const PostResult = () => {
         }
         //取得データをリストに追加*
         setPosts([...posts, data]);
-        console.log(posts);
+
         setIsFetching(false);
-        console.log(page);
     };
     //いいね機能
     const onAddLike = (post_id: number, index: number) => {
         if (user) {
             const user_id = user.id;
-            console.log(index);
+
             const indexNumber = index;
             axios
                 .post("/api/add/like", {
@@ -121,9 +129,6 @@ const PostResult = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === indexNumber) {
@@ -133,8 +138,6 @@ const PostResult = () => {
                             }
                         })
                     );
-
-                    console.log(posts);
                 })
                 .catch(error => console.log(error));
         } else {
@@ -151,9 +154,6 @@ const PostResult = () => {
                     post_id
                 })
                 .then(res => {
-                    console.log(res.data);
-                    console.log(posts);
-
                     setPosts(
                         posts.map((post, i) => {
                             if (i === index) {
