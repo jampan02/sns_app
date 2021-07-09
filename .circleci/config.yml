@@ -16,7 +16,7 @@ jobs:
       image: circleci/classic:edge
     steps:
       - add_ssh_keys:
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app && git pull origin main'
+      - run: sudo ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app && sudo git pull origin main'
 
 workflows:
   version: 2
