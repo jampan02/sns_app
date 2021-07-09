@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../store";
@@ -26,7 +26,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
-//import Link from '@material-ui/core/Link';
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import IconButton from "@material-ui/core/IconButton";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import CommentIcon from "@material-ui/icons/Comment";
+import Alert from "@material-ui/lab/Alert";
+import InfiniteScroll from "react-infinite-scroller";
+import { login_user } from "../../../store/counter/user/action";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -46,26 +53,94 @@ const useStyles = makeStyles(theme => ({
     card: {
         height: "100%",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        marginBottom: "10px"
     },
-    cardMedia: {
-        paddingTop: "56.25%" // 16:9
-    },
-    cardContent: {
-        flexGrow: 1
-    },
+
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6)
     },
     profileContent: {
+        display: "flex",
+        marginBottom: "0.5rem",
+        justifyContent: "space-between"
+    },
+    grid: {
+        marginBottom: "20px"
+    },
+    link: {
+        textDecoration: "none",
+        "&:hover": {
+            textDecoration: "none"
+        }
+    },
+    siteName: {
+        marginBottom: "0.5rem",
+        color: "rgb(83, 100, 113)"
+    },
+    cardContent: {
+        flexGrow: 1,
+        "&:last-child": {
+            paddingBottom: "16px"
+        }
+    },
+    cardMedia: {
+        paddingTop: "56.25%", // 16:9
+        marginBottom: "0.5rem"
+    },
+    hoverCardMedia: {
+        paddingTop: "56.25%", // 16:9
+        marginBottom: "0.5rem",
+        opacity: 0.3,
+        cursor: "pointer"
+    },
+    cardMediaContainer: {},
+    profileContainer: {
         display: "flex"
+    },
+    data: {},
+    dataContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        fontSize: "0.8rem",
+        color: "rgb(83, 100, 113)"
+    },
+    body: {
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        marginBottom: "0.5rem"
+    },
+    avatar: {
+        marginRight: "1rem"
+    },
+    userName: {
+        color: "black"
+    },
+    comment: {
+        marginBottom: "0.5rem"
+    },
+    commentProfileContent: {
+        display: "flex",
+        marginBottom: "0.5rem"
+    },
+    errorMessage: {
+        marginTop: "10px"
+    },
+    commentField: {
+        marginBottom: "0.3rem"
+    },
+    commentFieldContainer: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        marginBottom: "1rem"
+    },
+    buttonContainer: {
+        display: "flex",
+        justifyContent: "space-around"
     }
 }));
-type DATA = {
-    like: LIKE;
-    user: USER;
-};
 
 type USERCOMMENT = {
     user: USER;
@@ -80,6 +155,7 @@ const View = () => {
         pathname: string;
         state: MIXED_POST_DATA;
     } = useLocation();
+    const [errorMessage, setErrorMessage] = useState("");
     const [likes, setLikes] = useState<LIKE[]>([]);
     const [comments, setComments] = useState<USERCOMMENT[]>([]);
     const [isOpenComment, setIsOpenComment] = useState(false);
@@ -87,10 +163,28 @@ const View = () => {
     const params: { id: string } = useParams();
     const [post, setPost] = useState<POST>();
     const [postUser, setPostUser] = useState<USER>();
+    const [isHover, setIsHover] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    const [isFetching, setIsFetching] = useState(false);
     const id = params.id;
+    const dispatch = useDispatch();
     useEffect(() => {
         const f = async () => {
             //直リンの場合
+            if (!user.user) {
+                //ログインされていない場合
+
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
             if (!location.state) {
                 await axios
                     .get("/api/get/post", { params: { id } })
@@ -100,16 +194,6 @@ const View = () => {
                         setPost(data.post);
                         setPostUser(data.user);
                         setLikes(data.likes);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-                await axios
-                    .get("/api/get/comment", {
-                        params: { postId: id }
-                    })
-                    .then(res => {
-                        setComments(res.data);
                     })
                     .catch(error => {
                         console.log(error);
@@ -136,16 +220,6 @@ const View = () => {
                             console.log(error);
                         });
                 }
-                await axios
-                    .get("/api/get/comment", {
-                        params: { postId: location.state.post.id }
-                    })
-                    .then(res => {
-                        setComments(res.data);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
             }
         };
         f();
@@ -153,6 +227,11 @@ const View = () => {
     //コメント送信機能
     const onAddComment = () => {
         if (comment === "") {
+            setErrorMessage("コメントを入力してください");
+            return;
+        }
+        if (comment.length >= 255) {
+            setErrorMessage("コメントは255文字以内にしてください");
             return;
         }
         if (user.user) {
@@ -166,10 +245,13 @@ const View = () => {
                 .then(res => {
                     setComments(res.data);
                     setComment("");
+                    setIsOpenComment(false);
                 })
                 .catch(error => {
                     console.log(error);
                 });
+        } else {
+            history.push("/register");
         }
     };
     const getDate = (date: string) => {
@@ -187,22 +269,24 @@ const View = () => {
             </Typography>
         );
     };
-    const getEditButton = (userId: number, postId: number) => {
+    const getEditButton = () => {
         if (user.user) {
-            if (user.user.id === userId && postUser) {
-                return (
-                    <Link
-                        to={{
-                            pathname: `/${postUser.name}/edit/${postUser.id}`,
-                            state: {
-                                post: post,
-                                user: postUser
-                            }
-                        }}
-                    >
-                        編集
-                    </Link>
-                );
+            if (postUser) {
+                if (user.user.id === postUser.id) {
+                    return (
+                        <Link
+                            to={{
+                                pathname: `/${postUser.name}/edit/${postUser.id}`,
+                                state: {
+                                    post: post,
+                                    user: postUser
+                                }
+                            }}
+                        >
+                            <Button variant="outlined">編集</Button>
+                        </Link>
+                    );
+                }
             }
         } else {
         }
@@ -246,115 +330,249 @@ const View = () => {
         const isLiked = likes.some(even);
         return isLiked;
     };
+    //項目を読み込むときのコールバック
+    const loadMore = async (page: number) => {
+        setIsFetching(true);
+
+        const data: USERCOMMENT = await axios
+            .get("/api/get/comment", {
+                params: { postId: location.state.post.id, number: page }
+            })
+            .then(res => {
+                const data = res.data;
+                return data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        //データ件数が0件の場合、処理終了
+        if (!data) {
+            setHasMore(false);
+            return;
+        }
+        //取得データをリストに追加*
+        setComments([...comments, data]);
+
+        setIsFetching(false);
+    };
     return (
         <>
             {postUser && post && (
-                <Card className={classes.card}>
-                    <CardContent className={classes.cardContent}>
-                        <Link
-                            to={{
-                                pathname: `/${postUser.name}/user/${postUser.id}`,
-                                state: postUser
-                            }}
-                        >
-                            <div className={classes.profileContent}>
-                                <Avatar
-                                    alt="image"
-                                    src={postUser.profile_image}
-                                />
-                                <Typography>{postUser.name}</Typography>
-                            </div>
-                        </Link>
-                        {getEditButton(post.user_id, post.id)}
-                        <a href={post.url} target="_blank">
-                            <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="h2"
-                            >
+                <>
+                    <Helmet>
+                        <title>{post.body} | ゆうあるえる</title>
+                    </Helmet>
+
+                    <Card className={classes.card}>
+                        <CardContent className={classes.cardContent}>
+                            <object>
+                                <div className={classes.profileContent}>
+                                    <Link
+                                        to={{
+                                            pathname: `/${postUser.name}/user/${postUser.id}`,
+                                            state: postUser
+                                        }}
+                                        className={classes.profileContainer}
+                                    >
+                                        <Avatar
+                                            alt="image"
+                                            src={postUser.profile_image}
+                                            className={classes.avatar}
+                                        />
+                                        <Typography
+                                            className={classes.userName}
+                                        >
+                                            {postUser.name}
+                                        </Typography>
+                                    </Link>
+                                    {user.user && getEditButton()}
+                                </div>
+                            </object>
+                            <Typography variant="h5" component="h2">
                                 {post.title}
                             </Typography>
+                            <Typography className={classes.siteName}>
+                                {post.site_name}
+                            </Typography>
+                            <object>
+                                <div
+                                    onMouseEnter={() => setIsHover(true)}
+                                    onMouseLeave={() => setIsHover(false)}
+                                    className={classes.cardMediaContainer}
+                                    onClick={(e: any) => {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        window.open(post.url);
+                                    }}
+                                >
+                                    <CardMedia
+                                        className={
+                                            isHover
+                                                ? classes.hoverCardMedia
+                                                : classes.cardMedia
+                                        }
+                                        image={post.image}
+                                        title={post.title}
+                                    />
+                                </div>
+                            </object>
 
-                            <CardMedia
-                                className={classes.cardMedia}
-                                image={post.image}
-                                title="Image title"
-                            />
-                        </a>
+                            <Typography className={classes.body}>
+                                {post.body}
+                            </Typography>
+                            <div className={classes.dataContainer}>
+                                <CalendarTodayIcon />
 
-                        <Typography>{post.body}</Typography>
-
-                        {getDate(post.updated_at)}
-                    </CardContent>
-                    <CardActions>
-                        {isLikedBefore() ? (
-                            <Button
-                                size="small"
-                                color="primary"
-                                onClick={() => {
-                                    onRemoveLike(post.id);
-                                }}
-                            >
-                                いいねはずす
-                            </Button>
-                        ) : (
-                            <Button
-                                size="small"
-                                color="primary"
-                                onClick={() => {
-                                    onAddLike(post.id);
-                                }}
-                            >
-                                いいね
-                            </Button>
-                        )}
-                        <Button
-                            onClick={() => {
-                                if (!user.isLogin) {
-                                    //ログインされてない場合
-                                    history.push("/register");
-                                }
-                                setIsOpenComment(!isOpenComment);
-                            }}
-                        >
-                            コメントする
-                        </Button>
-
-                        {isOpenComment && (
-                            <>
-                                <TextField
-                                    placeholder="コメント"
-                                    value={comment}
-                                    onChange={e => setComment(e.target.value)}
-                                />
-                                <Button onClick={onAddComment}>送信</Button>
-                            </>
-                        )}
-                    </CardActions>
-                    <Typography>{likes.length}いいね</Typography>
-                </Card>
-            )}
-
-            {comments[0] &&
-                comments.map((comment, i) => (
-                    <Card key={i}>
-                        <Link
-                            to={`/${comment.user.name}/user/${comment.user.id}`}
-                        >
-                            {" "}
-                            <div className={classes.profileContent}>
-                                <Avatar
-                                    alt="image"
-                                    src={comment.user.profile_image}
-                                />
-                                <Typography>{comment.user.name}</Typography>
+                                {getDate(post.updated_at)}
                             </div>
-                        </Link>
+                        </CardContent>
 
-                        <Typography>{comment.comment.comment}</Typography>
-                        {getDate(comment.comment.updated_at)}
+                        <CardActions>
+                            <object>
+                                {isLikedBefore() ? (
+                                    <IconButton
+                                        onClick={(e: any) => {
+                                            e.stopPropagation();
+                                            e.preventDefault();
+                                            onRemoveLike(post.id);
+                                        }}
+                                        color="primary"
+                                    >
+                                        <ThumbUpIcon />
+                                    </IconButton>
+                                ) : (
+                                    <IconButton
+                                        onClick={(e: any) => {
+                                            e.stopPropagation();
+                                            e.preventDefault();
+                                            onAddLike(post.id);
+                                        }}
+                                    >
+                                        <ThumbUpIcon />
+                                    </IconButton>
+                                )}
+                                {likes.length}
+                            </object>
+                        </CardActions>
                     </Card>
-                ))}
+                </>
+            )}
+            <InfiniteScroll
+                loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
+                hasMore={!isFetching && hasMore} // isFetchingを判定条件に追加
+            >
+                <Grid container>
+                    <Grid item xs={12}>
+                        <Typography variant="h6" component="h3">
+                            コメント一覧
+                            <IconButton
+                                color={isOpenComment ? undefined : "primary"}
+                                aria-label="add a comment"
+                                onClick={() =>
+                                    setIsOpenComment(
+                                        isOpenComment ? false : true
+                                    )
+                                }
+                            >
+                                <CommentIcon />
+                            </IconButton>
+                        </Typography>
+                    </Grid>
+                    {isOpenComment && (
+                        <Grid
+                            item
+                            xs={12}
+                            className={classes.commentFieldContainer}
+                        >
+                            <TextField
+                                rows={4}
+                                onChange={e => setComment(e.target.value)}
+                                label="コメントを残す"
+                                multiline
+                                variant="outlined"
+                                className={classes.commentField}
+                            />
+                            <div className={classes.buttonContainer}>
+                                <Button
+                                    onClick={onAddComment}
+                                    variant="outlined"
+                                    color="primary"
+                                >
+                                    送信
+                                </Button>
+                                <Button
+                                    onClick={() => setIsOpenComment(false)}
+                                    variant="outlined"
+                                    color="secondary"
+                                >
+                                    閉じる
+                                </Button>
+                            </div>
+                            {errorMessage && (
+                                <Alert
+                                    severity="error"
+                                    className={classes.errorMessage}
+                                >
+                                    {errorMessage}
+                                </Alert>
+                            )}
+                        </Grid>
+                    )}
+
+                    {comments[0] &&
+                        comments.map((comment, i) => (
+                            <Grid
+                                item
+                                key={i}
+                                xs={12}
+                                className={classes.comment}
+                            >
+                                <Card>
+                                    <CardContent
+                                        className={classes.cardContent}
+                                    >
+                                        <div
+                                            className={
+                                                classes.commentProfileContent
+                                            }
+                                        >
+                                            <Link
+                                                to={`/${comment.user.name}/user/${comment.user.id}`}
+                                                className={
+                                                    classes.profileContainer
+                                                }
+                                            >
+                                                <Avatar
+                                                    className={classes.avatar}
+                                                    alt="image"
+                                                    src={
+                                                        comment.user
+                                                            .profile_image
+                                                    }
+                                                />
+                                                <Typography
+                                                    className={classes.userName}
+                                                >
+                                                    {comment.user.name}
+                                                </Typography>
+                                            </Link>
+                                        </div>
+                                        <Typography className={classes.body}>
+                                            {comment.comment.comment}
+                                        </Typography>
+                                        <div className={classes.dataContainer}>
+                                            <CalendarTodayIcon />
+                                            {getDate(
+                                                comment.comment.updated_at
+                                            )}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                </Grid>
+            </InfiniteScroll>
         </>
     );
 };

@@ -31,7 +31,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { checkIsAuth } from "../../../store/api/api";
-
+import { Helmet } from "react-helmet";
 const useStyles = makeStyles({
     card: {
         diplay: "flex",
@@ -170,50 +170,55 @@ const Edit = () => {
         </Dialog>
     );
     return (
-        <Card className={classes.card}>
-            <CardContent className={classes.cardContent}>
-                <TextField
-                    id="standard-basic"
-                    label="リンク"
-                    onChange={e => setUrl(e.target.value)}
-                    autoFocus={true}
-                    multiline
-                    className={classes.text}
-                    defaultValue={url}
-                />
-                <TextField
-                    id="standard-multiline-static"
-                    label="どんなサイト？"
-                    multiline
-                    rows={4}
-                    onChange={e => setBody(e.target.value)}
-                    className={classes.text}
-                    defaultValue={body}
-                />
-            </CardContent>
-            {errorMessage && (
-                <Alert severity="error" className={classes.errorMessage}>
-                    {errorMessage}
-                </Alert>
-            )}
-            <CardActions className={classes.button}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={onEditPost}
-                >
-                    更新
-                </Button>
-                <IconButton
-                    aria-label="delete"
-                    className={classes.deleteButton}
-                    onClick={handleClickOpen}
-                >
-                    <DeleteIcon />
-                </IconButton>
-                {dialog}
-            </CardActions>
-        </Card>
+        <>
+            <Helmet>
+                <title>投稿画面 | ゆうあるえる</title>
+            </Helmet>
+            <Card className={classes.card}>
+                <CardContent className={classes.cardContent}>
+                    <TextField
+                        id="standard-basic"
+                        label="リンク"
+                        onChange={e => setUrl(e.target.value)}
+                        autoFocus={true}
+                        multiline
+                        className={classes.text}
+                        defaultValue={url}
+                    />
+                    <TextField
+                        id="standard-multiline-static"
+                        label="どんなサイト？"
+                        multiline
+                        rows={4}
+                        onChange={e => setBody(e.target.value)}
+                        className={classes.text}
+                        defaultValue={body}
+                    />
+                </CardContent>
+                {errorMessage && (
+                    <Alert severity="error" className={classes.errorMessage}>
+                        {errorMessage}
+                    </Alert>
+                )}
+                <CardActions className={classes.button}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={onEditPost}
+                    >
+                        更新
+                    </Button>
+                    <IconButton
+                        aria-label="delete"
+                        className={classes.deleteButton}
+                        onClick={handleClickOpen}
+                    >
+                        <DeleteIcon />
+                    </IconButton>
+                    {dialog}
+                </CardActions>
+            </Card>
+        </>
     );
 };
 

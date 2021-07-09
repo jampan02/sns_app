@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router";
 import { RootState } from "../../../store";
 import axios from "axios";
@@ -23,8 +23,8 @@ import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 //import Link from '@material-ui/core/Link';
 import { getIsLogin } from "../../../store/api/api";
-import { login_user } from '../../../store/counter/user/action';
-
+import { login_user } from "../../../store/counter/user/action";
+import { Helmet } from "react-helmet";
 const useStyles = makeStyles(theme => ({
     card: {
         display: "flex",
@@ -52,26 +52,26 @@ const Followee = () => {
     const [isFetching, setIsFetching] = useState(false);
     const [results, setResults] = useState<DATA[]>([]);
     const history = useHistory();
-	const dispatch=useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-		const f=async()=>{
-			if (!user) {
-				//ログインされていない場合
-		
-				await axios
-					.get("/json")
-					.then(res => {
-						if (res.data) {
-							dispatch(login_user(res.data));
-						}
-					})
-					.catch(error => {
-						console.log(error);
-					});
-			}
-		}
-		f()
+        const f = async () => {
+            if (!user) {
+                //ログインされていない場合
+
+                await axios
+                    .get("/json")
+                    .then(res => {
+                        if (res.data) {
+                            dispatch(login_user(res.data));
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        };
+        f();
     }, []);
     //フォロー関数
     const onFollow = async (targetId: number) => {
@@ -210,6 +210,11 @@ const Followee = () => {
     };
     return (
         <>
+            <Helmet>
+                <title>
+                    {targetUserName}さんのフォロー中のユーザー | ゆうあるえる
+                </title>
+            </Helmet>
             <InfiniteScroll
                 loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
                 hasMore={!isFetching && user && hasMore} // isFetchingを判定条件に追加

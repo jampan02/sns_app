@@ -14,7 +14,7 @@ import { useHistory, Link } from "react-router-dom";
 import Alert from "@material-ui/lab/Alert";
 import { RootState } from "../../../store/index";
 import { useSelector } from "react-redux";
-
+import { Helmet } from "react-helmet";
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -84,76 +84,81 @@ const Login = () => {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    新規登録
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="メールアドレス"
-                                name="email"
-                                autoComplete="email"
-                                onChange={e => setEmail(e.target.value)}
-                                value={email}
-                            />
+        <>
+            <Helmet>
+                <title>ログインページ | ゆうあるえる</title>
+            </Helmet>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        新規登録
+                    </Typography>
+                    <form className={classes.form} noValidate>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="メールアドレス"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={e => setEmail(e.target.value)}
+                                    value={email}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="パスワード"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={e => setPassword(e.target.value)}
+                                    value={password}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="パスワード"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={e => setPassword(e.target.value)}
-                                value={password}
-                            />
-                        </Grid>
-                    </Grid>
-                    {errorMessage && (
-                        <Alert
-                            severity="error"
-                            className={classes.errorMessage}
+                        {errorMessage && (
+                            <Alert
+                                severity="error"
+                                className={classes.errorMessage}
+                            >
+                                {errorMessage}
+                            </Alert>
+                        )}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={onSignUp}
                         >
-                            {errorMessage}
-                        </Alert>
-                    )}
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={onSignUp}
-                    >
-                        登録
-                    </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link to="/register">
-                                アカウントを持っていませんか？
-                            </Link>
+                            登録
+                        </Button>
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                <Link to="/register">
+                                    アカウントを持っていませんか？
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
-        </Container>
+                    </form>
+                </div>
+                <Box mt={5}>
+                    <Copyright />
+                </Box>
+            </Container>
+        </>
     );
 };
 

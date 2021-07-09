@@ -10,17 +10,19 @@ class CommentController extends Controller
 {
     //
 	public function getComments(Request $request){
+		$number=$request->number-1;
 		$postId=$request->postId;
-		$comments=Comment::where("post_id",$postId)->orderBy("updated_at","desc")->take(10)->get();
-		$resultArray=array();
-		foreach($comments as $comment){
-			$newArray=array();
+		$comment=Comment::where("post_id",$postId)->orderBy("updated_at","desc")->skip($number)->first();
+		if($comment){
 			$user=User::where("id",$comment->user_id)->first();
-			$newArray["user"]=$user;
-			$newArray["comment"]=$comment;
-			$resultArray[]=$newArray;
-		}
-		return $resultArray;
+			$result=array();
+			$result["user"]=$user;
+			$result["comment"]=$comment;
+			return $result;
+			}else{
+				return;
+			}
+
 	}
 	public function addComment(Request $request){
 		$data=$request;

@@ -8,17 +8,10 @@ use App\User;
 use App\Post;
 use App\Like;
 use App\Follow;
+use Illuminate\Support\Facades\Log;
+use Storage;
 class UserController extends Controller
 {
-    //
-	/*public function getUsers(){
-	  if (Auth::check()) {
-		return Auth::user()->toJson();
-	  }else{
-		  return "nologined";
-	  }
-		
-	}*/
 	public function json(){
 		if (Auth::check()) {
 		return Auth::user()->toJson();
@@ -30,25 +23,13 @@ class UserController extends Controller
 	}
 	//個別のアカウント情報取得
 	public function getUser(Request $request){
-		$userId=$request->userId;
+		$userId=$request->user_id;
 		$user=User::where("id",$userId)->first();
-		//投稿取得
-		$postDatas=array();
-		$posts=Post::where("user_id",$userId)->get();
-		$data=array();
-		$data["user"]=$user;
-		foreach($posts as $post){
-			$posterId=$post->user_id;
-			$user=User::where("id",$posterId)->first();
-			$likes=Like::where("post_id",$post->id)->get();
-			$postData=array();
-			$postData["post"]=$post;
-			$postData["user"]=$user;
-			$postData["likes"]=$likes;
-			$postDatas[]=$postData;
+		if($user){
+			return $user;
+		}else{
+			return redirect("/404");
 		}
-		$data["posts"]=$postDatas;
-		return $data;
 	}
 
 	//検索機能
@@ -64,17 +45,26 @@ class UserController extends Controller
 		$result["follow"]=$follow;
 		return $result;
 	}
-	//名前変更
+	//ユーザー情報更新
 	public function editUserName(Request $request){
-		$user_id=$request->id;
-		$new_user_name=$request->name;
-		$new_profile_image=$request->profile_image;
-		$new_self_introduction=$request->self_introduction;
+		$user_id=$request->input('id');
+		$new_user_name=$request->input('name');
+		$new_self_introduction=$request->input('self_introduction');
 		$user=User::where("id",$user_id)->first();
 		$user->name=$new_user_name;
-		$user->profile_image=$new_profile_image;
+		//profile_imageをS3にアップロード
+		$new_profile_image=$request->file('image');
+		if($new_profile_image){
+		
+		$path=Storage::disk("s3")->putFile("profile_images",$new_profile_image,"public");
+		//パスを代入
+		Log::debug($path);
+		//Storage::disk("s3")->delete($user->profile_image);
+		$user->profile_image=Storage::disk("s3")->url($path);
+		
+		}
 		$user->self_introduction=$new_self_introduction;
 		$user->save();
-		return $user;
+		return redirect('/');
 	}
 }

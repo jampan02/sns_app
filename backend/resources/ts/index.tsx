@@ -68,7 +68,6 @@ const App = () => {
     return (
         <Router>
             <Switch>
-                <LayoutRoute layout={Layout} exact path="/" component={Top} />
                 <AuthRoute
                     exact
                     layout={Unregisted}
@@ -81,7 +80,7 @@ const App = () => {
                     path="/login"
                     component={Login}
                 />
-
+                <LayoutRoute layout={Layout} exact path="/" component={Top} />
                 <LayoutRoute
                     exact
                     layout={Layout}

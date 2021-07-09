@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
         ...theme.mixins.toolbar
     },
     appBar: {
-        [theme.breakpoints.down("xs")]: {
+        [theme.breakpoints.down("sm")]: {
             paddingTop: "5px",
             paddingBottom: "5px"
         },
@@ -108,7 +108,7 @@ const useStyles = makeStyles(theme => ({
         height: "100vh"
     },
     drawerPaperClose: {
-        [theme.breakpoints.down("xs")]: {
+        [theme.breakpoints.down("sm")]: {
             //スマホ状態で左側のバーを隠す
             display: "none"
         },
@@ -131,6 +131,17 @@ const useStyles = makeStyles(theme => ({
 
         overflow: "auto"
     },
+    openedContent: {
+        position: "absolute",
+        top: "0px",
+        left: "0px",
+        width: "100%",
+        height: "100%",
+
+        opacity: "0.3",
+
+        zIndex: 1
+    },
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4)
@@ -146,6 +157,18 @@ const useStyles = makeStyles(theme => ({
     },
     searchButton: {
         marginLeft: "10px"
+    },
+    buttonIcon: {
+        marginRight: "0.5rem"
+    },
+    searchContainer: {
+        display: "flex"
+    },
+    siteImage: {
+        height: "3rem",
+        "&:active": {
+            opacity: 0.8
+        }
     }
 }));
 const Layout: React.FC<PROPS> = ({ children }) => {
@@ -257,7 +280,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <MediaQuery query="(min-width: 600px)">
+                    <MediaQuery query="(min-width: 720px)">
                         <Typography
                             component="h1"
                             variant="h6"
@@ -265,12 +288,21 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                             noWrap
                             className={classes.title}
                         >
-                            <Link to="/">SNS</Link>
+                            <Link to="/">
+                                <img
+                                    src="/site_icon.png"
+                                    alt="サイトアイコン"
+                                    className={classes.siteImage}
+                                />
+                            </Link>
                         </Typography>
                     </MediaQuery>
 
-                    <div>
-                        <IconButton onClick={() => setIsPost(!isPost)}>
+                    <div className={classes.searchContainer}>
+                        <IconButton
+                            onClick={() => setIsPost(!isPost)}
+                            className={classes.buttonIcon}
+                        >
                             {isPost ? <LibraryBooksIcon /> : <PersonIcon />}
                         </IconButton>
                         <TextField
@@ -286,18 +318,6 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                                 }
                             }}
                         />
-                        <MediaQuery query="(min-width: 600px)">
-                            {" "}
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                endIcon={<SearchIcon />}
-                                onClick={onSearch}
-                                className={classes.searchButton}
-                            >
-                                検索
-                            </Button>
-                        </MediaQuery>
                     </div>
                 </Toolbar>
             </AppBar>
@@ -328,7 +348,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                     <List>{loginListItem}</List>
                 )}
             </Drawer>
-            <main className={classes.content}>
+            <main className={open ? classes.openedContent : classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container
                     maxWidth="sm"

@@ -17,6 +17,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Alert from "@material-ui/lab/Alert";
 import { checkIsAuth } from "../../../store/api/api";
 import { login_user } from "../../../store/counter/user/action";
+import { Helmet } from "react-helmet";
 const useStyles = makeStyles({
     card: {
         diplay: "flex",
@@ -53,6 +54,7 @@ const Create = () => {
     const [body, setBody] = useState("");
     const [url, setUrl] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [error, setError] = useState("");
     const user = useSelector((state: RootState) => state.user.user);
     const dispatch = useDispatch();
 
@@ -97,44 +99,56 @@ const Create = () => {
                 })
                 .catch(error => {
                     console.log(error);
+                    setError("このサイトは投稿できません");
                 });
         }
     };
     return (
-        <Card className={classes.card}>
-            <CardContent className={classes.cardContent}>
-                <TextField
-                    id="standard-basic"
-                    label="リンク"
-                    onChange={e => setUrl(e.target.value)}
-                    multiline
-                    autoFocus={true}
-                    className={classes.text}
-                />
-                <TextField
-                    id="standard-multiline-static"
-                    label="どんなサイト？"
-                    multiline
-                    rows={4}
-                    onChange={e => setBody(e.target.value)}
-                    className={classes.text}
-                />
-            </CardContent>
-            {errorMessage && (
-                <Alert severity="error" className={classes.errorMessage}>
-                    {errorMessage}
-                </Alert>
-            )}
-            <CardActions className={classes.button}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={onCreatePost}
-                >
-                    投稿
-                </Button>
-            </CardActions>
-        </Card>
+        <>
+            <Helmet>
+                <title>投稿画面 | ゆうあるえる</title>
+            </Helmet>
+            <Card className={classes.card}>
+                <CardContent className={classes.cardContent}>
+                    <TextField
+                        id="standard-basic"
+                        label="リンク"
+                        onChange={e => setUrl(e.target.value)}
+                        multiline
+                        autoFocus={true}
+                        className={classes.text}
+                    />
+                    <TextField
+                        id="standard-multiline-static"
+                        label="どんなサイト？"
+                        multiline
+                        rows={4}
+                        onChange={e => setBody(e.target.value)}
+                        className={classes.text}
+                    />
+                </CardContent>
+                {errorMessage && (
+                    <Alert severity="error" className={classes.errorMessage}>
+                        {errorMessage}
+                    </Alert>
+                )}
+                {error && (
+                    <Alert severity="error" className={classes.errorMessage}>
+                        {error}
+                    </Alert>
+                )}
+
+                <CardActions className={classes.button}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={onCreatePost}
+                    >
+                        投稿
+                    </Button>
+                </CardActions>
+            </Card>
+        </>
     );
 };
 

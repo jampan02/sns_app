@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Storage;
 class RegisterController extends Controller
 {
     /*
@@ -66,9 +66,11 @@ class RegisterController extends Controller
 
 	//Log::debug($data);
     {
+		$profile_image=Storage::disk("s3")->url("default/121647.jpg");
         return User::create([
+			
             'name' => $data['name'],
-			"profile_image"=>$data["profile_image"],
+			"profile_image"=>$profile_image,
 
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

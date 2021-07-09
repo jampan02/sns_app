@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { RootState } from "../../../store";
@@ -29,7 +30,14 @@ const Setting = () => {
         };
         f();
     }, []);
-    return <div>setting menu</div>;
+    return (
+        <div>
+            <Helmet>
+                <title>設定 | ゆうあるえる</title>
+            </Helmet>
+            setting menu
+        </div>
+    );
 };
 
 export default Setting;

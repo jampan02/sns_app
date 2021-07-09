@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Like;
+use Storage;
 //ここに一行追加-------------------------------------//
 use Weidner\Goutte\GoutteFacade as GoutteFacade;
 //ライブラリロード
@@ -45,10 +46,21 @@ class PostController extends Controller
 					break;
 				}
 			}
+			if($post->image === null){
+				$post->image=Storage::disk("s3")->url("default/l_e_others_501.png");
+			
+			}
+			if($post->title === null){
+				$post->title=$crawler->filter('title')->text();
+			}
+			if($post->site_name === null){
+				$post->site_name=$URL;
+			}
+		
 		$post->user_id=$request->user_id;
 		$post->url=$URL;
 		$post->body=$request->body;
-			Log::debug($post);
+			
 		$post->save();
 				
 

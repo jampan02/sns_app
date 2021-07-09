@@ -23,6 +23,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { getIsLogin } from "../../../store/api/api";
 //import Link from '@material-ui/core/Link';
 import { login_user } from "../../../store/counter/user/action";
+import { Helmet } from "react-helmet";
 const useStyles = makeStyles(theme => ({
     card: {
         display: "flex",
@@ -208,6 +209,11 @@ const Follower = () => {
     };
     return (
         <>
+            <Helmet>
+                <title>
+                    {targetUserName}さんをフォローしてるユーザー | ゆうあるえる
+                </title>
+            </Helmet>
             <InfiniteScroll
                 loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
                 hasMore={!isFetching && user && hasMore} // isFetchingを判定条件に追加

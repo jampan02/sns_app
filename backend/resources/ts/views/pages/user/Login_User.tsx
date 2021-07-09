@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import { RootState } from "../../../store";
 import axios from "axios";
-import { FOLLOW, LIKE, MIXED_POST_DATA, POST, USER } from "../../../utils/type";
+import { LIKE, MIXED_POST_DATA, USER } from "../../../utils/type";
 import { Link } from "react-router-dom";
 import { login_user } from "../../../store/counter/user/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Hidden from "@material-ui/core/Hidden";
 import Button from "@material-ui/core/Button";
 import InfiniteScroll from "react-infinite-scroller";
-import AppBar from "@material-ui/core/AppBar";
-import CameraIcon from "@material-ui/icons/PhotoCamera";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
 import CardActions from "@material-ui/core/CardActions";
-//import Link from '@material-ui/core/Link';
 import TextField from "@material-ui/core/TextField";
 import Alert from "@material-ui/lab/Alert";
+import IconButton from "@material-ui/core/IconButton";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import { Helmet } from "react-helmet";
 const useStyles = makeStyles(theme => ({
     icon: {
         marginRight: theme.spacing(2)
@@ -45,23 +41,23 @@ const useStyles = makeStyles(theme => ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        marginBottom: "10px"
+        marginBottom: "10px",
+        "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.03)"
+        }
     },
-    cardMedia: {
+    cardUser: {},
+    /*cardMedia: {
         paddingTop: "56.25%" // 16:9
     },
     cardContent: {
         display: "flex",
         flexDirection: "column",
         marginBottom: "10px"
-    },
+    },*/
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6)
-    },
-    profileContent: {},
-    grid: {
-        marginBottom: "30px"
     },
     large: {
         width: theme.spacing(15),
@@ -82,7 +78,7 @@ const useStyles = makeStyles(theme => ({
     },
     cardAction: {
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "flex-start"
     },
     textContainer: {
@@ -99,6 +95,71 @@ const useStyles = makeStyles(theme => ({
     },
     errorMessage: {
         marginTop: "10px"
+    },
+    input: {
+        display: "none"
+    },
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px"
+    },
+    editAvatar: {
+        width: theme.spacing(15),
+        height: theme.spacing(15),
+        "&:hover": {
+            opacity: 0.5
+        }
+    },
+    profileContent: {
+        display: "flex",
+        marginBottom: "0.5rem"
+    },
+    grid: {
+        marginBottom: "10px"
+    },
+    link: {
+        textDecoration: "none",
+        "&:hover": {
+            textDecoration: "none"
+        }
+    },
+    siteName: {
+        marginBottom: "0.5rem",
+        color: "rgb(83, 100, 113)"
+    },
+    cardContent: {
+        flexGrow: 1
+    },
+    cardMedia: {
+        paddingTop: "56.25%", // 16:9
+        marginBottom: "0.5rem",
+        "&:hover": {
+            opacity: 0.3
+        }
+    },
+
+    cardMediaContainer: {},
+    profileContainer: {
+        display: "flex"
+    },
+    data: {},
+    dataContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        fontSize: "0.8rem",
+        color: "rgb(83, 100, 113)"
+    },
+    body: {
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        marginBottom: "0.5rem"
+    },
+    avatar: {
+        marginRight: "1rem"
+    },
+    userName: {
+        color: "black"
     }
 }));
 type FollowLength = {
@@ -131,16 +192,6 @@ const Login_User = () => {
         const f = async () => {
             if (userData) {
                 setUser(userData);
-                await axios
-                    .get("/api/get/user", { params: { userId: userData.id } })
-                    .then(res => {
-                        const data = res.data;
-                        //そのユーザーの投稿全部取得
-                        setPosts(data.posts);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
                 //該当のユーザーの、フォロー・フォロワー数取得
                 await axios
                     .get("/api/get/follow", { params: { userId: userData.id } })
@@ -171,42 +222,7 @@ const Login_User = () => {
         f();
     }, [userData]);
     //名前変更差踏みっと
-    const onChangeName = () => {
-        if (newUserName === "") {
-            setErrorMessage("名前は必須です");
-            return;
-        }
-        if (newUserName.length >= 16) {
-            setErrorMessage("名前は16文字以内にしてください");
-            return;
-        }
-        if (newSelfIntroduction.length >= 255) {
-            setErrorMessage("説明欄は255文字以内にしてください");
-            return;
-        }
-        axios
-            .post("/api/edit/user/name", {
-                id: userData && userData.id,
-                name: newUserName,
-                profile_image: newProfileImage,
-                self_introduction: newSelfIntroduction
-            })
-            .then(res => {
-                dispatch(login_user(res.data));
-                setUser(res.data);
-                setIsEditMode(false);
-                setErrorMessage("");
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-    const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        var files = e.target.files;
 
-        const image_url = files && window.URL.createObjectURL(files[0]);
-        image_url && setNewProfileImage(image_url);
-    };
     const onSetUserData = () => {
         if (user) {
             setIsEditMode(true);
@@ -321,36 +337,49 @@ const Login_User = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>ユーザーページ | ゆうあるえる</title>
+            </Helmet>
             {user && (
                 <Grid item xs={12} className={classes.grid}>
-                    <Card className={classes.card}>
+                    <Card className={classes.cardUser}>
                         <CardContent className={classes.cardContent}>
                             {isEditMode ? (
-                                <>
+                                <form
+                                    action={`/api/edit/user/name?id=${user.id}`}
+                                    method="post"
+                                    encType="multipart/form-data"
+                                    className={classes.form}
+                                >
                                     <div className={classes.avatarContainer}>
                                         <CardActions>
-                                            <Button
-                                                variant="contained"
-                                                component="label"
-                                            >
-                                                <Avatar
-                                                    alt="image"
-                                                    src={newProfileImage}
-                                                    className={classes.large}
+                                            <input
+                                                accept="image/*"
+                                                name="image"
+                                                type="file"
+                                                id="icon-button-file"
+                                                className={classes.input}
+                                                multiple
+                                            />
+                                            <label htmlFor="icon-button-file">
+                                                <IconButton
+                                                    color="primary"
+                                                    component="span"
                                                 >
-                                                    <input
-                                                        type="file"
-                                                        hidden
-                                                        onChange={e =>
-                                                            onChangeFile(e)
+                                                    <Avatar
+                                                        alt="image"
+                                                        src={newProfileImage}
+                                                        className={
+                                                            classes.editAvatar
                                                         }
                                                     />
-                                                </Avatar>
-                                            </Button>
+                                                </IconButton>
+                                            </label>
                                         </CardActions>
 
                                         <TextField
                                             className={classes.editNameText}
+                                            name="name"
                                             type="text"
                                             defaultValue={newUserName}
                                             onChange={(
@@ -361,6 +390,7 @@ const Login_User = () => {
                                         />
                                     </div>
                                     <TextField
+                                        name="self_introduction"
                                         className={classes.editIntroductionText}
                                         defaultValue={newSelfIntroduction}
                                         onChange={(
@@ -384,16 +414,24 @@ const Login_User = () => {
                                             {errorMessage}
                                         </Alert>
                                     )}
-                                    <CardActions>
+                                    <CardActions className={classes.cardAction}>
                                         <Button
+                                            type="submit"
                                             variant="contained"
                                             color="primary"
-                                            onClick={onChangeName}
                                         >
                                             変更
                                         </Button>
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() => setIsEditMode(false)}
+                                        >
+                                            閉じる
+                                        </Button>
                                     </CardActions>
-                                </>
+                                </form>
                             ) : (
                                 <>
                                     <div className={classes.avatarContainer}>
@@ -418,7 +456,10 @@ const Login_User = () => {
                                         {user.self_introduction}
                                     </Typography>
                                     <CardActions className={classes.cardAction}>
-                                        <Button onClick={onSetUserData}>
+                                        <Button
+                                            variant="contained"
+                                            onClick={onSetUserData}
+                                        >
                                             編集
                                         </Button>
                                     </CardActions>
@@ -460,102 +501,153 @@ const Login_User = () => {
                                     xs={12}
                                     className={classes.grid}
                                 >
-                                    <Card className={classes.card}>
-                                        <CardContent
-                                            className={classes.cardContent}
-                                        >
-                                            <Link
-                                                to={{
-                                                    pathname: `/${post.user.name}/user/${post.user.id}`,
-                                                    state: post.user
-                                                }}
+                                    <Link
+                                        to={{
+                                            pathname: `/${post.user.name}/post/${post.post.id}`,
+                                            state: {
+                                                post: post.post,
+                                                user: post.user,
+                                                likes: post.likes
+                                            }
+                                        }}
+                                        className={classes.link}
+                                    >
+                                        <Card className={classes.card}>
+                                            <CardContent
+                                                className={classes.cardContent}
                                             >
-                                                <div
-                                                    className={
-                                                        classes.profileContent
-                                                    }
-                                                >
-                                                    <Avatar
-                                                        alt="image"
-                                                        src={
-                                                            post.user
-                                                                .profile_image
+                                                <object>
+                                                    <div
+                                                        className={
+                                                            classes.profileContent
                                                         }
-                                                    />
-                                                    <Typography>
-                                                        {post.user.name}
-                                                    </Typography>
-                                                </div>
-                                            </Link>
-                                            <a
-                                                href={post.post.url}
-                                                target="_blank"
-                                            >
+                                                    >
+                                                        <Link
+                                                            to={{
+                                                                pathname: `/${post.user.name}/user/${post.user.id}`,
+                                                                state: post.user
+                                                            }}
+                                                            className={
+                                                                classes.profileContainer
+                                                            }
+                                                        >
+                                                            <Avatar
+                                                                alt="image"
+                                                                src={
+                                                                    post.user
+                                                                        .profile_image
+                                                                }
+                                                                className={
+                                                                    classes.avatar
+                                                                }
+                                                            />
+                                                            <Typography
+                                                                className={
+                                                                    classes.userName
+                                                                }
+                                                            >
+                                                                {post.user.name}
+                                                            </Typography>
+                                                        </Link>
+                                                    </div>
+                                                </object>
                                                 <Typography
-                                                    gutterBottom
                                                     variant="h5"
                                                     component="h2"
                                                 >
                                                     {post.post.title}
                                                 </Typography>
+                                                <Typography
+                                                    className={classes.siteName}
+                                                >
+                                                    {post.post.site_name}
+                                                </Typography>
+                                                <object>
+                                                    <div
+                                                        className={
+                                                            classes.cardMediaContainer
+                                                        }
+                                                        onClick={(e: any) => {
+                                                            e.stopPropagation();
+                                                            e.preventDefault();
+                                                            window.open(
+                                                                post.post.url
+                                                            );
+                                                        }}
+                                                    >
+                                                        <CardMedia
+                                                            className={
+                                                                classes.cardMedia
+                                                            }
+                                                            image={
+                                                                post.post.image
+                                                            }
+                                                            title={
+                                                                post.post.title
+                                                            }
+                                                        />
+                                                    </div>
+                                                </object>
 
-                                                <CardMedia
-                                                    className={
-                                                        classes.cardMedia
-                                                    }
-                                                    image={post.post.image}
-                                                    title="Image title"
-                                                />
-                                            </a>
-
-                                            <Link
-                                                to={{
-                                                    pathname: `/${post.user.name}/post/${post.post.id}`,
-                                                    state: {
-                                                        post: post.post,
-                                                        user: post.user,
-                                                        likes: post.likes
-                                                    }
-                                                }}
-                                            >
-                                                <Typography>
+                                                <Typography
+                                                    className={classes.body}
+                                                >
                                                     {post.post.body}
                                                 </Typography>
-                                            </Link>
-                                            {getDate(post.post.updated_at)}
-                                        </CardContent>
-                                        <CardActions>
-                                            {isLikedBefore(post) ? (
-                                                <Button
-                                                    size="small"
-                                                    color="primary"
-                                                    onClick={() => {
-                                                        onRemoveLike(
-                                                            post.post.id,
-                                                            i
-                                                        );
-                                                    }}
+                                                <div
+                                                    className={
+                                                        classes.dataContainer
+                                                    }
                                                 >
-                                                    いいねはずす
-                                                </Button>
-                                            ) : (
-                                                <Button
-                                                    size="small"
-                                                    color="primary"
-                                                    onClick={() => {
-                                                        onAddLike(
-                                                            post.post.id,
-                                                            i
-                                                        );
-                                                    }}
-                                                >
-                                                    いいね
-                                                </Button>
-                                            )}
-                                        </CardActions>
+                                                    <CalendarTodayIcon />
 
-                                        <p>いいね数：{post.likes.length}</p>
-                                    </Card>
+                                                    {getDate(
+                                                        post.post.updated_at
+                                                    )}
+                                                </div>
+                                            </CardContent>
+
+                                            <CardActions>
+                                                <object>
+                                                    {isLikedBefore(post) ? (
+                                                        <IconButton
+                                                            onClick={(
+                                                                e: any
+                                                            ) => {
+                                                                e.stopPropagation();
+                                                                e.preventDefault();
+                                                                onRemoveLike(
+                                                                    post.post
+                                                                        .id,
+                                                                    i
+                                                                );
+                                                            }}
+                                                            color="primary"
+                                                        >
+                                                            <ThumbUpIcon />
+                                                        </IconButton>
+                                                    ) : (
+                                                        <IconButton
+                                                            onClick={(
+                                                                e: any
+                                                            ) => {
+                                                                e.stopPropagation();
+                                                                e.preventDefault();
+                                                                onAddLike(
+                                                                    post.post
+                                                                        .id,
+                                                                    i
+                                                                );
+                                                            }}
+                                                        >
+                                                            <ThumbUpIcon />
+                                                        </IconButton>
+                                                    )}
+                                                    {post.likes.length}
+                                                </object>
+                                            </CardActions>
+                                        </Card>
+                                    </Link>
                                 </Grid>
                             );
                         })}
