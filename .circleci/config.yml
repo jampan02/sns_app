@@ -10,7 +10,7 @@ jobs:
           - DB_DATABASE: laravel
           - DB_USERNAME: root
 
-      - image: circleci/mysql:8.0-ram
+      - image: circleci/mysql:8.0
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: laravel
