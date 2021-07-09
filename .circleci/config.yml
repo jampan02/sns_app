@@ -10,7 +10,7 @@ jobs:
           - DB_DATABASE: laravel
           - DB_USERNAME: root
 
-      - image: circleci/mysql:5.7-ram
+      - image: circleci/mysql:8.0-ram
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: laravel
@@ -23,21 +23,23 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-{{ checksum "backend/composer.json" }}
             - v1-dependencies-
 
-      - run: composer install -n --prefer-dist
+      - run:
+          working_directory: backend
+          command: composer install -n --prefer-dist
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
+          key: v1-dependencies-{{ checksum "backend/composer.json" }}
           paths:
-            - ./vendor
+            - .backend/vendor
 
       - run: echo "APP_KEY=" > .env
       - run: php artisan key:generate
       - run: php artisan migrate
 
-      - run: ./vendor/bin/phpunit
+      - run: .backend/vendor/bin/phpunit
 
   deploy:
     machine:
