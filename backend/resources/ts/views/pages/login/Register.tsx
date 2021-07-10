@@ -58,7 +58,6 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [email, setEmail] = useState("");
-    const [introduction, setIntroduction] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
     const onSignUp = (e: any) => {
@@ -79,13 +78,19 @@ export default function Register() {
             setErrorMessage("確認用パスワードは必須です");
             return;
         }
-        const image =
-            "https://sns-app-storage.s3.ap-northeast-1.amazonaws.com/default/121647.jpg";
+        if (password.length < 8) {
+            setErrorMessage("パスワードは8文字以上です");
+            return;
+        }
+        if (password !== passwordConfirm) {
+            setErrorMessage("パスワードと確認用パスワードが一致しません");
+            return;
+        }
+
         const data = {
             name,
             password,
             email,
-
             password_confirmation: passwordConfirm
         };
         axios

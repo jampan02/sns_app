@@ -92005,8 +92005,11 @@ var Login = function () {
             setErrorMessage("メールアドレスは必須です");
             return;
         }
+        if (password.length < 8) {
+            setErrorMessage("パスワードは8文字以上です");
+            return;
+        }
         e.preventDefault();
-        var image = "https://i.permalink-system.com/thumb/6238/62387066.jpg";
         var data = {
             password: password,
             email: email
@@ -92134,8 +92137,7 @@ function Register() {
     var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
     var _c = react_1.useState(""), errorMessage = _c[0], setErrorMessage = _c[1];
     var _d = react_1.useState(""), email = _d[0], setEmail = _d[1];
-    var _e = react_1.useState(""), introduction = _e[0], setIntroduction = _e[1];
-    var _f = react_1.useState(""), passwordConfirm = _f[0], setPasswordConfirm = _f[1];
+    var _e = react_1.useState(""), passwordConfirm = _e[0], setPasswordConfirm = _e[1];
     var onSignUp = function (e) {
         e.preventDefault();
         if (name === "") {
@@ -92154,7 +92156,14 @@ function Register() {
             setErrorMessage("確認用パスワードは必須です");
             return;
         }
-        var image = "https://sns-app-storage.s3.ap-northeast-1.amazonaws.com/default/121647.jpg";
+        if (password.length < 8) {
+            setErrorMessage("パスワードは8文字以上です");
+            return;
+        }
+        if (password !== passwordConfirm) {
+            setErrorMessage("パスワードと確認用パスワードが一致しません");
+            return;
+        }
         var data = {
             name: name,
             password: password,

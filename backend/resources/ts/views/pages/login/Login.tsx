@@ -65,8 +65,12 @@ const Login = () => {
             setErrorMessage("メールアドレスは必須です");
             return;
         }
+        if (password.length < 8) {
+            setErrorMessage("パスワードは8文字以上です");
+            return;
+        }
         e.preventDefault();
-        const image = "https://i.permalink-system.com/thumb/6238/62387066.jpg";
+
         const data = {
             password,
             email
