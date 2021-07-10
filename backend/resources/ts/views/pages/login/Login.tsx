@@ -12,8 +12,6 @@ import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import Alert from "@material-ui/lab/Alert";
-import { RootState } from "../../../store/index";
-import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 function Copyright() {
     return (

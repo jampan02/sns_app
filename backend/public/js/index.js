@@ -92085,8 +92085,8 @@ var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar 
 var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
 var CssBaseline_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CssBaseline */ "./node_modules/@material-ui/core/esm/CssBaseline/index.js"));
 var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
-//import Link from "@material-ui/core/Link";
 var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var Box_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js"));
 var LockOutlined_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/LockOutlined */ "./node_modules/@material-ui/icons/LockOutlined.js"));
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
@@ -92122,24 +92122,38 @@ var useStyles = styles_1.makeStyles(function (theme) { return ({
     large: {
         width: theme.spacing(15),
         height: theme.spacing(15)
+    },
+    errorMessage: {
+        marginTop: "10px"
     }
 }); });
 function Register() {
-    //let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
     var history = react_router_dom_1.useHistory();
     var classes = useStyles();
     var _a = react_1.useState(""), name = _a[0], setName = _a[1];
     var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
-    // const [confirmPassword, setConfirmPassword] = useState("");
-    var _c = react_1.useState(""), email = _c[0], setEmail = _c[1];
-    //const [image, setImage] = useState("");
-    var _d = react_1.useState(""), introduction = _d[0], setIntroduction = _d[1];
-    var _e = react_1.useState(""), passwordConfirm = _e[0], setPasswordConfirm = _e[1];
+    var _c = react_1.useState(""), errorMessage = _c[0], setErrorMessage = _c[1];
+    var _d = react_1.useState(""), email = _d[0], setEmail = _d[1];
+    var _e = react_1.useState(""), introduction = _e[0], setIntroduction = _e[1];
+    var _f = react_1.useState(""), passwordConfirm = _f[0], setPasswordConfirm = _f[1];
     var onSignUp = function (e) {
         e.preventDefault();
-        /*    if (password !== confirmPassword) {
+        if (name === "") {
+            setErrorMessage("ユーザーネームは必須です");
             return;
-        }*/
+        }
+        if (email === "") {
+            setErrorMessage("メールアドレスは必須です");
+            return;
+        }
+        if (password === "") {
+            setErrorMessage("パスワードは必須です");
+            return;
+        }
+        if (passwordConfirm === "") {
+            setErrorMessage("確認用パスワードは必須です");
+            return;
+        }
         var image = "https://sns-app-storage.s3.ap-northeast-1.amazonaws.com/default/121647.jpg";
         var data = {
             name: name,
@@ -92177,6 +92191,7 @@ function Register() {
                             react_1.default.createElement(TextField_1.default, { variant: "outlined", required: true, fullWidth: true, name: "password_confirmation", label: "\u78BA\u8A8D\u7528", type: "password", id: "password_confirmation", autoComplete: "current-password_confirmation", onChange: function (e) {
                                     return setPasswordConfirm(e.target.value);
                                 }, value: passwordConfirm }))),
+                    errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
                     react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onSignUp }, "\u767B\u9332"),
                     react_1.default.createElement(Grid_1.default, { container: true, justify: "flex-end" },
                         react_1.default.createElement(Grid_1.default, { item: true },

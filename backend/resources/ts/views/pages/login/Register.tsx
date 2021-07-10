@@ -3,10 +3,8 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-//import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
+import Alert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -38,7 +36,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.secondary.main
     },
     form: {
-        width: "100%", // Fix IE 11 issue.
+        width: "100%",
         marginTop: theme.spacing(3)
     },
     submit: {
@@ -47,25 +45,40 @@ const useStyles = makeStyles(theme => ({
     large: {
         width: theme.spacing(15),
         height: theme.spacing(15)
+    },
+    errorMessage: {
+        marginTop: "10px"
     }
 }));
 
 export default function Register() {
-    //let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
     const history = useHistory();
     const classes = useStyles();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [email, setEmail] = useState("");
-    //const [image, setImage] = useState("");
     const [introduction, setIntroduction] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+
     const onSignUp = (e: any) => {
         e.preventDefault();
-        /*    if (password !== confirmPassword) {
+        if (name === "") {
+            setErrorMessage("ユーザーネームは必須です");
             return;
-        }*/
+        }
+        if (email === "") {
+            setErrorMessage("メールアドレスは必須です");
+            return;
+        }
+        if (password === "") {
+            setErrorMessage("パスワードは必須です");
+            return;
+        }
+        if (passwordConfirm === "") {
+            setErrorMessage("確認用パスワードは必須です");
+            return;
+        }
         const image =
             "https://sns-app-storage.s3.ap-northeast-1.amazonaws.com/default/121647.jpg";
         const data = {
@@ -161,6 +174,14 @@ export default function Register() {
                                 />
                             </Grid>
                         </Grid>
+                        {errorMessage && (
+                            <Alert
+                                severity="error"
+                                className={classes.errorMessage}
+                            >
+                                {errorMessage}
+                            </Alert>
+                        )}
                         <Button
                             type="submit"
                             fullWidth
@@ -171,6 +192,7 @@ export default function Register() {
                         >
                             登録
                         </Button>
+
                         <Grid container justify="flex-end">
                             <Grid item>
                                 <Link to="/login">
