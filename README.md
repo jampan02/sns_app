@@ -2,7 +2,7 @@
 
 面白い、勉強になる等のサイトを共有するサイトです。
 SNS でもあるため、自分が興味のある投稿をするユーザーをフォローして個別の投稿を閲覧することも可能です。
-[![ゆあるえる](images/top.png){:target="\_blank"}](https://yuarueru.com/)
+[![ゆあるえる](images/top.png)](https://yuarueru.com/)
 
 ## なぜ作ったのか
 
