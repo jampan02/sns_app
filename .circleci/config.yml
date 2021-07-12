@@ -46,7 +46,9 @@ jobs:
       - run:
           working_directory: backend
           command: php artisan migrate
-      - run: .backend/vendor/bin/phpunit
+      - run:
+          working_directory: backend
+          command: ./vendor/bin/phpunit
   deploy:
     machine:
       image: circleci/classic:edge
