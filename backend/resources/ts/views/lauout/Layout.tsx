@@ -340,8 +340,9 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                 <Divider />
                 <List>{mainListItems}</List>
                 <Divider />
-                <List>{secondaryListItems}</List>
-                <Divider />
+                {/*   <List>{secondaryListItems}</List>
+                <Divider /> */}
+
                 {user ? (
                     <List>{logoutListItem}</List>
                 ) : (

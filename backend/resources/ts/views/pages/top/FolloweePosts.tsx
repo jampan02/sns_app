@@ -74,8 +74,9 @@ const useStyles = makeStyles(theme => ({
     cardMedia: {
         paddingTop: "56.25%", // 16:9
         marginBottom: "0.5rem",
+        transition: ".3s",
         "&:hover": {
-            opacity: 0.3
+            opacity: 0.5
         }
     },
 
@@ -215,14 +216,12 @@ const FolloweePosts = () => {
     //フォロー中のユーザーの投稿取得
     const loadMoreFolloweePost = async (page: number) => {
         if (user) {
-            console.log("followee", page);
             setIsFetching(true);
             const data: MIXED_POST_DATA = await axios
                 .get("/api/get/post/scroll/followee", {
                     params: { number: page, user_id: user.id }
                 })
                 .then(res => {
-                    console.log(res);
                     const data = res.data;
                     if (data === "no followee") {
                         setEndMessage(true);

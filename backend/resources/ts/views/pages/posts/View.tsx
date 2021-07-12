@@ -87,13 +87,12 @@ const useStyles = makeStyles(theme => ({
     },
     cardMedia: {
         paddingTop: "56.25%", // 16:9
-        marginBottom: "0.5rem"
-    },
-    hoverCardMedia: {
-        paddingTop: "56.25%", // 16:9
         marginBottom: "0.5rem",
-        opacity: 0.3,
-        cursor: "pointer"
+        transition: ".3s",
+        cursor: "pointer",
+        "&:hover": {
+            opacity: 0.5
+        }
     },
     cardMediaContainer: {},
     profileContainer: {
@@ -163,7 +162,7 @@ const View = () => {
     const params: { id: string } = useParams();
     const [post, setPost] = useState<POST>();
     const [postUser, setPostUser] = useState<USER>();
-    const [isHover, setIsHover] = useState(false);
+    //const [isHover, setIsHover] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [isFetching, setIsFetching] = useState(false);
     const id = params.id;
@@ -397,8 +396,6 @@ const View = () => {
                             </Typography>
                             <object>
                                 <div
-                                    onMouseEnter={() => setIsHover(true)}
-                                    onMouseLeave={() => setIsHover(false)}
                                     className={classes.cardMediaContainer}
                                     onClick={(e: any) => {
                                         e.stopPropagation();
@@ -407,11 +404,7 @@ const View = () => {
                                     }}
                                 >
                                     <CardMedia
-                                        className={
-                                            isHover
-                                                ? classes.hoverCardMedia
-                                                : classes.cardMedia
-                                        }
+                                        className={classes.cardMedia}
                                         image={post.image}
                                         title={post.title}
                                     />

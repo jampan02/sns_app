@@ -80,8 +80,9 @@ const useStyles = makeStyles(theme => ({
     cardMedia: {
         paddingTop: "56.25%", // 16:9
         marginBottom: "0.5rem",
+        transition: ".3s",
         "&:hover": {
-            opacity: 0.3
+            opacity: 0.5
         }
     },
 

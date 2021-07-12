@@ -73,8 +73,9 @@ const useStyles = makeStyles(theme => ({
     cardMedia: {
         paddingTop: "56.25%", // 16:9
         marginBottom: "0.5rem",
+        transition: ".3s",
         "&:hover": {
-            opacity: 0.3
+            opacity: 0.5
         }
     },
 
@@ -218,7 +219,6 @@ const Top: React.FC = () => {
 
     //全投稿取得
     const loadMoreAllPost = async (page: number) => {
-        console.log("all", page);
         setIsFetching(true);
         const data: MIXED_POST_DATA = await axios
             .get("/api/get/post/scroll", { params: { number: page } })
