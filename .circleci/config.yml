@@ -10,35 +10,43 @@ jobs:
           - DB_CONNECTION: mysql
           - DB_DATABASE: test_sample01
           - DB_USERNAME: root
- 
+
       - image: circleci/mysql:5.7-ram
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: test_sample01
- 
+
     steps:
       - checkout
-      working_directory: backend
-      - run: sudo apt update
-      - run: sudo docker-php-ext-install pdo_mysql
- 
+
+      - run:
+          working_directory: backend
+          command: sudo apt update
+      - run:
+          working_directory: backend
+          command: sudo docker-php-ext-install pdo_mysql
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "backend/composer.json" }}
             - v1-dependencies-
-      working_directory: backend
-      - run: composer install -n --prefer-dist
- 
+
+      - run:
+          working_directory: backend
+          command: composer install -n --prefer-dist
       - save_cache:
           key: v1-dependencies-{{ checksum "backend/composer.json" }}
           paths:
             - .backend/vendor
-      working_directory: backend
-      - run: echo "APP_KEY=" > .env.testing
-      - run: php artisan key:generate
-      - run: php artisan migrate
- 
-      - run: ./vendor/bin/phpunit
+      - run:
+          working_directory: backend
+          command: echo "APP_KEY=" > .env.testing
+      - run:
+          working_directory: backend
+          command: php artisan key:generate
+      - run:
+          working_directory: backend
+          command: php artisan migrate
+      - run: .backend/vendor/bin/phpunit
   deploy:
     machine:
       image: circleci/classic:edge
