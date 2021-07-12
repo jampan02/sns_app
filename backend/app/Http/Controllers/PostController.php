@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Like;
+use App\Follow;
 use Storage;
 //ここに一行追加-------------------------------------//
 use Weidner\Goutte\GoutteFacade as GoutteFacade;
@@ -13,6 +14,8 @@ use Weidner\Goutte\GoutteFacade as GoutteFacade;
 
     //use
     use Goutte\Client;
+use Mockery\Undefined;
+
 class PostController extends Controller
 {
 	public function addPost(Request $request){
@@ -104,23 +107,7 @@ class PostController extends Controller
 		$result["likes"]=$likes;
 		return $result;
 	}
-	public function getPostByScroll(Request $request){
-		$number=$request->number-1;
-		Log::debug($number);
-		$post=Post::orderBy("updated_at","DESC")->skip($number)->first();
-		Log::debug($post);
-		if($post){
-		$user=User::where("id",$post->user_id)->first();
-		$likes=Like::where("post_id",$post->id)->get();
-		$result=array();
-		$result["post"]=$post;
-		$result["user"]=$user;
-		$result["likes"]=$likes;
-		return $result;
-		}else{
-			return;
-		}
-	}
+
  public function getPostByScrollInUser(Request $request){
 	$number=$request->number-1;
 	$user_id=$request->user_id;
@@ -146,4 +133,50 @@ class PostController extends Controller
 	 $post=Post::where("id",$post_id)->first();
 	 $post->delete();
  }
+ //フォロー中のユーザーの投稿のみ取得（デフォルト設定）
+ public function getPostByScrollOnlyFollowee(Request $request){
+	$number=$request->number-1;
+	$user_id=$request->user_id;
+	//ログイン中のユーザーがフォローしているユーザーをすべて取得
+	$follower_users=Follow::where("followee_id",$user_id)->get();
+
+	$follower_users_ids=array();
+	foreach($follower_users as $follower_user){
+		Log::debug($follower_user);
+		$follower_users_ids[]=$follower_user->follower_id;
+		//$follower_posts=Post::where("user_id",$follower_user->follower_id)->orderBy("updated_at","DESC")->get();
+	}
+	Log::debug($follower_users_ids);
+	$post=Post::whereIn("user_id",$follower_users_ids)->orderBy("updated_at","DESC")->skip($number)->first();
+	Log::debug($post);
+	if($post){
+	$user=User::where("id",$post->user_id)->first();
+	$likes=Like::where("post_id",$post->id)->get();
+	$result=array();
+	$result["post"]=$post;
+	$result["user"]=$user;
+	$result["likes"]=$likes;
+	Log::debug($result);
+	return $result;
+	}else{
+		return;
+	}
+ }
+ //全ての投稿（フォロー関係無視）
+ public function getPostByScroll(Request $request){
+	$number=$request->number-1;
+	
+	$post=Post::orderBy("updated_at","DESC")->skip($number)->first();
+	if($post){
+	$user=User::where("id",$post->user_id)->first();
+	$likes=Like::where("post_id",$post->id)->get();
+	$result=array();
+	$result["post"]=$post;
+	$result["user"]=$user;
+	$result["likes"]=$likes;
+	return $result;
+	}else{
+		return;
+	}
+}
 }

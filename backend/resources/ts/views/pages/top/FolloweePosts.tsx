@@ -21,6 +21,7 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { Helmet } from "react-helmet";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import Alert from "@material-ui/lab/Alert/Alert";
 const useStyles = makeStyles(theme => ({
     icon: {
         marginRight: theme.spacing(2)
@@ -104,7 +105,6 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "1rem"
     }
 }));
-
 const currencies = [
     {
         value: "followee",
@@ -116,36 +116,33 @@ const currencies = [
     }
 ];
 
-const Top: React.FC = () => {
+const FolloweePosts = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector((state: RootState) => state.user.user);
     const [posts, setPosts] = useState<MIXED_POST_DATA[]>([]);
-    const [followeePosts, setFolloweePosts] = useState<MIXED_POST_DATA[]>([]);
     const [hasMore, setHasMore] = useState(true);
     const [isFetching, setIsFetching] = useState(false);
-    const [currency, setCurrency] = useState("all");
-
+    const [currency, setCurrency] = useState("followee");
+    const [endMessage, setEndMessage] = useState(false);
     useEffect(() => {
         const f = async () => {
-            if (!user) {
-                //ログインされていない場合
-                await axios
-                    .get("/json")
-                    .then(res => {
-                        if (res.data) {
-                            dispatch(login_user(res.data));
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
+            await axios
+                .get("/json")
+                .then(res => {
+                    if (res.data) {
+                        dispatch(login_user(res.data));
+                    } else {
+                        history.push("/register");
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         };
         f();
     }, []);
-
     const onAddLike = (post_id: number, index: number) => {
         if (user) {
             const user_id = user.id;
@@ -215,44 +212,51 @@ const Top: React.FC = () => {
             </Typography>
         );
     };
+    //フォロー中のユーザーの投稿取得
+    const loadMoreFolloweePost = async (page: number) => {
+        if (user) {
+            console.log("followee", page);
+            setIsFetching(true);
+            const data: MIXED_POST_DATA = await axios
+                .get("/api/get/post/scroll/followee", {
+                    params: { number: page, user_id: user.id }
+                })
+                .then(res => {
+                    console.log(res);
+                    const data = res.data;
+                    if (data === "no followee") {
+                        setEndMessage(true);
+                        return;
+                    }
+                    return data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
 
-    //全投稿取得
-    const loadMoreAllPost = async (page: number) => {
-        console.log("all", page);
-        setIsFetching(true);
-        const data: MIXED_POST_DATA = await axios
-            .get("/api/get/post/scroll", { params: { number: page } })
-            .then(res => {
-                const data = res.data;
+            //データ件数が0件の場合、処理終了
+            if (!data) {
+                //しょっぱなからデータがない場合
+                if (!posts[0]) {
+                    setEndMessage(true);
+                }
+                setHasMore(false);
 
-                return data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                return;
+            }
+            //取得データをリストに追加*
+            setPosts([...posts, data]);
 
-        //データ件数が0件の場合、処理終了
-        if (!data) {
-            setHasMore(false);
-            return;
+            setIsFetching(false);
         }
-        //取得データをリストに追加*
-        setPosts([...posts, data]);
-
-        setIsFetching(false);
     };
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!user) {
-            history.push("/register");
-        } else {
-            history.push("/followee/posts");
-        }
+        history.push("/");
     };
-
     return (
         <>
             <Helmet>
-                <title>トップページ | ゆうあるえる</title>
+                <title>フォロー中のユーザーの投稿 | ゆうあるえる</title>
             </Helmet>
             <TextField
                 select
@@ -267,8 +271,8 @@ const Top: React.FC = () => {
                 ))}
             </TextField>
             <InfiniteScroll
-                loadMore={loadMoreAllPost} //currencyの状態によって、表示する項目変更
-                hasMore={!isFetching && hasMore} // isFetchingを判定条件に追加
+                loadMore={loadMoreFolloweePost} //currencyの状態によって、表示する項目変更
+                hasMore={!isFetching && hasMore && Boolean(user)} // isFetchingを判定条件に追加
             >
                 <Grid container>
                     {posts[0] &&
@@ -432,8 +436,11 @@ const Top: React.FC = () => {
                         })}
                 </Grid>
             </InfiniteScroll>
+            {endMessage && (
+                <Alert severity="error">フォロー中のユーザーがいません</Alert>
+            )}
         </>
     );
 };
 
-export default Top;
+export default FolloweePosts;

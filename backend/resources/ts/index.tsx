@@ -21,6 +21,7 @@ import Edit from "./views/pages/posts/Edit";
 import Setting from "./views/pages/user/Setting";
 import Unregisted from "./views/lauout/Unregisted";
 import NotFound from "./views/pages/404/NotFound";
+import FolloweePosts from "./views/pages/top/FolloweePosts";
 
 function AuthRoute({ layout, component, ...rest }: any) {
     return (
@@ -115,10 +116,16 @@ const App = () => {
                 <LayoutRoute
                     exact
                     layout={Layout}
-                    path="/search/user"
-                    component={UserResult}
+                    path="/followee/posts"
+                    component={FolloweePosts}
                 />
 
+                <MustAuthRoute
+                    exact
+                    layout={Layout}
+                    path="/:user/edit/:id"
+                    component={Edit}
+                />
                 <MustAuthRoute
                     exact
                     layout={Layout}

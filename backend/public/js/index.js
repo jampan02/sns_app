@@ -705,6 +705,37 @@ function _unsupportedIterableToArray(o, minLen) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/extends.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
@@ -783,6 +814,66 @@ function _interopRequireWildcard(obj, nodeInterop) {
 }
 
 module.exports = _interopRequireWildcard;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutProperties.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose.js */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -40863,6 +40954,341 @@ var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/lab/Alert/Alert.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material-ui/lab/Alert/Alert.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _clsx = _interopRequireDefault(__webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js"));
+
+var _styles = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+
+var _Paper = _interopRequireDefault(__webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js"));
+
+var _SuccessOutlined = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/SuccessOutlined */ "./node_modules/@material-ui/lab/internal/svg-icons/SuccessOutlined.js"));
+
+var _ReportProblemOutlined = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ReportProblemOutlined */ "./node_modules/@material-ui/lab/internal/svg-icons/ReportProblemOutlined.js"));
+
+var _ErrorOutline = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ErrorOutline */ "./node_modules/@material-ui/lab/internal/svg-icons/ErrorOutline.js"));
+
+var _InfoOutlined = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/InfoOutlined */ "./node_modules/@material-ui/lab/internal/svg-icons/InfoOutlined.js"));
+
+var _Close = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/Close */ "./node_modules/@material-ui/lab/internal/svg-icons/Close.js"));
+
+var _IconButton = _interopRequireDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+
+var styles = function styles(theme) {
+  var getColor = theme.palette.type === 'light' ? _styles.darken : _styles.lighten;
+  var getBackgroundColor = theme.palette.type === 'light' ? _styles.lighten : _styles.darken;
+  return {
+    /* Styles applied to the root element. */
+    root: (0, _extends2.default)({}, theme.typography.body2, {
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: 'transparent',
+      display: 'flex',
+      padding: '6px 16px'
+    }),
+
+    /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
+    standardSuccess: {
+      color: getColor(theme.palette.success.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.success.main, 0.9),
+      '& $icon': {
+        color: theme.palette.success.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="standard"` and `color="info"`. */
+    standardInfo: {
+      color: getColor(theme.palette.info.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.info.main, 0.9),
+      '& $icon': {
+        color: theme.palette.info.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="standard"` and `color="warning"`. */
+    standardWarning: {
+      color: getColor(theme.palette.warning.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.warning.main, 0.9),
+      '& $icon': {
+        color: theme.palette.warning.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="standard"` and `color="error"`. */
+    standardError: {
+      color: getColor(theme.palette.error.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.error.main, 0.9),
+      '& $icon': {
+        color: theme.palette.error.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"` and `color="success"`. */
+    outlinedSuccess: {
+      color: getColor(theme.palette.success.main, 0.6),
+      border: "1px solid ".concat(theme.palette.success.main),
+      '& $icon': {
+        color: theme.palette.success.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"` and `color="info"`. */
+    outlinedInfo: {
+      color: getColor(theme.palette.info.main, 0.6),
+      border: "1px solid ".concat(theme.palette.info.main),
+      '& $icon': {
+        color: theme.palette.info.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
+    outlinedWarning: {
+      color: getColor(theme.palette.warning.main, 0.6),
+      border: "1px solid ".concat(theme.palette.warning.main),
+      '& $icon': {
+        color: theme.palette.warning.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
+    outlinedError: {
+      color: getColor(theme.palette.error.main, 0.6),
+      border: "1px solid ".concat(theme.palette.error.main),
+      '& $icon': {
+        color: theme.palette.error.main
+      }
+    },
+
+    /* Styles applied to the root element if `variant="filled"` and `color="success"`. */
+    filledSuccess: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.success.main
+    },
+
+    /* Styles applied to the root element if `variant="filled"` and `color="info"`. */
+    filledInfo: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.info.main
+    },
+
+    /* Styles applied to the root element if `variant="filled"` and `color="warning"`. */
+    filledWarning: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.warning.main
+    },
+
+    /* Styles applied to the root element if `variant="filled"` and `color="error"`. */
+    filledError: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.error.main
+    },
+
+    /* Styles applied to the icon wrapper element. */
+    icon: {
+      marginRight: 12,
+      padding: '7px 0',
+      display: 'flex',
+      fontSize: 22,
+      opacity: 0.9
+    },
+
+    /* Styles applied to the message wrapper element. */
+    message: {
+      padding: '8px 0'
+    },
+
+    /* Styles applied to the action wrapper element if `action` is provided. */
+    action: {
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft: 'auto',
+      paddingLeft: 16,
+      marginRight: -8
+    }
+  };
+};
+
+exports.styles = styles;
+var defaultIconMapping = {
+  success: /*#__PURE__*/React.createElement(_SuccessOutlined.default, {
+    fontSize: "inherit"
+  }),
+  warning: /*#__PURE__*/React.createElement(_ReportProblemOutlined.default, {
+    fontSize: "inherit"
+  }),
+  error: /*#__PURE__*/React.createElement(_ErrorOutline.default, {
+    fontSize: "inherit"
+  }),
+  info: /*#__PURE__*/React.createElement(_InfoOutlined.default, {
+    fontSize: "inherit"
+  })
+};
+
+var _ref = /*#__PURE__*/React.createElement(_Close.default, {
+  fontSize: "small"
+});
+
+var Alert = /*#__PURE__*/React.forwardRef(function Alert(props, ref) {
+  var action = props.action,
+      children = props.children,
+      classes = props.classes,
+      className = props.className,
+      _props$closeText = props.closeText,
+      closeText = _props$closeText === void 0 ? 'Close' : _props$closeText,
+      color = props.color,
+      icon = props.icon,
+      _props$iconMapping = props.iconMapping,
+      iconMapping = _props$iconMapping === void 0 ? defaultIconMapping : _props$iconMapping,
+      onClose = props.onClose,
+      _props$role = props.role,
+      role = _props$role === void 0 ? 'alert' : _props$role,
+      _props$severity = props.severity,
+      severity = _props$severity === void 0 ? 'success' : _props$severity,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'standard' : _props$variant,
+      other = (0, _objectWithoutProperties2.default)(props, ["action", "children", "classes", "className", "closeText", "color", "icon", "iconMapping", "onClose", "role", "severity", "variant"]);
+  return /*#__PURE__*/React.createElement(_Paper.default, (0, _extends2.default)({
+    role: role,
+    square: true,
+    elevation: 0,
+    className: (0, _clsx.default)(classes.root, classes["".concat(variant).concat((0, _utils.capitalize)(color || severity))], className),
+    ref: ref
+  }, other), icon !== false ? /*#__PURE__*/React.createElement("div", {
+    className: classes.icon
+  }, icon || iconMapping[severity] || defaultIconMapping[severity]) : null, /*#__PURE__*/React.createElement("div", {
+    className: classes.message
+  }, children), action != null ? /*#__PURE__*/React.createElement("div", {
+    className: classes.action
+  }, action) : null, action == null && onClose ? /*#__PURE__*/React.createElement("div", {
+    className: classes.action
+  }, /*#__PURE__*/React.createElement(_IconButton.default, {
+    size: "small",
+    "aria-label": closeText,
+    title: closeText,
+    color: "inherit",
+    onClick: onClose
+  }, _ref)) : null);
+});
+ true ? Alert.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The action to display. It renders after the message, at the end of the alert.
+   */
+  action: _propTypes.default.node,
+
+  /**
+   * The content of the component.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * Override the default label for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  closeText: _propTypes.default.string,
+
+  /**
+   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
+   */
+  color: _propTypes.default.oneOf(['error', 'info', 'success', 'warning']),
+
+  /**
+   * Override the icon displayed before the children.
+   * Unless provided, the icon is mapped to the value of the `severity` prop.
+   */
+  icon: _propTypes.default.node,
+
+  /**
+   * The component maps the `severity` prop to a range of different icons,
+   * for instance success to `<SuccessOutlined>`.
+   * If you wish to change this mapping, you can provide your own.
+   * Alternatively, you can use the `icon` prop to override the icon displayed.
+   */
+  iconMapping: _propTypes.default.shape({
+    error: _propTypes.default.node,
+    info: _propTypes.default.node,
+    success: _propTypes.default.node,
+    warning: _propTypes.default.node
+  }),
+
+  /**
+   * Callback fired when the component requests to be closed.
+   * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose: _propTypes.default.func,
+
+  /**
+   * The ARIA role attribute of the element.
+   */
+  role: _propTypes.default.string,
+
+  /**
+   * The severity of the alert. This defines the color and icon used.
+   */
+  severity: _propTypes.default.oneOf(['error', 'info', 'success', 'warning']),
+
+  /**
+   * The variant to use.
+   */
+  variant: _propTypes.default.oneOf(['filled', 'outlined', 'standard'])
+} : undefined;
+
+var _default = (0, _styles.withStyles)(styles, {
+  name: 'MuiAlert'
+})(Alert);
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/lab/esm/Alert/Alert.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@material-ui/lab/esm/Alert/Alert.js ***!
@@ -41320,6 +41746,166 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_1__["createSvgIcon"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("path", {
   d: "M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
 }), 'SuccessOutlined'));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/internal/svg-icons/Close.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/internal/svg-icons/Close.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+
+/**
+ * @ignore - internal component.
+ */
+var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
+  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+}), 'Close');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/internal/svg-icons/ErrorOutline.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/internal/svg-icons/ErrorOutline.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+
+/**
+ * @ignore - internal component.
+ */
+var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
+  d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+}), 'ErrorOutline');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/internal/svg-icons/InfoOutlined.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/internal/svg-icons/InfoOutlined.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+
+/**
+ * @ignore - internal component.
+ */
+var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
+  d: "M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"
+}), 'InfoOutlined');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/internal/svg-icons/ReportProblemOutlined.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/internal/svg-icons/ReportProblemOutlined.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+
+/**
+ * @ignore - internal component.
+ */
+var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
+  d: "M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+}), 'ReportProblemOutlined');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/internal/svg-icons/SuccessOutlined.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/internal/svg-icons/SuccessOutlined.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+
+/**
+ * @ignore - internal component.
+ */
+var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
+  d: "M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
+}), 'SuccessOutlined');
+
+exports.default = _default;
 
 /***/ }),
 
@@ -90677,11 +91263,11 @@ var Followee_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Fo
 var Follower_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Follower */ "./resources/ts/views/pages/follow/Follower.tsx"));
 var Layout_1 = __importDefault(__webpack_require__(/*! ./views/lauout/Layout */ "./resources/ts/views/lauout/Layout.tsx"));
 var PostResult_1 = __importDefault(__webpack_require__(/*! ./views/search/PostResult */ "./resources/ts/views/search/PostResult.tsx"));
-var UserResult_1 = __importDefault(__webpack_require__(/*! ./views/search/UserResult */ "./resources/ts/views/search/UserResult.tsx"));
 var Edit_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/Edit */ "./resources/ts/views/pages/posts/Edit.tsx"));
 var Setting_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Setting */ "./resources/ts/views/pages/user/Setting.tsx"));
 var Unregisted_1 = __importDefault(__webpack_require__(/*! ./views/lauout/Unregisted */ "./resources/ts/views/lauout/Unregisted.tsx"));
 var NotFound_1 = __importDefault(__webpack_require__(/*! ./views/pages/404/NotFound */ "./resources/ts/views/pages/404/NotFound.tsx"));
+var FolloweePosts_1 = __importDefault(__webpack_require__(/*! ./views/pages/top/FolloweePosts */ "./resources/ts/views/pages/top/FolloweePosts.tsx"));
 function AuthRoute(_a) {
     var layout = _a.layout, component = _a.component, rest = __rest(_a, ["layout", "component"]);
     return (react_1.default.createElement(react_router_dom_1.Route, __assign({}, rest, { render: function (props) {
@@ -90711,7 +91297,8 @@ var App = function () {
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/followee/:id", component: Followee_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/follower/:id", component: Follower_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/search/post", component: PostResult_1.default }),
-            react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/search/user", component: UserResult_1.default }),
+            react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/followee/posts", component: FolloweePosts_1.default }),
+            react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/:user/edit/:id", component: Edit_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/:user/edit/:id", component: Edit_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/create", component: Create_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/user", component: Login_User_1.default }),
@@ -93145,6 +93732,405 @@ exports.default = View;
 
 /***/ }),
 
+/***/ "./resources/ts/views/pages/top/FolloweePosts.tsx":
+/*!********************************************************!*\
+  !*** ./resources/ts/views/pages/top/FolloweePosts.tsx ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
+var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
+var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
+var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var MenuItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert/Alert */ "./node_modules/@material-ui/lab/Alert/Alert.js"));
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    icon: {
+        marginRight: theme.spacing(2)
+    },
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(8, 0, 6)
+    },
+    heroButtons: {
+        marginTop: theme.spacing(4)
+    },
+    cardGrid: {
+        paddingRight: theme.spacing(15),
+        paddingLeft: theme.spacing(15)
+    },
+    card: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px",
+        "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.03)"
+        }
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(6)
+    },
+    profileContent: {
+        display: "flex",
+        marginBottom: "0.5rem"
+    },
+    grid: {
+        marginBottom: "10px"
+    },
+    link: {
+        textDecoration: "none",
+        "&:hover": {
+            textDecoration: "none"
+        }
+    },
+    siteName: {
+        marginBottom: "0.5rem",
+        color: "rgb(83, 100, 113)"
+    },
+    cardContent: {
+        flexGrow: 1
+    },
+    cardMedia: {
+        paddingTop: "56.25%",
+        marginBottom: "0.5rem",
+        "&:hover": {
+            opacity: 0.3
+        }
+    },
+    cardMediaContainer: {},
+    profileContainer: {
+        display: "flex"
+    },
+    data: {},
+    dataContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        fontSize: "0.8rem",
+        color: "rgb(83, 100, 113)"
+    },
+    body: {
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        marginBottom: "0.5rem"
+    },
+    avatar: {
+        marginRight: "1rem"
+    },
+    userName: {
+        color: "black"
+    },
+    selectBox: {
+        marginBottom: "1rem"
+    }
+}); });
+var currencies = [
+    {
+        value: "followee",
+        label: "フォロー中のユーザーの投稿を見る"
+    },
+    {
+        value: "all",
+        label: "全ての投稿を見る"
+    }
+];
+var FolloweePosts = function () {
+    var classes = useStyles();
+    var dispatch = react_redux_1.useDispatch();
+    var history = react_router_1.useHistory();
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
+    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
+    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
+    var _d = react_1.useState("followee"), currency = _d[0], setCurrency = _d[1];
+    var _e = react_1.useState(false), endMessage = _e[0], setEndMessage = _e[1];
+    react_1.useEffect(function () {
+        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, axios_1.default
+                            .get("/json")
+                            .then(function (res) {
+                            if (res.data) {
+                                dispatch(action_1.login_user(res.data));
+                            }
+                            else {
+                                history.push("/register");
+                            }
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        f();
+    }, []);
+    var onAddLike = function (post_id, index) {
+        if (user) {
+            var user_id = user.id;
+            var indexNumber_1 = index;
+            axios_1.default
+                .post("/api/add/like", {
+                user_id: user_id,
+                post_id: post_id
+            })
+                .then(function (res) {
+                setPosts(posts.map(function (post, i) {
+                    if (i === indexNumber_1) {
+                        return res.data;
+                    }
+                    else {
+                        return post;
+                    }
+                }));
+            })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //いいね解除
+    var onRemoveLike = function (post_id, index) {
+        if (user) {
+            var user_id = user.id;
+            axios_1.default
+                .post("/api/del/like", {
+                user_id: user_id,
+                post_id: post_id
+            })
+                .then(function (res) {
+                setPosts(posts.map(function (post, i) {
+                    if (i === index) {
+                        return res.data;
+                    }
+                    else {
+                        return post;
+                    }
+                }));
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //いいねしたことあるか、
+    var isLikedBefore = function (post) {
+        if (user) {
+            var even = function (like) { return like.user_id === user.id; };
+            var isLiked = post.likes.some(even);
+            return isLiked;
+        }
+    };
+    var getDate = function (date) {
+        var toDate = new Date(date);
+        var month = toDate.getMonth() + 1;
+        var day = toDate.getDate();
+        return (react_1.default.createElement(Typography_1.default, { className: classes.data },
+            month,
+            "\u6708 ",
+            day,
+            "\u65E5"));
+    };
+    //フォロー中のユーザーの投稿取得
+    var loadMoreFolloweePost = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    console.log("followee", page);
+                    setIsFetching(true);
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/post/scroll/followee", {
+                            params: { number: page, user_id: user.id }
+                        })
+                            .then(function (res) {
+                            console.log(res);
+                            var data = res.data;
+                            if (data === "no followee") {
+                                setEndMessage(true);
+                                return;
+                            }
+                            return data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        //しょっぱなからデータがない場合
+                        if (!posts[0]) {
+                            setEndMessage(true);
+                        }
+                        setHasMore(false);
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
+                    setIsFetching(false);
+                    _a.label = 2;
+                case 2: return [2 /*return*/];
+            }
+        });
+    }); };
+    var handleChange = function (e) {
+        history.push("/");
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_helmet_1.Helmet, null,
+            react_1.default.createElement("title", null, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306E\u6295\u7A3F | \u3086\u3046\u3042\u308B\u3048\u308B")),
+        react_1.default.createElement(TextField_1.default, { select: true, value: currency, onChange: handleChange, className: classes.selectBox }, currencies.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value }, option.label)); })),
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMoreFolloweePost, hasMore: !isFetching && hasMore && Boolean(user) },
+            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
+                posts.map(function (post, i) {
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
+                        react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                pathname: "/" + post.user.name + "/post/" + post.post.id,
+                                state: {
+                                    post: post.post,
+                                    user: post.user,
+                                    likes: post.likes
+                                }
+                            }, className: classes.link },
+                            react_1.default.createElement(Card_1.default, { className: classes.card },
+                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                    react_1.default.createElement("object", null,
+                                        react_1.default.createElement("div", { className: classes.profileContent },
+                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
+                                                    state: post.user
+                                                }, className: classes.profileContainer },
+                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
+                                                        .profile_image, className: classes.avatar }),
+                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
+                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
+                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
+                                    react_1.default.createElement("object", null,
+                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                window.open(post.post.url);
+                                            } },
+                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
+                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
+                                    react_1.default.createElement("div", { className: classes.dataContainer },
+                                        react_1.default.createElement(CalendarToday_1.default, null),
+                                        getDate(post.post.updated_at))),
+                                react_1.default.createElement(CardActions_1.default, null,
+                                    react_1.default.createElement("object", null,
+                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                onRemoveLike(post.post
+                                                    .id, i);
+                                            }, color: "primary" },
+                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                onAddLike(post.post
+                                                    .id, i);
+                                            } },
+                                            react_1.default.createElement(ThumbUp_1.default, null))),
+                                        post.likes.length))))));
+                }))),
+        endMessage && (react_1.default.createElement(Alert_1.default, { severity: "error" }, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u304C\u3044\u307E\u305B\u3093"))));
+};
+exports.default = FolloweePosts;
+
+
+/***/ }),
+
 /***/ "./resources/ts/views/pages/top/Top.tsx":
 /*!**********************************************!*\
   !*** ./resources/ts/views/pages/top/Top.tsx ***!
@@ -93237,6 +94223,8 @@ var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Thumb
 var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
 var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var MenuItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     icon: {
         marginRight: theme.spacing(2)
@@ -93313,16 +94301,31 @@ var useStyles = styles_1.makeStyles(function (theme) { return ({
     },
     userName: {
         color: "black"
+    },
+    selectBox: {
+        marginBottom: "1rem"
     }
 }); });
+var currencies = [
+    {
+        value: "followee",
+        label: "フォロー中のユーザーの投稿を見る"
+    },
+    {
+        value: "all",
+        label: "全ての投稿を見る"
+    }
+];
 var Top = function () {
     var classes = useStyles();
     var dispatch = react_redux_1.useDispatch();
     var history = react_router_1.useHistory();
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
+    var _b = react_1.useState([]), followeePosts = _b[0], setFolloweePosts = _b[1];
+    var _c = react_1.useState(true), hasMore = _c[0], setHasMore = _c[1];
+    var _d = react_1.useState(false), isFetching = _d[0], setIsFetching = _d[1];
+    var _e = react_1.useState("all"), currency = _e[0], setCurrency = _e[1];
     react_1.useEffect(function () {
         var f = function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -93417,12 +94420,13 @@ var Top = function () {
             day,
             "\u65E5"));
     };
-    //項目を読み込むときのコールバック
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+    //全投稿取得
+    var loadMoreAllPost = function (page) { return __awaiter(void 0, void 0, void 0, function () {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    console.log("all", page);
                     setIsFetching(true);
                     return [4 /*yield*/, axios_1.default
                             .get("/api/get/post/scroll", { params: { number: page } })
@@ -93447,10 +94451,19 @@ var Top = function () {
             }
         });
     }); };
+    var handleChange = function (e) {
+        if (!user) {
+            history.push("/register");
+        }
+        else {
+            history.push("/followee/posts");
+        }
+    };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8 | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && hasMore },
+        react_1.default.createElement(TextField_1.default, { select: true, value: currency, onChange: handleChange, className: classes.selectBox }, currencies.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value }, option.label)); })),
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMoreAllPost, hasMore: !isFetching && hasMore },
             react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
                 posts.map(function (post, i) {
                     return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
@@ -95082,295 +96095,6 @@ var PostResult = function () {
                 })))));
 };
 exports.default = PostResult;
-
-
-/***/ }),
-
-/***/ "./resources/ts/views/search/UserResult.tsx":
-/*!**************************************************!*\
-  !*** ./resources/ts/views/search/UserResult.tsx ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
-//import Link from '@material-ui/core/Link';
-var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
-var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    card: {
-        display: "flex",
-        justifyContent: "space-between"
-    },
-    cardContent: {
-        display: "flex"
-    },
-    grid: {
-        marginBottom: "10px"
-    }
-}); });
-var UserResult = function () {
-    var dispatch = react_redux_1.useDispatch();
-    var classes = useStyles();
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var _a = react_1.useState([]), results = _a[0], setResults = _a[1];
-    var location = react_router_1.useLocation();
-    var history = react_router_1.useHistory();
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
-    var parsed = query_string_1.default.parse(location.search);
-    var query = parsed.q;
-    react_1.useEffect(function () {
-        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!!user) return [3 /*break*/, 2];
-                        //ログインされていない場合
-                        return [4 /*yield*/, axios_1.default
-                                .get("/json")
-                                .then(function (res) {
-                                if (res.data) {
-                                    dispatch(action_1.login_user(res.data));
-                                }
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
-                    case 1:
-                        //ログインされていない場合
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/];
-                }
-            });
-        }); };
-        f();
-    }, []);
-    //フォロー関数
-    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .post("/api/add/follow/search", {
-                            followee: user.id,
-                            follower: targetId
-                        })
-                            .then(function (res) {
-                            var follow = res.data;
-                            setResults(results.map(function (result, i) {
-                                if (result.user.id === targetId) {
-                                    var newResult = {
-                                        user: result.user,
-                                        follow: follow
-                                    };
-                                    return newResult;
-                                }
-                                else {
-                                    return result;
-                                }
-                            }));
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    history.push("/register");
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    //フォロー解除関数
-    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .post("/api/del/follow/search", {
-                            followee: user.id,
-                            follower: targetId
-                        })
-                            .then(function (res) {
-                            setResults(results.map(function (result, i) {
-                                if (result.user.id === targetId) {
-                                    var newResult = {
-                                        user: result.user
-                                    };
-                                    return newResult;
-                                }
-                                else {
-                                    return result;
-                                }
-                            }));
-                        })
-                            .catch(function (error) { })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    history.push("/register");
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    var followButton = function (result) {
-        if (user) {
-            if (result.follow) {
-                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
-            }
-            else if (user.id === result.user.id) {
-                //同一アバターの場合
-                return null;
-            }
-            else {
-                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-            }
-        }
-        else {
-            //非ログイン
-            return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-        }
-    };
-    //ロード中に表示する項目
-    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
-    //項目を読み込むときのコールバック
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setIsFetching(true);
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/user/search", {
-                            params: { q: query, number: page, user_id: user === null || user === void 0 ? void 0 : user.id }
-                        })
-                            .then(function (res) {
-                            return res.data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setResults(__spreadArray(__spreadArray([], results), [data]));
-                    setIsFetching(false);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(react_helmet_1.Helmet, null,
-            react_1.default.createElement("title", null,
-                query,
-                "\u306B\u95A2\u3059\u308B\u30E6\u30FC\u30B6\u30FC\u306E\u691C\u7D22\u7D50\u679C | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
-            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
-                results.map(function (result, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(Card_1.default, { className: classes.card },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
-                                            .profile_image }),
-                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
-                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
-                })))));
-};
-exports.default = UserResult;
 
 
 /***/ }),

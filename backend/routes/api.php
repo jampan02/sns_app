@@ -21,7 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(["middleware"=>"api"],function(){
 	//ユーザー
-	//Route::get("user","UserController@getUsers");
 	Route::get("post_user","UserController@getPostUser");
 	Route::get("get/user","UserController@getUser");
 	Route::post("edit/user/name","UserController@editUserName");
@@ -29,12 +28,12 @@ Route::group(["middleware"=>"api"],function(){
 	Route::get("get/posts/sort/new","PostController@getNewerPosts");
 	Route::get("get/post","PostController@getPost");
 	Route::get("get/post/scroll","PostController@getPostByScroll");
+	Route::get("get/post/scroll/followee","PostController@getPostByScrollOnlyFollowee");
 	Route::get("get/post/scroll/user","PostController@getPostByScrollInUser");
 	Route::get("get/posts/sort/popular","PostController@getPopularPosts");
 	Route::post("add","PostController@addPost");
 	Route::post("edit/post","PostController@editPost");
 	Route::post("del/post","PostController@delPost");
-	//Route::get("get/post/user","PostController@getPostsByUserId")
 	//いいね
 	Route::post("add/like","LikeController@addLike");
 	Route::get("get/likes","LikeController@getLikes");
