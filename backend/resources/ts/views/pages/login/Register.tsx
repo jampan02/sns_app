@@ -68,7 +68,7 @@ export default function Register() {
         }
         if (name === "テストユーザー") {
             setErrorMessage("その名前は使用できません");
-            return;
+            //  return;
         }
         if (email === "") {
             setErrorMessage("メールアドレスは必須です");
