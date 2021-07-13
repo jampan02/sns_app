@@ -166,6 +166,7 @@ class PostController extends Controller
  public function getPostByScroll(Request $request){
 	$number=$request->number-1;
 	
+	
 	$post=Post::orderBy("updated_at","DESC")->skip($number)->first();
 	if($post){
 	$user=User::where("id",$post->user_id)->first();

@@ -106,7 +106,8 @@ export default function Register() {
                 console.log(error);
             });
     };
-    const onTestLogin = async () => {
+    const onTestLogin = async (e: any) => {
+        e.preventDefault();
         const data = {
             email: "jampan021@gmail.com",
             password: "testuser"

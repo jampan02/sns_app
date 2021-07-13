@@ -56,7 +56,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     //ユーザー情報
 
-    const onSignUp = (e: any) => {
+    const onLogin = (e: any) => {
         if (password === "") {
             setErrorMessage("パスワードは必須です");
             return;
@@ -143,9 +143,9 @@ const Login = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={onSignUp}
+                            onClick={onLogin}
                         >
-                            登録
+                            ログイン
                         </Button>
                         <Grid container justify="flex-end">
                             <Grid item>

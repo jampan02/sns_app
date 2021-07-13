@@ -92581,7 +92581,7 @@ var Login = function () {
     var _b = react_1.useState(""), errorMessage = _b[0], setErrorMessage = _b[1];
     var _c = react_1.useState(""), email = _c[0], setEmail = _c[1];
     //ユーザー情報
-    var onSignUp = function (e) {
+    var onLogin = function (e) {
         if (password === "") {
             setErrorMessage("パスワードは必須です");
             return;
@@ -92624,7 +92624,7 @@ var Login = function () {
                         react_1.default.createElement(Grid_1.default, { item: true, xs: 12 },
                             react_1.default.createElement(TextField_1.default, { variant: "outlined", required: true, fullWidth: true, name: "password", label: "\u30D1\u30B9\u30EF\u30FC\u30C9", type: "password", id: "password", autoComplete: "current-password", onChange: function (e) { return setPassword(e.target.value); }, value: password }))),
                     errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
-                    react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onSignUp }, "\u767B\u9332"),
+                    react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onLogin }, "\u30ED\u30B0\u30A4\u30F3"),
                     react_1.default.createElement(Grid_1.default, { container: true, justify: "flex-end" },
                         react_1.default.createElement(Grid_1.default, { item: true },
                             react_1.default.createElement(react_router_dom_1.Link, { to: "/register" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u305B\u3093\u304B\uFF1F"))))),
@@ -92814,11 +92814,12 @@ function Register() {
             }
         });
     }); };
-    var onTestLogin = function () { return __awaiter(_this, void 0, void 0, function () {
+    var onTestLogin = function (e) { return __awaiter(_this, void 0, void 0, function () {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    e.preventDefault();
                     data = {
                         email: "jampan021@gmail.com",
                         password: "testuser"
