@@ -455,18 +455,15 @@ const Login_User = () => {
                                     >
                                         {user.self_introduction}
                                     </Typography>
-                                    {user.name !== "テストユーザー" && (
-                                        <CardActions
-                                            className={classes.cardAction}
+
+                                    <CardActions className={classes.cardAction}>
+                                        <Button
+                                            variant="contained"
+                                            onClick={onSetUserData}
                                         >
-                                            <Button
-                                                variant="contained"
-                                                onClick={onSetUserData}
-                                            >
-                                                編集
-                                            </Button>
-                                        </CardActions>
-                                    )}
+                                            編集
+                                        </Button>
+                                    </CardActions>
                                 </>
                             )}
 
