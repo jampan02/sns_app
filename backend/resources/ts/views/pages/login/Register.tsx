@@ -60,10 +60,14 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
-    const onSignUp = (e: any) => {
+    const onSignUp = async (e: any) => {
         e.preventDefault();
         if (name === "") {
             setErrorMessage("ユーザーネームは必須です");
+            return;
+        }
+        if (name === "テストユーザー") {
+            setErrorMessage("その名前は使用できません");
             return;
         }
         if (email === "") {
@@ -93,8 +97,23 @@ export default function Register() {
             email,
             password_confirmation: passwordConfirm
         };
-        axios
+        await axios
             .post("/register", data)
+            .then(res => {
+                history.push("/");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+    const onTestLogin = async () => {
+        const data = {
+            email: "jampan021@gmail.com",
+            password: "testuser"
+        };
+
+        await axios
+            .post("/login", data)
             .then(res => {
                 history.push("/");
             })
@@ -196,6 +215,15 @@ export default function Register() {
                             onClick={onSignUp}
                         >
                             登録
+                        </Button>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            className={classes.submit}
+                            onClick={onTestLogin}
+                        >
+                            テストログイン
                         </Button>
 
                         <Grid container justify="flex-end">

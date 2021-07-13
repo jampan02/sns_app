@@ -139,7 +139,6 @@ const useStyles = makeStyles(theme => ({
             opacity: 0.5
         }
     },
-
     cardMediaContainer: {},
     profileContainer: {
         display: "flex"
@@ -456,14 +455,18 @@ const Login_User = () => {
                                     >
                                         {user.self_introduction}
                                     </Typography>
-                                    <CardActions className={classes.cardAction}>
-                                        <Button
-                                            variant="contained"
-                                            onClick={onSetUserData}
+                                    {user.name !== "テストユーザー" && (
+                                        <CardActions
+                                            className={classes.cardAction}
                                         >
-                                            編集
-                                        </Button>
-                                    </CardActions>
+                                            <Button
+                                                variant="contained"
+                                                onClick={onSetUserData}
+                                            >
+                                                編集
+                                            </Button>
+                                        </CardActions>
+                                    )}
                                 </>
                             )}
 
