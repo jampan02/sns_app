@@ -177,7 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 		         //ここに一行追加----------------------------------//
 				 Weidner\Goutte\GoutteServiceProvider::class, 
-				 NotificationChannels\WebPush\WebPushServiceProvider::class,
+
     ],
 
     /*
