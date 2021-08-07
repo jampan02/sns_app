@@ -15,13 +15,16 @@ class FollowController extends Controller
 		$followee=Follow::where("followee_id",$user_id)->get();
 		//フォロワー中
 		$follower=Follow::where("follower_id",$user_id)->get();
-
-		$followee_length=count($followee);
-		$follower_length=count($follower);
-
 		$result=array();
-		$result["followee"]=$followee_length;
-		$result["follower"]=$follower_length;
+		if($followee){
+			$followee_length=count($followee);
+			$result["followee"]=$followee_length;
+		}
+		if($follower){
+			$follower_length=count($follower);
+			$result["follower"]=$follower_length;
+		}
+
 		return $result;
 	}
     //フォロー関数
@@ -83,13 +86,14 @@ class FollowController extends Controller
 		$target_id=$request->targetId;
 		$user_id=$request->user_id;
 		$following_user=Follow::where("followee_id",$target_id)->skip($number)->first();
+		if($following_user){
 		Log::debug($following_user);
 		$user=User::orderBy("updated_at","DESC")->where("id",$following_user->follower_id)->first();
 		$follow=Follow::where("followee_id",$user_id)->where("follower_id",$user->id)->first();
 		$result=array();
 		$result["user"]=$user;
 		$result["follow"]=$follow;
-		if($result){
+	
 			return $result;
 		}
 	}
@@ -100,18 +104,15 @@ class FollowController extends Controller
 			$user_id=$request->user_id;
 			$following_user=Follow::where("follower_id",$target_id)->skip($number)->first();
 			Log::debug($following_user);
+			if($following_user){
 			$user=User::orderBy("updated_at","DESC")->where("id",$following_user->followee_id)->first();
-			$follow=Follow::where("follower_id",$user_id)->where("follower_id",$user->id)->first();
+			$follow=Follow::where("followee_id",$user_id)->where("follower_id",$user->id)->first();
 			$result=array();
 			$result["user"]=$user;
 			$result["follow"]=$follow;
-			if($result){
-				return $result;
+			return $result;
 			}
-
-
-		
-		}
+			}
 		public function addFollowSearch(Request $request){
 			$follow=new Follow;
 			$followee=$request->followee;

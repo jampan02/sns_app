@@ -4,7 +4,7 @@ import { LIKE, MIXED_POST_DATA } from "../../../utils/type";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../store";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import InfiniteScroll from "react-infinite-scroller";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -21,86 +21,12 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { Helmet } from "react-helmet";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import Posts from "../../components/Posts";
+import Snackbar from "@material-ui/core/Snackbar";
+import { Button } from "@material-ui/core";
+
 const useStyles = makeStyles(theme => ({
-    icon: {
-        marginRight: theme.spacing(2)
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4)
-    },
-    cardGrid: {
-        paddingRight: theme.spacing(15),
-        paddingLeft: theme.spacing(15)
-    },
-    card: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.03)"
-        }
-    },
-
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-    profileContent: {
-        display: "flex",
-        marginBottom: "0.5rem"
-    },
-    grid: {
-        marginBottom: "10px"
-    },
-    link: {
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "none"
-        }
-    },
-    siteName: {
-        marginBottom: "0.5rem",
-        color: "rgb(83, 100, 113)"
-    },
-    cardContent: {
-        flexGrow: 1
-    },
-    cardMedia: {
-        paddingTop: "56.25%", // 16:9
-        marginBottom: "0.5rem",
-        transition: ".3s",
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-
-    cardMediaContainer: {},
-    profileContainer: {
-        display: "flex"
-    },
-    data: {},
-    dataContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        fontSize: "0.8rem",
-        color: "rgb(83, 100, 113)"
-    },
-    body: {
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        marginBottom: "0.5rem"
-    },
-    avatar: {
-        marginRight: "1rem"
-    },
-    userName: {
-        color: "black"
-    },
     selectBox: {
         marginBottom: "1rem"
     }
@@ -116,7 +42,9 @@ const currencies = [
         label: "全ての投稿を見る"
     }
 ];
-
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const Top: React.FC = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -127,126 +55,32 @@ const Top: React.FC = () => {
     const [hasMore, setHasMore] = useState(true);
     const [isFetching, setIsFetching] = useState(false);
     const [currency, setCurrency] = useState("all");
+    const [message, setMessage] = useState("");
+    type Location = {
+        data?: { message: string };
+    };
+    const location: any = useLocation();
 
     useEffect(() => {
-        const f = async () => {
-            if (!user) {
-                //ログインされていない場合
-                await axios
-                    .get("/json")
-                    .then(res => {
-                        if (res.data) {
-                            dispatch(login_user(res.data));
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-        };
-        f();
+        if (location.state !== undefined) {
+            console.log(location.state);
+            setMessage(location.state.message);
+            handleClick();
+        }
     }, []);
 
-    const onAddLike = (post_id: number, index: number) => {
-        if (user) {
-            const user_id = user.id;
+    const [open, setOpen] = React.useState(false);
 
-            const indexNumber = index;
-            axios
-                .post("/api/add/like", {
-                    user_id,
-                    post_id
-                })
-                .then(res => {
-                    setPosts(
-                        posts.map((post, i) => {
-                            if (i === indexNumber) {
-                                return res.data;
-                            } else {
-                                return post;
-                            }
-                        })
-                    );
-                })
-                .catch(error => console.log(error));
-        } else {
-            history.push("/register");
-        }
-    };
-    //いいね解除
-    const onRemoveLike = (post_id: number, index: number) => {
-        if (user) {
-            const user_id = user.id;
-            axios
-                .post("/api/del/like", {
-                    user_id,
-                    post_id
-                })
-                .then(res => {
-                    setPosts(
-                        posts.map((post, i) => {
-                            if (i === index) {
-                                return res.data;
-                            } else {
-                                return post;
-                            }
-                        })
-                    );
-                });
-        } else {
-            history.push("/register");
-        }
-    };
-    //いいねしたことあるか、
-    const isLikedBefore = (post: MIXED_POST_DATA) => {
-        if (user) {
-            const even = (like: LIKE) => like.user_id === user.id;
-            const isLiked = post.likes.some(even);
-            return isLiked;
-        }
+    const handleClick = () => {
+        setOpen(true);
     };
 
-    const getDate = (date: string) => {
-        const toDate = new Date(date);
-        const month = toDate.getMonth() + 1;
-        const day = toDate.getDate();
-        return (
-            <Typography className={classes.data}>
-                {month}月 {day}日
-            </Typography>
-        );
-    };
-
-    //全投稿取得
-    const loadMoreAllPost = async (page: number) => {
-        setIsFetching(true);
-        const data: MIXED_POST_DATA = await axios
-            .get("/api/get/post/scroll", { params: { number: page } })
-            .then(res => {
-                const data = res.data;
-
-                return data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-        //データ件数が0件の場合、処理終了
-        if (!data) {
-            setHasMore(false);
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === "clickaway") {
             return;
         }
-        //取得データをリストに追加*
-        setPosts([...posts, data]);
 
-        setIsFetching(false);
-    };
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!user) {
-            history.push("/register");
-        } else {
-            history.push("/followee/posts");
-        }
+        setOpen(false);
     };
 
     return (
@@ -254,184 +88,13 @@ const Top: React.FC = () => {
             <Helmet>
                 <title>トップページ | ゆうあるえる</title>
             </Helmet>
-            <TextField
-                select
-                value={currency}
-                onChange={handleChange}
-                className={classes.selectBox}
-            >
-                {currencies.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                    </MenuItem>
-                ))}
-            </TextField>
-            <InfiniteScroll
-                loadMore={loadMoreAllPost} //currencyの状態によって、表示する項目変更
-                hasMore={!isFetching && hasMore} // isFetchingを判定条件に追加
-            >
-                <Grid container>
-                    {posts[0] &&
-                        posts.map((post, i) => {
-                            return (
-                                <Grid
-                                    item
-                                    key={i}
-                                    xs={12}
-                                    className={classes.grid}
-                                >
-                                    <Link
-                                        to={{
-                                            pathname: `/${post.user.name}/post/${post.post.id}`,
-                                            state: {
-                                                post: post.post,
-                                                user: post.user,
-                                                likes: post.likes
-                                            }
-                                        }}
-                                        className={classes.link}
-                                    >
-                                        <Card className={classes.card}>
-                                            <CardContent
-                                                className={classes.cardContent}
-                                            >
-                                                <object>
-                                                    <div
-                                                        className={
-                                                            classes.profileContent
-                                                        }
-                                                    >
-                                                        <Link
-                                                            to={{
-                                                                pathname: `/${post.user.name}/user/${post.user.id}`,
-                                                                state: post.user
-                                                            }}
-                                                            className={
-                                                                classes.profileContainer
-                                                            }
-                                                        >
-                                                            <Avatar
-                                                                alt="image"
-                                                                src={
-                                                                    post.user
-                                                                        .profile_image
-                                                                }
-                                                                className={
-                                                                    classes.avatar
-                                                                }
-                                                            />
-                                                            <Typography
-                                                                className={
-                                                                    classes.userName
-                                                                }
-                                                            >
-                                                                {post.user.name}
-                                                            </Typography>
-                                                        </Link>
-                                                    </div>
-                                                </object>
-                                                <Typography
-                                                    variant="h5"
-                                                    component="h2"
-                                                >
-                                                    {post.post.title}
-                                                </Typography>
-                                                <Typography
-                                                    className={classes.siteName}
-                                                >
-                                                    {post.post.site_name}
-                                                </Typography>
-                                                <object>
-                                                    <div
-                                                        className={
-                                                            classes.cardMediaContainer
-                                                        }
-                                                        onClick={(e: any) => {
-                                                            e.stopPropagation();
-                                                            e.preventDefault();
-                                                            window.open(
-                                                                post.post.url
-                                                            );
-                                                        }}
-                                                    >
-                                                        <CardMedia
-                                                            className={
-                                                                classes.cardMedia
-                                                            }
-                                                            image={
-                                                                post.post.image
-                                                            }
-                                                            title={
-                                                                post.post.title
-                                                            }
-                                                        />
-                                                    </div>
-                                                </object>
 
-                                                <Typography
-                                                    className={classes.body}
-                                                >
-                                                    {post.post.body}
-                                                </Typography>
-                                                <div
-                                                    className={
-                                                        classes.dataContainer
-                                                    }
-                                                >
-                                                    <CalendarTodayIcon />
-
-                                                    {getDate(
-                                                        post.post.updated_at
-                                                    )}
-                                                </div>
-                                            </CardContent>
-
-                                            <CardActions>
-                                                <object>
-                                                    {isLikedBefore(post) ? (
-                                                        <IconButton
-                                                            onClick={(
-                                                                e: any
-                                                            ) => {
-                                                                e.stopPropagation();
-                                                                e.preventDefault();
-                                                                onRemoveLike(
-                                                                    post.post
-                                                                        .id,
-                                                                    i
-                                                                );
-                                                            }}
-                                                            color="primary"
-                                                        >
-                                                            <ThumbUpIcon />
-                                                        </IconButton>
-                                                    ) : (
-                                                        <IconButton
-                                                            onClick={(
-                                                                e: any
-                                                            ) => {
-                                                                e.stopPropagation();
-                                                                e.preventDefault();
-                                                                onAddLike(
-                                                                    post.post
-                                                                        .id,
-                                                                    i
-                                                                );
-                                                            }}
-                                                        >
-                                                            <ThumbUpIcon />
-                                                        </IconButton>
-                                                    )}
-                                                    {post.likes.length}
-                                                </object>
-                                            </CardActions>
-                                        </Card>
-                                    </Link>
-                                </Grid>
-                            );
-                        })}
-                </Grid>
-            </InfiniteScroll>
+            <Posts path="/api/get/post/scroll" defaultCurrency="all" />
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    {message}
+                </Alert>
+            </Snackbar>
         </>
     );
 };

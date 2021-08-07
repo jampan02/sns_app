@@ -10,10 +10,14 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "electrolinux/phpquery": "^0.9.6",
+        "fabpot/goutte": "v3.3.1",
         "fideloper/proxy": "^4.4",
+        "guzzlehttp/guzzle": "^6.0",
+        "laravel-notification-channels/webpush": "^5.1",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1",
+        "pusher/pusher-php-server": "v5.0.3",
         "weidner/goutte": "1.6"
     },
     "require-dev": {

@@ -26,6 +26,7 @@ import { getIsLogin } from "../../store/api/api";
 //import Link from '@material-ui/core/Link';
 import { login_user } from "../../store/counter/user/action";
 import { Helmet } from "react-helmet";
+import StickUser from "../components/StickUser";
 const useStyles = makeStyles(theme => ({
     card: {
         display: "flex",
@@ -54,203 +55,19 @@ const UserResult = () => {
     const [isFetching, setIsFetching] = useState(false);
     const parsed = queryString.parse(location.search);
     const query = parsed.q as string;
-    useEffect(() => {
-        const f = async () => {
-            if (!user) {
-                //ログインされていない場合
 
-                await axios
-                    .get("/json")
-                    .then(res => {
-                        if (res.data) {
-                            dispatch(login_user(res.data));
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-        };
-        f();
-    }, []);
-    //フォロー関数
-    const onFollow = async (targetId: number) => {
-        if (user) {
-            await axios
-                .post("/api/add/follow/search", {
-                    followee: user.id,
-                    follower: targetId
-                })
-                .then(res => {
-                    const follow = res.data as FOLLOW;
-                    setResults(
-                        results.map((result, i) => {
-                            if (result.user.id === targetId) {
-                                const newResult: DATA = {
-                                    user: result.user,
-                                    follow
-                                };
-                                return newResult;
-                            } else {
-                                return result;
-                            }
-                        })
-                    );
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        } else {
-            history.push("/register");
-        }
-    };
-    //フォロー解除関数
-    const onRemoveFollow = async (targetId: number) => {
-        if (user) {
-            await axios
-                .post("/api/del/follow/search", {
-                    followee: user.id,
-                    follower: targetId
-                })
-                .then(res => {
-                    setResults(
-                        results.map((result, i) => {
-                            if (result.user.id === targetId) {
-                                const newResult: DATA = {
-                                    user: result.user
-                                };
-                                return newResult;
-                            } else {
-                                return result;
-                            }
-                        })
-                    );
-                })
-                .catch(error => {});
-        } else {
-            history.push("/register");
-        }
-    };
-    const followButton = (result: DATA) => {
-        if (user) {
-            if (result.follow) {
-                return (
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => onRemoveFollow(result.user.id)}
-                    >
-                        フォローはずす
-                    </Button>
-                );
-            } else if (user.id === result.user.id) {
-                //同一アバターの場合
-                return null;
-            } else {
-                return (
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => onFollow(result.user.id)}
-                    >
-                        フォローする
-                    </Button>
-                );
-            }
-        } else {
-            //非ログイン
-            return (
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => history.push("/register")}
-                >
-                    フォローする
-                </Button>
-            );
-        }
-    };
-
-    //ロード中に表示する項目
-    const loader = (
-        <div className="loader" key={0}>
-            Loading ...
-        </div>
-    );
-    //項目を読み込むときのコールバック
-    const loadMore = async (page: number) => {
-        setIsFetching(true);
-
-        const data: DATA = await axios
-            .get("/api/get/user/search", {
-                params: { q: query, number: page, user_id: user?.id }
-            })
-            .then(res => {
-                return res.data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-        //データ件数が0件の場合、処理終了
-        if (!data) {
-            setHasMore(false);
-            return;
-        }
-        //取得データをリストに追加*
-
-        setResults([...results, data]);
-        setIsFetching(false);
-    };
     return (
         <>
             <Helmet>
-                <title>{query}に関するユーザーの検索結果 | ゆうあるえる</title>
+                <title>
+                    "{query}"に関するユーザーの検索結果 | ゆうあるえる
+                </title>
             </Helmet>
-            <InfiniteScroll
-                loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
-                hasMore={!isFetching && user && hasMore} // isFetchingを判定条件に追加
-                loader={loader}
-                useWindow={false}
-            >
-                <Grid container>
-                    {results[0] &&
-                        results.map((result, i) => {
-                            return (
-                                <Grid
-                                    item
-                                    key={i}
-                                    xs={12}
-                                    className={classes.grid}
-                                >
-                                    <Card className={classes.card}>
-                                        <Link
-                                            to={`/${result.user.name}/user/${result.user.id}`}
-                                        >
-                                            <CardContent
-                                                className={classes.cardContent}
-                                            >
-                                                <Avatar
-                                                    alt="image"
-                                                    src={
-                                                        result.user
-                                                            .profile_image
-                                                    }
-                                                />
-                                                <Typography>
-                                                    {result.user.name}
-                                                </Typography>
-                                            </CardContent>
-                                        </Link>
-                                        <CardActions>
-                                            {followButton(result)}
-                                        </CardActions>
-                                    </Card>
-                                </Grid>
-                            );
-                        })}
-                </Grid>
-            </InfiniteScroll>
+            <StickUser
+                path="/api/get/user/search"
+                isSearchResult={true}
+                q={query}
+            />
         </>
     );
 };

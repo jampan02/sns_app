@@ -76,6 +76,7 @@ class PostController extends Controller
 		$number=$request->number-1;
 		$queryS=$request->q;
 		$post=Post::orderBy("updated_at","DESC")->where("body","like","%{$queryS}%")->orWhere("title","like","%{$queryS}%")->skip($number)->first();
+		Log::debug($post);
 		if($post){
 		$user=User::where("id",$post->user_id)->first();
 		$likes=Like::where("post_id",$post->id)->get();

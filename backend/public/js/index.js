@@ -705,37 +705,6 @@ function _unsupportedIterableToArray(o, minLen) {
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/extends.js":
-/*!********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
@@ -814,66 +783,6 @@ function _interopRequireWildcard(obj, nodeInterop) {
 }
 
 module.exports = _interopRequireWildcard;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/objectWithoutProperties.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose.js */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js");
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = objectWithoutPropertiesLoose(source, excluded);
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-module.exports = _objectWithoutProperties;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-module.exports = _objectWithoutPropertiesLoose;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -40742,6 +40651,37 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/icons/LockOpen.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material-ui/icons/LockOpen.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"
+}), 'LockOpen');
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/icons/LockOutlined.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@material-ui/icons/LockOutlined.js ***!
@@ -40930,6 +40870,37 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/icons/VpnKey.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@material-ui/icons/VpnKey.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/React.createElement("path", {
+  d: "M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+}), 'VpnKey');
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/icons/utils/createSvgIcon.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@material-ui/icons/utils/createSvgIcon.js ***!
@@ -40951,341 +40922,6 @@ Object.defineProperty(exports, "default", {
 });
 
 var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/lab/Alert/Alert.js":
-/*!******************************************************!*\
-  !*** ./node_modules/@material-ui/lab/Alert/Alert.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.styles = void 0;
-
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
-
-var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
-
-var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
-
-var _clsx = _interopRequireDefault(__webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js"));
-
-var _styles = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-
-var _Paper = _interopRequireDefault(__webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js"));
-
-var _SuccessOutlined = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/SuccessOutlined */ "./node_modules/@material-ui/lab/internal/svg-icons/SuccessOutlined.js"));
-
-var _ReportProblemOutlined = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ReportProblemOutlined */ "./node_modules/@material-ui/lab/internal/svg-icons/ReportProblemOutlined.js"));
-
-var _ErrorOutline = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ErrorOutline */ "./node_modules/@material-ui/lab/internal/svg-icons/ErrorOutline.js"));
-
-var _InfoOutlined = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/InfoOutlined */ "./node_modules/@material-ui/lab/internal/svg-icons/InfoOutlined.js"));
-
-var _Close = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/Close */ "./node_modules/@material-ui/lab/internal/svg-icons/Close.js"));
-
-var _IconButton = _interopRequireDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
-
-var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-var styles = function styles(theme) {
-  var getColor = theme.palette.type === 'light' ? _styles.darken : _styles.lighten;
-  var getBackgroundColor = theme.palette.type === 'light' ? _styles.lighten : _styles.darken;
-  return {
-    /* Styles applied to the root element. */
-    root: (0, _extends2.default)({}, theme.typography.body2, {
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: 'transparent',
-      display: 'flex',
-      padding: '6px 16px'
-    }),
-
-    /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
-    standardSuccess: {
-      color: getColor(theme.palette.success.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.success.main, 0.9),
-      '& $icon': {
-        color: theme.palette.success.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="standard"` and `color="info"`. */
-    standardInfo: {
-      color: getColor(theme.palette.info.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.info.main, 0.9),
-      '& $icon': {
-        color: theme.palette.info.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="standard"` and `color="warning"`. */
-    standardWarning: {
-      color: getColor(theme.palette.warning.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.warning.main, 0.9),
-      '& $icon': {
-        color: theme.palette.warning.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="standard"` and `color="error"`. */
-    standardError: {
-      color: getColor(theme.palette.error.main, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette.error.main, 0.9),
-      '& $icon': {
-        color: theme.palette.error.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="outlined"` and `color="success"`. */
-    outlinedSuccess: {
-      color: getColor(theme.palette.success.main, 0.6),
-      border: "1px solid ".concat(theme.palette.success.main),
-      '& $icon': {
-        color: theme.palette.success.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="outlined"` and `color="info"`. */
-    outlinedInfo: {
-      color: getColor(theme.palette.info.main, 0.6),
-      border: "1px solid ".concat(theme.palette.info.main),
-      '& $icon': {
-        color: theme.palette.info.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
-    outlinedWarning: {
-      color: getColor(theme.palette.warning.main, 0.6),
-      border: "1px solid ".concat(theme.palette.warning.main),
-      '& $icon': {
-        color: theme.palette.warning.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
-    outlinedError: {
-      color: getColor(theme.palette.error.main, 0.6),
-      border: "1px solid ".concat(theme.palette.error.main),
-      '& $icon': {
-        color: theme.palette.error.main
-      }
-    },
-
-    /* Styles applied to the root element if `variant="filled"` and `color="success"`. */
-    filledSuccess: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.success.main
-    },
-
-    /* Styles applied to the root element if `variant="filled"` and `color="info"`. */
-    filledInfo: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.info.main
-    },
-
-    /* Styles applied to the root element if `variant="filled"` and `color="warning"`. */
-    filledWarning: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.warning.main
-    },
-
-    /* Styles applied to the root element if `variant="filled"` and `color="error"`. */
-    filledError: {
-      color: '#fff',
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.error.main
-    },
-
-    /* Styles applied to the icon wrapper element. */
-    icon: {
-      marginRight: 12,
-      padding: '7px 0',
-      display: 'flex',
-      fontSize: 22,
-      opacity: 0.9
-    },
-
-    /* Styles applied to the message wrapper element. */
-    message: {
-      padding: '8px 0'
-    },
-
-    /* Styles applied to the action wrapper element if `action` is provided. */
-    action: {
-      display: 'flex',
-      alignItems: 'center',
-      marginLeft: 'auto',
-      paddingLeft: 16,
-      marginRight: -8
-    }
-  };
-};
-
-exports.styles = styles;
-var defaultIconMapping = {
-  success: /*#__PURE__*/React.createElement(_SuccessOutlined.default, {
-    fontSize: "inherit"
-  }),
-  warning: /*#__PURE__*/React.createElement(_ReportProblemOutlined.default, {
-    fontSize: "inherit"
-  }),
-  error: /*#__PURE__*/React.createElement(_ErrorOutline.default, {
-    fontSize: "inherit"
-  }),
-  info: /*#__PURE__*/React.createElement(_InfoOutlined.default, {
-    fontSize: "inherit"
-  })
-};
-
-var _ref = /*#__PURE__*/React.createElement(_Close.default, {
-  fontSize: "small"
-});
-
-var Alert = /*#__PURE__*/React.forwardRef(function Alert(props, ref) {
-  var action = props.action,
-      children = props.children,
-      classes = props.classes,
-      className = props.className,
-      _props$closeText = props.closeText,
-      closeText = _props$closeText === void 0 ? 'Close' : _props$closeText,
-      color = props.color,
-      icon = props.icon,
-      _props$iconMapping = props.iconMapping,
-      iconMapping = _props$iconMapping === void 0 ? defaultIconMapping : _props$iconMapping,
-      onClose = props.onClose,
-      _props$role = props.role,
-      role = _props$role === void 0 ? 'alert' : _props$role,
-      _props$severity = props.severity,
-      severity = _props$severity === void 0 ? 'success' : _props$severity,
-      _props$variant = props.variant,
-      variant = _props$variant === void 0 ? 'standard' : _props$variant,
-      other = (0, _objectWithoutProperties2.default)(props, ["action", "children", "classes", "className", "closeText", "color", "icon", "iconMapping", "onClose", "role", "severity", "variant"]);
-  return /*#__PURE__*/React.createElement(_Paper.default, (0, _extends2.default)({
-    role: role,
-    square: true,
-    elevation: 0,
-    className: (0, _clsx.default)(classes.root, classes["".concat(variant).concat((0, _utils.capitalize)(color || severity))], className),
-    ref: ref
-  }, other), icon !== false ? /*#__PURE__*/React.createElement("div", {
-    className: classes.icon
-  }, icon || iconMapping[severity] || defaultIconMapping[severity]) : null, /*#__PURE__*/React.createElement("div", {
-    className: classes.message
-  }, children), action != null ? /*#__PURE__*/React.createElement("div", {
-    className: classes.action
-  }, action) : null, action == null && onClose ? /*#__PURE__*/React.createElement("div", {
-    className: classes.action
-  }, /*#__PURE__*/React.createElement(_IconButton.default, {
-    size: "small",
-    "aria-label": closeText,
-    title: closeText,
-    color: "inherit",
-    onClick: onClose
-  }, _ref)) : null);
-});
- true ? Alert.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-
-  /**
-   * The action to display. It renders after the message, at the end of the alert.
-   */
-  action: _propTypes.default.node,
-
-  /**
-   * The content of the component.
-   */
-  children: _propTypes.default.node,
-
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: _propTypes.default.object,
-
-  /**
-   * @ignore
-   */
-  className: _propTypes.default.string,
-
-  /**
-   * Override the default label for the *close popup* icon button.
-   *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
-   */
-  closeText: _propTypes.default.string,
-
-  /**
-   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
-   */
-  color: _propTypes.default.oneOf(['error', 'info', 'success', 'warning']),
-
-  /**
-   * Override the icon displayed before the children.
-   * Unless provided, the icon is mapped to the value of the `severity` prop.
-   */
-  icon: _propTypes.default.node,
-
-  /**
-   * The component maps the `severity` prop to a range of different icons,
-   * for instance success to `<SuccessOutlined>`.
-   * If you wish to change this mapping, you can provide your own.
-   * Alternatively, you can use the `icon` prop to override the icon displayed.
-   */
-  iconMapping: _propTypes.default.shape({
-    error: _propTypes.default.node,
-    info: _propTypes.default.node,
-    success: _propTypes.default.node,
-    warning: _propTypes.default.node
-  }),
-
-  /**
-   * Callback fired when the component requests to be closed.
-   * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   *
-   * @param {object} event The event source of the callback.
-   */
-  onClose: _propTypes.default.func,
-
-  /**
-   * The ARIA role attribute of the element.
-   */
-  role: _propTypes.default.string,
-
-  /**
-   * The severity of the alert. This defines the color and icon used.
-   */
-  severity: _propTypes.default.oneOf(['error', 'info', 'success', 'warning']),
-
-  /**
-   * The variant to use.
-   */
-  variant: _propTypes.default.oneOf(['filled', 'outlined', 'standard'])
-} : undefined;
-
-var _default = (0, _styles.withStyles)(styles, {
-  name: 'MuiAlert'
-})(Alert);
-
-exports.default = _default;
 
 /***/ }),
 
@@ -41746,166 +41382,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_1__["createSvgIcon"])( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("path", {
   d: "M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
 }), 'SuccessOutlined'));
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/lab/internal/svg-icons/Close.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/lab/internal/svg-icons/Close.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-/**
- * @ignore - internal component.
- */
-var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
-  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-}), 'Close');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/lab/internal/svg-icons/ErrorOutline.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@material-ui/lab/internal/svg-icons/ErrorOutline.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-/**
- * @ignore - internal component.
- */
-var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
-  d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-}), 'ErrorOutline');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/lab/internal/svg-icons/InfoOutlined.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@material-ui/lab/internal/svg-icons/InfoOutlined.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-/**
- * @ignore - internal component.
- */
-var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
-  d: "M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"
-}), 'InfoOutlined');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/lab/internal/svg-icons/ReportProblemOutlined.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/@material-ui/lab/internal/svg-icons/ReportProblemOutlined.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-/**
- * @ignore - internal component.
- */
-var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
-  d: "M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
-}), 'ReportProblemOutlined');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/lab/internal/svg-icons/SuccessOutlined.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@material-ui/lab/internal/svg-icons/SuccessOutlined.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var React = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _utils = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
-
-/**
- * @ignore - internal component.
- */
-var _default = (0, _utils.createSvgIcon)( /*#__PURE__*/React.createElement("path", {
-  d: "M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
-}), 'SuccessOutlined');
-
-exports.default = _default;
 
 /***/ }),
 
@@ -91247,6 +90723,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.csrf_token = void 0;
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -91258,16 +90735,20 @@ var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react
 var index_1 = __importDefault(__webpack_require__(/*! ./store/index */ "./resources/ts/store/index.ts"));
 var Login_User_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Login_User */ "./resources/ts/views/pages/user/Login_User.tsx"));
 var View_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/View */ "./resources/ts/views/pages/posts/View.tsx"));
-var User_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/User */ "./resources/ts/views/pages/user/User.tsx"));
+var Poster_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Poster */ "./resources/ts/views/pages/user/Poster.tsx"));
 var Followee_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Followee */ "./resources/ts/views/pages/follow/Followee.tsx"));
 var Follower_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Follower */ "./resources/ts/views/pages/follow/Follower.tsx"));
 var Layout_1 = __importDefault(__webpack_require__(/*! ./views/lauout/Layout */ "./resources/ts/views/lauout/Layout.tsx"));
 var PostResult_1 = __importDefault(__webpack_require__(/*! ./views/search/PostResult */ "./resources/ts/views/search/PostResult.tsx"));
+var UserResult_1 = __importDefault(__webpack_require__(/*! ./views/search/UserResult */ "./resources/ts/views/search/UserResult.tsx"));
 var Edit_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/Edit */ "./resources/ts/views/pages/posts/Edit.tsx"));
 var Setting_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Setting */ "./resources/ts/views/pages/user/Setting.tsx"));
 var Unregisted_1 = __importDefault(__webpack_require__(/*! ./views/lauout/Unregisted */ "./resources/ts/views/lauout/Unregisted.tsx"));
 var NotFound_1 = __importDefault(__webpack_require__(/*! ./views/pages/404/NotFound */ "./resources/ts/views/pages/404/NotFound.tsx"));
 var FolloweePosts_1 = __importDefault(__webpack_require__(/*! ./views/pages/top/FolloweePosts */ "./resources/ts/views/pages/top/FolloweePosts.tsx"));
+var ResetPassword_1 = __importDefault(__webpack_require__(/*! ./views/pages/reset/ResetPassword */ "./resources/ts/views/pages/reset/ResetPassword.tsx"));
+var ChangePassword_1 = __importDefault(__webpack_require__(/*! ./views/pages/reset/ChangePassword */ "./resources/ts/views/pages/reset/ChangePassword.tsx"));
+exports.csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
 function AuthRoute(_a) {
     var layout = _a.layout, component = _a.component, rest = __rest(_a, ["layout", "component"]);
     return (react_1.default.createElement(react_router_dom_1.Route, __assign({}, rest, { render: function (props) {
@@ -91291,18 +90772,21 @@ var App = function () {
         react_1.default.createElement(react_router_dom_1.Switch, null,
             react_1.default.createElement(AuthRoute, { exact: true, layout: Unregisted_1.default, path: "/register", component: Register_1.default }),
             react_1.default.createElement(AuthRoute, { exact: true, layout: Unregisted_1.default, path: "/login", component: Login_1.default }),
+            react_1.default.createElement(react_router_dom_1.Route, { exact: true, component: ChangePassword_1.default, path: "/password/reset/:csrf" }),
+            react_1.default.createElement(AuthRoute, { exact: true, layout: Unregisted_1.default, path: "/password/reset", component: ResetPassword_1.default }),
             react_1.default.createElement(LayoutRoute, { layout: Layout_1.default, exact: true, path: "/", component: Top_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/post/:id", component: View_1.default }),
-            react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/user/:id", component: User_1.default }),
+            react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/user/:id", component: Poster_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/followee/:id", component: Followee_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/:user/follower/:id", component: Follower_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/search/post", component: PostResult_1.default }),
+            react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/search/user", component: UserResult_1.default }),
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/followee/posts", component: FolloweePosts_1.default }),
-            react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/:user/edit/:id", component: Edit_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/:user/edit/:id", component: Edit_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/create", component: Create_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/user", component: Login_User_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/setting", component: Setting_1.default }),
+            react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/confirm/user", component: Setting_1.default }),
             react_1.default.createElement(react_router_dom_1.Route, { component: NotFound_1.default }))));
 };
 react_dom_1.default.render(react_1.default.createElement(react_redux_1.Provider, { store: index_1.default },
@@ -91323,7 +90807,8 @@ react_dom_1.default.render(react_1.default.createElement(react_redux_1.Provider,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActionTypes = void 0;
 exports.ActionTypes = {
-    login_user: "LOGIN_USER"
+    login_user: "LOGIN_USER",
+    logout_user: "LOGOUT_USER"
 };
 
 
@@ -91339,7 +90824,7 @@ exports.ActionTypes = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login_user = void 0;
+exports.logout_user = exports.login_user = void 0;
 var actionTypes_1 = __webpack_require__(/*! ../../actionTypes */ "./resources/ts/store/actionTypes.ts");
 var login_user = function (_a) {
     var id = _a.id, name = _a.name, profile_image = _a.profile_image, self_introduction = _a.self_introduction, email = _a.email, created_at = _a.created_at, updated_at = _a.updated_at;
@@ -91357,6 +90842,10 @@ var login_user = function (_a) {
     };
 };
 exports.login_user = login_user;
+var logout_user = function () {
+    return { type: actionTypes_1.ActionTypes.logout_user };
+};
+exports.logout_user = logout_user;
 
 
 /***/ }),
@@ -91392,6 +90881,8 @@ var userReducer = function (state, action) {
     switch (action.type) {
         case actionTypes_1.ActionTypes.login_user:
             return __assign(__assign({}, state), { isLogin: true, user: action.payload });
+        case actionTypes_1.ActionTypes.logout_user:
+            return { isLogin: false, user: undefined };
         default:
             return state;
     }
@@ -91422,26 +90913,799 @@ exports.default = store;
 
 /***/ }),
 
-/***/ "./resources/ts/views/lauout/Layout.tsx":
-/*!**********************************************!*\
-  !*** ./resources/ts/views/lauout/Layout.tsx ***!
-  \**********************************************/
+/***/ "./resources/ts/views/components/Posts.tsx":
+/*!*************************************************!*\
+  !*** ./resources/ts/views/components/Posts.tsx ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
+var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
+var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
+var MenuItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    icon: {
+        marginRight: theme.spacing(2)
+    },
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(8, 0, 6)
+    },
+    heroButtons: {
+        marginTop: theme.spacing(4)
+    },
+    cardGrid: {
+        paddingRight: theme.spacing(15),
+        paddingLeft: theme.spacing(15)
+    },
+    card: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px",
+        "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.03)"
+        }
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(6)
+    },
+    profileContent: {
+        display: "flex",
+        marginBottom: "0.5rem"
+    },
+    grid: {
+        marginBottom: "10px"
+    },
+    link: {
+        textDecoration: "none",
+        "&:hover": {
+            textDecoration: "none"
+        }
+    },
+    siteName: {
+        marginBottom: "0.5rem",
+        color: "rgb(83, 100, 113)"
+    },
+    cardContent: {
+        flexGrow: 1
+    },
+    cardMedia: {
+        paddingTop: "56.25%",
+        marginBottom: "0.5rem",
+        transition: ".3s",
+        "&:hover": {
+            opacity: 0.5
+        }
+    },
+    cardMediaContainer: {},
+    profileContainer: {
+        display: "flex"
+    },
+    data: {},
+    dataContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        fontSize: "0.8rem",
+        color: "rgb(83, 100, 113)"
+    },
+    body: {
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        marginBottom: "0.5rem"
+    },
+    avatar: {
+        marginRight: "1rem"
+    },
+    userName: {
+        color: "black"
+    },
+    selectBox: {
+        marginBottom: "1rem"
+    },
+    errorMessage: {
+        marginTop: "10px"
+    }
+}); });
+var currencies = [
+    {
+        value: "followee",
+        label: "フォロー中のユーザーの投稿を見る"
+    },
+    {
+        value: "all",
+        label: "全ての投稿を見る"
+    }
+];
+var Posts = function (_a) {
+    var path = _a.path, user_id = _a.user_id, q = _a.q, defaultCurrency = _a.defaultCurrency;
+    var classes = useStyles();
+    var dispatch = react_redux_1.useDispatch();
+    var history = react_router_1.useHistory();
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _b = react_1.useState([]), posts = _b[0], setPosts = _b[1];
+    var _c = react_1.useState([]), followeePosts = _c[0], setFolloweePosts = _c[1];
+    var _d = react_1.useState(true), hasMore = _d[0], setHasMore = _d[1];
+    var _e = react_1.useState(false), isFetching = _e[0], setIsFetching = _e[1];
+    var _f = react_1.useState(""), currency = _f[0], setCurrency = _f[1];
+    var _g = react_1.useState(""), errorMessage = _g[0], setErrorMessage = _g[1];
+    var _h = react_1.useState(true), isFetchingUser = _h[0], setIsFetchingUser = _h[1];
+    react_1.useEffect(function () {
+        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!user) return [3 /*break*/, 2];
+                        //ログインされていない場合
+                        return [4 /*yield*/, axios_1.default
+                                .get("/json")
+                                .then(function (res) {
+                                if (res.data) {
+                                    dispatch(action_1.login_user(res.data));
+                                }
+                            })
+                                .catch(function (error) {
+                                console.log(error);
+                            })];
+                    case 1:
+                        //ログインされていない場合
+                        _a.sent();
+                        setIsFetchingUser(false);
+                        _a.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        }); };
+        f();
+        defaultCurrency && setCurrency(defaultCurrency);
+    }, []);
+    var handleChange = function (e) {
+        if (e.target.value === "followee") {
+            //「フォロー中のユーザー」を選択した場合
+            if (user) {
+                history.push("/followee/posts");
+            }
+            else {
+                history.push("register");
+            }
+        }
+        else {
+            //「全て」を選択した場合
+            history.push("/");
+        }
+    };
+    var onAddLike = function (post_id) { return __awaiter(void 0, void 0, void 0, function () {
+        var user_id_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("adddd");
+                    if (!user) return [3 /*break*/, 2];
+                    user_id_1 = user.id;
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/add/like", {
+                            user_id: user_id_1,
+                            post_id: post_id
+                        })
+                            .then(function (res) {
+                            var likedPost = res.data;
+                            var likedPostId = res.data.post.id;
+                            console.log("likedPost=", likedPost);
+                            setPosts(posts.map(function (post) {
+                                if (post.post.id === likedPostId) {
+                                    return likedPost;
+                                }
+                                else {
+                                    return post;
+                                }
+                            }));
+                        })
+                            .catch(function (error) { return console.log(error); })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    //いいね解除
+    var onRemoveLike = function (post_id) { return __awaiter(void 0, void 0, void 0, function () {
+        var user_id_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    user_id_2 = user.id;
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/del/like", {
+                            user_id: user_id_2,
+                            post_id: post_id
+                        })
+                            .then(function (res) {
+                            var likedPost = res.data;
+                            var likedPostId = res.data.post.id;
+                            console.log("likedPost=", likedPost);
+                            setPosts(posts.map(function (post) {
+                                if (post.post.id === likedPostId) {
+                                    return likedPost;
+                                }
+                                else {
+                                    return post;
+                                }
+                            }));
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    //いいねしたことあるか、
+    var isLikedBefore = function (post) {
+        if (user) {
+            var even = function (like) { return like.user_id === user.id; };
+            var isLiked = post.likes.some(even);
+            return isLiked;
+        }
+    };
+    var getDate = function (date) {
+        var toDate = new Date(date);
+        var month = toDate.getMonth() + 1;
+        var day = toDate.getDate();
+        return (react_1.default.createElement(Typography_1.default, { className: classes.data },
+            month,
+            "\u6708 ",
+            day,
+            "\u65E5"));
+    };
+    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("loadMore!");
+                    setIsFetching(true);
+                    if (!user_id) return [3 /*break*/, 2];
+                    return [4 /*yield*/, axios_1.default
+                            .get(path, { params: { number: page, user_id: user_id } })
+                            .then(function (res) {
+                            var data = res.data;
+                            return data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    return [3 /*break*/, 6];
+                case 2:
+                    if (!q) return [3 /*break*/, 4];
+                    return [4 /*yield*/, axios_1.default
+                            .get(path, { params: { number: page, q: q } })
+                            .then(function (res) {
+                            var data = res.data;
+                            return data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 3:
+                    data = _a.sent();
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, axios_1.default
+                        .get(path, { params: { number: page } })
+                        .then(function (res) {
+                        var data = res.data;
+                        return data;
+                    })
+                        .catch(function (error) {
+                        console.log(error);
+                    })];
+                case 5:
+                    data = _a.sent();
+                    _a.label = 6;
+                case 6:
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        setHasMore(false);
+                        //最初でいきなり情報が無かった場合、エラーメッセージを出力する
+                        if (page === 1) {
+                            console.log("no user");
+                            setErrorMessage("投稿が見つかりませんでした");
+                        }
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
+                    console.log(posts);
+                    setIsFetching(false);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        defaultCurrency && (react_1.default.createElement(TextField_1.default, { select: true, value: currency, onChange: handleChange, className: classes.selectBox, disabled: isFetchingUser ? true : false }, currencies.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value }, option.label)); }))),
+        !user_id && errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && hasMore },
+            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
+                posts.map(function (post) {
+                    console.log("aaa");
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: post.post.id, xs: 12, className: classes.grid },
+                        react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                pathname: "/" + post.user.name + "/post/" + post.post.id,
+                                state: {
+                                    post: post.post,
+                                    user: post.user,
+                                    likes: post.likes
+                                }
+                            }, className: classes.link },
+                            react_1.default.createElement(Card_1.default, { className: classes.card },
+                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                    react_1.default.createElement("object", null,
+                                        react_1.default.createElement("div", { className: classes.profileContent },
+                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
+                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
+                                                    state: post.user
+                                                }, className: classes.profileContainer },
+                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
+                                                        .profile_image, className: classes.avatar }),
+                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
+                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
+                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
+                                    react_1.default.createElement("object", null,
+                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                window.open(post.post.url);
+                                            } },
+                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
+                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
+                                    react_1.default.createElement("div", { className: classes.dataContainer },
+                                        react_1.default.createElement(CalendarToday_1.default, null),
+                                        getDate(post.post.updated_at))),
+                                react_1.default.createElement(CardActions_1.default, null,
+                                    react_1.default.createElement("object", null,
+                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                onRemoveLike(post.post.id);
+                                            }, color: "primary" },
+                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                onAddLike(post.post.id);
+                                            } },
+                                            react_1.default.createElement(ThumbUp_1.default, null))),
+                                        post.likes.length))))));
+                })))));
+};
+exports.default = Posts;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/components/StickUser.tsx":
+/*!*****************************************************!*\
+  !*** ./resources/ts/views/components/StickUser.tsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var react_router_2 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    card: {
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    cardContent: {
+        display: "flex"
+    },
+    grid: {
+        marginBottom: "10px"
+    },
+    errorMessage: {
+        marginTop: "10px"
+    }
+}); });
+var StickUser = function (_a) {
+    var path = _a.path, isSearchResult = _a.isSearchResult, q = _a.q, targetId = _a.targetId;
+    var dispatch = react_redux_1.useDispatch();
+    var classes = useStyles();
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _b = react_1.useState([]), results = _b[0], setResults = _b[1];
+    var location = react_router_2.useLocation();
+    var history = react_router_1.useHistory();
+    var _c = react_1.useState(true), hasMore = _c[0], setHasMore = _c[1];
+    var _d = react_1.useState(false), isFetching = _d[0], setIsFetching = _d[1];
+    var _e = react_1.useState(), uid = _e[0], setUid = _e[1];
+    var _f = react_1.useState(true), isFetchingUser = _f[0], setIsFetchingUser = _f[1];
+    var _g = react_1.useState(""), errorMessage = _g[0], setErrorMessage = _g[1];
+    react_1.useEffect(function () {
+        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!user) return [3 /*break*/, 2];
+                        //ログインされていない場合
+                        return [4 /*yield*/, axios_1.default
+                                .get("/json")
+                                .then(function (res) {
+                                if (res.data) {
+                                    dispatch(action_1.login_user(res.data));
+                                }
+                                setIsFetchingUser(false);
+                            })
+                                .catch(function (error) {
+                                console.log(error);
+                            })];
+                    case 1:
+                        //ログインされていない場合
+                        _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        setIsFetchingUser(false);
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        f();
+    }, []);
+    //フォロー関数
+    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/add/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            var follow = res.data;
+                            setResults(results.map(function (result, i) {
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user,
+                                        follow: follow
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    //フォロー解除関数
+    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!user) return [3 /*break*/, 2];
+                    return [4 /*yield*/, axios_1.default
+                            .post("/api/del/follow/search", {
+                            followee: user.id,
+                            follower: targetId
+                        })
+                            .then(function (res) {
+                            setResults(results.map(function (result, i) {
+                                if (result.user.id === targetId) {
+                                    var newResult = {
+                                        user: result.user
+                                    };
+                                    return newResult;
+                                }
+                                else {
+                                    return result;
+                                }
+                            }));
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    history.push("/register");
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    var followButton = function (result) {
+        if (user) {
+            if (result.follow) {
+                return (react_1.default.createElement(Button_1.default, { disabled: isFetchingUser ? true : false, variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
+            }
+            else if (user.id === result.user.id) {
+                //同一アバターの場合
+                return null;
+            }
+            else {
+                return (react_1.default.createElement(Button_1.default, { disabled: isFetchingUser ? true : false, variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+            }
+        }
+        else {
+            //非ログイン
+            return (react_1.default.createElement(Button_1.default, { disabled: isFetchingUser ? true : false, variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+        }
+    };
+    //項目を読み込むときのコールバック
+    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("pageIs=", page);
+                    setIsFetching(true);
+                    if (!isSearchResult) return [3 /*break*/, 2];
+                    return [4 /*yield*/, axios_1.default
+                            .get(path, {
+                            params: { q: q, number: page, user_id: user === null || user === void 0 ? void 0 : user.id }
+                        })
+                            .then(function (res) {
+                            return res.data;
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    data = _a.sent();
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, axios_1.default
+                        .get(path, {
+                        params: {
+                            number: page,
+                            targetId: targetId,
+                            user_id: user === null || user === void 0 ? void 0 : user.id
+                        }
+                    })
+                        .then(function (res) {
+                        return res.data;
+                    })
+                        .catch(function (error) {
+                        console.log(error);
+                    })];
+                case 3:
+                    data = _a.sent();
+                    _a.label = 4;
+                case 4:
+                    //データ件数が0件の場合、処理終了
+                    if (!data) {
+                        console.log("no data");
+                        //最初でいきなり情報が無かった場合、エラーメッセージを出力する
+                        if (page === 1) {
+                            console.log("no user");
+                            setErrorMessage("ユーザーが見つかりませんでした");
+                        }
+                        setHasMore(false);
+                        return [2 /*return*/];
+                    }
+                    //取得データをリストに追加*
+                    console.log("data=", data);
+                    setResults(__spreadArray(__spreadArray([], results), [data]));
+                    setIsFetching(false);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
+        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore },
+            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
+                results.map(function (result, i) {
+                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
+                        react_1.default.createElement(Card_1.default, { className: classes.card },
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
+                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
+                                            .profile_image }),
+                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
+                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
+                })))));
+};
+exports.default = StickUser;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/components/User.tsx":
+/*!************************************************!*\
+  !*** ./resources/ts/views/components/User.tsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -91501,6 +91765,431 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
+var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    icon: {
+        marginRight: theme.spacing(2)
+    },
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(8, 0, 6)
+    },
+    heroButtons: {
+        marginTop: theme.spacing(4)
+    },
+    cardGrid: {
+        paddingRight: theme.spacing(15),
+        paddingLeft: theme.spacing(15)
+    },
+    card: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px",
+        "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.03)"
+        }
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(6)
+    },
+    large: {
+        width: theme.spacing(15),
+        height: theme.spacing(15)
+    },
+    followLength: {
+        display: "flex"
+    },
+    editNameText: {
+        marginBottom: "10px"
+    },
+    nameText: {
+        marginBottom: "20px"
+    },
+    introductionText: {
+        marginLeft: "5px"
+    },
+    cardAction: {
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "flex-start"
+    },
+    textContainer: {
+        display: "flex",
+        marginLeft: "10px",
+        flexDirection: "column"
+    },
+    avatarContainer: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    errorMessage: {
+        marginTop: "10px"
+    },
+    input: {
+        display: "none"
+    },
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        marginBottom: "10px"
+    },
+    editAvatar: {
+        width: theme.spacing(15),
+        height: theme.spacing(15),
+        "&:hover": {
+            opacity: 0.5
+        }
+    },
+    profileContent: {
+        display: "flex",
+        marginBottom: "0.5rem"
+    },
+    grid: {
+        marginBottom: "10px"
+    },
+    link: {
+        textDecoration: "none",
+        "&:hover": {
+            textDecoration: "none"
+        }
+    },
+    siteName: {
+        marginBottom: "0.5rem",
+        color: "rgb(83, 100, 113)"
+    },
+    cardContent: {
+        flexGrow: 1
+    },
+    cardMedia: {
+        paddingTop: "56.25%",
+        marginBottom: "0.5rem",
+        transition: ".3s",
+        "&:hover": {
+            opacity: 0.5
+        }
+    },
+    cardMediaContainer: {},
+    profileContainer: {
+        display: "flex"
+    },
+    data: {},
+    dataContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        fontSize: "0.8rem",
+        color: "rgb(83, 100, 113)"
+    },
+    body: {
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        marginBottom: "0.5rem"
+    },
+    avatar: {
+        marginRight: "1rem"
+    },
+    userName: {
+        color: "black"
+    },
+    followContainer: {
+        display: "flex",
+        justifyContent: "space-between"
+    }
+}); });
+var Users = function (_a) {
+    var user = _a.user, isLoginUser = _a.isLoginUser;
+    var classes = useStyles();
+    var myUserId = react_redux_1.useSelector(function (state) { var _a; return (_a = state.user.user) === null || _a === void 0 ? void 0 : _a.id; });
+    var history = react_router_1.useHistory();
+    var _b = react_1.useState({
+        followeeLength: 0,
+        followerLength: 0
+    }), followLength = _b[0], setFollowLength = _b[1];
+    var _c = react_1.useState(""), errorMessage = _c[0], setErrorMessage = _c[1];
+    var _d = react_1.useState(false), isFollow = _d[0], setIsFollow = _d[1];
+    var _e = react_1.useState(false), isEditMode = _e[0], setIsEditMode = _e[1];
+    var _f = react_1.useState(""), newUserName = _f[0], setNewUserName = _f[1];
+    var _g = react_1.useState(""), newSelfIntroduction = _g[0], setNewSelfIntroduction = _g[1];
+    var _h = react_1.useState(""), newProfileImage = _h[0], setNewProfileImage = _h[1];
+    var params = react_router_1.useParams();
+    var id = params.id;
+    var dispatch = react_redux_1.useDispatch();
+    var _j = react_1.useState(true), isFetchingUser = _j[0], setIsFetchingUser = _j[1];
+    react_1.useEffect(function () {
+        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
+            var getIsLogin_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!isLoginUser) return [3 /*break*/, 5];
+                        //Poster画面の場合
+                        return [4 /*yield*/, axios_1.default
+                                .get("/api/get/follow", { params: { userId: id } })
+                                .then(function (res) {
+                                setFollowLength({
+                                    followeeLength: res.data.followee,
+                                    followerLength: res.data.follower
+                                });
+                            })
+                                .catch(function (error) {
+                                console.log(error);
+                            })];
+                    case 1:
+                        //Poster画面の場合
+                        _a.sent();
+                        getIsLogin_1 = function (uid) {
+                            if (uid === void 0) { uid = myUserId; }
+                            return __awaiter(void 0, void 0, void 0, function () {
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, axios_1.default
+                                                .get("/api/get/isfollow", {
+                                                params: { followee: uid, follower: id }
+                                            })
+                                                .then(function (res) {
+                                                console.log("res.data=", res.data);
+                                                if (res.data === "yes") {
+                                                    setIsFollow(true);
+                                                }
+                                                else {
+                                                    setIsFollow(false);
+                                                }
+                                            })
+                                                .catch(function (error) {
+                                                console.log(error);
+                                            })];
+                                        case 1:
+                                            _a.sent();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            });
+                        };
+                        if (!!myUserId) return [3 /*break*/, 3];
+                        return [4 /*yield*/, axios_1.default.get("/json").then(function (res) {
+                                if (res.data) {
+                                    dispatch(action_1.login_user(res.data));
+                                    console.log("user=", res.data);
+                                    getIsLogin_1(res.data.id);
+                                }
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        getIsLogin_1();
+                        _a.label = 4;
+                    case 4:
+                        setIsFetchingUser(false);
+                        return [3 /*break*/, 7];
+                    case 5: 
+                    //Login_Userの場合
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/follow", { params: { userId: user.id } })
+                            .then(function (res) {
+                            setFollowLength({
+                                followeeLength: res.data.followee,
+                                followerLength: res.data.follower
+                            });
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                    case 6:
+                        //Login_Userの場合
+                        _a.sent();
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
+                }
+            });
+        }); };
+        f();
+    }, []);
+    var onFollow = function (targetId) {
+        console.log("t=", targetId, "from=", myUserId);
+        if (myUserId) {
+            axios_1.default
+                .post("/api/add/follow", {
+                followee: myUserId,
+                follower: targetId
+            })
+                .then(function (res) {
+                setFollowLength({
+                    followeeLength: res.data.followee,
+                    followerLength: res.data.follower
+                });
+                setIsFollow(true);
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    //フォロー解除関数
+    var onRemoveFollow = function (targetId) {
+        if (myUserId) {
+            axios_1.default
+                .post("/api/del/follow", {
+                followee: myUserId,
+                follower: targetId
+            })
+                .then(function (res) {
+                setFollowLength({
+                    followeeLength: res.data.followee,
+                    followerLength: res.data.follower
+                });
+                setIsFollow(false);
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            history.push("/register");
+        }
+    };
+    var isCanFollow = function (userId) {
+        console.log("canFollow=", myUserId, userId);
+        if (myUserId) {
+            if (userId === myUserId) {
+                return null;
+            }
+        }
+        if (isFollow) {
+            console.log("followd");
+            return (react_1.default.createElement(Button_1.default, { disabled: isFetchingUser ? true : false, variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(userId); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
+        }
+        else {
+            console.log("not followd");
+            return (react_1.default.createElement(Button_1.default, { disabled: isFetchingUser ? true : false, variant: "contained", color: "primary", onClick: function () { return onFollow(userId); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+        }
+    };
+    var onSetUserData = function () {
+        if (user) {
+            setIsEditMode(true);
+            setNewUserName(user.name);
+            setNewProfileImage(user.profile_image);
+            user.self_introduction &&
+                setNewSelfIntroduction(user.self_introduction);
+        }
+    };
+    var getEditMode = function () {
+        if (isEditMode) {
+            return (react_1.default.createElement("form", { action: "/api/edit/user/name?id=" + user.id, method: "post", encType: "multipart/form-data", className: classes.form },
+                react_1.default.createElement("div", { className: classes.avatarContainer },
+                    react_1.default.createElement(CardActions_1.default, null,
+                        react_1.default.createElement("input", { accept: "image/*", name: "image", type: "file", id: "icon-button-file", className: classes.input, multiple: true }),
+                        react_1.default.createElement("label", { htmlFor: "icon-button-file" },
+                            react_1.default.createElement(IconButton_1.default, { color: "primary", component: "span" },
+                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: newProfileImage, className: classes.editAvatar })))),
+                    react_1.default.createElement(TextField_1.default, { className: classes.editNameText, name: "name", type: "text", defaultValue: newUserName, onChange: function (e) { return setNewUserName(e.target.value); } })),
+                react_1.default.createElement(TextField_1.default, { name: "self_introduction", defaultValue: newSelfIntroduction, onChange: function (e) {
+                        return setNewSelfIntroduction(e.target.value);
+                    }, multiline: true, rows: 4, variant: "outlined" }),
+                errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
+                react_1.default.createElement(CardActions_1.default, { className: classes.cardAction },
+                    react_1.default.createElement(Button_1.default, { type: "submit", variant: "contained", color: "primary" }, "\u5909\u66F4"),
+                    react_1.default.createElement(Button_1.default, { type: "submit", variant: "contained", color: "secondary", onClick: function () { return setIsEditMode(false); } }, "\u9589\u3058\u308B"))));
+        }
+        else {
+            return (react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement("div", { className: classes.avatarContainer },
+                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
+                    react_1.default.createElement(Typography_1.default, { className: classes.nameText, variant: "h4", gutterBottom: true }, user.name)),
+                react_1.default.createElement(Typography_1.default, { className: classes.introductionText }, user.self_introduction),
+                user.name !== "テストユーザー" && (react_1.default.createElement(CardActions_1.default, { className: classes.cardAction },
+                    react_1.default.createElement(Button_1.default, { variant: "contained", onClick: onSetUserData }, "\u7DE8\u96C6")))));
+        }
+    };
+    return (react_1.default.createElement(Grid_1.default, { item: true, xs: 12, className: classes.grid },
+        react_1.default.createElement(Card_1.default, null,
+            isLoginUser ? (getEditMode()) : (react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+                react_1.default.createElement("div", { className: classes.avatarContainer },
+                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
+                    react_1.default.createElement(Typography_1.default, { variant: "h4", gutterBottom: true, className: classes.nameText }, user.name)),
+                react_1.default.createElement(Typography_1.default, { className: classes.introductionText }, user.self_introduction))),
+            react_1.default.createElement(CardActions_1.default, { className: classes.followContainer },
+                react_1.default.createElement("div", { className: classes.followLength },
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
+                        react_1.default.createElement(Typography_1.default, null,
+                            "\u30D5\u30A9\u30ED\u30FC\u6570:",
+                            followLength.followeeLength)),
+                    react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
+                        react_1.default.createElement(Typography_1.default, null,
+                            "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
+                            followLength.followerLength))),
+                isCanFollow(user.id)))));
+};
+exports.default = Users;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/lauout/Layout.tsx":
+/*!**********************************************!*\
+  !*** ./resources/ts/views/lauout/Layout.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -91516,6 +92205,7 @@ var List_1 = __importDefault(__webpack_require__(/*! @material-ui/core/List */ "
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var Divider_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js"));
 var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
+var LockOpen_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/LockOpen */ "./node_modules/@material-ui/icons/LockOpen.js"));
 var Container_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/esm/Container/index.js"));
 var ListItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/ListItem */ "./node_modules/@material-ui/core/esm/ListItem/index.js"));
 var ListItemIcon_1 = __importDefault(__webpack_require__(/*! @material-ui/core/ListItemIcon */ "./node_modules/@material-ui/core/esm/ListItemIcon/index.js"));
@@ -91531,6 +92221,7 @@ var LibraryBooks_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/
 var ExitToApp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ExitToApp */ "./node_modules/@material-ui/icons/ExitToApp.js"));
 var react_responsive_1 = __importDefault(__webpack_require__(/*! react-responsive */ "./node_modules/react-responsive/dist/react-responsive.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
 function Copyright() {
     return (react_1.default.createElement(Typography_1.default, { variant: "body2", color: "textSecondary", align: "center" },
         "Copyright © ",
@@ -91657,6 +92348,7 @@ var Layout = function (_a) {
     var _c = react_1.useState(true), isPost = _c[0], setIsPost = _c[1];
     var classes = useStyles();
     var _d = react_1.useState(false), open = _d[0], setOpen = _d[1];
+    var dispatch = react_redux_1.useDispatch();
     var mainListItems = (react_1.default.createElement("div", null,
         react_1.default.createElement(ListItem_1.default, { button: true, onClick: function () { return history.push("/create"); } },
             react_1.default.createElement(ListItemIcon_1.default, null,
@@ -91672,23 +92364,10 @@ var Layout = function (_a) {
             react_1.default.createElement(ListItemIcon_1.default, null,
                 react_1.default.createElement(Settings_1.default, null)),
             react_1.default.createElement(ListItemText_1.default, { primary: "\u8A2D\u5B9A" }))));
-    var logout = function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1.default
-                        .post("/logout")
-                        .then(function (res) {
-                        history.push("/login");
-                    })
-                        .catch(function (error) {
-                        console.log(error);
-                    })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    }); };
+    var logout = function () {
+        axios_1.default.post("/logout");
+        dispatch(action_1.logout_user());
+    };
     var logoutListItem = (react_1.default.createElement("div", null,
         react_1.default.createElement(ListItem_1.default, { button: true, onClick: logout },
             react_1.default.createElement(ListItemIcon_1.default, null,
@@ -91697,7 +92376,7 @@ var Layout = function (_a) {
     var loginListItem = (react_1.default.createElement("div", null,
         react_1.default.createElement(ListItem_1.default, { button: true, onClick: function () { return history.push("/register"); } },
             react_1.default.createElement(ListItemIcon_1.default, null,
-                react_1.default.createElement(Person_1.default, null)),
+                react_1.default.createElement(LockOpen_1.default, null)),
             react_1.default.createElement(ListItemText_1.default, { primary: "\u65B0\u898F\u767B\u9332" }))));
     var handleDrawerOpen = function () {
         setOpen(true);
@@ -91749,6 +92428,8 @@ var Layout = function (_a) {
                     react_1.default.createElement(ChevronLeft_1.default, null))),
             react_1.default.createElement(Divider_1.default, null),
             react_1.default.createElement(List_1.default, null, mainListItems),
+            react_1.default.createElement(Divider_1.default, null),
+            react_1.default.createElement(List_1.default, null, secondaryListItems),
             react_1.default.createElement(Divider_1.default, null),
             user ? (react_1.default.createElement(List_1.default, null, logoutListItem)) : (react_1.default.createElement(List_1.default, null, loginListItem))),
         react_1.default.createElement("main", { className: open ? classes.openedContent : classes.content },
@@ -91984,18 +92665,10 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
 var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var StickUser_1 = __importDefault(__webpack_require__(/*! ../../components/StickUser */ "./resources/ts/views/components/StickUser.tsx"));
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     card: {
         display: "flex",
@@ -92047,102 +92720,6 @@ var Followee = function () {
         }); };
         f();
     }, []);
-    //フォロー関数
-    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .post("/api/add/follow/search", {
-                            followee: user.id,
-                            follower: targetId
-                        })
-                            .then(function (res) {
-                            var follow = res.data;
-                            setResults(results.map(function (result, i) {
-                                if (result.user.id === targetId) {
-                                    var newResult = {
-                                        user: result.user,
-                                        follow: follow
-                                    };
-                                    return newResult;
-                                }
-                                else {
-                                    return result;
-                                }
-                            }));
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    history.push("/register");
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    //フォロー解除関数
-    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .post("/api/del/follow/search", {
-                            followee: user.id,
-                            follower: targetId
-                        })
-                            .then(function (res) {
-                            setResults(results.map(function (result, i) {
-                                if (result.user.id === targetId) {
-                                    var newResult = {
-                                        user: result.user
-                                    };
-                                    return newResult;
-                                }
-                                else {
-                                    return result;
-                                }
-                            }));
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    history.push("/register");
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    var followButton = function (result) {
-        if (user) {
-            if (result.follow) {
-                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
-            }
-            else if (user.id === result.user.id) {
-                //同一アバターの場合
-                return null;
-            }
-            else {
-                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-            }
-        }
-        else {
-            //非ログイン
-            return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-        }
-    };
-    //ロード中に表示する項目
-    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
     //項目を読み込むときのコールバック
     var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
         var data;
@@ -92183,18 +92760,7 @@ var Followee = function () {
             react_1.default.createElement("title", null,
                 targetUserName,
                 "\u3055\u3093\u306E\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
-            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
-                results.map(function (result, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(Card_1.default, { className: classes.card },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
-                                            .profile_image }),
-                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
-                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
-                })))));
+        react_1.default.createElement(StickUser_1.default, { path: "/api/get/followee", isSearchResult: false, targetId: targetUserId })));
 };
 exports.default = Followee;
 
@@ -92229,47 +92795,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -92277,20 +92802,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
-//import Link from '@material-ui/core/Link';
-var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var StickUser_1 = __importDefault(__webpack_require__(/*! ../../components/StickUser */ "./resources/ts/views/components/StickUser.tsx"));
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     card: {
         display: "flex",
@@ -92315,181 +92829,12 @@ var Follower = function () {
     var _d = react_1.useState([]), results = _d[0], setResults = _d[1];
     var history = react_router_1.useHistory();
     var dispatch = react_redux_1.useDispatch();
-    react_1.useEffect(function () {
-        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!!user) return [3 /*break*/, 2];
-                        //ログインされていない場合
-                        return [4 /*yield*/, axios_1.default
-                                .get("/json")
-                                .then(function (res) {
-                                if (res.data) {
-                                    dispatch(action_1.login_user(res.data));
-                                }
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
-                    case 1:
-                        //ログインされていない場合
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/];
-                }
-            });
-        }); };
-        f();
-    }, []);
-    //フォロー関数
-    var onFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .post("/api/add/follow/search", {
-                            followee: user.id,
-                            follower: targetId
-                        })
-                            .then(function (res) {
-                            var follow = res.data;
-                            setResults(results.map(function (result, i) {
-                                if (result.user.id === targetId) {
-                                    var newResult = {
-                                        user: result.user,
-                                        follow: follow
-                                    };
-                                    return newResult;
-                                }
-                                else {
-                                    return result;
-                                }
-                            }));
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    history.push("/register");
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    //フォロー解除関数
-    var onRemoveFollow = function (targetId) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .post("/api/del/follow/search", {
-                            followee: user.id,
-                            follower: targetId
-                        })
-                            .then(function (res) {
-                            setResults(results.map(function (result, i) {
-                                if (result.user.id === targetId) {
-                                    var newResult = {
-                                        user: result.user
-                                    };
-                                    return newResult;
-                                }
-                                else {
-                                    return result;
-                                }
-                            }));
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    history.push("/register");
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    var followButton = function (result) {
-        if (user) {
-            if (result.follow) {
-                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059"));
-            }
-            else if (user.id === result.user.id) {
-                //同一アバターの場合
-                return null;
-            }
-            else {
-                return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(result.user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-            }
-        }
-        else {
-            //非ログイン
-            return (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return history.push("/register"); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-        }
-    };
-    //ロード中に表示する項目
-    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
-    //項目を読み込むときのコールバック
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setIsFetching(true);
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/follower", {
-                            params: {
-                                number: page,
-                                targetId: targetUserId,
-                                user_id: user === null || user === void 0 ? void 0 : user.id
-                            }
-                        })
-                            .then(function (res) {
-                            return res.data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setResults(__spreadArray(__spreadArray([], results), [data]));
-                    setIsFetching(false);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null,
                 targetUserName,
                 "\u3055\u3093\u3092\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u308B\u30E6\u30FC\u30B6\u30FC | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
-            react_1.default.createElement(Grid_1.default, { container: true }, results[0] &&
-                results.map(function (result, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(Card_1.default, { className: classes.card },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + result.user.name + "/user/" + result.user.id },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement(Avatar_1.default, { alt: "image", src: result.user
-                                            .profile_image }),
-                                    react_1.default.createElement(Typography_1.default, null, result.user.name))),
-                            react_1.default.createElement(CardActions_1.default, null, followButton(result)))));
-                })))));
+        react_1.default.createElement(StickUser_1.default, { path: "/api/get/follower", isSearchResult: false, targetId: targetUserId })));
 };
 exports.default = Follower;
 
@@ -92602,10 +92947,13 @@ var Login = function () {
         axios_1.default
             .post("/login", data)
             .then(function (res) {
+            console.log(res);
             history.push("/");
         })
             .catch(function (error) {
-            console.log(error);
+            console.log(error.response);
+            var validationError = error.response.data.errors.email[0];
+            setErrorMessage(validationError);
         });
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -92616,7 +92964,7 @@ var Login = function () {
             react_1.default.createElement("div", { className: classes.paper },
                 react_1.default.createElement(Avatar_1.default, { className: classes.avatar },
                     react_1.default.createElement(LockOutlined_1.default, null)),
-                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h5" }, "\u65B0\u898F\u767B\u9332"),
+                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h5" }, "\u30ED\u30B0\u30A4\u30F3"),
                 react_1.default.createElement("form", { className: classes.form, noValidate: true },
                     react_1.default.createElement(Grid_1.default, { container: true, spacing: 2 },
                         react_1.default.createElement(Grid_1.default, { item: true, xs: 12 },
@@ -92627,7 +92975,9 @@ var Login = function () {
                     react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onLogin }, "\u30ED\u30B0\u30A4\u30F3"),
                     react_1.default.createElement(Grid_1.default, { container: true, justify: "flex-end" },
                         react_1.default.createElement(Grid_1.default, { item: true },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/register" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u305B\u3093\u304B\uFF1F"))))),
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/register" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u305B\u3093")),
+                        react_1.default.createElement(Grid_1.default, { item: true },
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/password/reset" }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u307E\u3057\u305F"))))),
             react_1.default.createElement(Box_1.default, { mt: 5 },
                 react_1.default.createElement(Copyright, null)))));
 };
@@ -92645,6 +92995,17 @@ exports.default = Login;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -92710,15 +93071,16 @@ var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button 
 var CssBaseline_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CssBaseline */ "./node_modules/@material-ui/core/esm/CssBaseline/index.js"));
 var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
 var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var Box_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js"));
 var LockOutlined_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/LockOutlined */ "./node_modules/@material-ui/icons/LockOutlined.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var Container_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/esm/Container/index.js"));
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var core_1 = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
 function Copyright() {
     return (react_1.default.createElement(Typography_1.default, { variant: "body2", color: "textSecondary", align: "center" },
         "Copyright © ",
@@ -92751,15 +93113,37 @@ var useStyles = styles_1.makeStyles(function (theme) { return ({
         marginTop: "10px"
     }
 }); });
+function Alert(props) {
+    return react_1.default.createElement(Alert_1.default, __assign({ elevation: 6, variant: "filled" }, props));
+}
 function Register() {
     var _this = this;
     var history = react_router_dom_1.useHistory();
+    var location = react_router_dom_1.useLocation();
     var classes = useStyles();
     var _a = react_1.useState(""), name = _a[0], setName = _a[1];
     var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
     var _c = react_1.useState(""), errorMessage = _c[0], setErrorMessage = _c[1];
     var _d = react_1.useState(""), email = _d[0], setEmail = _d[1];
     var _e = react_1.useState(""), passwordConfirm = _e[0], setPasswordConfirm = _e[1];
+    var _f = react_1.useState(""), message = _f[0], setMessage = _f[1];
+    var _g = react_1.default.useState(false), open = _g[0], setOpen = _g[1];
+    react_1.useEffect(function () {
+        if (location.state !== undefined) {
+            console.log(location.state);
+            setMessage(location.state.message);
+            handleClick();
+        }
+    }, []);
+    var handleClick = function () {
+        setOpen(true);
+    };
+    var handleClose = function (event, reason) {
+        if (reason === "clickaway") {
+            return;
+        }
+        setOpen(false);
+    };
     var onSignUp = function (e) { return __awaiter(_this, void 0, void 0, function () {
         var data;
         return __generator(this, function (_a) {
@@ -92803,10 +93187,13 @@ function Register() {
                     return [4 /*yield*/, axios_1.default
                             .post("/register", data)
                             .then(function (res) {
+                            console.log("reg=", res.data);
                             history.push("/");
                         })
                             .catch(function (error) {
-                            console.log(error);
+                            console.log(error.response);
+                            var validationError = error.response.data.errors.email[0];
+                            setErrorMessage(validationError);
                         })];
                 case 1:
                     _a.sent();
@@ -92859,14 +93246,16 @@ function Register() {
                             react_1.default.createElement(TextField_1.default, { variant: "outlined", required: true, fullWidth: true, name: "password_confirmation", label: "\u78BA\u8A8D\u7528", type: "password", id: "password_confirmation", autoComplete: "current-password_confirmation", onChange: function (e) {
                                     return setPasswordConfirm(e.target.value);
                                 }, value: passwordConfirm }))),
-                    errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
+                    errorMessage && (react_1.default.createElement(Alert, { severity: "error", className: classes.errorMessage }, errorMessage)),
                     react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onSignUp }, "\u767B\u9332"),
                     react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", className: classes.submit, onClick: onTestLogin }, "\u30C6\u30B9\u30C8\u30ED\u30B0\u30A4\u30F3"),
                     react_1.default.createElement(Grid_1.default, { container: true, justify: "flex-end" },
                         react_1.default.createElement(Grid_1.default, { item: true },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/login" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u3059\u304B\uFF1F"))))),
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/login" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u304C\u3042\u308A\u307E\u3059"))))),
             react_1.default.createElement(Box_1.default, { mt: 5 },
-                react_1.default.createElement(Copyright, null)))));
+                react_1.default.createElement(Copyright, null))),
+        react_1.default.createElement(core_1.Snackbar, { open: open, autoHideDuration: 6000, onClose: handleClose },
+            react_1.default.createElement(Alert, { onClose: handleClose, severity: "success" }, message))));
 }
 exports.default = Register;
 
@@ -93802,6 +94191,393 @@ exports.default = View;
 
 /***/ }),
 
+/***/ "./resources/ts/views/pages/reset/ChangePassword.tsx":
+/*!***********************************************************!*\
+  !*** ./resources/ts/views/pages/reset/ChangePassword.tsx ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var __1 = __webpack_require__(/*! ../../.. */ "./resources/ts/index.tsx");
+var VpnKey_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/VpnKey */ "./node_modules/@material-ui/icons/VpnKey.js"));
+var FormControl_1 = __importDefault(__webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js"));
+var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
+var core_1 = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main
+    },
+    form: {
+        width: "100%",
+        marginTop: theme.spacing(3)
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2)
+    },
+    large: {
+        width: theme.spacing(15),
+        height: theme.spacing(15)
+    },
+    errorMessage: {
+        marginTop: "10px"
+    }
+}); });
+var ChangePassword = function () {
+    var classes = useStyles();
+    var dispatch = react_redux_1.useDispatch();
+    var history = react_router_dom_1.useHistory();
+    var _a = react_1.useState(""), email = _a[0], setEmail = _a[1];
+    var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
+    var _c = react_1.useState(""), passwordConfirm = _c[0], setPasswordConfirm = _c[1];
+    var _d = react_1.useState(""), errorMessage = _d[0], setErrorMessage = _d[1];
+    var search = react_router_dom_1.useLocation().search;
+    var query = query_string_1.default.parse(search);
+    var query_email = query["email"];
+    var params = react_router_dom_1.useParams(); // URLのパスパラメータを取得。例えば、 /uses/2 なら、2の部分を取得
+    var token = params.csrf;
+    react_1.useEffect(function () {
+        console.log(params);
+        console.log(location);
+        console.log(query_email);
+        setEmail(query_email);
+    }, []);
+    var createNewPassword = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    e.preventDefault();
+                    if (email === "") {
+                        setErrorMessage("メールアドレスは必須です");
+                        return [2 /*return*/];
+                    }
+                    if (password === "") {
+                        setErrorMessage("パスワードは必須です");
+                        return [2 /*return*/];
+                    }
+                    if (passwordConfirm === "") {
+                        setErrorMessage("確認用パスワードは必須です");
+                        return [2 /*return*/];
+                    }
+                    if (password.length < 8) {
+                        setErrorMessage("パスワードは8文字以上です");
+                        return [2 /*return*/];
+                    }
+                    if (password !== passwordConfirm) {
+                        setErrorMessage("パスワードと確認用パスワードが一致しません");
+                        return [2 /*return*/];
+                    }
+                    data = {
+                        _token: __1.csrf_token,
+                        token: token,
+                        email: email,
+                        password: password,
+                        password_confirmation: passwordConfirm
+                    };
+                    return [4 /*yield*/, axios_1.default
+                            .post("/password/reset", data)
+                            .then(function () {
+                            history.push("/login", {
+                                message: "パスワードが変更されました"
+                            });
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_helmet_1.Helmet, null,
+            react_1.default.createElement("title", null, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u305F | \u3086\u3046\u3042\u308B\u3048\u308B")),
+        react_1.default.createElement(core_1.Container, { component: "main", maxWidth: "xs" },
+            react_1.default.createElement(core_1.CssBaseline, null),
+            react_1.default.createElement("div", { className: classes.paper },
+                react_1.default.createElement(Avatar_1.default, { className: classes.avatar },
+                    react_1.default.createElement(VpnKey_1.default, null)),
+                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h5" }, "\u65B0\u3057\u3044\u30D1\u30B9\u30EF\u30FC\u30C9\u8A2D\u5B9A"),
+                react_1.default.createElement("form", { className: classes.form, noValidate: true },
+                    react_1.default.createElement(Grid_1.default, { container: true, spacing: 2 },
+                        react_1.default.createElement(Grid_1.default, { item: true, xs: 12 },
+                            react_1.default.createElement(FormControl_1.default, { disabled: true },
+                                react_1.default.createElement(TextField_1.default, { id: "email", label: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9", name: "email", autoComplete: "email", variant: "outlined", required: true, value: email, onChange: function (e) { return setEmail(e.target.value); }, disabled: true }))),
+                        react_1.default.createElement(Grid_1.default, { item: true, xs: 12 },
+                            react_1.default.createElement(TextField_1.default, { variant: "outlined", required: true, fullWidth: true, name: "password", label: "\u30D1\u30B9\u30EF\u30FC\u30C9", type: "password", id: "password", autoComplete: "current-password", onChange: function (e) { return setPassword(e.target.value); }, value: password })),
+                        react_1.default.createElement(Grid_1.default, { item: true, xs: 12 },
+                            react_1.default.createElement(TextField_1.default, { variant: "outlined", required: true, fullWidth: true, name: "password_confirmation", label: "\u78BA\u8A8D\u7528", type: "password", id: "password_confirmation", autoComplete: "current-password_confirmation", onChange: function (e) {
+                                    return setPasswordConfirm(e.target.value);
+                                }, value: passwordConfirm }))),
+                    errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
+                    react_1.default.createElement(Button_1.default, { type: "submit", variant: "contained", color: "primary", onClick: createNewPassword }, "\u9001\u4FE1"))))));
+};
+exports.default = ChangePassword;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/pages/reset/ResetPassword.tsx":
+/*!**********************************************************!*\
+  !*** ./resources/ts/views/pages/reset/ResetPassword.tsx ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Snackbar */ "./node_modules/@material-ui/core/esm/Snackbar/index.js"));
+var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
+var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var VpnKey_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/VpnKey */ "./node_modules/@material-ui/icons/VpnKey.js"));
+var __1 = __webpack_require__(/*! ../../.. */ "./resources/ts/index.tsx");
+var core_1 = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+function Alert(props) {
+    return react_1.default.createElement(Alert_1.default, __assign({ elevation: 6, variant: "filled" }, props));
+}
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main
+    },
+    form: {
+        width: "100%",
+        marginTop: theme.spacing(3)
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2)
+    },
+    large: {
+        width: theme.spacing(15),
+        height: theme.spacing(15)
+    },
+    errorMessage: {
+        marginTop: "10px"
+    }
+}); });
+var ResetPassword = function () {
+    var classes = useStyles();
+    var dispatch = react_redux_1.useDispatch();
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var history = react_router_1.useHistory();
+    var _a = react_1.useState(""), email = _a[0], setEmail = _a[1];
+    var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
+    var _c = react_1.useState(false), open = _c[0], setOpen = _c[1];
+    var _d = react_1.useState(""), message = _d[0], setMessage = _d[1];
+    var handleClickOpen = function () {
+        setOpen(true);
+    };
+    var handleClose = function () {
+        setOpen(false);
+    };
+    var onResetPassword = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    e.preventDefault();
+                    return [4 /*yield*/, axios_1.default
+                            .post("/password/email", { email: email, _token: __1.csrf_token })
+                            .then(function () {
+                            setMessage("あなたのメールアドレスにリセット用のメールを送信しました");
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_helmet_1.Helmet, null,
+            react_1.default.createElement("title", null, "\u30D1\u30B9\u30EF\u30FC\u30C9\u30EA\u30BB\u30C3\u30C8\u30E1\u30FC\u30EB\u9001\u4FE1 | \u3086\u3046\u3042\u308B\u3048\u308B")),
+        react_1.default.createElement(core_1.Container, { component: "main", maxWidth: "xs" },
+            react_1.default.createElement(core_1.CssBaseline, null),
+            react_1.default.createElement("div", { className: classes.paper },
+                react_1.default.createElement(Avatar_1.default, { className: classes.avatar },
+                    react_1.default.createElement(VpnKey_1.default, null)),
+                react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h5" }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u30EA\u30BB\u30C3\u30C8\u30E1\u30FC\u30EB\u9001\u4FE1"),
+                react_1.default.createElement("form", { className: classes.form, noValidate: true },
+                    react_1.default.createElement(Grid_1.default, { container: true, spacing: 2 },
+                        react_1.default.createElement(Grid_1.default, { item: true, xs: 12 },
+                            react_1.default.createElement(TextField_1.default, { variant: "outlined", required: true, fullWidth: true, id: "email", label: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9", name: "email", autoComplete: "email", onChange: function (e) { return setEmail(e.target.value); }, value: email }))),
+                    react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onResetPassword }, "\u9001\u4FE1")))),
+        react_1.default.createElement(Snackbar_1.default, { open: open, autoHideDuration: 6000, onClose: handleClose },
+            react_1.default.createElement(Alert, { onClose: handleClose, severity: "success" }, message))));
+};
+exports.default = ResetPassword;
+
+
+/***/ }),
+
 /***/ "./resources/ts/views/pages/top/FolloweePosts.tsx":
 /*!********************************************************!*\
   !*** ./resources/ts/views/pages/top/FolloweePosts.tsx ***!
@@ -93866,129 +94642,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
 var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
-var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
-var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
-var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var MenuItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js"));
-var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
-var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert/Alert */ "./node_modules/@material-ui/lab/Alert/Alert.js"));
+var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
 var useStyles = styles_1.makeStyles(function (theme) { return ({
-    icon: {
-        marginRight: theme.spacing(2)
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4)
-    },
-    cardGrid: {
-        paddingRight: theme.spacing(15),
-        paddingLeft: theme.spacing(15)
-    },
-    card: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.03)"
-        }
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-    profileContent: {
-        display: "flex",
-        marginBottom: "0.5rem"
-    },
-    grid: {
-        marginBottom: "10px"
-    },
-    link: {
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "none"
-        }
-    },
-    siteName: {
-        marginBottom: "0.5rem",
-        color: "rgb(83, 100, 113)"
-    },
-    cardContent: {
-        flexGrow: 1
-    },
-    cardMedia: {
-        paddingTop: "56.25%",
-        marginBottom: "0.5rem",
-        transition: ".3s",
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    cardMediaContainer: {},
-    profileContainer: {
-        display: "flex"
-    },
-    data: {},
-    dataContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        fontSize: "0.8rem",
-        color: "rgb(83, 100, 113)"
-    },
-    body: {
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        marginBottom: "0.5rem"
-    },
-    avatar: {
-        marginRight: "1rem"
-    },
-    userName: {
-        color: "black"
-    },
     selectBox: {
         marginBottom: "1rem"
     }
 }); });
-var currencies = [
-    {
-        value: "followee",
-        label: "フォロー中のユーザーの投稿を見る"
-    },
-    {
-        value: "all",
-        label: "全ての投稿を見る"
-    }
-];
 var FolloweePosts = function () {
     var classes = useStyles();
     var dispatch = react_redux_1.useDispatch();
@@ -94000,200 +94670,43 @@ var FolloweePosts = function () {
     var _d = react_1.useState("followee"), currency = _d[0], setCurrency = _d[1];
     var _e = react_1.useState(false), endMessage = _e[0], setEndMessage = _e[1];
     react_1.useEffect(function () {
+        //パラメーターに則ったユーザー情報取得
         var f = function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, axios_1.default
-                            .get("/json")
-                            .then(function (res) {
-                            if (res.data) {
-                                dispatch(action_1.login_user(res.data));
-                            }
-                            else {
-                                history.push("/register");
-                            }
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
+                    case 0:
+                        if (!!user) return [3 /*break*/, 2];
+                        return [4 /*yield*/, axios_1.default
+                                .get("/json")
+                                .then(function (res) {
+                                if (res.data) {
+                                    dispatch(action_1.login_user(res.data));
+                                }
+                                else {
+                                    history.push("/register");
+                                }
+                            })
+                                .catch(function (error) {
+                                console.log(error);
+                            })];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
+                        _a.label = 2;
+                    case 2: return [2 /*return*/];
                 }
             });
         }); };
         f();
     }, []);
-    var onAddLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            var indexNumber_1 = index;
-            axios_1.default
-                .post("/api/add/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === indexNumber_1) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいね解除
-    var onRemoveLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            axios_1.default
-                .post("/api/del/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === index) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいねしたことあるか、
-    var isLikedBefore = function (post) {
-        if (user) {
-            var even = function (like) { return like.user_id === user.id; };
-            var isLiked = post.likes.some(even);
-            return isLiked;
-        }
-    };
-    var getDate = function (date) {
-        var toDate = new Date(date);
-        var month = toDate.getMonth() + 1;
-        var day = toDate.getDate();
-        return (react_1.default.createElement(Typography_1.default, { className: classes.data },
-            month,
-            "\u6708 ",
-            day,
-            "\u65E5"));
-    };
-    //フォロー中のユーザーの投稿取得
-    var loadMoreFolloweePost = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!user) return [3 /*break*/, 2];
-                    setIsFetching(true);
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/post/scroll/followee", {
-                            params: { number: page, user_id: user.id }
-                        })
-                            .then(function (res) {
-                            var data = res.data;
-                            if (data === "no followee") {
-                                setEndMessage(true);
-                                return;
-                            }
-                            return data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        //しょっぱなからデータがない場合
-                        if (!posts[0]) {
-                            setEndMessage(true);
-                        }
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
-                    setIsFetching(false);
-                    _a.label = 2;
-                case 2: return [2 /*return*/];
-            }
-        });
-    }); };
-    var handleChange = function (e) {
-        history.push("/");
-    };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(react_helmet_1.Helmet, null,
-            react_1.default.createElement("title", null, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306E\u6295\u7A3F | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(TextField_1.default, { select: true, value: currency, onChange: handleChange, className: classes.selectBox }, currencies.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value }, option.label)); })),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMoreFolloweePost, hasMore: !isFetching && hasMore && Boolean(user) },
-            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
-                posts.map(function (post, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                pathname: "/" + post.user.name + "/post/" + post.post.id,
-                                state: {
-                                    post: post.post,
-                                    user: post.user,
-                                    likes: post.likes
-                                }
-                            }, className: classes.link },
-                            react_1.default.createElement(Card_1.default, { className: classes.card },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.profileContent },
-                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
-                                                    state: post.user
-                                                }, className: classes.profileContainer },
-                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
-                                                        .profile_image, className: classes.avatar }),
-                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
-                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                window.open(post.post.url);
-                                            } },
-                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
-                                    react_1.default.createElement("div", { className: classes.dataContainer },
-                                        react_1.default.createElement(CalendarToday_1.default, null),
-                                        getDate(post.post.updated_at))),
-                                react_1.default.createElement(CardActions_1.default, null,
-                                    react_1.default.createElement("object", null,
-                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onRemoveLike(post.post
-                                                    .id, i);
-                                            }, color: "primary" },
-                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onAddLike(post.post
-                                                    .id, i);
-                                            } },
-                                            react_1.default.createElement(ThumbUp_1.default, null))),
-                                        post.likes.length))))));
-                }))),
-        endMessage && (react_1.default.createElement(Alert_1.default, { severity: "error" }, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u304C\u3044\u307E\u305B\u3093"))));
+    if (user) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(react_helmet_1.Helmet, null,
+                react_1.default.createElement("title", null, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306E\u6295\u7A3F | \u3086\u3046\u3042\u308B\u3048\u308B")),
+            react_1.default.createElement(Posts_1.default, { path: "/api/get/post/scroll/followee", user_id: user.id, defaultCurrency: "followee" })));
+    }
+    else {
+        return null;
+    }
 };
 exports.default = FolloweePosts;
 
@@ -94209,6 +94722,17 @@ exports.default = FolloweePosts;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -94228,150 +94752,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
-var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
-var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
-var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
-var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var MenuItem_1 = __importDefault(__webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js"));
-var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Snackbar */ "./node_modules/@material-ui/core/esm/Snackbar/index.js"));
 var useStyles = styles_1.makeStyles(function (theme) { return ({
-    icon: {
-        marginRight: theme.spacing(2)
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4)
-    },
-    cardGrid: {
-        paddingRight: theme.spacing(15),
-        paddingLeft: theme.spacing(15)
-    },
-    card: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.03)"
-        }
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-    profileContent: {
-        display: "flex",
-        marginBottom: "0.5rem"
-    },
-    grid: {
-        marginBottom: "10px"
-    },
-    link: {
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "none"
-        }
-    },
-    siteName: {
-        marginBottom: "0.5rem",
-        color: "rgb(83, 100, 113)"
-    },
-    cardContent: {
-        flexGrow: 1
-    },
-    cardMedia: {
-        paddingTop: "56.25%",
-        marginBottom: "0.5rem",
-        transition: ".3s",
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    cardMediaContainer: {},
-    profileContainer: {
-        display: "flex"
-    },
-    data: {},
-    dataContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        fontSize: "0.8rem",
-        color: "rgb(83, 100, 113)"
-    },
-    body: {
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        marginBottom: "0.5rem"
-    },
-    avatar: {
-        marginRight: "1rem"
-    },
-    userName: {
-        color: "black"
-    },
     selectBox: {
         marginBottom: "1rem"
     }
@@ -94386,6 +94779,9 @@ var currencies = [
         label: "全ての投稿を見る"
     }
 ];
+function Alert(props) {
+    return react_1.default.createElement(Alert_1.default, __assign({ elevation: 6, variant: "filled" }, props));
+}
 var Top = function () {
     var classes = useStyles();
     var dispatch = react_redux_1.useDispatch();
@@ -94396,195 +94792,31 @@ var Top = function () {
     var _c = react_1.useState(true), hasMore = _c[0], setHasMore = _c[1];
     var _d = react_1.useState(false), isFetching = _d[0], setIsFetching = _d[1];
     var _e = react_1.useState("all"), currency = _e[0], setCurrency = _e[1];
+    var _f = react_1.useState(""), message = _f[0], setMessage = _f[1];
+    var location = react_router_1.useLocation();
     react_1.useEffect(function () {
-        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!!user) return [3 /*break*/, 2];
-                        //ログインされていない場合
-                        return [4 /*yield*/, axios_1.default
-                                .get("/json")
-                                .then(function (res) {
-                                if (res.data) {
-                                    dispatch(action_1.login_user(res.data));
-                                }
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
-                    case 1:
-                        //ログインされていない場合
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/];
-                }
-            });
-        }); };
-        f();
+        if (location.state !== undefined) {
+            console.log(location.state);
+            setMessage(location.state.message);
+            handleClick();
+        }
     }, []);
-    var onAddLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            var indexNumber_1 = index;
-            axios_1.default
-                .post("/api/add/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === indexNumber_1) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            history.push("/register");
-        }
+    var _g = react_1.default.useState(false), open = _g[0], setOpen = _g[1];
+    var handleClick = function () {
+        setOpen(true);
     };
-    //いいね解除
-    var onRemoveLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            axios_1.default
-                .post("/api/del/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === index) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            });
+    var handleClose = function (event, reason) {
+        if (reason === "clickaway") {
+            return;
         }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいねしたことあるか、
-    var isLikedBefore = function (post) {
-        if (user) {
-            var even = function (like) { return like.user_id === user.id; };
-            var isLiked = post.likes.some(even);
-            return isLiked;
-        }
-    };
-    var getDate = function (date) {
-        var toDate = new Date(date);
-        var month = toDate.getMonth() + 1;
-        var day = toDate.getDate();
-        return (react_1.default.createElement(Typography_1.default, { className: classes.data },
-            month,
-            "\u6708 ",
-            day,
-            "\u65E5"));
-    };
-    //全投稿取得
-    var loadMoreAllPost = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setIsFetching(true);
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/post/scroll", { params: { number: page } })
-                            .then(function (res) {
-                            var data = res.data;
-                            return data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
-                    setIsFetching(false);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    var handleChange = function (e) {
-        if (!user) {
-            history.push("/register");
-        }
-        else {
-            history.push("/followee/posts");
-        }
+        setOpen(false);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8 | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(TextField_1.default, { select: true, value: currency, onChange: handleChange, className: classes.selectBox }, currencies.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value }, option.label)); })),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMoreAllPost, hasMore: !isFetching && hasMore },
-            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
-                posts.map(function (post, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                pathname: "/" + post.user.name + "/post/" + post.post.id,
-                                state: {
-                                    post: post.post,
-                                    user: post.user,
-                                    likes: post.likes
-                                }
-                            }, className: classes.link },
-                            react_1.default.createElement(Card_1.default, { className: classes.card },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.profileContent },
-                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
-                                                    state: post.user
-                                                }, className: classes.profileContainer },
-                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
-                                                        .profile_image, className: classes.avatar }),
-                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
-                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                window.open(post.post.url);
-                                            } },
-                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
-                                    react_1.default.createElement("div", { className: classes.dataContainer },
-                                        react_1.default.createElement(CalendarToday_1.default, null),
-                                        getDate(post.post.updated_at))),
-                                react_1.default.createElement(CardActions_1.default, null,
-                                    react_1.default.createElement("object", null,
-                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onRemoveLike(post.post
-                                                    .id, i);
-                                            }, color: "primary" },
-                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onAddLike(post.post
-                                                    .id, i);
-                                            } },
-                                            react_1.default.createElement(ThumbUp_1.default, null))),
-                                        post.likes.length))))));
-                })))));
+        react_1.default.createElement(Posts_1.default, { path: "/api/get/post/scroll", defaultCurrency: "all" }),
+        react_1.default.createElement(Snackbar_1.default, { open: open, autoHideDuration: 6000, onClose: handleClose },
+            react_1.default.createElement(Alert, { onClose: handleClose, severity: "success" }, message))));
 };
 exports.default = Top;
 
@@ -94655,10 +94887,138 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
+var User_1 = __importDefault(__webpack_require__(/*! ../../components/User */ "./resources/ts/views/components/User.tsx"));
+var Login_User = function () {
+    var history = react_router_1.useHistory();
+    var dispatch = react_redux_1.useDispatch();
+    var userData = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _a = react_1.useState(), user = _a[0], setUser = _a[1];
+    var _b = react_1.useState({
+        followerLength: 0,
+        followeeLength: 0
+    }), followLength = _b[0], setFollowLength = _b[1];
+    react_1.useEffect(function () {
+        //パラメーターに則ったユーザー情報取得
+        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!userData) return [3 /*break*/, 1];
+                        setUser(userData);
+                        return [3 /*break*/, 3];
+                    case 1: return [4 /*yield*/, axios_1.default
+                            .get("/json")
+                            .then(function (res) {
+                            if (res.data) {
+                                dispatch(action_1.login_user(res.data));
+                                setUser(res.data);
+                            }
+                            else {
+                                history.push("/register");
+                            }
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); };
+        f();
+    }, []);
+    if (user) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(react_helmet_1.Helmet, null,
+                react_1.default.createElement("title", null, "\u30E6\u30FC\u30B6\u30FC\u30DA\u30FC\u30B8 | \u3086\u3046\u3042\u308B\u3048\u308B")),
+            react_1.default.createElement(User_1.default, { user: user, isLoginUser: true }),
+            react_1.default.createElement(Posts_1.default, { path: "/api/get/post/scroll/user", user_id: user.id })));
+    }
+    else {
+        return null;
+    }
+};
+exports.default = Login_User;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/pages/user/Poster.tsx":
+/*!**************************************************!*\
+  !*** ./resources/ts/views/pages/user/Poster.tsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -94668,432 +95028,64 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
-var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
-var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
-var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
-var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
-var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    icon: {
-        marginRight: theme.spacing(2)
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4)
-    },
-    cardGrid: {
-        paddingRight: theme.spacing(15),
-        paddingLeft: theme.spacing(15)
-    },
-    card: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.03)"
-        }
-    },
-    cardUser: {},
-    /*cardMedia: {
-        paddingTop: "56.25%" // 16:9
-    },
-    cardContent: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px"
-    },*/
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-    large: {
-        width: theme.spacing(15),
-        height: theme.spacing(15)
-    },
-    followLength: {
-        display: "flex"
-    },
-    editNameText: {
-        marginBottom: "10px"
-    },
-    editIntroductionText: {},
-    nameText: {
-        marginBottom: "20px"
-    },
-    introductionText: {
-        marginLeft: "5px"
-    },
-    cardAction: {
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "flex-start"
-    },
-    textContainer: {
-        display: "flex",
-        marginLeft: "10px",
-        flexDirection: "column"
-    },
-    avatarContainer: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    errorMessage: {
-        marginTop: "10px"
-    },
-    input: {
-        display: "none"
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px"
-    },
-    editAvatar: {
-        width: theme.spacing(15),
-        height: theme.spacing(15),
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    profileContent: {
-        display: "flex",
-        marginBottom: "0.5rem"
-    },
-    grid: {
-        marginBottom: "10px"
-    },
-    link: {
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "none"
-        }
-    },
-    siteName: {
-        marginBottom: "0.5rem",
-        color: "rgb(83, 100, 113)"
-    },
-    cardContent: {
-        flexGrow: 1
-    },
-    cardMedia: {
-        paddingTop: "56.25%",
-        marginBottom: "0.5rem",
-        transition: ".3s",
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    cardMediaContainer: {},
-    profileContainer: {
-        display: "flex"
-    },
-    data: {},
-    dataContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        fontSize: "0.8rem",
-        color: "rgb(83, 100, 113)"
-    },
-    body: {
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        marginBottom: "0.5rem"
-    },
-    avatar: {
-        marginRight: "1rem"
-    },
-    userName: {
-        color: "black"
-    }
-}); });
-var Login_User = function () {
-    var history = react_router_1.useHistory();
-    var classes = useStyles();
+var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
+var User_1 = __importDefault(__webpack_require__(/*! ../../components/User */ "./resources/ts/views/components/User.tsx"));
+var Poster = function () {
+    var myUserId = react_redux_1.useSelector(function (state) { var _a; return (_a = state.user.user) === null || _a === void 0 ? void 0 : _a.id; });
+    var _a = react_1.useState(), user = _a[0], setUser = _a[1];
+    var _b = react_1.useState({
+        followeeLength: 0,
+        followerLength: 0
+    }), followLength = _b[0], setFollowLength = _b[1];
+    var _c = react_1.useState(false), isFollow = _c[0], setIsFollow = _c[1];
+    var params = react_router_1.useParams();
+    var id = params.id;
     var dispatch = react_redux_1.useDispatch();
-    var userData = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var _a = react_1.useState(false), isFetching = _a[0], setIsFetching = _a[1];
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(), user = _c[0], setUser = _c[1];
-    var _d = react_1.useState([]), posts = _d[0], setPosts = _d[1];
-    var _e = react_1.useState(""), errorMessage = _e[0], setErrorMessage = _e[1];
-    var _f = react_1.useState({
-        followerLength: 0,
-        followeeLength: 0
-    }), followLength = _f[0], setFollowLength = _f[1];
-    var _g = react_1.useState(false), isEditMode = _g[0], setIsEditMode = _g[1];
-    var _h = react_1.useState(""), newUserName = _h[0], setNewUserName = _h[1];
-    var _j = react_1.useState(""), newSelfIntroduction = _j[0], setNewSelfIntroduction = _j[1];
-    var _k = react_1.useState(""), newProfileImage = _k[0], setNewProfileImage = _k[1];
+    var location = react_router_1.useLocation();
     react_1.useEffect(function () {
         //パラメーターに則ったユーザー情報取得
-        // alert("fuck");
         var f = function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!userData) return [3 /*break*/, 2];
-                        setUser(userData);
-                        //該当のユーザーの、フォロー・フォロワー数取得
-                        return [4 /*yield*/, axios_1.default
-                                .get("/api/get/follow", { params: { userId: userData.id } })
-                                .then(function (res) {
-                                setFollowLength({
-                                    followeeLength: res.data.followee,
-                                    followerLength: res.data.follower
-                                });
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
-                    case 1:
-                        //該当のユーザーの、フォロー・フォロワー数取得
-                        _a.sent();
-                        return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, axios_1.default
-                            .get("/json")
+                        if (!location.state) return [3 /*break*/, 1];
+                        setUser(location.state);
+                        return [3 /*break*/, 3];
+                    case 1: 
+                    //直リンクの場合
+                    return [4 /*yield*/, axios_1.default
+                            .get("/api/get/user", { params: { user_id: id } })
                             .then(function (res) {
-                            if (res.data) {
-                                dispatch(action_1.login_user(res.data));
-                            }
-                            else {
-                                history.push("/register");
-                            }
+                            setUser(res.data);
                         })
                             .catch(function (error) {
                             console.log(error);
                         })];
-                    case 3:
+                    case 2:
+                        //直リンクの場合
                         _a.sent();
-                        _a.label = 4;
-                    case 4: return [2 /*return*/];
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         }); };
         f();
-    }, [userData]);
-    //名前変更差踏みっと
-    var onSetUserData = function () {
-        if (user) {
-            setIsEditMode(true);
-            setNewUserName(user.name);
-            setNewProfileImage(user.profile_image);
-            user.self_introduction &&
-                setNewSelfIntroduction(user.self_introduction);
-        }
-    };
-    //ロード中に表示する項目
-    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
-    //項目を読み込むときのコールバック
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setIsFetching(true);
-                    if (!user) return [3 /*break*/, 2];
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/post/scroll/user", {
-                            params: { number: page, user_id: user.id }
-                        })
-                            .then(function (res) {
-                            var data = res.data;
-                            return data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
-                    setIsFetching(false);
-                    _a.label = 2;
-                case 2: return [2 /*return*/];
-            }
-        });
-    }); };
-    var onAddLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            var indexNumber_1 = index;
-            axios_1.default
-                .post("/api/add/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === indexNumber_1) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいね解除
-    var onRemoveLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            axios_1.default
-                .post("/api/del/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === index) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいねしたことあるか、
-    var isLikedBefore = function (post) {
-        if (user) {
-            var even = function (like) { return like.user_id === user.id; };
-            var isLiked = post.likes.some(even);
-            return isLiked;
-        }
-    };
-    var getDate = function (date) {
-        var toDate = new Date(date);
-        var month = toDate.getMonth() + 1;
-        var day = toDate.getDate();
-        return (react_1.default.createElement(Typography_1.default, null,
-            month,
-            "\u6708 ",
-            day,
-            "\u65E5"));
-    };
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement(react_helmet_1.Helmet, null,
-            react_1.default.createElement("title", null, "\u30E6\u30FC\u30B6\u30FC\u30DA\u30FC\u30B8 | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        user && (react_1.default.createElement(Grid_1.default, { item: true, xs: 12, className: classes.grid },
-            react_1.default.createElement(Card_1.default, { className: classes.cardUser },
-                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                    isEditMode ? (react_1.default.createElement("form", { action: "/api/edit/user/name?id=" + user.id, method: "post", encType: "multipart/form-data", className: classes.form },
-                        react_1.default.createElement("div", { className: classes.avatarContainer },
-                            react_1.default.createElement(CardActions_1.default, null,
-                                react_1.default.createElement("input", { accept: "image/*", name: "image", type: "file", id: "icon-button-file", className: classes.input, multiple: true }),
-                                react_1.default.createElement("label", { htmlFor: "icon-button-file" },
-                                    react_1.default.createElement(IconButton_1.default, { color: "primary", component: "span" },
-                                        react_1.default.createElement(Avatar_1.default, { alt: "image", src: newProfileImage, className: classes.editAvatar })))),
-                            react_1.default.createElement(TextField_1.default, { className: classes.editNameText, name: "name", type: "text", defaultValue: newUserName, onChange: function (e) { return setNewUserName(e.target.value); } })),
-                        react_1.default.createElement(TextField_1.default, { name: "self_introduction", className: classes.editIntroductionText, defaultValue: newSelfIntroduction, onChange: function (e) {
-                                return setNewSelfIntroduction(e.target.value);
-                            }, multiline: true, rows: 4, variant: "outlined" }),
-                        errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
-                        react_1.default.createElement(CardActions_1.default, { className: classes.cardAction },
-                            react_1.default.createElement(Button_1.default, { type: "submit", variant: "contained", color: "primary" }, "\u5909\u66F4"),
-                            react_1.default.createElement(Button_1.default, { type: "submit", variant: "contained", color: "secondary", onClick: function () { return setIsEditMode(false); } }, "\u9589\u3058\u308B")))) : (react_1.default.createElement(react_1.default.Fragment, null,
-                        react_1.default.createElement("div", { className: classes.avatarContainer },
-                            react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
-                            react_1.default.createElement(Typography_1.default, { className: classes.nameText, variant: "h4", gutterBottom: true }, user.name)),
-                        react_1.default.createElement(Typography_1.default, { className: classes.introductionText }, user.self_introduction),
-                        user.name !== "テストユーザー" && (react_1.default.createElement(CardActions_1.default, { className: classes.cardAction },
-                            react_1.default.createElement(Button_1.default, { variant: "contained", onClick: onSetUserData }, "\u7DE8\u96C6"))))),
-                    react_1.default.createElement("div", { className: classes.followLength },
-                        react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
-                            react_1.default.createElement(Typography_1.default, null,
-                                "\u30D5\u30A9\u30ED\u30FC\u6570:",
-                                followLength.followeeLength)),
-                        react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
-                            react_1.default.createElement(Typography_1.default, null,
-                                "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
-                                followLength.followerLength))))))),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
-            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
-                posts.map(function (post, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                pathname: "/" + post.user.name + "/post/" + post.post.id,
-                                state: {
-                                    post: post.post,
-                                    user: post.user,
-                                    likes: post.likes
-                                }
-                            }, className: classes.link },
-                            react_1.default.createElement(Card_1.default, { className: classes.card },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.profileContent },
-                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
-                                                    state: post.user
-                                                }, className: classes.profileContainer },
-                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
-                                                        .profile_image, className: classes.avatar }),
-                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
-                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                window.open(post.post.url);
-                                            } },
-                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
-                                    react_1.default.createElement("div", { className: classes.dataContainer },
-                                        react_1.default.createElement(CalendarToday_1.default, null),
-                                        getDate(post.post.updated_at))),
-                                react_1.default.createElement(CardActions_1.default, null,
-                                    react_1.default.createElement("object", null,
-                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onRemoveLike(post.post
-                                                    .id, i);
-                                            }, color: "primary" },
-                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onAddLike(post.post
-                                                    .id, i);
-                                            } },
-                                            react_1.default.createElement(ThumbUp_1.default, null))),
-                                        post.likes.length))))));
-                })))));
+    }, []);
+    if (user) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(react_helmet_1.Helmet, null,
+                react_1.default.createElement("title", null,
+                    user.name,
+                    "\u3055\u3093 | \u3086\u3046\u3042\u308B\u3048\u308B")),
+            react_1.default.createElement(User_1.default, { user: user, isLoginUser: false }),
+            react_1.default.createElement(Posts_1.default, { path: "/api/get/post/scroll/user", user_id: user.id })));
+    }
+    else {
+        return null;
+    }
 };
-exports.default = Login_User;
+exports.default = Poster;
 
 
 /***/ }),
@@ -95107,6 +95099,17 @@ exports.default = Login_User;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -95172,10 +95175,48 @@ var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/rea
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
+var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
+var Delete_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Delete */ "./node_modules/@material-ui/icons/Delete.js"));
+var Settings_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/Settings */ "./node_modules/@material-ui/icons/Settings.js"));
+var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Snackbar */ "./node_modules/@material-ui/core/esm/Snackbar/index.js"));
+var core_1 = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+var __1 = __webpack_require__(/*! ../../.. */ "./resources/ts/index.tsx");
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    button: {
+        margin: theme.spacing(1)
+    },
+    buttonContainer: {
+        display: "flex",
+        //flexDireciton: "column",
+        justifyContent: "space-around"
+    }
+}); });
+function Alert(props) {
+    return react_1.default.createElement(Alert_1.default, __assign({ elevation: 6, variant: "filled" }, props));
+}
 var Setting = function () {
     var dispatch = react_redux_1.useDispatch();
+    var classes = useStyles();
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var history = react_router_1.useHistory();
+    var _a = react_1.useState(false), open = _a[0], setOpen = _a[1];
+    var _b = react_1.useState(""), message = _b[0], setMessage = _b[1];
+    var _c = react_1.useState(false), snackBarOpen = _c[0], setSnackBarOpen = _c[1];
+    var handleClickOpen = function () {
+        setOpen(true);
+    };
+    var handleClose = function () {
+        setOpen(false);
+    };
+    var handleSnackBarClickOpen = function () {
+        setSnackBarOpen(true);
+    };
+    var handleSnackBarClose = function () {
+        setSnackBarOpen(false);
+    };
     react_1.useEffect(function () {
         var f = function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -95204,598 +95245,73 @@ var Setting = function () {
         }); };
         f();
     }, []);
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement(react_helmet_1.Helmet, null,
-            react_1.default.createElement("title", null, "\u8A2D\u5B9A | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        "setting menu"));
-};
-exports.default = Setting;
-
-
-/***/ }),
-
-/***/ "./resources/ts/views/pages/user/User.tsx":
-/*!************************************************!*\
-  !*** ./resources/ts/views/pages/user/User.tsx ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
-var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js"));
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
-var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
-var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
-var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
-var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    icon: {
-        marginRight: theme.spacing(2)
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4)
-    },
-    cardGrid: {
-        paddingRight: theme.spacing(15),
-        paddingLeft: theme.spacing(15)
-    },
-    card: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.03)"
-        }
-    },
-    cardUser: {},
-    /*cardMedia: {
-        paddingTop: "56.25%" // 16:9
-    },
-    cardContent: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px"
-    },*/
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-    large: {
-        width: theme.spacing(15),
-        height: theme.spacing(15)
-    },
-    followLength: {
-        display: "flex"
-    },
-    editNameText: {
-        marginBottom: "10px"
-    },
-    editIntroductionText: {},
-    nameText: {
-        marginBottom: "20px"
-    },
-    introductionText: {
-        marginLeft: "5px"
-    },
-    cardAction: {
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "flex-start"
-    },
-    textContainer: {
-        display: "flex",
-        marginLeft: "10px",
-        flexDirection: "column"
-    },
-    avatarContainer: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    errorMessage: {
-        marginTop: "10px"
-    },
-    input: {
-        display: "none"
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px"
-    },
-    editAvatar: {
-        width: theme.spacing(15),
-        height: theme.spacing(15),
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    profileContent: {
-        display: "flex",
-        marginBottom: "0.5rem"
-    },
-    grid: {
-        marginBottom: "10px"
-    },
-    link: {
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "none"
-        }
-    },
-    siteName: {
-        marginBottom: "0.5rem",
-        color: "rgb(83, 100, 113)"
-    },
-    cardContent: {
-        flexGrow: 1
-    },
-    cardMedia: {
-        paddingTop: "56.25%",
-        marginBottom: "0.5rem",
-        transition: ".3s",
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    cardMediaContainer: {},
-    profileContainer: {
-        display: "flex"
-    },
-    data: {},
-    dataContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        fontSize: "0.8rem",
-        color: "rgb(83, 100, 113)"
-    },
-    body: {
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        marginBottom: "0.5rem"
-    },
-    avatar: {
-        marginRight: "1rem"
-    },
-    userName: {
-        color: "black"
-    },
-    followContainer: {
-        display: "flex",
-        justifyContent: "space-between"
-    }
-}); });
-var User = function () {
-    var classes = useStyles();
-    var myUserId = react_redux_1.useSelector(function (state) { var _a; return (_a = state.user.user) === null || _a === void 0 ? void 0 : _a.id; });
-    var history = react_router_1.useHistory();
-    var _a = react_1.useState(true), hasMore = _a[0], setHasMore = _a[1];
-    var _b = react_1.useState(), user = _b[0], setUser = _b[1];
-    var _c = react_1.useState([]), posts = _c[0], setPosts = _c[1];
-    var _d = react_1.useState({
-        followeeLength: 0,
-        followerLength: 0
-    }), followLength = _d[0], setFollowLength = _d[1];
-    var _e = react_1.useState(false), isFollow = _e[0], setIsFollow = _e[1];
-    var _f = react_1.useState(false), isFetching = _f[0], setIsFetching = _f[1];
-    var params = react_router_1.useParams();
-    var id = params.id;
-    var dispatch = react_redux_1.useDispatch();
-    var location = react_router_1.useLocation();
-    react_1.useEffect(function () {
-        //パラメーターに則ったユーザー情報取得
-        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!location.state) return [3 /*break*/, 1];
-                        setUser(location.state);
-                        return [3 /*break*/, 3];
-                    case 1: 
-                    //直リンクの場合
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/user", { params: { user_id: id } })
-                            .then(function (res) {
-                            setUser(res.data);
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                    case 2:
-                        //直リンクの場合
-                        _a.sent();
-                        _a.label = 3;
-                    case 3: 
-                    //該当のユーザーの、フォロー・フォロワー数取得
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/follow", { params: { userId: id } })
-                            .then(function (res) {
-                            setFollowLength({
-                                followeeLength: res.data.followee,
-                                followerLength: res.data.follower
-                            });
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                    case 4:
-                        //該当のユーザーの、フォロー・フォロワー数取得
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); };
-        f();
-    }, []);
-    react_1.useEffect(function () {
-        //フォロー中かどうか調べる
-        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!myUserId) return [3 /*break*/, 2];
-                        return [4 /*yield*/, axios_1.default
-                                .get("/api/get/isfollow", {
-                                params: { followee: myUserId, follower: id }
-                            })
-                                .then(function (res) {
-                                if (res.data === "yes") {
-                                    setIsFollow(true);
-                                }
-                                else {
-                                    setIsFollow(false);
-                                }
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, axios_1.default
-                            .get("/json")
-                            .then(function (res) {
-                            if (res.data) {
-                                dispatch(action_1.login_user(res.data));
-                            }
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                    case 3:
-                        _a.sent();
-                        _a.label = 4;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        }); };
-        f();
-    }, [myUserId]);
-    //フォロー関数
-    var onFollow = function (targetId) {
-        if (myUserId) {
-            axios_1.default
-                .post("/api/add/follow", {
-                followee: myUserId,
-                follower: targetId
-            })
-                .then(function (res) {
-                setFollowLength({
-                    followeeLength: res.data.followee,
-                    followerLength: res.data.follower
-                });
-                setIsFollow(true);
-            })
-                .catch(function (error) {
-                console.log(error);
-            });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //フォロー解除関数
-    var onRemoveFollow = function (targetId) {
-        if (myUserId) {
-            axios_1.default
-                .post("/api/del/follow", {
-                followee: myUserId,
-                follower: targetId
-            })
-                .then(function (res) {
-                setFollowLength({
-                    followeeLength: res.data.followee,
-                    followerLength: res.data.follower
-                });
-                setIsFollow(false);
-            })
-                .catch(function (error) {
-                console.log(error);
-            });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    var isCanFollow = function (userId) {
-        var isUserSame = false;
-        if (myUserId) {
-            if (userId === myUserId) {
-                isUserSame = true;
-            }
-        }
-        else {
-            isUserSame = false;
-        }
-        return isUserSame;
-    };
-    //ロード中に表示する項目
-    var loader = (react_1.default.createElement("div", { className: "loader", key: 0 }, "Loading ..."));
-    //項目を読み込むときのコールバック
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
+    //ユーザー削除
+    var onDeleteUser = function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    setIsFetching(true);
                     if (!user) return [3 /*break*/, 2];
                     return [4 /*yield*/, axios_1.default
-                            .get("/api/get/post/scroll/user", {
-                            params: { number: page, user_id: user.id }
-                        })
-                            .then(function (res) {
-                            var data = res.data;
-                            return data;
+                            .post("/api/delete/user", { user_id: user.id })
+                            .then(function () {
+                            dispatch(action_1.logout_user());
+                            history.push("/", { message: "削除に成功しました" });
                         })
                             .catch(function (error) {
                             console.log(error);
                         })];
                 case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
-                    setIsFetching(false);
+                    _a.sent();
                     _a.label = 2;
                 case 2: return [2 /*return*/];
             }
         });
     }); };
-    var onAddLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            var indexNumber_1 = index;
-            axios_1.default
-                .post("/api/add/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === indexNumber_1) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいね解除
-    var onRemoveLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            axios_1.default
-                .post("/api/del/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === index) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいねしたことあるか、
-    var isLikedBefore = function (post) {
-        if (user) {
-            var even = function (like) { return like.user_id === user.id; };
-            var isLiked = post.likes.some(even);
-            return isLiked;
-        }
-    };
-    var getDate = function (date) {
-        var toDate = new Date(date);
-        var month = toDate.getMonth() + 1;
-        var day = toDate.getDate();
-        return (react_1.default.createElement(Typography_1.default, null,
-            month,
-            "\u6708 ",
-            day,
-            "\u65E5"));
-    };
+    var onResetPassword = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        var email;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    e.preventDefault();
+                    if (!user) return [3 /*break*/, 2];
+                    email = user.email;
+                    return [4 /*yield*/, axios_1.default
+                            .post("/password/email", { email: email, _token: __1.csrf_token })
+                            .then(function () {
+                            setMessage("あなたのメールアドレスにリセット用のメールを送信しました");
+                            handleSnackBarClickOpen();
+                        })
+                            .catch(function (error) {
+                            console.log(error);
+                        })];
+                case 1:
+                    _a.sent();
+                    _a.label = 2;
+                case 2: return [2 /*return*/];
+            }
+        });
+    }); };
+    var dialog = (react_1.default.createElement(core_1.Dialog, { open: open, onClose: handleClose, "aria-labelledby": "alert-dialog-title", "aria-describedby": "alert-dialog-description" },
+        react_1.default.createElement(core_1.DialogTitle, { id: "alert-dialog-title" }, "本当に削除してよろしいですか？"),
+        react_1.default.createElement(core_1.DialogContent, null,
+            react_1.default.createElement(core_1.DialogContentText, { id: "alert-dialog-description" }, "\u4E00\u5EA6\u524A\u9664\u3057\u305F\u30A2\u30AB\u30A6\u30F3\u30C8\u306F\u4E8C\u5EA6\u3068\u623B\u308A\u307E\u305B\u3093\u3002\u672C\u5F53\u306B\u3088\u308D\u3057\u3044\u3067\u3057\u3087\u3046\u304B\uFF1F")),
+        react_1.default.createElement(core_1.DialogActions, null,
+            react_1.default.createElement(Button_1.default, { onClick: handleClose, variant: "outlined", color: "primary", className: classes.button }, "\u30AD\u30E3\u30F3\u30BB\u30EB"),
+            react_1.default.createElement(Button_1.default, { onClick: onDeleteUser, variant: "outlined", color: "secondary", autoFocus: true, className: classes.button }, "\u524A\u9664"))));
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        user && (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(react_helmet_1.Helmet, null,
-                react_1.default.createElement("title", null,
-                    user.name,
-                    "\u3055\u3093 | \u3086\u3046\u3042\u308B\u3048\u308B")),
-            react_1.default.createElement(Grid_1.default, { item: true, xs: 12, className: classes.grid },
-                react_1.default.createElement(Card_1.default, { className: classes.cardUser },
-                    react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                        react_1.default.createElement("div", { className: classes.avatarContainer },
-                            react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
-                            react_1.default.createElement(Typography_1.default, { variant: "h4", gutterBottom: true, className: classes.nameText }, user.name)),
-                        react_1.default.createElement(Typography_1.default, { className: classes.introductionText }, user.self_introduction)),
-                    react_1.default.createElement(CardActions_1.default, { className: classes.followContainer },
-                        react_1.default.createElement("div", { className: classes.followLength },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/followee/" + user.id },
-                                react_1.default.createElement(Typography_1.default, null,
-                                    "\u30D5\u30A9\u30ED\u30FC\u6570:",
-                                    followLength.followeeLength)),
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/" + user.name + "/follower/" + user.id },
-                                react_1.default.createElement(Typography_1.default, null,
-                                    "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570:",
-                                    followLength.followerLength))),
-                        isCanFollow(user.id) ? null : isFollow ? (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onRemoveFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u306F\u305A\u3059")) : (react_1.default.createElement(Button_1.default, { variant: "contained", color: "primary", onClick: function () { return onFollow(user.id); } }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"))))))),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && user && hasMore, loader: loader, useWindow: false },
-            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
-                posts.map(function (post, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                pathname: "/" + post.user.name + "/post/" + post.post.id,
-                                state: {
-                                    post: post.post,
-                                    user: post.user,
-                                    likes: post.likes
-                                }
-                            }, className: classes.link },
-                            react_1.default.createElement(Card_1.default, { className: classes.card },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.profileContent },
-                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
-                                                    state: post.user
-                                                }, className: classes.profileContainer },
-                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
-                                                        .profile_image, className: classes.avatar }),
-                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
-                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                window.open(post.post.url);
-                                            } },
-                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
-                                    react_1.default.createElement("div", { className: classes.dataContainer },
-                                        react_1.default.createElement(CalendarToday_1.default, null),
-                                        getDate(post.post.updated_at))),
-                                react_1.default.createElement(CardActions_1.default, null,
-                                    react_1.default.createElement("object", null,
-                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onRemoveLike(post.post
-                                                    .id, i);
-                                            }, color: "primary" },
-                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onAddLike(post.post
-                                                    .id, i);
-                                            } },
-                                            react_1.default.createElement(ThumbUp_1.default, null))),
-                                        post.likes.length))))));
-                })))));
+        react_1.default.createElement(react_helmet_1.Helmet, null,
+            react_1.default.createElement("title", null, "\u8A2D\u5B9A | \u3086\u3046\u3042\u308B\u3048\u308B")),
+        react_1.default.createElement(Typography_1.default, { component: "h1", variant: "h5" },
+            react_1.default.createElement(Settings_1.default, null),
+            "\u30E6\u30FC\u30B6\u30FC\u8A2D\u5B9A"),
+        react_1.default.createElement("div", { className: classes.buttonContainer },
+            react_1.default.createElement(Button_1.default, { variant: "outlined", color: "primary", onClick: onResetPassword }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u30EA\u30BB\u30C3\u30C8"),
+            react_1.default.createElement(Button_1.default, { variant: "outlined", onClick: handleClickOpen, color: "secondary", startIcon: react_1.default.createElement(Delete_1.default, null) }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u524A\u9664")),
+        dialog,
+        react_1.default.createElement(Snackbar_1.default, { open: snackBarOpen, autoHideDuration: 6000, onClose: handleSnackBarClose },
+            react_1.default.createElement(Alert, { onClose: handleSnackBarClose, severity: "success" }, message))));
 };
-exports.default = User;
+exports.default = Setting;
 
 
 /***/ }),
@@ -95875,24 +95391,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var react_infinite_scroller_1 = __importDefault(__webpack_require__(/*! react-infinite-scroller */ "./node_modules/react-infinite-scroller/index.js"));
-var Card_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js"));
-var CardActions_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js"));
-var CardContent_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js"));
-var CardMedia_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js"));
-var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var Avatar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js"));
 var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
-var ThumbUp_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/ThumbUp */ "./node_modules/@material-ui/icons/ThumbUp.js"));
-var IconButton_1 = __importDefault(__webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var CalendarToday_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/CalendarToday */ "./node_modules/@material-ui/icons/CalendarToday.js"));
+var Posts_1 = __importDefault(__webpack_require__(/*! ../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     icon: {
         marginRight: theme.spacing(2)
@@ -96039,134 +95544,90 @@ var PostResult = function () {
             }
         });
     }); };
-    //いいね機能
-    var onAddLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            var indexNumber_1 = index;
-            axios_1.default
-                .post("/api/add/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === indexNumber_1) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいね解除
-    var onRemoveLike = function (post_id, index) {
-        if (user) {
-            var user_id = user.id;
-            axios_1.default
-                .post("/api/del/like", {
-                user_id: user_id,
-                post_id: post_id
-            })
-                .then(function (res) {
-                setPosts(posts.map(function (post, i) {
-                    if (i === index) {
-                        return res.data;
-                    }
-                    else {
-                        return post;
-                    }
-                }));
-            });
-        }
-        else {
-            history.push("/register");
-        }
-    };
-    //いいねしたことあるか、
-    var isLikedBefore = function (post) {
-        if (user) {
-            var even = function (like) { return like.user_id === user.id; };
-            var isLiked = post.likes.some(even);
-            return isLiked;
-        }
-    };
-    var getDate = function (date) {
-        var toDate = new Date(date);
-        var month = toDate.getMonth() + 1;
-        var day = toDate.getDate();
-        return (react_1.default.createElement(Typography_1.default, null,
-            month,
-            "\u6708 ",
-            day,
-            "\u65E5"));
-    };
     return (react_1.default.createElement("div", null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null,
+                "\"",
                 query,
-                "\u306B\u95A2\u3059\u308B\u6295\u7A3F\u306E\u691C\u7D22\u7D50\u679C | \u3086\u3046\u3042\u308B\u3048\u308B")),
-        react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && hasMore },
-            react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
-                posts.map(function (post, i) {
-                    return (react_1.default.createElement(Grid_1.default, { item: true, key: i, xs: 12, className: classes.grid },
-                        react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                pathname: "/" + post.user.name + "/post/" + post.post.id,
-                                state: {
-                                    post: post.post,
-                                    user: post.user,
-                                    likes: post.likes
-                                }
-                            }, className: classes.link },
-                            react_1.default.createElement(Card_1.default, { className: classes.card },
-                                react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.profileContent },
-                                            react_1.default.createElement(react_router_dom_1.Link, { to: {
-                                                    pathname: "/" + post.user.name + "/user/" + post.user.id,
-                                                    state: post.user
-                                                }, className: classes.profileContainer },
-                                                react_1.default.createElement(Avatar_1.default, { alt: "image", src: post.user
-                                                        .profile_image, className: classes.avatar }),
-                                                react_1.default.createElement(Typography_1.default, { className: classes.userName }, post.user.name)))),
-                                    react_1.default.createElement(Typography_1.default, { variant: "h5", component: "h2" }, post.post.title),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.siteName }, post.post.site_name),
-                                    react_1.default.createElement("object", null,
-                                        react_1.default.createElement("div", { className: classes.cardMediaContainer, onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                window.open(post.post.url);
-                                            } },
-                                            react_1.default.createElement(CardMedia_1.default, { className: classes.cardMedia, image: post.post.image, title: post.post.title }))),
-                                    react_1.default.createElement(Typography_1.default, { className: classes.body }, post.post.body),
-                                    react_1.default.createElement("div", { className: classes.dataContainer },
-                                        react_1.default.createElement(CalendarToday_1.default, null),
-                                        getDate(post.post.updated_at))),
-                                react_1.default.createElement(CardActions_1.default, null,
-                                    react_1.default.createElement("object", null,
-                                        isLikedBefore(post) ? (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onRemoveLike(post.post
-                                                    .id, i);
-                                            }, color: "primary" },
-                                            react_1.default.createElement(ThumbUp_1.default, null))) : (react_1.default.createElement(IconButton_1.default, { onClick: function (e) {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                onAddLike(post.post
-                                                    .id, i);
-                                            } },
-                                            react_1.default.createElement(ThumbUp_1.default, null))),
-                                        post.likes.length))))));
-                })))));
+                "\"\u306B\u95A2\u3059\u308B\u6295\u7A3F\u306E\u691C\u7D22\u7D50\u679C | \u3086\u3046\u3042\u308B\u3048\u308B")),
+        react_1.default.createElement(Posts_1.default, { path: "/api/get/post/search", q: query })));
 };
 exports.default = PostResult;
+
+
+/***/ }),
+
+/***/ "./resources/ts/views/search/UserResult.tsx":
+/*!**************************************************!*\
+  !*** ./resources/ts/views/search/UserResult.tsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var StickUser_1 = __importDefault(__webpack_require__(/*! ../components/StickUser */ "./resources/ts/views/components/StickUser.tsx"));
+var useStyles = styles_1.makeStyles(function (theme) { return ({
+    card: {
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    cardContent: {
+        display: "flex"
+    },
+    grid: {
+        marginBottom: "10px"
+    }
+}); });
+var UserResult = function () {
+    var dispatch = react_redux_1.useDispatch();
+    var classes = useStyles();
+    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
+    var _a = react_1.useState([]), results = _a[0], setResults = _a[1];
+    var location = react_router_1.useLocation();
+    var history = react_router_1.useHistory();
+    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
+    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
+    var parsed = query_string_1.default.parse(location.search);
+    var query = parsed.q;
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_helmet_1.Helmet, null,
+            react_1.default.createElement("title", null,
+                "\"",
+                query,
+                "\"\u306B\u95A2\u3059\u308B\u30E6\u30FC\u30B6\u30FC\u306E\u691C\u7D22\u7D50\u679C | \u3086\u3046\u3042\u308B\u3048\u308B")),
+        react_1.default.createElement(StickUser_1.default, { path: "/api/get/user/search", isSearchResult: true, q: query })));
+};
+exports.default = UserResult;
 
 
 /***/ }),

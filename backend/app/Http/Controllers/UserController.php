@@ -39,11 +39,13 @@ class UserController extends Controller
 		$user_id=$request->user_id;
 
 		$user=User::orderBy("updated_at","DESC")->where("name","like","%{$queryS}%")->skip($number)->first();
+		if($user){
 		$follow=Follow::where("followee_id",$user_id)->where("follower_id",$user->id)->first();
 		$result=array();
 		$result["user"]=$user;
 		$result["follow"]=$follow;
 		return $result;
+		}
 	}
 	//ユーザー情報更新
 	public function editUserName(Request $request){
@@ -66,5 +68,11 @@ class UserController extends Controller
 		$user->self_introduction=$new_self_introduction;
 		$user->save();
 		return redirect('/');
+	}
+	public function deleteUser(Request $request){
+		$user_id=$request->user_id;
+		$user=User::where("id",$user_id)->first();
+		$user->delete();
+
 	}
 }

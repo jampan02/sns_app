@@ -23,3 +23,7 @@ export const login_user = ({
         }
     };
 };
+
+export const logout_user = () => {
+    return { type: ActionTypes.logout_user };
+};

@@ -1,35 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory, useLocation } from "react-router";
-import { RootState } from "../../../store";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FOLLOW, LIKE, MIXED_POST_DATA, POST, USER } from "../../../utils/type";
+import { LIKE, MIXED_POST_DATA } from "../../utils/type";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import { RootState } from "../../store";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
+import InfiniteScroll from "react-infinite-scroller";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Hidden from "@material-ui/core/Hidden";
-import Button from "@material-ui/core/Button";
-import InfiniteScroll from "react-infinite-scroller";
-import AppBar from "@material-ui/core/AppBar";
-import CameraIcon from "@material-ui/icons/PhotoCamera";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import CardActions from "@material-ui/core/CardActions";
-//import Link from '@material-ui/core/Link';
-import { getIsLogin } from "../../../store/api/api";
-import { login_user } from "../../../store/counter/user/action";
-import IconButton from "@material-ui/core/IconButton";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import IconButton from "@material-ui/core/IconButton";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { Helmet } from "react-helmet";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import { login_user } from "../../store/counter/user/action";
+import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles(theme => ({
     icon: {
         marginRight: theme.spacing(2)
@@ -54,70 +46,10 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: "rgba(0,0,0,0.03)"
         }
     },
-    cardUser: {},
-    /*cardMedia: {
-        paddingTop: "56.25%" // 16:9
-    },
-    cardContent: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px"
-    },*/
+
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6)
-    },
-    large: {
-        width: theme.spacing(15),
-        height: theme.spacing(15)
-    },
-    followLength: {
-        display: "flex"
-    },
-    editNameText: {
-        marginBottom: "10px"
-    },
-    editIntroductionText: {},
-    nameText: {
-        marginBottom: "20px"
-    },
-    introductionText: {
-        marginLeft: "5px"
-    },
-    cardAction: {
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "flex-start"
-    },
-    textContainer: {
-        display: "flex",
-        marginLeft: "10px",
-        flexDirection: "column"
-    },
-    avatarContainer: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-
-        alignItems: "center"
-    },
-    errorMessage: {
-        marginTop: "10px"
-    },
-    input: {
-        display: "none"
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px"
-    },
-    editAvatar: {
-        width: theme.spacing(15),
-        height: theme.spacing(15),
-        "&:hover": {
-            opacity: 0.5
-        }
     },
     profileContent: {
         display: "flex",
@@ -170,88 +102,46 @@ const useStyles = makeStyles(theme => ({
     userName: {
         color: "black"
     },
-    followContainer: {
-        display: "flex",
-        justifyContent: "space-between"
+    selectBox: {
+        marginBottom: "1rem"
+    },
+    errorMessage: {
+        marginTop: "10px"
     }
 }));
-
-type FollowLength = {
-    followeeLength: number;
-    followerLength: number;
+type Props = {
+    path: string;
+    user_id?: number;
+    q?: string;
+    defaultCurrency?: string;
 };
 
-const User = () => {
+const currencies = [
+    {
+        value: "followee",
+        label: "フォロー中のユーザーの投稿を見る"
+    },
+    {
+        value: "all",
+        label: "全ての投稿を見る"
+    }
+];
+const Posts: React.FC<Props> = ({ path, user_id, q, defaultCurrency }) => {
     const classes = useStyles();
-    const myUserId = useSelector((state: RootState) => state.user.user?.id);
-    const history = useHistory();
-    const [hasMore, setHasMore] = useState(true);
-    const [user, setUser] = useState<USER>();
-    const [posts, setPosts] = useState<MIXED_POST_DATA[]>([]);
-    const [followLength, setFollowLength] = useState<FollowLength>({
-        followeeLength: 0,
-        followerLength: 0
-    });
-    const [isFollow, setIsFollow] = useState(false);
-    const [isFetching, setIsFetching] = useState(false);
-    const params: { id: string } = useParams();
-    const id = params.id;
     const dispatch = useDispatch();
-    const location: {
-        pathname: string;
-        state: USER;
-    } = useLocation();
+    const history = useHistory();
+    const user = useSelector((state: RootState) => state.user.user);
+    const [posts, setPosts] = useState<MIXED_POST_DATA[]>([]);
+    const [followeePosts, setFolloweePosts] = useState<MIXED_POST_DATA[]>([]);
+    const [hasMore, setHasMore] = useState(true);
+    const [isFetching, setIsFetching] = useState(false);
+    const [currency, setCurrency] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isFetchingUser, setIsFetchingUser] = useState(true);
     useEffect(() => {
-        //パラメーターに則ったユーザー情報取得
         const f = async () => {
-            if (location.state) {
-                setUser(location.state);
-            } else {
-                //直リンクの場合
-                await axios
-                    .get("/api/get/user", { params: { user_id: id } })
-                    .then(res => {
-                        setUser(res.data);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-            //該当のユーザーの、フォロー・フォロワー数取得
-            await axios
-                .get("/api/get/follow", { params: { userId: id } })
-                .then(res => {
-                    setFollowLength({
-                        followeeLength: res.data.followee,
-                        followerLength: res.data.follower
-                    });
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        };
-        f();
-    }, []);
-
-    useEffect(() => {
-        //フォロー中かどうか調べる
-        const f = async () => {
-            if (myUserId) {
-                await axios
-                    .get("/api/get/isfollow", {
-                        params: { followee: myUserId, follower: id }
-                    })
-                    .then(res => {
-                        if (res.data === "yes") {
-                            setIsFollow(true);
-                        } else {
-                            setIsFollow(false);
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            } else {
+            if (!user) {
+                //ログインされていない場合
                 await axios
                     .get("/json")
                     .then(res => {
@@ -262,113 +152,44 @@ const User = () => {
                     .catch(error => {
                         console.log(error);
                     });
+                setIsFetchingUser(false);
             }
         };
         f();
-    }, [myUserId]);
-    //フォロー関数
-    const onFollow = (targetId: number) => {
-        if (myUserId) {
-            axios
-                .post("/api/add/follow", {
-                    followee: myUserId,
-                    follower: targetId
-                })
-                .then(res => {
-                    setFollowLength({
-                        followeeLength: res.data.followee,
-                        followerLength: res.data.follower
-                    });
-                    setIsFollow(true);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        } else {
-            history.push("/register");
-        }
-    };
-    //フォロー解除関数
-    const onRemoveFollow = (targetId: number) => {
-        if (myUserId) {
-            axios
-                .post("/api/del/follow", {
-                    followee: myUserId,
-                    follower: targetId
-                })
-                .then(res => {
-                    setFollowLength({
-                        followeeLength: res.data.followee,
-                        followerLength: res.data.follower
-                    });
-                    setIsFollow(false);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        } else {
-            history.push("/register");
-        }
-    };
-    const isCanFollow = (userId: number) => {
-        let isUserSame = false;
-        if (myUserId) {
-            if (userId === myUserId) {
-                isUserSame = true;
+        defaultCurrency && setCurrency(defaultCurrency);
+    }, []);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value === "followee") {
+            //「フォロー中のユーザー」を選択した場合
+            if (user) {
+                history.push("/followee/posts");
+            } else {
+                history.push("register");
             }
         } else {
-            isUserSame = false;
-        }
-        return isUserSame;
-    };
-    //ロード中に表示する項目
-    const loader = (
-        <div className="loader" key={0}>
-            Loading ...
-        </div>
-    );
-    //項目を読み込むときのコールバック
-    const loadMore = async (page: number) => {
-        setIsFetching(true);
-        if (user) {
-            const data: MIXED_POST_DATA = await axios
-                .get("/api/get/post/scroll/user", {
-                    params: { number: page, user_id: user.id }
-                })
-                .then(res => {
-                    const data = res.data;
-
-                    return data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-            //データ件数が0件の場合、処理終了
-            if (!data) {
-                setHasMore(false);
-                return;
-            }
-            //取得データをリストに追加*
-            setPosts([...posts, data]);
-            setIsFetching(false);
+            //「全て」を選択した場合
+            history.push("/");
         }
     };
-    const onAddLike = (post_id: number, index: number) => {
+
+    const onAddLike = async (post_id: number) => {
+        console.log("adddd");
         if (user) {
             const user_id = user.id;
 
-            const indexNumber = index;
-            axios
+            await axios
                 .post("/api/add/like", {
                     user_id,
                     post_id
                 })
                 .then(res => {
+                    const likedPost: MIXED_POST_DATA = res.data;
+                    const likedPostId: number = res.data.post.id;
+                    console.log("likedPost=", likedPost);
                     setPosts(
-                        posts.map((post, i) => {
-                            if (i === indexNumber) {
-                                return res.data;
+                        posts.map(post => {
+                            if (post.post.id === likedPostId) {
+                                return likedPost;
                             } else {
                                 return post;
                             }
@@ -381,19 +202,22 @@ const User = () => {
         }
     };
     //いいね解除
-    const onRemoveLike = (post_id: number, index: number) => {
+    const onRemoveLike = async (post_id: number) => {
         if (user) {
             const user_id = user.id;
-            axios
+            await axios
                 .post("/api/del/like", {
                     user_id,
                     post_id
                 })
                 .then(res => {
+                    const likedPost: MIXED_POST_DATA = res.data;
+                    const likedPostId: number = res.data.post.id;
+                    console.log("likedPost=", likedPost);
                     setPosts(
-                        posts.map((post, i) => {
-                            if (i === index) {
-                                return res.data;
+                        posts.map(post => {
+                            if (post.post.id === likedPostId) {
+                                return likedPost;
                             } else {
                                 return post;
                             }
@@ -412,102 +236,107 @@ const User = () => {
             return isLiked;
         }
     };
+
     const getDate = (date: string) => {
         const toDate = new Date(date);
         const month = toDate.getMonth() + 1;
         const day = toDate.getDate();
         return (
-            <Typography>
+            <Typography className={classes.data}>
                 {month}月 {day}日
             </Typography>
         );
     };
+    const loadMore = async (page: number) => {
+        console.log("loadMore!");
+        setIsFetching(true);
+        let data: MIXED_POST_DATA;
+        if (user_id) {
+            data = await axios
+                .get(path, { params: { number: page, user_id } })
+                .then(res => {
+                    const data = res.data;
+
+                    return data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else if (q) {
+            data = await axios
+                .get(path, { params: { number: page, q } })
+                .then(res => {
+                    const data = res.data;
+
+                    return data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            data = await axios
+                .get(path, { params: { number: page } })
+                .then(res => {
+                    const data = res.data;
+
+                    return data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+        //データ件数が0件の場合、処理終了
+        if (!data) {
+            setHasMore(false);
+            //最初でいきなり情報が無かった場合、エラーメッセージを出力する
+            if (page === 1) {
+                console.log("no user");
+                setErrorMessage("投稿が見つかりませんでした");
+            }
+            return;
+        }
+        //取得データをリストに追加*
+        setPosts([...posts, data]);
+        console.log(posts);
+        setIsFetching(false);
+    };
+
     return (
         <>
-            {user && (
-                <>
-                    <Helmet>
-                        <title>{user.name}さん | ゆうあるえる</title>
-                    </Helmet>
-
-                    <Grid item xs={12} className={classes.grid}>
-                        <Card className={classes.cardUser}>
-                            <CardContent className={classes.cardContent}>
-                                <div className={classes.avatarContainer}>
-                                    <Avatar
-                                        alt="image"
-                                        src={user.profile_image}
-                                        className={classes.large}
-                                    />
-                                    <Typography
-                                        variant="h4"
-                                        gutterBottom
-                                        className={classes.nameText}
-                                    >
-                                        {user.name}
-                                    </Typography>
-                                </div>
-                                <Typography
-                                    className={classes.introductionText}
-                                >
-                                    {user.self_introduction}
-                                </Typography>
-                            </CardContent>
-                            <CardActions className={classes.followContainer}>
-                                <div className={classes.followLength}>
-                                    <Link
-                                        to={`/${user.name}/followee/${user.id}`}
-                                    >
-                                        <Typography>
-                                            フォロー数:
-                                            {followLength.followeeLength}
-                                        </Typography>
-                                    </Link>
-                                    <Link
-                                        to={`/${user.name}/follower/${user.id}`}
-                                    >
-                                        <Typography>
-                                            フォロワー数:
-                                            {followLength.followerLength}
-                                        </Typography>
-                                    </Link>
-                                </div>
-                                {isCanFollow(user.id) ? null : isFollow ? (
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => onRemoveFollow(user.id)}
-                                    >
-                                        フォローはずす
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => onFollow(user.id)}
-                                    >
-                                        フォローする
-                                    </Button>
-                                )}
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                </>
+            {defaultCurrency && (
+                <TextField
+                    select
+                    value={currency}
+                    onChange={handleChange}
+                    className={classes.selectBox}
+                    disabled={isFetchingUser ? true : false}
+                >
+                    {currencies.map(option => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
+            )}
+            {!user_id && errorMessage && (
+                <Alert severity="error" className={classes.errorMessage}>
+                    {errorMessage}
+                </Alert>
             )}
             <InfiniteScroll
-                loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
-                hasMore={!isFetching && user && hasMore} // isFetchingを判定条件に追加
-                loader={loader}
-                useWindow={false}
+                loadMore={loadMore} //currencyの状態によって、表示する項目変更
+                hasMore={!isFetching && hasMore} // isFetchingを判定条件に追加
             >
                 <Grid container>
                     {/* 読み込み最中に表示する項目 */}
                     {posts[0] &&
-                        posts.map((post, i) => {
+                        posts.map(post => {
+                            console.log("aaa");
                             return (
                                 <Grid
                                     item
-                                    key={i}
+                                    key={post.post.id}
                                     xs={12}
                                     className={classes.grid}
                                 >
@@ -627,9 +456,7 @@ const User = () => {
                                                                 e.stopPropagation();
                                                                 e.preventDefault();
                                                                 onRemoveLike(
-                                                                    post.post
-                                                                        .id,
-                                                                    i
+                                                                    post.post.id
                                                                 );
                                                             }}
                                                             color="primary"
@@ -644,9 +471,7 @@ const User = () => {
                                                                 e.stopPropagation();
                                                                 e.preventDefault();
                                                                 onAddLike(
-                                                                    post.post
-                                                                        .id,
-                                                                    i
+                                                                    post.post.id
                                                                 );
                                                             }}
                                                         >
@@ -667,4 +492,4 @@ const User = () => {
     );
 };
 
-export default User;
+export default Posts;

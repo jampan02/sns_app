@@ -22,7 +22,6 @@
 		<link rel="icon" type="image/png" href="{{asset('/android-chrome-192x192.png')}}">
     </head>
     <body>
-
 			<div id="app"></div>
      
     </body>

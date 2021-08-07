@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Alert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Snackbar } from "@material-ui/core";
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -50,15 +51,40 @@ const useStyles = makeStyles(theme => ({
         marginTop: "10px"
     }
 }));
-
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 export default function Register() {
     const history = useHistory();
+    const location: any = useLocation();
     const classes = useStyles();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [email, setEmail] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [message, setMessage] = useState("");
+
+    const [open, setOpen] = React.useState(false);
+
+    useEffect(() => {
+        if (location.state !== undefined) {
+            console.log(location.state);
+            setMessage(location.state.message);
+            handleClick();
+        }
+    }, []);
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     const onSignUp = async (e: any) => {
         e.preventDefault();
@@ -100,10 +126,13 @@ export default function Register() {
         await axios
             .post("/register", data)
             .then(res => {
+                console.log("reg=", res.data);
                 history.push("/");
             })
             .catch(error => {
-                console.log(error);
+                console.log(error.response);
+                const validationError = error.response.data.errors.email[0];
+                setErrorMessage(validationError);
             });
     };
     const onTestLogin = async (e: any) => {
@@ -229,9 +258,7 @@ export default function Register() {
 
                         <Grid container justify="flex-end">
                             <Grid item>
-                                <Link to="/login">
-                                    アカウントを持っていますか？
-                                </Link>
+                                <Link to="/login">アカウントがあります</Link>
                             </Grid>
                         </Grid>
                     </form>
@@ -240,6 +267,11 @@ export default function Register() {
                     <Copyright />
                 </Box>
             </Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    {message}
+                </Alert>
+            </Snackbar>
         </>
     );
 }

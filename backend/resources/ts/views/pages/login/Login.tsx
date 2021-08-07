@@ -78,10 +78,13 @@ const Login = () => {
         axios
             .post("/login", data)
             .then(res => {
+                console.log(res);
                 history.push("/");
             })
             .catch(error => {
-                console.log(error);
+                console.log(error.response);
+                const validationError = error.response.data.errors.email[0];
+                setErrorMessage(validationError);
             });
     };
 
@@ -97,7 +100,7 @@ const Login = () => {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        新規登録
+                        ログイン
                     </Typography>
                     <form className={classes.form} noValidate>
                         <Grid container spacing={2}>
@@ -150,7 +153,12 @@ const Login = () => {
                         <Grid container justify="flex-end">
                             <Grid item>
                                 <Link to="/register">
-                                    アカウントを持っていませんか？
+                                    アカウントを持っていません
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link to="/password/reset">
+                                    パスワードを忘れました
                                 </Link>
                             </Grid>
                         </Grid>

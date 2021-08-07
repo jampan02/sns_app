@@ -6,12 +6,13 @@ interface LoginUserAction extends Action {
     type: typeof ActionTypes.login_user;
     payload: USER;
 }
+interface LogoutUserAction extends Action {
+    type: typeof ActionTypes.logout_user;
+}
 
-export type UserActionTypes = LoginUserAction;
+export type UserActionTypes = LoginUserAction | LogoutUserAction;
 
 export type UserState = {
     isLogin: boolean;
     user?: USER;
 };
-
-//export type UserReducer = (state: UserState, action: UserActionTypes) => UserState

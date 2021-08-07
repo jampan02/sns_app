@@ -17,6 +17,8 @@ export const userReducer = (
                 isLogin: true,
                 user: action.payload
             };
+        case ActionTypes.logout_user:
+            return { isLogin: false, user: undefined };
         default:
             return state;
     }

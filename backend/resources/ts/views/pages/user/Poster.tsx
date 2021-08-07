@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams, useHistory, useLocation } from "react-router";
 import { RootState } from "../../../store";
 import axios from "axios";
 import { USER } from "../../../utils/type";
@@ -14,32 +14,32 @@ type FollowLength = {
     followerLength: number;
 };
 
-const Login_User = () => {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const userData = useSelector((state: RootState) => state.user.user);
+const Poster = () => {
+    const myUserId = useSelector((state: RootState) => state.user.user?.id);
     const [user, setUser] = useState<USER>();
     const [followLength, setFollowLength] = useState<FollowLength>({
-        followerLength: 0,
-        followeeLength: 0
+        followeeLength: 0,
+        followerLength: 0
     });
-
+    const [isFollow, setIsFollow] = useState(false);
+    const params: { id: string } = useParams();
+    const id = params.id;
+    const dispatch = useDispatch();
+    const location: {
+        pathname: string;
+        state: USER;
+    } = useLocation();
     useEffect(() => {
         //パラメーターに則ったユーザー情報取得
         const f = async () => {
-            if (userData) {
-                setUser(userData);
-                //該当のユーザーの、フォロー・フォロワー数取得
+            if (location.state) {
+                setUser(location.state);
             } else {
+                //直リンクの場合
                 await axios
-                    .get("/json")
+                    .get("/api/get/user", { params: { user_id: id } })
                     .then(res => {
-                        if (res.data) {
-                            dispatch(login_user(res.data));
-                            setUser(res.data);
-                        } else {
-                            history.push("/register");
-                        }
+                        setUser(res.data);
                     })
                     .catch(error => {
                         console.log(error);
@@ -48,14 +48,15 @@ const Login_User = () => {
         };
         f();
     }, []);
+
     if (user) {
         return (
             <>
                 <Helmet>
-                    <title>ユーザーページ | ゆうあるえる</title>
+                    <title>{user.name}さん | ゆうあるえる</title>
                 </Helmet>
 
-                <User user={user} isLoginUser={true} />
+                <User user={user} isLoginUser={false} />
                 <Posts path="/api/get/post/scroll/user" user_id={user.id} />
             </>
         );
@@ -64,4 +65,4 @@ const Login_User = () => {
     }
 };
 
-export default Login_User;
+export default Poster;

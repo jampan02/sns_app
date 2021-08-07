@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,6 +107,7 @@ return [
     */
 
     'faker_locale' => 'en_US',
+	
 
     /*
     |--------------------------------------------------------------------------
@@ -176,7 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 		         //ここに一行追加----------------------------------//
 				 Weidner\Goutte\GoutteServiceProvider::class, 
-
+				 NotificationChannels\WebPush\WebPushServiceProvider::class,
     ],
 
     /*

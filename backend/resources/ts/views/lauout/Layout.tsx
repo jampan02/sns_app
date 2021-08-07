@@ -14,7 +14,7 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 import Container from "@material-ui/core/Container";
 
 import ListItem from "@material-ui/core/ListItem";
@@ -34,8 +34,9 @@ import Button from "@material-ui/core/Button";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MediaQuery from "react-responsive";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
+import { logout_user } from "../../store/counter/user/action";
 type PROPS = {
     children: ReactNode;
 };
@@ -178,6 +179,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
     const [isPost, setIsPost] = useState(true);
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
     const mainListItems = (
         <div>
             <ListItem button onClick={() => history.push("/create")}>
@@ -206,15 +208,10 @@ const Layout: React.FC<PROPS> = ({ children }) => {
             </ListItem>
         </div>
     );
-    const logout = async () => {
-        await axios
-            .post("/logout")
-            .then(res => {
-                history.push("/login");
-            })
-            .catch(error => {
-                console.log(error);
-            });
+    const logout = () => {
+        axios.post("/logout");
+
+        dispatch(logout_user());
     };
     const logoutListItem = (
         <div>
@@ -230,7 +227,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
         <div>
             <ListItem button onClick={() => history.push("/register")}>
                 <ListItemIcon>
-                    <PersonIcon />
+                    <LockOpenIcon />
                 </ListItemIcon>
                 <ListItemText primary="新規登録" />
             </ListItem>
@@ -340,8 +337,8 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                 <Divider />
                 <List>{mainListItems}</List>
                 <Divider />
-                {/*   <List>{secondaryListItems}</List>
-                <Divider /> */}
+                <List>{secondaryListItems}</List>
+                <Divider />
 
                 {user ? (
                     <List>{logoutListItem}</List>
