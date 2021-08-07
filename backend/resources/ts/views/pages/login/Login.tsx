@@ -150,7 +150,7 @@ const Login = () => {
                         >
                             ログイン
                         </Button>
-                        <Grid container justify="flex-end">
+                        <Grid container justify="space-between">
                             <Grid item>
                                 <Link to="/register">
                                     アカウントを持っていません

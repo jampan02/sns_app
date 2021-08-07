@@ -80,6 +80,7 @@ const ResetPassword = () => {
                 setMessage(
                     "あなたのメールアドレスにリセット用のメールを送信しました"
                 );
+                handleClickOpen();
             })
             .catch(error => {
                 console.log(error);

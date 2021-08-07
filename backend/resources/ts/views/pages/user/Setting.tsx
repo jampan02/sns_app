@@ -55,6 +55,7 @@ const Setting = () => {
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("");
     const [snackBarOpen, setSnackBarOpen] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(true);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -91,6 +92,10 @@ const Setting = () => {
     //ユーザー削除
     const onDeleteUser = async () => {
         if (user) {
+            if (user.name === "テストユーザー") {
+                setIsSuccess(false);
+                setMessage("テストユーザーではアカウントを削除できません");
+            }
             await axios
                 .post("/api/delete/user", { user_id: user.id })
                 .then(() => {
@@ -105,7 +110,12 @@ const Setting = () => {
 
     const onResetPassword = async (e: any) => {
         e.preventDefault();
+
         if (user) {
+            if (user.name === "テストユーザー") {
+                setIsSuccess(false);
+                setMessage("テストユーザーではパスワードを変更できません");
+            }
             const email = user.email;
             await axios
                 .post("/password/email", { email, _token: csrf_token })
@@ -188,7 +198,10 @@ const Setting = () => {
                 autoHideDuration={6000}
                 onClose={handleSnackBarClose}
             >
-                <Alert onClose={handleSnackBarClose} severity="success">
+                <Alert
+                    onClose={handleSnackBarClose}
+                    severity={isSuccess ? "success" : "warning"}
+                >
                     {message}
                 </Alert>
             </Snackbar>
