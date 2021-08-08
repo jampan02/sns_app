@@ -13,6 +13,7 @@ import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import Alert from "@material-ui/lab/Alert";
 import { Helmet } from "react-helmet";
+import { Link as MaterialLink } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -80,7 +81,10 @@ const Login = () => {
                 setErrorMessage(validationError);
             });
     };
-
+    const onPushAndReload = () => {
+        history.push("/password/reset");
+        window.location.reload();
+    };
     return (
         <>
             <Helmet>
@@ -145,9 +149,9 @@ const Login = () => {
                         </Button>
                         <Grid container justify="space-between">
                             <Grid item>
-                                <Link to="/password/reset">
+                                <MaterialLink onClick={onPushAndReload}>
                                     パスワードを忘れました
-                                </Link>
+                                </MaterialLink>
                             </Grid>
                             <Grid item>
                                 <Link to="/register">

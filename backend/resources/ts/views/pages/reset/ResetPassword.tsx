@@ -49,9 +49,7 @@ const ResetPassword = () => {
     const [email, setEmail] = useState("");
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("");
-    useEffect(() => {
-        window.location.reload();
-    }, []);
+
     const handleClickOpen = () => {
         setOpen(true);
     };

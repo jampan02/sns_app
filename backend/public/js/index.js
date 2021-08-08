@@ -92750,6 +92750,7 @@ var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/a
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+var core_1 = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     paper: {
         marginTop: theme.spacing(8),
@@ -92814,6 +92815,10 @@ var Login = function () {
             setErrorMessage(validationError);
         });
     };
+    var onPushAndReload = function () {
+        history.push("/password/reset");
+        window.location.reload();
+    };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null, "\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8 | \u3086\u3046\u3042\u308B\u3048\u308B")),
@@ -92833,7 +92838,7 @@ var Login = function () {
                     react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onLogin }, "\u30ED\u30B0\u30A4\u30F3"),
                     react_1.default.createElement(Grid_1.default, { container: true, justify: "space-between" },
                         react_1.default.createElement(Grid_1.default, { item: true },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/password/reset" }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u307E\u3057\u305F")),
+                            react_1.default.createElement(core_1.Link, { onClick: onPushAndReload }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u307E\u3057\u305F")),
                         react_1.default.createElement(Grid_1.default, { item: true },
                             react_1.default.createElement(react_router_dom_1.Link, { to: "/register" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u305B\u3093"))))))));
 };
@@ -94372,9 +94377,6 @@ var ResetPassword = function () {
     var _a = react_1.useState(""), email = _a[0], setEmail = _a[1];
     var _b = react_1.useState(false), open = _b[0], setOpen = _b[1];
     var _c = react_1.useState(""), message = _c[0], setMessage = _c[1];
-    react_1.useEffect(function () {
-        window.location.reload();
-    }, []);
     var handleClickOpen = function () {
         setOpen(true);
     };
@@ -94711,10 +94713,6 @@ var LoginUser = function () {
     var dispatch = react_redux_1.useDispatch();
     var userData = react_redux_1.useSelector(function (state) { return state.user.user; });
     var _a = react_1.useState(), user = _a[0], setUser = _a[1];
-    var _b = react_1.useState({
-        followerLength: 0,
-        followeeLength: 0
-    }), followLength = _b[0], setFollowLength = _b[1];
     react_1.useEffect(function () {
         //パラメーターに則ったユーザー情報取得
         var f = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -94832,23 +94830,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
 var User_1 = __importDefault(__webpack_require__(/*! ../../components/User */ "./resources/ts/views/components/User.tsx"));
 var Poster = function () {
-    var myUserId = react_redux_1.useSelector(function (state) { var _a; return (_a = state.user.user) === null || _a === void 0 ? void 0 : _a.id; });
     var _a = react_1.useState(), user = _a[0], setUser = _a[1];
-    var _b = react_1.useState({
-        followeeLength: 0,
-        followerLength: 0
-    }), followLength = _b[0], setFollowLength = _b[1];
-    var _c = react_1.useState(false), isFollow = _c[0], setIsFollow = _c[1];
     var params = react_router_1.useParams();
     var id = params.id;
-    var dispatch = react_redux_1.useDispatch();
     var location = react_router_1.useLocation();
     react_1.useEffect(function () {
         //パラメーターに則ったユーザー情報取得

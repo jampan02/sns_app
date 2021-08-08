@@ -19,10 +19,6 @@ const LoginUser = () => {
     const dispatch = useDispatch();
     const userData = useSelector((state: RootState) => state.user.user);
     const [user, setUser] = useState<USER>();
-    const [followLength, setFollowLength] = useState<FollowLength>({
-        followerLength: 0,
-        followeeLength: 0
-    });
 
     useEffect(() => {
         //パラメーターに則ったユーザー情報取得
