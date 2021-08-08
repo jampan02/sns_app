@@ -234,7 +234,7 @@ const Layout: React.FC<PROPS> = ({ children }) => {
                 <ListItemIcon>
                     <LockOpenIcon />
                 </ListItemIcon>
-                <ListItemText primary="新規登録" />
+                <ListItemText primary="ログイン" />
             </ListItem>
         </div>
     );
