@@ -92806,6 +92806,7 @@ var Login = function () {
             .then(function (res) {
             console.log(res);
             history.push("/");
+            window.location.reload();
         })
             .catch(function (error) {
             console.log(error.response);
