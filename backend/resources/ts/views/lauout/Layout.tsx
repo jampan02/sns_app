@@ -208,10 +208,15 @@ const Layout: React.FC<PROPS> = ({ children }) => {
             </ListItem>
         </div>
     );
-    const logout = () => {
-        axios.post("/logout");
-
-        dispatch(logout_user());
+    const logout = async () => {
+        await axios
+            .post("/logout")
+            .then(() => {
+                dispatch(logout_user());
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
     const logoutListItem = (
         <div>

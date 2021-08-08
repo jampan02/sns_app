@@ -152,13 +152,13 @@ const Login = () => {
                         </Button>
                         <Grid container justify="space-between">
                             <Grid item>
-                                <Link to="/register">
-                                    アカウントを持っていません
+                                <Link to="/password/reset">
+                                    パスワードを忘れました
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link to="/password/reset">
-                                    パスワードを忘れました
+                                <Link to="/register">
+                                    アカウントを持っていません
                                 </Link>
                             </Grid>
                         </Grid>

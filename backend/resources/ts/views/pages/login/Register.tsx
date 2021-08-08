@@ -166,7 +166,11 @@ export default function Register() {
                     <Typography component="h1" variant="h5">
                         新規登録
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form
+                        className={classes.form}
+                        noValidate
+                        onSubmit={onSignUp}
+                    >
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -242,7 +246,6 @@ export default function Register() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={onSignUp}
                         >
                             登録
                         </Button>

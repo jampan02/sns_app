@@ -152,8 +152,8 @@ const Posts: React.FC<Props> = ({ path, user_id, q, defaultCurrency }) => {
                     .catch(error => {
                         console.log(error);
                     });
-                setIsFetchingUser(false);
             }
+            setIsFetchingUser(false);
         };
         f();
         defaultCurrency && setCurrency(defaultCurrency);

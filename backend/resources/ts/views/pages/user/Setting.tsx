@@ -105,6 +105,8 @@ const Setting = () => {
                 .catch(error => {
                     console.log(error);
                 });
+        } else {
+            history.push("/register");
         }
     };
 
@@ -128,6 +130,8 @@ const Setting = () => {
                 .catch(error => {
                     console.log(error);
                 });
+        } else {
+            history.push("/register");
         }
     };
     const dialog = (
