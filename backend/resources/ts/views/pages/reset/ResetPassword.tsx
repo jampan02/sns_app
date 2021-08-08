@@ -4,26 +4,15 @@ import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { RootState } from "../../../store";
-
-import { checkIsAuth } from "../../../store/api/api";
-import { login_user } from "../../../store/counter/user/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import InfiniteScroll from "react-infinite-scroller";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Avatar from "@material-ui/core/Avatar";
-import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import IconButton from "@material-ui/core/IconButton";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { csrf_token } from "../../..";
 import { Container, CssBaseline } from "@material-ui/core";
 function Alert(props: AlertProps) {
@@ -57,14 +46,12 @@ const useStyles = makeStyles(theme => ({
 }));
 const ResetPassword = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.user.user);
-    const history = useHistory();
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [open, setOpen] = useState(false);
-
     const [message, setMessage] = useState("");
+    useEffect(() => {
+        window.location.reload();
+    }, []);
     const handleClickOpen = () => {
         setOpen(true);
     };

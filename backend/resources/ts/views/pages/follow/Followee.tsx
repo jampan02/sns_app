@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router";
-import { RootState } from "../../../store";
-import axios from "axios";
-import { FOLLOW, USER } from "../../../utils/type";
-import { makeStyles } from "@material-ui/core/styles";
-import { login_user } from "../../../store/counter/user/action";
+import React from "react";
+import { useParams } from "react-router";
 import { Helmet } from "react-helmet";
 import StickUser from "../../components/StickUser";
 

@@ -94111,7 +94111,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
@@ -94153,7 +94152,6 @@ var useStyles = styles_1.makeStyles(function (theme) { return ({
 }); });
 var ChangePassword = function () {
     var classes = useStyles();
-    var dispatch = react_redux_1.useDispatch();
     var history = react_router_dom_1.useHistory();
     var _a = react_1.useState(""), email = _a[0], setEmail = _a[1];
     var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
@@ -94329,8 +94327,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
@@ -94373,13 +94369,12 @@ var useStyles = styles_1.makeStyles(function (theme) { return ({
 }); });
 var ResetPassword = function () {
     var classes = useStyles();
-    var dispatch = react_redux_1.useDispatch();
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var history = react_router_1.useHistory();
     var _a = react_1.useState(""), email = _a[0], setEmail = _a[1];
-    var _b = react_1.useState(""), password = _b[0], setPassword = _b[1];
-    var _c = react_1.useState(false), open = _c[0], setOpen = _c[1];
-    var _d = react_1.useState(""), message = _d[0], setMessage = _d[1];
+    var _b = react_1.useState(false), open = _b[0], setOpen = _b[1];
+    var _c = react_1.useState(""), message = _c[0], setMessage = _c[1];
+    react_1.useEffect(function () {
+        window.location.reload();
+    }, []);
     var handleClickOpen = function () {
         setOpen(true);
     };
