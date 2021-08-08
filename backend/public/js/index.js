@@ -95022,8 +95022,9 @@ var Setting = function () {
         if (user)
             if (user.name === "テストユーザー") {
                 setIsSuccess(false);
-                setMessage("テストユーザーではパスワードを変更できません");
+                setMessage("テストユーザーではアカウントを削除できません");
                 handleSnackBarClickOpen();
+                return;
             }
         setOpen(true);
     };
@@ -95100,11 +95101,13 @@ var Setting = function () {
                         setIsSuccess(false);
                         setMessage("テストユーザーではパスワードを変更できません");
                         handleSnackBarClickOpen();
+                        return [2 /*return*/];
                     }
                     email = user.email;
                     return [4 /*yield*/, axios_1.default
                             .post("/password/email", { email: email, _token: __1.csrf_token })
                             .then(function () {
+                            setIsSuccess(true);
                             setMessage("あなたのメールアドレスにリセット用のメールを送信しました");
                             handleSnackBarClickOpen();
                         })

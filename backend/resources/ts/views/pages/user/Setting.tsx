@@ -60,8 +60,9 @@ const Setting = () => {
         if (user)
             if (user.name === "テストユーザー") {
                 setIsSuccess(false);
-                setMessage("テストユーザーではパスワードを変更できません");
+                setMessage("テストユーザーではアカウントを削除できません");
                 handleSnackBarClickOpen();
+                return;
             }
         setOpen(true);
     };
@@ -120,11 +121,13 @@ const Setting = () => {
                 setIsSuccess(false);
                 setMessage("テストユーザーではパスワードを変更できません");
                 handleSnackBarClickOpen();
+                return;
             }
             const email = user.email;
             await axios
                 .post("/password/email", { email, _token: csrf_token })
                 .then(() => {
+                    setIsSuccess(true);
                     setMessage(
                         "あなたのメールアドレスにリセット用のメールを送信しました"
                     );
