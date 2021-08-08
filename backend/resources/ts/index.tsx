@@ -1,20 +1,17 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./views/pages/login/Login";
 import Register from "./views/pages/login/Register";
 import Top from "./views/pages/top/Top";
 import Create from "./views/pages/posts/Create";
-import Auth from "./views/lauout/Auth";
 import { Provider } from "react-redux";
 import store from "./store/index";
-import Login_User from "./views/pages/user/Login_User";
-import IsLogin from "./views/lauout/IsLogin";
+import LoginUser from "./views/pages/user/LoginUser";
 import View from "./views/pages/posts/View";
 import Poster from "./views/pages/user/Poster";
 import Followee from "./views/pages/follow/Followee";
 import Follower from "./views/pages/follow/Follower";
-
 import Layout from "./views/lauout/Layout";
 import PostResult from "./views/search/PostResult";
 import UserResult from "./views/search/UserResult";
@@ -160,7 +157,7 @@ const App = () => {
                     exact
                     layout={Layout}
                     path="/user"
-                    component={Login_User}
+                    component={LoginUser}
                 />
                 <MustAuthRoute
                     exact

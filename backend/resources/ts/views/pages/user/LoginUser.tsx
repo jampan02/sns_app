@@ -14,7 +14,7 @@ type FollowLength = {
     followerLength: number;
 };
 
-const Login_User = () => {
+const LoginUser = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const userData = useSelector((state: RootState) => state.user.user);
@@ -64,4 +64,4 @@ const Login_User = () => {
     }
 };
 
-export default Login_User;
+export default LoginUser;

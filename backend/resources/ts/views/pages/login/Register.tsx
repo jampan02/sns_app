@@ -14,16 +14,6 @@ import axios from "axios";
 import { useHistory, Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Snackbar } from "@material-ui/core";
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © "}
-
-            {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
-}
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -128,6 +118,7 @@ export default function Register() {
             .then(res => {
                 console.log("reg=", res.data);
                 history.push("/");
+                window.location.reload();
             })
             .catch(error => {
                 console.log(error.response);
@@ -146,6 +137,7 @@ export default function Register() {
             .post("/login", data)
             .then(res => {
                 history.push("/");
+                window.location.reload();
             })
             .catch(error => {
                 console.log(error);
@@ -246,6 +238,7 @@ export default function Register() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={onSignUp}
                         >
                             登録
                         </Button>
@@ -266,9 +259,6 @@ export default function Register() {
                         </Grid>
                     </form>
                 </div>
-                <Box mt={5}>
-                    <Copyright />
-                </Box>
             </Container>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">

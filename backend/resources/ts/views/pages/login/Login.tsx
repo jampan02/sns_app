@@ -13,14 +13,6 @@ import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import Alert from "@material-ui/lab/Alert";
 import { Helmet } from "react-helmet";
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
-}
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -80,6 +72,7 @@ const Login = () => {
             .then(res => {
                 console.log(res);
                 history.push("/");
+                window.location.reload();
             })
             .catch(error => {
                 console.log(error.response);
@@ -164,9 +157,6 @@ const Login = () => {
                         </Grid>
                     </form>
                 </div>
-                <Box mt={5}>
-                    <Copyright />
-                </Box>
             </Container>
         </>
     );

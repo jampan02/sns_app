@@ -90733,7 +90733,7 @@ var Top_1 = __importDefault(__webpack_require__(/*! ./views/pages/top/Top */ "./
 var Create_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/Create */ "./resources/ts/views/pages/posts/Create.tsx"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var index_1 = __importDefault(__webpack_require__(/*! ./store/index */ "./resources/ts/store/index.ts"));
-var Login_User_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Login_User */ "./resources/ts/views/pages/user/Login_User.tsx"));
+var LoginUser_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/LoginUser */ "./resources/ts/views/pages/user/LoginUser.tsx"));
 var View_1 = __importDefault(__webpack_require__(/*! ./views/pages/posts/View */ "./resources/ts/views/pages/posts/View.tsx"));
 var Poster_1 = __importDefault(__webpack_require__(/*! ./views/pages/user/Poster */ "./resources/ts/views/pages/user/Poster.tsx"));
 var Followee_1 = __importDefault(__webpack_require__(/*! ./views/pages/follow/Followee */ "./resources/ts/views/pages/follow/Followee.tsx"));
@@ -90784,7 +90784,7 @@ var App = function () {
             react_1.default.createElement(LayoutRoute, { exact: true, layout: Layout_1.default, path: "/followee/posts", component: FolloweePosts_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/:user/edit/:id", component: Edit_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/create", component: Create_1.default }),
-            react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/user", component: Login_User_1.default }),
+            react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/user", component: LoginUser_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/setting", component: Setting_1.default }),
             react_1.default.createElement(MustAuthRoute, { exact: true, layout: Layout_1.default, path: "/confirm/user", component: Setting_1.default }),
             react_1.default.createElement(react_router_dom_1.Route, { component: NotFound_1.default }))));
@@ -92647,164 +92647,18 @@ exports.default = NotFound;
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var StickUser_1 = __importDefault(__webpack_require__(/*! ../../components/StickUser */ "./resources/ts/views/components/StickUser.tsx"));
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    card: {
-        display: "flex",
-        justifyContent: "space-between"
-    },
-    cardContent: {
-        display: "flex"
-    },
-    grid: {
-        marginBottom: "10px"
-    }
-}); });
 var Followee = function () {
-    var classes = useStyles();
     var params = react_router_1.useParams();
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var targetUserName = params.user;
     var targetUserId = params.id;
-    var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
-    var _d = react_1.useState([]), results = _d[0], setResults = _d[1];
-    var history = react_router_1.useHistory();
-    var dispatch = react_redux_1.useDispatch();
-    react_1.useEffect(function () {
-        var f = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!!user) return [3 /*break*/, 2];
-                        //ログインされていない場合
-                        return [4 /*yield*/, axios_1.default
-                                .get("/json")
-                                .then(function (res) {
-                                if (res.data) {
-                                    dispatch(action_1.login_user(res.data));
-                                }
-                            })
-                                .catch(function (error) {
-                                console.log(error);
-                            })];
-                    case 1:
-                        //ログインされていない場合
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/];
-                }
-            });
-        }); };
-        f();
-    }, []);
-    //項目を読み込むときのコールバック
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setIsFetching(true);
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/followee", {
-                            params: {
-                                number: page,
-                                targetId: targetUserId,
-                                user_id: user === null || user === void 0 ? void 0 : user.id
-                            }
-                        })
-                            .then(function (res) {
-                            return res.data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setResults(__spreadArray(__spreadArray([], results), [data]));
-                    setIsFetching(false);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null,
@@ -92826,59 +92680,18 @@ exports.default = Followee;
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var StickUser_1 = __importDefault(__webpack_require__(/*! ../../components/StickUser */ "./resources/ts/views/components/StickUser.tsx"));
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    card: {
-        display: "flex",
-        justifyContent: "space-between"
-    },
-    cardContent: {
-        display: "flex"
-    },
-    grid: {
-        marginBottom: "10px"
-    }
-}); });
 var Follower = function () {
-    var classes = useStyles();
     var params = react_router_1.useParams();
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var targetUserName = params.user;
     var targetUserId = params.id;
-    var _a = react_1.useState([]), users = _a[0], setUsers = _a[1];
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
-    var _d = react_1.useState([]), results = _d[0], setResults = _d[1];
-    var history = react_router_1.useHistory();
-    var dispatch = react_redux_1.useDispatch();
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null,
@@ -92929,7 +92742,6 @@ var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button 
 var CssBaseline_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CssBaseline */ "./node_modules/@material-ui/core/esm/CssBaseline/index.js"));
 var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
 var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Box_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js"));
 var LockOutlined_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/LockOutlined */ "./node_modules/@material-ui/icons/LockOutlined.js"));
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
 var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
@@ -92938,11 +92750,6 @@ var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/a
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-function Copyright() {
-    return (react_1.default.createElement(Typography_1.default, { variant: "body2", color: "textSecondary", align: "center" },
-        new Date().getFullYear(),
-        "."));
-}
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     paper: {
         marginTop: theme.spacing(8),
@@ -93027,9 +92834,7 @@ var Login = function () {
                         react_1.default.createElement(Grid_1.default, { item: true },
                             react_1.default.createElement(react_router_dom_1.Link, { to: "/password/reset" }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u307E\u3057\u305F")),
                         react_1.default.createElement(Grid_1.default, { item: true },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/register" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u305B\u3093"))))),
-            react_1.default.createElement(Box_1.default, { mt: 5 },
-                react_1.default.createElement(Copyright, null)))));
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/register" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u6301\u3063\u3066\u3044\u307E\u305B\u3093"))))))));
 };
 exports.default = Login;
 
@@ -93121,7 +92926,6 @@ var Button_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Button 
 var CssBaseline_1 = __importDefault(__webpack_require__(/*! @material-ui/core/CssBaseline */ "./node_modules/@material-ui/core/esm/CssBaseline/index.js"));
 var TextField_1 = __importDefault(__webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js"));
 var Grid_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js"));
-var Box_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js"));
 var LockOutlined_1 = __importDefault(__webpack_require__(/*! @material-ui/icons/LockOutlined */ "./node_modules/@material-ui/icons/LockOutlined.js"));
 var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var Typography_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js"));
@@ -93131,12 +92935,6 @@ var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/a
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var core_1 = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-function Copyright() {
-    return (react_1.default.createElement(Typography_1.default, { variant: "body2", color: "textSecondary", align: "center" },
-        "Copyright © ",
-        new Date().getFullYear(),
-        "."));
-}
 var useStyles = styles_1.makeStyles(function (theme) { return ({
     paper: {
         marginTop: theme.spacing(8),
@@ -93239,6 +93037,7 @@ function Register() {
                             .then(function (res) {
                             console.log("reg=", res.data);
                             history.push("/");
+                            window.location.reload();
                         })
                             .catch(function (error) {
                             console.log(error.response);
@@ -93265,6 +93064,7 @@ function Register() {
                             .post("/login", data)
                             .then(function (res) {
                             history.push("/");
+                            window.location.reload();
                         })
                             .catch(function (error) {
                             console.log(error);
@@ -93297,13 +93097,11 @@ function Register() {
                                     return setPasswordConfirm(e.target.value);
                                 }, value: passwordConfirm }))),
                     errorMessage && (react_1.default.createElement(Alert, { severity: "error", className: classes.errorMessage }, errorMessage)),
-                    react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit }, "\u767B\u9332"),
+                    react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", color: "primary", className: classes.submit, onClick: onSignUp }, "\u767B\u9332"),
                     react_1.default.createElement(Button_1.default, { type: "submit", fullWidth: true, variant: "contained", className: classes.submit, onClick: onTestLogin }, "\u30C6\u30B9\u30C8\u30ED\u30B0\u30A4\u30F3"),
                     react_1.default.createElement(Grid_1.default, { container: true, justify: "flex-end" },
                         react_1.default.createElement(Grid_1.default, { item: true },
-                            react_1.default.createElement(react_router_dom_1.Link, { to: "/login" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u304C\u3042\u308A\u307E\u3059"))))),
-            react_1.default.createElement(Box_1.default, { mt: 5 },
-                react_1.default.createElement(Copyright, null))),
+                            react_1.default.createElement(react_router_dom_1.Link, { to: "/login" }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u304C\u3042\u308A\u307E\u3059")))))),
         react_1.default.createElement(core_1.Snackbar, { open: open, autoHideDuration: 6000, onClose: handleClose },
             react_1.default.createElement(Alert, { onClose: handleClose, severity: "success" }, message))));
 }
@@ -94701,25 +94499,13 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    selectBox: {
-        marginBottom: "1rem"
-    }
-}); });
 var FolloweePosts = function () {
-    var classes = useStyles();
     var dispatch = react_redux_1.useDispatch();
     var history = react_router_1.useHistory();
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
-    var _d = react_1.useState("followee"), currency = _d[0], setCurrency = _d[1];
-    var _e = react_1.useState(false), endMessage = _e[0], setEndMessage = _e[1];
     react_1.useEffect(function () {
         //パラメーターに則ったユーザー情報取得
         var f = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -94808,42 +94594,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var Alert_1 = __importDefault(__webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/index.js"));
 var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
 var Snackbar_1 = __importDefault(__webpack_require__(/*! @material-ui/core/Snackbar */ "./node_modules/@material-ui/core/esm/Snackbar/index.js"));
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    selectBox: {
-        marginBottom: "1rem"
-    }
-}); });
-var currencies = [
-    {
-        value: "followee",
-        label: "フォロー中のユーザーの投稿を見る"
-    },
-    {
-        value: "all",
-        label: "全ての投稿を見る"
-    }
-];
 function Alert(props) {
     return react_1.default.createElement(Alert_1.default, __assign({ elevation: 6, variant: "filled" }, props));
 }
 var Top = function () {
-    var classes = useStyles();
-    var dispatch = react_redux_1.useDispatch();
-    var history = react_router_1.useHistory();
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
-    var _b = react_1.useState([]), followeePosts = _b[0], setFolloweePosts = _b[1];
-    var _c = react_1.useState(true), hasMore = _c[0], setHasMore = _c[1];
-    var _d = react_1.useState(false), isFetching = _d[0], setIsFetching = _d[1];
-    var _e = react_1.useState("all"), currency = _e[0], setCurrency = _e[1];
-    var _f = react_1.useState(""), message = _f[0], setMessage = _f[1];
+    var _a = react_1.useState(""), message = _a[0], setMessage = _a[1];
     var location = react_router_1.useLocation();
     react_1.useEffect(function () {
         if (location.state !== undefined) {
@@ -94852,7 +94612,7 @@ var Top = function () {
             handleClick();
         }
     }, []);
-    var _g = react_1.default.useState(false), open = _g[0], setOpen = _g[1];
+    var _b = react_1.default.useState(false), open = _b[0], setOpen = _b[1];
     var handleClick = function () {
         setOpen(true);
     };
@@ -94874,10 +94634,10 @@ exports.default = Top;
 
 /***/ }),
 
-/***/ "./resources/ts/views/pages/user/Login_User.tsx":
-/*!******************************************************!*\
-  !*** ./resources/ts/views/pages/user/Login_User.tsx ***!
-  \******************************************************/
+/***/ "./resources/ts/views/pages/user/LoginUser.tsx":
+/*!*****************************************************!*\
+  !*** ./resources/ts/views/pages/user/LoginUser.tsx ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -94950,7 +94710,7 @@ var action_1 = __webpack_require__(/*! ../../../store/counter/user/action */ "./
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var Posts_1 = __importDefault(__webpack_require__(/*! ../../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
 var User_1 = __importDefault(__webpack_require__(/*! ../../components/User */ "./resources/ts/views/components/User.tsx"));
-var Login_User = function () {
+var LoginUser = function () {
     var history = react_router_1.useHistory();
     var dispatch = react_redux_1.useDispatch();
     var userData = react_redux_1.useSelector(function (state) { return state.user.user; });
@@ -95002,7 +94762,7 @@ var Login_User = function () {
         return null;
     }
 };
-exports.default = Login_User;
+exports.default = LoginUser;
 
 
 /***/ }),
@@ -95258,6 +95018,12 @@ var Setting = function () {
     var _c = react_1.useState(false), snackBarOpen = _c[0], setSnackBarOpen = _c[1];
     var _d = react_1.useState(true), isSuccess = _d[0], setIsSuccess = _d[1];
     var handleClickOpen = function () {
+        if (user)
+            if (user.name === "テストユーザー") {
+                setIsSuccess(false);
+                setMessage("テストユーザーではパスワードを変更できません");
+                handleSnackBarClickOpen();
+            }
         setOpen(true);
     };
     var handleClose = function () {
@@ -95303,10 +95069,6 @@ var Setting = function () {
             switch (_a.label) {
                 case 0:
                     if (!user) return [3 /*break*/, 2];
-                    if (user.name === "テストユーザー") {
-                        setIsSuccess(false);
-                        setMessage("テストユーザーではアカウントを削除できません");
-                    }
                     return [4 /*yield*/, axios_1.default
                             .post("/api/delete/user", { user_id: user.id })
                             .then(function () {
@@ -95336,6 +95098,7 @@ var Setting = function () {
                     if (user.name === "テストユーザー") {
                         setIsSuccess(false);
                         setMessage("テストユーザーではパスワードを変更できません");
+                        handleSnackBarClickOpen();
                     }
                     email = user.email;
                     return [4 /*yield*/, axios_1.default
@@ -95446,11 +95209,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -95460,97 +95218,13 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var action_1 = __webpack_require__(/*! ../../store/counter/user/action */ "./resources/ts/store/counter/user/action.ts");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var Posts_1 = __importDefault(__webpack_require__(/*! ../components/Posts */ "./resources/ts/views/components/Posts.tsx"));
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    icon: {
-        marginRight: theme.spacing(2)
-    },
-    heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6)
-    },
-    heroButtons: {
-        marginTop: theme.spacing(4)
-    },
-    cardGrid: {
-        paddingRight: theme.spacing(15),
-        paddingLeft: theme.spacing(15)
-    },
-    card: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "10px",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.03)"
-        }
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-    profileContent: {
-        display: "flex",
-        marginBottom: "0.5rem"
-    },
-    grid: {
-        marginBottom: "10px"
-    },
-    link: {
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "none"
-        }
-    },
-    siteName: {
-        marginBottom: "0.5rem",
-        color: "rgb(83, 100, 113)"
-    },
-    cardContent: {
-        flexGrow: 1
-    },
-    cardMedia: {
-        paddingTop: "56.25%",
-        marginBottom: "0.5rem",
-        transition: ".3s",
-        "&:hover": {
-            opacity: 0.5
-        }
-    },
-    cardMediaContainer: {},
-    profileContainer: {
-        display: "flex"
-    },
-    data: {},
-    dataContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        fontSize: "0.8rem",
-        color: "rgb(83, 100, 113)"
-    },
-    body: {
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        marginBottom: "0.5rem"
-    },
-    avatar: {
-        marginRight: "1rem"
-    },
-    userName: {
-        color: "black"
-    }
-}); });
 var PostResult = function () {
-    var classes = useStyles();
     var user = react_redux_1.useSelector(function (state) { return state.user.user; });
     var _a = react_1.useState([]), posts = _a[0], setPosts = _a[1];
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
     var location = react_router_1.useLocation();
-    var history = react_router_1.useHistory();
     var parsed = query_string_1.default.parse(location.search);
     var query = parsed.q;
     var dispatch = react_redux_1.useDispatch();
@@ -95581,35 +95255,6 @@ var PostResult = function () {
         }); };
         f();
     }, []);
-    var loadMore = function (page) { return __awaiter(void 0, void 0, void 0, function () {
-        var data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setIsFetching(true);
-                    return [4 /*yield*/, axios_1.default
-                            .get("/api/get/post/search", { params: { number: page, q: query } })
-                            .then(function (res) {
-                            var data = res.data;
-                            return data;
-                        })
-                            .catch(function (error) {
-                            console.log(error);
-                        })];
-                case 1:
-                    data = _a.sent();
-                    //データ件数が0件の場合、処理終了
-                    if (!data) {
-                        setHasMore(false);
-                        return [2 /*return*/];
-                    }
-                    //取得データをリストに追加*
-                    setPosts(__spreadArray(__spreadArray([], posts), [data]));
-                    setIsFetching(false);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
     return (react_1.default.createElement("div", null,
         react_1.default.createElement(react_helmet_1.Helmet, null,
             react_1.default.createElement("title", null,
@@ -95632,57 +95277,15 @@ exports.default = PostResult;
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var query_string_1 = __importDefault(__webpack_require__(/*! query-string */ "./node_modules/query-string/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-var styles_1 = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 var react_helmet_1 = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 var StickUser_1 = __importDefault(__webpack_require__(/*! ../components/StickUser */ "./resources/ts/views/components/StickUser.tsx"));
-var useStyles = styles_1.makeStyles(function (theme) { return ({
-    card: {
-        display: "flex",
-        justifyContent: "space-between"
-    },
-    cardContent: {
-        display: "flex"
-    },
-    grid: {
-        marginBottom: "10px"
-    }
-}); });
 var UserResult = function () {
-    var dispatch = react_redux_1.useDispatch();
-    var classes = useStyles();
-    var user = react_redux_1.useSelector(function (state) { return state.user.user; });
-    var _a = react_1.useState([]), results = _a[0], setResults = _a[1];
-    var location = react_router_1.useLocation();
-    var history = react_router_1.useHistory();
-    var _b = react_1.useState(true), hasMore = _b[0], setHasMore = _b[1];
-    var _c = react_1.useState(false), isFetching = _c[0], setIsFetching = _c[1];
     var parsed = query_string_1.default.parse(location.search);
     var query = parsed.q;
     return (react_1.default.createElement(react_1.default.Fragment, null,

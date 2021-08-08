@@ -57,6 +57,12 @@ const Setting = () => {
     const [snackBarOpen, setSnackBarOpen] = useState(false);
     const [isSuccess, setIsSuccess] = useState(true);
     const handleClickOpen = () => {
+        if (user)
+            if (user.name === "テストユーザー") {
+                setIsSuccess(false);
+                setMessage("テストユーザーではパスワードを変更できません");
+                handleSnackBarClickOpen();
+            }
         setOpen(true);
     };
 
@@ -92,10 +98,6 @@ const Setting = () => {
     //ユーザー削除
     const onDeleteUser = async () => {
         if (user) {
-            if (user.name === "テストユーザー") {
-                setIsSuccess(false);
-                setMessage("テストユーザーではアカウントを削除できません");
-            }
             await axios
                 .post("/api/delete/user", { user_id: user.id })
                 .then(() => {
@@ -117,6 +119,7 @@ const Setting = () => {
             if (user.name === "テストユーザー") {
                 setIsSuccess(false);
                 setMessage("テストユーザーではパスワードを変更できません");
+                handleSnackBarClickOpen();
             }
             const email = user.email;
             await axios
