@@ -92427,7 +92427,7 @@ var Layout = function (_a) {
         react_1.default.createElement(ListItem_1.default, { button: true, onClick: function () { return history.push("/register"); } },
             react_1.default.createElement(ListItemIcon_1.default, null,
                 react_1.default.createElement(LockOpen_1.default, null)),
-            react_1.default.createElement(ListItemText_1.default, { primary: "\u65B0\u898F\u767B\u9332" }))));
+            react_1.default.createElement(ListItemText_1.default, { primary: "\u30ED\u30B0\u30A4\u30F3" }))));
     var handleDrawerOpen = function () {
         setOpen(true);
     };
