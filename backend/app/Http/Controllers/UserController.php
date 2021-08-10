@@ -76,10 +76,17 @@ class UserController extends Controller
 		$user->delete();
 		//該当のユーザーが絡む、フォローフォロワー・いいね・コメント全削除
 		$follows=Follow::where("followee_id",$user_id)->orWhere("follower_id",$user->id)->get();
+		if($follows){
 		$follows->delete();
+		}
 		$likes=Like::where("user_id",$user_id)->get();
+		if($likes){
 		$likes->delete();
+		}
+		
 		$comments=Comment::where("user_id",$user_id)->get();
+		if($comments){
 		$comments->delete();
+		}
 	}
 }
