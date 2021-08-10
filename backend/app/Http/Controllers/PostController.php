@@ -164,10 +164,8 @@ class PostController extends Controller
 	}
  }
  //全ての投稿（フォロー関係無視）
- public function getPostByScroll(Request $request){
+ 	public function getPostByScroll(Request $request){
 	$number=$request->number-1;
-	
-	
 	$post=Post::orderBy("updated_at","DESC")->skip($number)->first();
 	if($post){
 	$user=User::where("id",$post->user_id)->first();
@@ -180,5 +178,24 @@ class PostController extends Controller
 	}else{
 		return;
 	}
-}
+	}
+	//userがいいねした投稿だけを取得
+	public function getPostByScrollOnlyLiked(Request $request){
+		$number=$request->number-1;
+		$user_id=$request->user_id;
+		$like=Like::where("user_id",$user_id)->orderBy("updated_at","DESC")->skip($number)->first();
+		if($like){
+		$post=Post::where("id",$like->post_id)->first();
+		
+			$result=array();
+			$user=User::where("id",$post->user_id)->first();
+			$likes=Like::where("post_id",$post->id)->get();
+			$result["post"]=$post;
+			$result["user"]=$user;
+			$result["likes"]=$likes;
+			return $result;
+		}else{
+			return;
+		}
+	}
 }

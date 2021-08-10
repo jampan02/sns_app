@@ -22,6 +22,7 @@ import NotFound from "./views/pages/404/NotFound";
 import FolloweePosts from "./views/pages/top/FolloweePosts";
 import ResetPassword from "./views/pages/reset/ResetPassword";
 import ChangePassword from "./views/pages/reset/ChangePassword";
+import LikedPosts from "./views/pages/top/LikedPosts";
 export let csrf_token = (document.head.querySelector(
     'meta[name="csrf-token"]'
 ) as HTMLMetaElement).content;
@@ -139,7 +140,12 @@ const App = () => {
                     path="/followee/posts"
                     component={FolloweePosts}
                 />
-
+                <LayoutRoute
+                    exact
+                    layout={Layout}
+                    path="/liked/posts"
+                    component={LikedPosts}
+                />
                 <MustAuthRoute
                     exact
                     layout={Layout}

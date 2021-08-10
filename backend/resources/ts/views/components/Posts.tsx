@@ -124,6 +124,10 @@ const currencies = [
     {
         value: "all",
         label: "全ての投稿を見る"
+    },
+    {
+        value: "liked",
+        label: "いいねした投稿を見る"
     }
 ];
 const Posts: React.FC<Props> = ({ path, user_id, q, defaultCurrency }) => {
@@ -163,6 +167,12 @@ const Posts: React.FC<Props> = ({ path, user_id, q, defaultCurrency }) => {
             //「フォロー中のユーザー」を選択した場合
             if (user) {
                 history.push("/followee/posts");
+            } else {
+                history.push("register");
+            }
+        } else if (e.target.value === "liked") {
+            if (user) {
+                history.push("/liked/posts");
             } else {
                 history.push("register");
             }

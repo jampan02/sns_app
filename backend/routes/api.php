@@ -30,6 +30,7 @@ Route::group(["middleware"=>"api"],function(){
 	Route::get("get/post","PostController@getPost");
 	Route::get("get/post/scroll","PostController@getPostByScroll");
 	Route::get("get/post/scroll/followee","PostController@getPostByScrollOnlyFollowee");
+	Route::get("get/post/scroll/liked","PostController@getPostByScrollOnlyLiked");
 	Route::get("get/post/scroll/user","PostController@getPostByScrollInUser");
 	Route::get("get/posts/sort/popular","PostController@getPopularPosts");
 	Route::post("add","PostController@addPost");
