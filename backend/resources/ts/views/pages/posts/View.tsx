@@ -262,7 +262,7 @@ const View = () => {
         const minutes = toDate.getMinutes();
         return (
             <Typography>
-                {year}年　{month}月 {day}日　
+                {year}年{month}月{day}日　
                 {h < 12 ? `午前${h}時` : `午後${h - 12}時`}
                 {minutes}分
             </Typography>

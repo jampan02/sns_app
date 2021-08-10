@@ -93868,9 +93868,9 @@ var View = function () {
         var minutes = toDate.getMinutes();
         return (react_1.default.createElement(Typography_1.default, null,
             year,
-            "\u5E74\u3000",
+            "\u5E74",
             month,
-            "\u6708 ",
+            "\u6708",
             day,
             "\u65E5",
             h < 12 ? "\u5348\u524D" + h + "\u6642" : "\u5348\u5F8C" + (h - 12) + "\u6642",

@@ -8,6 +8,7 @@ use App\User;
 use App\Post;
 use App\Like;
 use App\Follow;
+use App\Comment;
 use Illuminate\Support\Facades\Log;
 use Storage;
 class UserController extends Controller
@@ -73,6 +74,12 @@ class UserController extends Controller
 		$user_id=$request->user_id;
 		$user=User::where("id",$user_id)->first();
 		$user->delete();
-
+		//該当のユーザーが絡む、フォローフォロワー・いいね・コメント全削除
+		$follows=Follow::where("followee_id",$user_id)->orWhere("follower_id",$user->id)->get();
+		$follows->delete();
+		$likes=Like::where("user_id",$user_id)->get();
+		$likes->delete();
+		$comments=Comment::where("user_id",$user_id)->get();
+		$comments->delete();
 	}
 }
