@@ -91332,7 +91332,7 @@ var Posts = function (_a) {
     }); };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         defaultCurrency && (react_1.default.createElement(TextField_1.default, { select: true, value: currency, onChange: handleChange, className: classes.selectBox, disabled: isFetchingUser ? true : false }, currencies.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value }, option.label)); }))),
-        !user_id && errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
+        errorMessage && (react_1.default.createElement(Alert_1.default, { severity: "error", className: classes.errorMessage }, errorMessage)),
         react_1.default.createElement(react_infinite_scroller_1.default, { loadMore: loadMore, hasMore: !isFetching && hasMore },
             react_1.default.createElement(Grid_1.default, { container: true }, posts[0] &&
                 posts.map(function (post) {

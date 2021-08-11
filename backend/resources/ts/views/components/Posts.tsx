@@ -329,7 +329,7 @@ const Posts: React.FC<Props> = ({ path, user_id, q, defaultCurrency }) => {
                     ))}
                 </TextField>
             )}
-            {!user_id && errorMessage && (
+            {errorMessage && (
                 <Alert severity="error" className={classes.errorMessage}>
                     {errorMessage}
                 </Alert>
