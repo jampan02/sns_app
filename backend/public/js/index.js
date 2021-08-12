@@ -92103,6 +92103,7 @@ var Users = function (_a) {
     };
     var onSetUserData = function () {
         if (user) {
+            console.log(user.profile_image);
             setIsEditMode(true);
             setNewUserName(user.name);
             setNewProfileImage(user.profile_image);
@@ -92110,12 +92111,26 @@ var Users = function (_a) {
                 setNewSelfIntroduction(user.self_introduction);
         }
     };
+    var onFileChange = function (e) {
+        var files = e.target.files;
+        console.log(files);
+        if (files.length > 0) {
+            var file = files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                setNewProfileImage(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     var getEditMode = function () {
         if (isEditMode) {
             return (react_1.default.createElement("form", { action: "/api/edit/user/name?id=" + user.id, method: "post", encType: "multipart/form-data", className: classes.form },
                 react_1.default.createElement("div", { className: classes.avatarContainer },
                     react_1.default.createElement(CardActions_1.default, null,
-                        react_1.default.createElement("input", { accept: "image/*", name: "image", type: "file", id: "icon-button-file", className: classes.input, multiple: true }),
+                        react_1.default.createElement("input", { accept: "image/*", name: "image", type: "file", id: "icon-button-file", className: classes.input, multiple: true, onChange: function (e) {
+                                onFileChange(e);
+                            } }),
                         react_1.default.createElement("label", { htmlFor: "icon-button-file" },
                             react_1.default.createElement(IconButton_1.default, { color: "primary", component: "span" },
                                 react_1.default.createElement(Avatar_1.default, { alt: "image", src: newProfileImage, className: classes.editAvatar })))),
@@ -92140,7 +92155,7 @@ var Users = function (_a) {
     };
     return (react_1.default.createElement(Grid_1.default, { item: true, xs: 12, className: classes.grid },
         react_1.default.createElement(Card_1.default, null,
-            isLoginUser ? (getEditMode()) : (react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
+            isLoginUser ? (react_1.default.createElement(CardContent_1.default, { className: classes.cardContent }, getEditMode())) : (react_1.default.createElement(CardContent_1.default, { className: classes.cardContent },
                 react_1.default.createElement("div", { className: classes.avatarContainer },
                     react_1.default.createElement(Avatar_1.default, { alt: "image", src: user.profile_image, className: classes.large }),
                     react_1.default.createElement(Typography_1.default, { variant: "h4", gutterBottom: true, className: classes.nameText }, user.name)),

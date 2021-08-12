@@ -333,6 +333,7 @@ const Users: React.FC<Props> = ({ user, isLoginUser }) => {
 
     const onSetUserData = () => {
         if (user) {
+            console.log(user.profile_image);
             setIsEditMode(true);
 
             setNewUserName(user.name);
@@ -340,6 +341,18 @@ const Users: React.FC<Props> = ({ user, isLoginUser }) => {
             setNewProfileImage(user.profile_image);
             user.self_introduction &&
                 setNewSelfIntroduction(user.self_introduction);
+        }
+    };
+    const onFileChange = (e: any) => {
+        const files = e.target.files;
+        console.log(files);
+        if (files.length > 0) {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.onload = (e: any) => {
+                setNewProfileImage(e.target.result);
+            };
+            reader.readAsDataURL(file);
         }
     };
     const getEditMode = () => {
@@ -360,6 +373,9 @@ const Users: React.FC<Props> = ({ user, isLoginUser }) => {
                                 id="icon-button-file"
                                 className={classes.input}
                                 multiple
+                                onChange={e => {
+                                    onFileChange(e);
+                                }}
                             />
                             <label htmlFor="icon-button-file">
                                 <IconButton color="primary" component="span">
@@ -456,7 +472,9 @@ const Users: React.FC<Props> = ({ user, isLoginUser }) => {
         <Grid item xs={12} className={classes.grid}>
             <Card>
                 {isLoginUser ? (
-                    getEditMode()
+                    <CardContent className={classes.cardContent}>
+                        {getEditMode()}
+                    </CardContent>
                 ) : (
                     <CardContent className={classes.cardContent}>
                         <div className={classes.avatarContainer}>
