@@ -19,7 +19,6 @@ use Mockery\Undefined;
 class PostController extends Controller
 {
 	public function addPost(Request $request){
-		Log::debug("message");
 				$URL=$request->url;
 				$client = new Client();
 				$crawler = $client->request('GET', $URL);
@@ -93,6 +92,44 @@ class PostController extends Controller
 		$body=$request->body;
 		$id=$request->post_id;
 		$post=Post::where("id",$id)->first();
+		$client = new Client();
+				$crawler = $client->request('GET', $url);
+				$meta = $crawler->filter('meta')->each(function($node) {
+					return [
+						'property' => $node->attr('property'),
+						'content' => $node->attr('content'),
+					];
+				});
+			
+			
+				foreach($meta as $data){
+				
+				switch($data["property"]){
+				
+				case "og:site_name":
+					Log::debug($data);
+						$post->site_name=$data["content"];
+						break;
+				case "og:title":
+						$post->title=$data["content"];
+						break;
+				case "og:image":
+						$post->image=$data["content"];
+						break;
+				default:
+					break;
+				}
+			}
+			if($post->image === null){
+				$post->image=Storage::disk("s3")->url("default/l_e_others_501.png");
+			
+			}
+			if($post->title === null){
+				$post->title=$crawler->filter('title')->text();
+			}
+			if($post->site_name === null){
+				$post->site_name=$url;
+			}
 		$post->url=$url;
 		$post->body=$body;
 		$post->save();
